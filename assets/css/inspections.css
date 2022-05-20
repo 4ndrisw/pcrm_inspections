@@ -1,0 +1,16 @@
+
+.inspection-update{ background-color:#ddd; }
+
+body #inspection-preview .inspection-items table tbody td.description span{
+    color: #d1d3ea !important;
+}
+
+.customers.viewinspection #wrapper{
+    margin-left: 0;
+}
+
+@media (max-width: 1430px){
+    .customers.viewinspection .panel_s {
+        width: 100%;
+    }    
+}
