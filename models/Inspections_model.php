@@ -492,12 +492,6 @@ class Inspections_model extends App_Model
 
             handle_tags_save($tags, $insert_id, 'inspection');
 
-            foreach ($items as $key => $item) {
-                if ($new_item_added = add_new_inspection_item_post($item, $insert_id, 'inspection')) {
-                    $affectedRows++;
-                }
-            }
-
             hooks()->do_action('after_inspection_added', $insert_id);
 
             if ($save_and_send === true) {
