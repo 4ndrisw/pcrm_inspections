@@ -438,6 +438,7 @@ class Inspections_model extends App_Model
 
         $data['hash'] = app_generate_hash();
         $tags         = isset($data['tags']) ? $data['tags'] : '';
+        $equipment    = isset($data['equipment']) ? $data['equipment'] : '';
 
         $items = [];
         if (isset($data['newitems'])) {
@@ -470,10 +471,12 @@ class Inspections_model extends App_Model
         $items = $hook['items'];
 
         unset($data['tags']);
+        unset($data['equipment']);
         unset($data['allowed_payment_modes']);
         unset($data['save_as_draft']);
         unset($data['inspection_id']);
         unset($data['duedate']);
+
 
         try {
             $this->db->insert(db_prefix() . 'inspections', $data);
@@ -491,6 +494,17 @@ class Inspections_model extends App_Model
             $this->db->update(db_prefix() . 'options');
 
             handle_tags_save($tags, $insert_id, 'inspection');
+            
+            //$tags = $data['tags'];
+            $tags = empty($tags) ? [] : explode(',', $tags);
+            $tag = $tags[0];
+            $equipment = ucfirst(strtolower(str_replace(' ', '_', $tag)));
+            $equipment_model = $equipment .'_model';
+            include_once(__DIR__ . '/' . $equipment_model .'.php');
+            $this->load->model($equipment_model);
+
+            $equipment_data['rel_id'] = $insert_id;
+            $this->{$equipment_model}->create($equipment_data);
 
             foreach ($items as $key => $item) {
                 if ($new_item_added = add_new_inspection_item_post($item, $insert_id, 'inspection')) {
@@ -569,6 +583,15 @@ class Inspections_model extends App_Model
             }
         }
 
+        $tags = $data['tags'];
+        $tag = empty($tags) ? [] : explode(',', $tags);
+        $equipment = $tag[0];
+        $equipment_model = ucfirst(strtolower(str_replace(' ', '_', $equipment)));
+        echo($equipment);
+        echo($equipment_model);
+
+        die();
+
         $data['billing_street'] = trim($data['billing_street']);
         $data['billing_street'] = nl2br($data['billing_street']);
 
@@ -603,6 +626,7 @@ class Inspections_model extends App_Model
         }
 
         unset($data['removed_items']);
+
 
         $this->db->where('id', $id);
         $this->db->update(db_prefix() . 'inspections', $data);
