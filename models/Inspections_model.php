@@ -439,12 +439,6 @@ class Inspections_model extends App_Model
         $data['hash'] = app_generate_hash();
         $tags         = isset($data['tags']) ? $data['tags'] : '';
 
-        $items = [];
-        if (isset($data['newitems'])) {
-            $items = $data['newitems'];
-            unset($data['newitems']);
-        }
-
         $inspection_members = [];
         if (isset($data['inspection_members'])) {
             $inspection_members = $data['inspection_members'];
