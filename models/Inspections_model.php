@@ -439,6 +439,12 @@ class Inspections_model extends App_Model
         $data['hash'] = app_generate_hash();
         $tags         = isset($data['tags']) ? $data['tags'] : '';
 
+        $items = [];
+        if (isset($data['newitems'])) {
+            $items = $data['newitems'];
+            unset($data['newitems']);
+        }
+
         $inspection_members = [];
         if (isset($data['inspection_members'])) {
             $inspection_members = $data['inspection_members'];
@@ -485,6 +491,12 @@ class Inspections_model extends App_Model
             $this->db->update(db_prefix() . 'options');
 
             handle_tags_save($tags, $insert_id, 'inspection');
+
+            foreach ($items as $key => $item) {
+                if ($new_item_added = add_new_inspection_item_post($item, $insert_id, 'inspection')) {
+                    $affectedRows++;
+                }
+            }
 
             hooks()->do_action('after_inspection_added', $insert_id);
 
