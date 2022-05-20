@@ -959,7 +959,7 @@ class Inspections_model extends App_Model
 
             $this->db->where('rel_id', $id);
             $this->db->where('rel_type', 'inspection');
-            $this->db->delete('inspection_emails');
+            $this->db->delete('scheduled_emails');
 
             // Get related tasks
             $this->db->where('rel_type', 'inspection');
