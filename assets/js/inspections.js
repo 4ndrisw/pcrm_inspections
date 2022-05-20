@@ -19,6 +19,7 @@ function validate_inspection_form(selector) {
             }
         },
         date: 'required',
+        tags: 'required',
         number: {
             required: true
         }
