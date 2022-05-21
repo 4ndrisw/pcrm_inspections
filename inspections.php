@@ -161,7 +161,7 @@ function inspections_module_init_menu_items()
             'name'       => _l('inspection'),
             'url'        => 'inspections',
             'permission' => 'inspections',
-            'position'   => 57,
+            'position'   => 50,
             ]);
 
     if (has_permission('inspections', '', 'view')) {

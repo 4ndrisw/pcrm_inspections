@@ -87,3 +87,7 @@ body #inspection-preview .inspection-items table tbody td.description span{
 .vertical-align-middle label{
     margin-bottom: 0;
 }
+
+#inspection-preview .form-control[disabled]{
+    cursor: crosshair;
+}

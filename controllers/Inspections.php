@@ -70,6 +70,20 @@ class Inspections extends AdminController
         $data['inspection_statuses'] = $this->inspections_model->get_statuses();
         $data['totalNotes']        = total_rows(db_prefix() . 'notes', ['rel_id' => $id, 'rel_type' => 'inspection']);
 
+
+
+
+        $tags = get_tags_in($inspection->id, 'inspection');
+
+        $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
+        $equipment_model = $equipment_type .'_model';
+        $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
+
+        include_once($model_path);
+        $this->load->model($equipment_model);
+        $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
+        $data['equipment'] = $equipment;
+
         $data['send_later'] = false;
         if ($this->session->has_userdata('send_later')) {
             $data['send_later'] = true;

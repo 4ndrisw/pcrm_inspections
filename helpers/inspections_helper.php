@@ -447,6 +447,22 @@ function get_inspection_items_table_data($transaction, $type, $for = 'html', $ad
 }
 
 
+/**
+ * Get items table for preview
+ * @param  object  $transaction   e.q. invoice, estimate from database result row
+ * @param  string  $type          type, e.q. invoice, estimate, proposal
+ * @param  string  $for           where the items will be shown, html or pdf
+ * @param  boolean $admin_preview is the preview for admin area
+ * @return object
+ */
+function get_equipment_items_table_data($transaction, $type, $for = 'html', $admin_preview = false)
+{
+
+    $text = 'no data available';
+    return $text;
+}
+
+
 
 /**
  * Add new item do database, used for proposals,estimates,credit notes,invoices

@@ -309,10 +309,17 @@
                   <div class="row">
                      <div class="col-md-12 inspection-items">
                         <div class="table-responsive">
-                              <?php
-                                 $items = get_inspection_items_table_data($inspection, 'inspection', 'html', true);
-                                 echo $items->table();
-                              ?>
+                           <?php
+                              $items = get_inspection_items_table_data($inspection, 'inspection', 'html', true);
+                              echo $items->table();
+                           ?>
+                        </div>
+                     </div>
+                     <div class="col-md-12 equipment-items">
+                        <div class="table-responsive">
+                           <?php
+                              $this->load->view('themes/'. active_clients_theme() .'/template_parts/inspections_report', $inspection);
+                           ?>
                         </div>
                      </div>
                      <?php if(count($inspection->attachments) > 0){ ?>
