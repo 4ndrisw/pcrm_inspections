@@ -582,6 +582,8 @@ class Inspections_model extends App_Model
                 $affectedRows++;
             }
         }
+        $equipment_data = $data['equipment'];
+        unset($data['equipment']);
 
         $data['billing_street'] = trim($data['billing_street']);
         $data['billing_street'] = nl2br($data['billing_street']);
@@ -641,17 +643,6 @@ class Inspections_model extends App_Model
                 ]));
             }
 
-            $tags = empty($data[tags]) ? [] : explode(',', $data['tags']);
-            $tag = $tags[0];
-            $equipment = ucfirst(strtolower(str_replace(' ', '_', $tag)));
-            $equipment_model = $equipment .'_model';
-            include_once(__DIR__ . '/' . $equipment_model .'.php');
-            $this->load->model($equipment_model);
-
-            $equipment_data['rel_id'] = $id;
-            $equipment_data['jenis_pesawat'] = $tag;
-            $this->{$equipment_model}->update($equipment_data, $id);
-
             $affectedRows++;
         }
 
@@ -707,6 +698,19 @@ class Inspections_model extends App_Model
         if ($this->add_edit_inspection_members($_sm, $id)) {
             $affectedRows++;
         }
+
+        $tags = get_tags_in($id, 'inspection');
+        //$tags = empty($data[tags]) ? [] : explode(',', $data['tags']);
+        $tag = $tags[0];
+        $equipment = ucfirst(strtolower(str_replace(' ', '_', $tag)));
+        $equipment_model = $equipment .'_model';
+        include_once(__DIR__ . '/' . $equipment_model .'.php');
+        $this->load->model($equipment_model);
+
+        $equipment_data['rel_id'] = $id;
+        $equipment_data['jenis_pesawat'] = $tag;
+
+        $this->{$equipment_model}->update($equipment_data, $id);
 
         if ($save_and_send === true) {
             $this->send_inspection_to_client($id, '', true, '', true);

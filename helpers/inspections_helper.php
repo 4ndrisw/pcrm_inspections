@@ -716,3 +716,120 @@ function inspection_status_changed_hook($data){
     log_activity('inspection_status_changed');
 
 }
+
+function get_inspection_company_name($id){
+    $CI = &get_instance();
+
+    $CI->load->model('inspections_model');   
+    $inspection = $CI->inspections_model->get($id);
+
+    $CI->load->model('clients_model');   
+    $client = $CI->clients_model->get($inspection->clientid);
+    return $client->company;
+}
+
+function get_inspection_company_by_clientid($id){
+    $CI = &get_instance();
+ 
+    $CI->load->model('clients_model');   
+    $client = $CI->clients_model->get($id);
+    return $client->company;
+}
+
+function get_inspection_company_address($id){
+    $CI = &get_instance();
+    $CI->db->select('billing_street, billing_city, billing_state','billing_zip');
+    $CI->db->from(db_prefix() . 'inspections');
+    $CI->db->where('id', $id);
+    $inspection = $CI->db->get()->row();
+
+    $address  = '';
+    $address .= isset($inspection->billing_street) ? $inspection->billing_street .' ' : '' ;
+    $address .= isset($inspection->billing_city) ? $inspection->billing_city .' ' : '' ;
+    $address .= isset($inspection->billing_state) ? $inspection->billing_state .' ' : '' ;
+    $address .= isset($inspection->billing_zip) ? $inspection->billing_zip : '' ;
+    
+    return $address;
+}
+
+function get_inspection_jenis_pesawat(){
+    $CI = &get_instance();
+    $CI->load->model('clients_model');   
+    $client = $CI->clients_model->get($id);
+    return $client->company;
+}
+
+function getYear($pdate) {
+    $date = DateTime::createFromFormat("Y-m-d", $pdate);
+    return $date->format("Y");
+}
+
+function getMonth($pdate) {
+    $bulan = array(
+                '01' => 'Januari',
+                '02' => 'Februari',
+                '03' => 'Maret',
+                '04' => 'April',
+                '05' => 'Mei',
+                '06' => 'Juni',
+                '07' => 'Juli',
+                '08' => 'Agustus',
+                '09' => 'September',
+                '10' => 'Oktober',
+                '11' => 'November',
+                '12' => 'Desember',
+        );
+    $date = DateTime::createFromFormat("Y-m-d", $pdate);
+    return $bulan[$date->format("m")];
+}
+
+function getDay($pdate) {
+    $date = DateTime::createFromFormat("Y-m-d", $pdate);
+    return $date->format("d");
+}
+
+function getDayName($pdate) {
+$hari = array ( 1 =>    'Senin',
+                'Selasa',
+                'Rabu',
+                'Kamis',
+                'Jumat',
+                'Sabtu',
+                'Minggu'
+            );
+    $date = DateTime::createFromFormat("Y-m-d", $pdate);
+    return $hari[$date->format("N")];
+}
+
+ /**
+ * Format company info/address format
+ * @return string
+ */
+function format_company_info()
+{
+    $format = get_option('company_info_format');
+
+/*
+    $format = _info_format_replace('company_name', '<b style="color:black" class="company-name-formatted">' . get_option('invoice_company_name') . '</b>', $format);
+    $format = _info_format_replace('address', get_option('invoice_company_address'), $format);
+    $format = _info_format_replace('city', get_option('invoice_company_city'), $format);
+    $format = _info_format_replace('state', get_option('company_state'), $format);
+    $format = _info_format_replace('zip_code', '', $format);
+
+    $format = _info_format_replace('vat_number_with_label', '', $format);
+    $format = _maybe_remove_first_and_last_br_tag($format);
+*/ 
+    $format = '';
+    $format .= get_option('invoice_company_name') . "\r\n";
+    $format .= get_option('invoice_company_address');
+    $format .= get_option('invoice_company_city');
+    $format .= get_option('company_state');
+    
+    // Remove multiple white spaces
+    $format = preg_replace('/\s+/', ' ', $format);
+    $format = trim($format);
+
+
+
+    return $format;
+}
