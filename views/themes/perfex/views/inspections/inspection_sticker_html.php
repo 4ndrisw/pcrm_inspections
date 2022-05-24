@@ -59,7 +59,7 @@
                        echo form_close();
                      }
                      ?>
-                  <?php echo form_open(site_url('inspections/pdf/'.$inspection->id), array('class'=>'pull-right action-button')); ?>
+                  <?php echo form_open(site_url('inspections/sticker/pdf/'.$inspection->id), array('class'=>'pull-right action-button')); ?>
                   <button type="submit" name="inspectionpdf" class="btn btn-default action-button download mright5 mtop7" value="inspectionpdf">
                   <i class="fa fa-file-pdf-o"></i>
                   <?php echo _l('clients_invoice_html_btn_download'); ?>

@@ -148,7 +148,7 @@ class Myinspection extends ClientsController
         no_index_customers_area();
         $this->layout();
     }
-    
+
     public function bapp($id, $hash)
     {
         check_inspection_restrictions($id, $hash);
@@ -262,7 +262,7 @@ class Myinspection extends ClientsController
 
         $this->data($data);
         $this->app_scripts->theme('sticky-js', 'assets/plugins/sticky/sticky.js');
-        $this->view('themes/'. active_clients_theme() .'/views/inspections/inspectionhtml');
+        $this->view('themes/'. active_clients_theme() .'/views/inspections/inspection_bapp_html');
         add_views_tracking('inspection', $id);
         hooks()->do_action('inspection_html_viewed', $id);
         no_index_customers_area();
@@ -334,4 +334,22 @@ class Myinspection extends ClientsController
 
         $pdf->Output($fileNameHookData['file_name'], $type);
     }
+
+    public function sticker_data($id)
+    {
+        $canView = user_can_view_inspection($id);
+        if (!$canView) {
+            access_denied('Inspections');
+        } else {
+            if (!has_permission('inspections', '', 'view') && !has_permission('inspections', '', 'view_own') && $canView == false) {
+                access_denied('Inspections');
+            }
+        }
+        if (!$id) {
+            redirect(admin_url('inspections'));
+        }
+
+        app_pdf('sticker-data', module_libs_path(INSPECTIONS_MODULE_NAME) . 'pdf/Sticker_data_pdf', $id);
+    }
+    
 }

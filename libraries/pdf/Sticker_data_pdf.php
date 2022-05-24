@@ -25,16 +25,17 @@ class Sticker_data_pdf extends App_pdf
         $this->SetTitle($inspection->formatted_number);
         $members                = $this->ci->inspections_model->get_inspection_members($inspection->id);
 
-        $equiptment_type = $inspection->equiptment_type;
-        if(isset($equiptment_type)){
-            $equiptment_model = $equiptment_type . '_model';
+        $tags = get_tags_in($inspection->id, 'inspection');
 
-            include_once('modules/'.INSPECTIONS_MODULE_NAME . '/models/'. ucwords($equiptment_model) .'.php');
+        $data['jenis_pesawat'] = $tags[0];
 
-            $this->ci->load->model($equiptment_model);
-            $equiptment = $this->ci->{$equiptment_model}->get('', ['rel_id' => $this->inspection_id]);
-            $data['equiptment'] = $equiptment;
-        }
+        $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
+        $equipment_model = $equipment_type .'_model';
+        $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
+
+        include_once($model_path);
+        $this->load->model($equipment_model);
+        $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
 
         $inspection->assigned_path = FCPATH . get_inspection_upload_path('inspection').$inspection->id.'/assigned-'.$inspection_number.'.png';
         
@@ -43,6 +44,7 @@ class Sticker_data_pdf extends App_pdf
         $data['client_company']   = $this->ci->clients_model->get($inspection->clientid)->company;
 
         $data['inspection']       = $inspection;
+        $data['equipment']       = $equipment;
         
         $equiptment_name = isset($equiptment->nama_pesawat) ? $equiptment->nama_pesawat : '';
 
