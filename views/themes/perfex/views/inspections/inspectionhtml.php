@@ -58,7 +58,7 @@
                        echo form_close();
                      }
                      ?>
-                  <?php echo form_open(site_url('inspections/pdf/'.$inspection->id), array('class'=>'pull-right action-button')); ?>
+                  <?php echo form_open(site_url('inspections/bapp/pdf/'.$inspection->id), array('class'=>'pull-right action-button')); ?>
                   <button type="submit" name="inspectionpdf" class="btn btn-default action-button download mright5 mtop7" value="inspectionpdf">
                   <i class="fa fa-file-pdf-o"></i>
                   <?php echo _l('clients_invoice_html_btn_download'); ?>
@@ -99,6 +99,23 @@
                   <?php echo format_customer_info($inspection, 'inspection', 'shipping'); ?>
                </address>
                <?php } ?>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-12">
+               <p>
+               Sesuai dengan Undang – Undang No.1 tahun 1970 dan Peraturan Menteri Tenaga Kerja No. Per-08/MEN/2020
+   Tentang Tentang Pesawat Angkat Dan Angkut.
+               <?php echo get_option('predefined_clientinfo_inspection'); ?>   
+               </p>
+               <p>
+                  <?php $date = $inspection->date; ?>
+                  Pada hari ini <?= getDayName($date) ?>, tanggal <?= getDay($date) ?> bulan <?= getMonth($date) ?> tahun  <?= getYear($date) ?>, telah dilakukan Pemeriksaan
+   dan Pengujian Peralatan K3 dengan keterangan sebagai berikut :
+               </p>
+               <?php
+                  $this->load->view('themes/'. active_clients_theme() .'/template_parts/inspections_report', $inspection);
+               ?>
             </div>
          </div>
          <div class="row">
@@ -206,7 +223,7 @@
             <?php if(!empty($inspection->clientnote)){ ?>
             <div class="col-md-12 inspection-html-note">
             <hr />
-               <b><?php echo _l('inspection_order'); ?></b><br /><?php echo $inspection->clientnote; ?>
+               <b><?php echo _l('inspection_note'); ?></b><br /><?php echo $inspection->clientnote; ?>
             </div>
             <?php } ?>
             <?php if(!empty($inspection->terms)){ ?>

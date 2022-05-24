@@ -88,11 +88,11 @@
                   <div class="btn-group">
                      <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-pdf-o"></i><?php if(is_mobile()){echo ' PDF';} ?> <span class="caret"></span></a>
                      <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="hidden-xs"><a href="<?php echo site_url('inspections/pdf/'.$inspection->id.'?output_type=I'); ?>"><?php echo _l('view_pdf'); ?></a></li>
-                        <li class="hidden-xs"><a href="<?php echo site_url('inspections/pdf/'.$inspection->id.'?output_type=I'); ?>" target="_blank"><?php echo _l('view_pdf_in_new_window'); ?></a></li>
-                        <li><a href="<?php echo site_url('inspections/pdf/'.$inspection->id); ?>"><?php echo _l('download'); ?></a></li>
+                        <li class="hidden-xs"><a href="<?php echo site_url('inspections/bapp/pdf/'.$inspection->id.'?output_type=I'); ?>"><?php echo _l('view_pdf'); ?></a></li>
+                        <li class="hidden-xs"><a href="<?php echo site_url('inspections/bapp/pdf/'.$inspection->id.'?output_type=I'); ?>" target="_blank"><?php echo _l('view_pdf_in_new_window'); ?></a></li>
+                        <li><a href="<?php echo site_url('inspections/bapp/pdf/'.$inspection->id); ?>"><?php echo _l('download'); ?></a></li>
                         <li>
-                           <a href="<?php echo site_url('inspections/pdf/'.$inspection->id.'?print=true'); ?>" target="_blank">
+                           <a href="<?php echo site_url('inspections/bapp/pdf/'.$inspection->id.'?print=true'); ?>" target="_blank">
                            <?php echo _l('print'); ?>
                            </a>
                         </li>
@@ -240,17 +240,33 @@
                      <?php } ?>
                      <div class="col-md-6 col-sm-6">
                         <h4 class="bold">
-                           <?php
-                              $tags = get_tags_in($inspection->id,'inspection');
+                              <?php $tags = get_tags_in($inspection->id,'inspection'); ?>
+                           <div class="sticker">
+                              <p><?= _l('sticker') ?></p>
+                              <?php
                               if(count($tags) > 0){
                                 echo '<i class="fa fa-tag" aria-hidden="true" data-toggle="tooltip" data-title="'.html_escape(implode(', ',$tags)).'"></i>';
                               }
                               ?>
-                           <a href="<?php echo site_url('inspections/show/'.$inspection->id.'/'.$inspection->hash); ?>">
-                           <span id="inspection-number">
-                           <?php echo format_inspection_number($inspection->id); ?>
-                           </span>
-                           </a>
+                              <a href="<?php echo site_url('inspections/sticker/'.$inspection->id.'/'.$inspection->hash); ?>">
+                                 <span id="inspection-number">
+                                 <?php echo format_inspection_number($inspection->id); ?>
+                                 </span>
+                              </a>
+                           </div>
+                           <div class="inspection_report">
+                              <p><?= _l('inspection_report') ?></p>
+                              <?php
+                              if(count($tags) > 0){
+                                echo '<i class="fa fa-tag" aria-hidden="true" data-toggle="tooltip" data-title="'.html_escape(implode(', ',$tags)).'"></i>';
+                              }
+                              ?>
+                              <a href="<?php echo site_url('inspections/bapp/'.$inspection->id.'/'.$inspection->hash); ?>">
+                                 <span id="inspection-number">
+                                 <?php echo format_inspection_number($inspection->id); ?>
+                                 </span>
+                              </a>
+                           </div>
                         </h4>
                         <address>
                            <?php echo format_organization_info(); ?>
@@ -308,11 +324,9 @@
                   </div>
                   <div class="row">
                      <div class="col-md-12 equipment-items">
-                        <div class="table-responsive">
-                           <?php
-                              $this->load->view('themes/'. active_clients_theme() .'/template_parts/inspections_report', $inspection);
-                           ?>
-                        </div>
+                        <?php
+                           $this->load->view('themes/'. active_clients_theme() .'/template_parts/inspections_report', $inspection);
+                        ?>
                      </div>
                      <?php if(count($inspection->attachments) > 0){ ?>
                         <div class="clearfix"></div>
@@ -356,19 +370,8 @@
                         <div class="bold"><?php echo _l('inspection_staff_string'); ?>:</div>
                         <?php echo get_staff_full_name($inspection->assigned); ?>
                      </div>
-                     <?php } ?>                     
-                     <?php if($inspection->clientnote != ''){ ?>
-                     <div class="col-md-12 mtop15">
-                        <p class="bold text-muted"><?php echo _l('inspection_order'); ?></p>
-                        <p><?php echo $inspection->clientnote; ?></p>
-                     </div>
-                     <?php } ?>
-                     <?php if($inspection->terms != ''){ ?>
-                     <div class="col-md-12 mtop15">
-                        <p class="bold text-muted"><?php echo _l('terms_and_conditions'); ?></p>
-                        <p><?php echo $inspection->terms; ?></p>
-                     </div>
-                     <?php } ?>
+                     <?php } ?>  
+
                   </div>
                </div>
             </div>

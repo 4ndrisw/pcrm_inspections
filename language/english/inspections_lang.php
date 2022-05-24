@@ -30,7 +30,7 @@ $lang['inspection_status_sent']            = 'Sent';
 $lang['inspection_status_declined']        = 'Declined';
 $lang['inspection_status_accepted']        = 'Accepted';
 $lang['inspection_status_expired']         = 'Expired';
-$lang['inspection_note']                   = 'Note:';   
+$lang['inspection_note']                   = 'Note / Finding:';   
 
 $lang['inspections']                                = 'Inspections';
 $lang['inspection']                                 = 'Inspection';
@@ -39,7 +39,7 @@ $lang['create_new_inspection']                      = 'Create New Inspection';
 $lang['view_inspection']                            = 'View inspection';
 $lang['preview_inspection']                            = 'Preview inspection';
 $lang['inspection_reminders']                      = 'Reminders';
-$lang['inspection_notes']                          = 'Notes';
+$lang['inspection_notes']                          = 'Notes / Findings';
 $lang['inspection_add_note']                       = 'Add Note';
 $lang['inspection_to']                              = 'To';
 $lang['inspection_data_date']              = 'Date';
@@ -62,9 +62,8 @@ $lang['inspection_acceptance_date']           = 'Acceptance Date';
 $lang['inspection_list_project']           = 'Project';
 $lang['view_inspection_as_client']         = 'View inspection as customer';
 $lang['inspection_mark_as']                = 'Mark as %s';
-$lang['inspection_staff_string']           = 'Director';
-$lang['inspection_note']                   = 'Note:';
-$lang['inspection_order']                  = 'To order the staff for';
+$lang['inspection_staff_string']           = "K3's Expert";
+$lang['inspection_note']                   = 'Note / Finding:';
 $lang['inspection_status_draft']           = 'Draft';
 $lang['inspection_status_sent']            = 'Sent';
 $lang['inspection_status_declined']        = 'Declined';
@@ -118,7 +117,7 @@ $lang['inspection_data_expiry_date']                = 'End date';
 $lang['inspection_members']                = 'Staff in charge';
 $lang['inspection_list_status']                = 'Status';
 $lang['inspection_qrcode_size']                = 'Inspection qrcode size';
-
+$lang['inspection_equipment_nama_pesawat']                = 'Equiptment';
 
 /*
 
@@ -363,7 +362,6 @@ $lang['new_inspection']             		 = 'New inspection';
 $lang['inspection_members_name']           = 'Staff in charge';
 $lang['completed_tasks_no_file']           = 'Completed tasks no file';
 $lang['inspection_members']                       = 'Staff In Charge';
-$lang['inspection_assigned_string']                       = 'Director';
 $lang['inspection_table_item_unit']           = 'Unit/Lot';
 $lang['inspection_table_unit_heading']           = 'Unit';
 $lang['settings_group_inspections']           = 'Inspections';

@@ -30,6 +30,7 @@ hooks()->add_filter('global_search_result_output', 'inspections_global_search_re
 hooks()->add_filter('get_dashboard_widgets', 'inspections_add_dashboard_widget');
 hooks()->add_filter('module_inspections_action_links', 'module_inspections_action_links');
 
+add_option('predefined_clientinfo_inspection', 'In accordance with Law No. 1 of 1970 and Regulation of the Minister of Manpower No. Per-08/MEN/2020 Regarding Lifting And Transporting Aircraft.');
 
 function inspections_add_dashboard_widget($widgets)
 {

@@ -60,7 +60,7 @@
                         <?php echo render_input('equipment[nama_pesawat]','nama_pesawat',$value); ?>
                         <?php $value = (isset($equipment->kapasitas) ? $equipment->kapasitas : ''); ?>
                         <?php echo render_input('equipment[kapasitas]','kapasitas',$value); ?>
-                        <?php $value = (isset($equipment->satuan_kapasitas) ? $equipment->kapasitas : ''); ?>
+                        <?php $value = (isset($equipment->satuan_kapasitas) ? $equipment->satuan_kapasitas : ''); ?>
                         <?php echo render_input('equipment[satuan_kapasitas]','satuan_kapasitas',$value); ?>
                      
                      </div>

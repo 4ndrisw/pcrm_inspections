@@ -307,6 +307,7 @@ class Inspections extends AdminController
         if ($this->input->post() && user_can_view_inspection($rel_id)) {
             $this->misc_model->add_note($this->input->post(), 'inspection', $rel_id);
             echo $rel_id;
+            header("Refresh:0");
         }
     }
 

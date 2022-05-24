@@ -91,3 +91,6 @@ body #inspection-preview .inspection-items table tbody td.description span{
 #inspection-preview .form-control[disabled]{
     cursor: crosshair;
 }
+.field label{
+    width: 40%;
+}
