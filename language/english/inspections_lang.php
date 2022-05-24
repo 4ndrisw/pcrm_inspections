@@ -43,7 +43,7 @@ $lang['inspection_notes']                          = 'Notes / Findings';
 $lang['inspection_add_note']                       = 'Add Note';
 $lang['inspection_to']                              = 'To';
 $lang['inspection_data_date']              = 'Date';
-$lang['inspection_pdf_heading']            = 'INSPECTION';
+$lang['inspection_pdf_heading']            = 'INSPECTION REPORT';
 $lang['inspection_table_item_heading']     = 'Item';
 $lang['inspection_table_quantity_heading'] = 'Qty';
 
@@ -117,7 +117,11 @@ $lang['inspection_data_expiry_date']                = 'End date';
 $lang['inspection_members']                = 'Staff in charge';
 $lang['inspection_list_status']                = 'Status';
 $lang['inspection_qrcode_size']                = 'Inspection qrcode size';
-$lang['inspection_equipment_nama_pesawat']                = 'Equiptment';
+$lang['inspection_equipment_nama_pesawat']                = 'Equipment';
+$lang['inspection_company']                             = 'PJK3';
+$lang['equipment_temuan']                             = 'Note / Finding :';
+$lang['equipment_kesimpulan']                             = 'Suggest / Conclusion:';
+
 
 /*
 

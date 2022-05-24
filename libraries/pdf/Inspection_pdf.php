@@ -21,6 +21,7 @@ class Inspection_pdf extends App_pdf
 
         $this->tag             = $tag;
         $this->inspection        = $inspection;
+        $this->equipment        = $inspection->equipment;
         $this->inspection_number = format_inspection_number($this->inspection->id);
 
         $this->SetTitle($this->inspection_number);
@@ -33,6 +34,7 @@ class Inspection_pdf extends App_pdf
             'status'          => $this->inspection->status,
             'inspection_number' => $this->inspection_number,
             'inspection'        => $this->inspection,
+            'equipment'        => $this->equipment,
         ]);
 
         return $this->build();

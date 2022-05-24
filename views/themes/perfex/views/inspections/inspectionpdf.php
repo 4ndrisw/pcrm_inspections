@@ -77,19 +77,6 @@ $nama_pesawat = $inspection->equipment->nama_pesawat;
 $nomor_seri = $inspection->equipment->nomor_seri . ' / ' . $inspection->equipment->nomor_unit;
 $kapasitas = $inspection->equipment->kapasitas .' '. $inspection->equipment->satuan_kapasitas;
 
-/*
-
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-oe15{border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-zv4m{border-color:#000000ffffff;text-align:left;vertical-align:top}
-.tg .tg-73oq{border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-9djl{border-color:#000000;text-align:left;vertical-align:top}
-*/
-
 $tblhtml = <<<EOD
 <style type="text/css">
 .tg-1e15{border-bottom: 1px solid black;}
@@ -284,12 +271,30 @@ $left_info  = $swap == '1' ? $client_info : $assigned_info;
 $right_info = $swap == '1' ? $assigned_info : $client_info;
 pdf_multi_row($left_info, $right_info, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm']);
 
+if (!empty($inspection->equipment->temuan)) {
+    $pdf->Ln(4);
+    $pdf->SetFont($font_name, 'B', $font_size);
+    $pdf->Cell(0, 0, _l('equipment_temuan'), 0, 1, 'L', 0, '', 0);
+    $pdf->SetFont($font_name, '', $font_size);
+    $pdf->Ln(1);
+    $pdf->writeHTMLCell('', '', '', '', $equipment->temuan, 0, 1, false, true, 'L', true);
+}
+
+if (!empty($inspection->equipment->kesimpulan)) {
+    $pdf->Ln(4);
+    $pdf->SetFont($font_name, 'B', $font_size);
+    $pdf->Cell(0, 0, _l('equipment_kesimpulan'), 0, 1, 'L', 0, '', 0);
+    $pdf->SetFont($font_name, '', $font_size);
+    $pdf->Ln(1);
+    $pdf->writeHTMLCell('', '', '', '', $equipment->kesimpulan, 0, 1, false, true, 'L', true);
+}
+
 if (!empty($inspection->clientnote)) {
     $pdf->Ln(4);
     $pdf->SetFont($font_name, 'B', $font_size);
     $pdf->Cell(0, 0, _l('inspection_order'), 0, 1, 'L', 0, '', 0);
     $pdf->SetFont($font_name, '', $font_size);
-    $pdf->Ln(2);
+    $pdf->Ln(1);
     $pdf->writeHTMLCell('', '', '', '', $inspection->clientnote, 0, 1, false, true, 'L', true);
 }
 
@@ -298,7 +303,7 @@ if (!empty($inspection->terms)) {
     $pdf->SetFont($font_name, 'B', $font_size);
     $pdf->Cell(0, 0, _l('terms_and_conditions') . ":", 0, 1, 'L', 0, '', 0);
     $pdf->SetFont($font_name, '', $font_size);
-    $pdf->Ln(2);
+    $pdf->Ln(1);
     $pdf->writeHTMLCell('', '', '', '', $inspection->terms, 0, 1, false, true, 'L', true);
 }
 

@@ -32,10 +32,15 @@ class Sticker_data_pdf extends App_pdf
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
         $equipment_model = $equipment_type .'_model';
         $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
+        
+        log_activity('$equipment_model ' . $equipment_model);
+        log_activity('$model_path ' . $model_path);
 
         include_once($model_path);
-        $this->load->model($equipment_model);
-        $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
+        $this->ci->load->model($equipment_model);
+        $equipment = $this->ci->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
+
+        log_activity(json_encode($equipment));
 
         $inspection->assigned_path = FCPATH . get_inspection_upload_path('inspection').$inspection->id.'/assigned-'.$inspection_number.'.png';
         
@@ -46,9 +51,9 @@ class Sticker_data_pdf extends App_pdf
         $data['inspection']       = $inspection;
         $data['equipment']       = $equipment;
         
-        $equiptment_name = isset($equiptment->nama_pesawat) ? $equiptment->nama_pesawat : '';
+        $equipment_name = isset($equipment->nama_pesawat) ? $equipment->nama_pesawat : '';
 
-        $data['equiptment_name']                          = $equiptment_name;       
+        $data['equipment_name']                          = $equipment_name;       
         $data['total_members'] = count($members);
         $data['members'] = $members;
 
