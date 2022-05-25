@@ -133,11 +133,15 @@ add_option('inspection_number_decrement_on_delete', 0);
 add_option('inspection_number_format', 4);
 add_option('inspection_year', date('Y'));
 add_option('exclude_inspection_from_client_area_with_draft_status', 1);
-add_option('predefined_clientinfo_inspection', 'In accordance with Law No. 1 of 1970 and Regulation of the Minister of Manpower No. Per-08/MEN/2020 Regarding Lifting And Transporting Aircraft.');
-add_option('predefined_clientnote_inspection', '');
-add_option('predefined_terms_inspection', '- Pelaksanaan riksa uji harus mengikuti prosedur yang ditetapkan perusahaan pemilik alat.
-- Dilarang membuat dokumentasi tanpa seizin perusahaan pemilik alat.
-- Dokumen ini diterbitkan dari sistem CRM, tidak memerlukan tanda tangan dari PT. Cipta Mas Jaya');
+add_option('predefined_regulation_of_paa', 'In accordance with Law No. 1 of 1970 and Regulation of the Minister of Manpower No. Per-08/MEN/2020 Regarding Lifting And Transporting Aircraft.');
+add_option('predefined_regulation_of_ptp', 'In accordance with Law No. 1 of 1970 and Regulation of the Minister of Manpower No. Per-08/MEN/2020 Regarding Lifting And Transporting Aircraft.');
+add_option('predefined_regulation_of_pubt', 'In accordance with Law No. 1 of 1970 and Regulation of the Minister of Manpower No. Per-08/MEN/2020 Regarding Lifting And Transporting Aircraft.');
+add_option('predefined_regulation_of_iil', 'In accordance with Law No. 1 of 1970 and Regulation of the Minister of Manpower No. Per-08/MEN/2020 Regarding Lifting And Transporting Aircraft.');
+add_option('predefined_regulation_of_iip', 'In accordance with Law No. 1 of 1970 and Regulation of the Minister of Manpower No. Per-08/MEN/2020 Regarding Lifting And Transporting Aircraft.');
+add_option('predefined_regulation_of_lie', 'In accordance with Law No. 1 of 1970 and Regulation of the Minister of Manpower No. Per-08/MEN/2020 Regarding Lifting And Transporting Aircraft.');
+add_option('predefined_regulation_of_ipk', 'In accordance with Law No. 1 of 1970 and Regulation of the Minister of Manpower No. Per-08/MEN/2020 Regarding Lifting And Transporting Aircraft.');
+
+add_option('predefined_terms_inspection', '- Dokumen ini diterbitkan dari sistem CRM, tidak memerlukan tanda tangan dari PT. Cipta Mas Jaya');
 add_option('inspection_due_after', 1);
 add_option('allow_staff_view_inspections_assigned', 1);
 add_option('show_assigned_on_inspections', 1);

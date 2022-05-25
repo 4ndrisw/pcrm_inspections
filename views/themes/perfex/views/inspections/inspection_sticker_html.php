@@ -25,6 +25,7 @@
                      <?php echo format_inspection_status($inspection->status,'',true); ?>
                   </h4>
                </div>
+               <?= $inspection->status .' '. $identity_confirmation_enabled ?>
                <div class="col-md-9">
                   <?php
                      // Is not accepted, declined and expired
