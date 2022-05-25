@@ -90,3 +90,7 @@
 .field label{
     width: 40%;
 }
+
+.viewinspection .customer_signature {
+    background: #fff;
+}

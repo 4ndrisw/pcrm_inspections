@@ -124,18 +124,18 @@
 
                      </div>
                </div>
-                         <?php
-                           $qrcode_data = site_url('inspections/show/'. $inspection->id .'/'.$inspection->hash) ."\r\n";
-                           //$qrcode_data = '/inspections/show/'. $inspection->id .'/'.$inspection->hash ."\r\n";
+               <?php
+                  $qrcode_data = site_url('inspections/show/'. $inspection->id .'/'.$inspection->hash) ."\r\n";
+                  //$qrcode_data = '/inspections/show/'. $inspection->id .'/'.$inspection->hash ."\r\n";
 
-                           $this->load->library('ciqrcode');
-                           $params['data'] = $qrcode_data;
-                           $params['level'] = 'H';
-                           $params['size'] = 1;
-                           $params['savename'] = FCPATH.'QRcode/'.$inspection->id.'.png';
-                           $this->ciqrcode->generate($params);                           
-                           echo '<img src="'.base_url().'QRcode/'.$inspection->id.'.png" />';                            
-                         ?>
+                  $this->load->library('ciqrcode');
+                  $params['data'] = $qrcode_data;
+                  $params['level'] = 'H';
+                  $params['size'] = 1;
+                  $params['savename'] = FCPATH.'QRcode/'.$inspection->id.'.png';
+                  $this->ciqrcode->generate($params);                           
+                  echo '<img src="'.base_url().'QRcode/'.$inspection->id.'.png" />';                            
+               ?>
 
 
             </div>
@@ -149,6 +149,11 @@
    </div>
 </div>
 
+<?php
+   if($identity_confirmation_enabled == '1' && $can_be_accepted){
+    get_template_part('identity_confirmation_form',array('formData'=>form_hidden('inspection_action',4)));
+   }
+?>
 <script>
    $(function(){
      new Sticky('[data-sticky]');
