@@ -62,8 +62,6 @@ class Inspections extends AdminController
 
         $data['inspection_members'] = $this->inspections_model->get_inspection_members($id,true);
 
-        //$data['inspection_items']    = $this->inspections_model->get_inspection_item($id);
-
         $data['activity']          = $this->inspections_model->get_inspection_activity($id);
         $data['inspection']          = $inspection;
         $data['members']           = $this->staff_model->get('', ['active' => 1]);
@@ -149,15 +147,6 @@ class Inspections extends AdminController
         if ($this->input->get('customer_id')) {
             $data['customer_id'] = $this->input->get('customer_id');
         }
-        /*
-        $data['ajaxItems'] = false;
-        if (total_rows(db_prefix() . 'items') <= ajax_on_total_items()) {
-            $data['items'] = $this->items_model->get_grouped();
-        } else {
-            $data['items']     = [];
-            $data['ajaxItems'] = true;
-        }
-        */
 
         $data['staff']             = $this->staff_model->get('', ['active' => 1]);
         $data['inspection_statuses'] = $this->inspections_model->get_statuses();
@@ -239,9 +228,7 @@ class Inspections extends AdminController
 
 
         $data['inspection_members']  = $this->inspections_model->get_inspection_members($id);
-        //$data['inspection_items']    = $this->inspections_model->get_inspection_item($id);
-
-
+        
         $data['staff']             = $this->staff_model->get('', ['active' => 1]);
         $data['inspection_statuses'] = $this->inspections_model->get_statuses();
         $data['title']             = $title;

@@ -104,25 +104,6 @@ if (!$CI->db->table_exists(db_prefix() . 'inspection_activity')) {
       MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1');
 }
 
-if (!$CI->db->table_exists(db_prefix() . 'inspection_items')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "inspection_items` (
-      `id` int(11) NOT NULL,
-      `rel_id` int(11) NOT NULL,
-      `rel_type` varchar(15) NOT NULL,
-      `description` mediumtext NOT NULL,
-      `long_description` mediumtext DEFAULT NULL,
-      `qty` decimal(15,2) NOT NULL,
-      `unit` varchar(40) DEFAULT NULL,
-      `item_order` int(11) DEFAULT NULL
-    ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
-
-    $CI->db->query('ALTER TABLE `' . db_prefix() . 'inspection_items`
-      ADD PRIMARY KEY (`id`),
-      ADD KEY `rel_id` (`rel_id`);');
-
-    $CI->db->query('ALTER TABLE `' . db_prefix() . 'inspection_items`
-      MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1');
-}
 
 $CI->db->query("
 INSERT INTO `tblemailtemplates` (`type`, `slug`, `language`, `name`, `subject`, `message`, `fromname`, `fromemail`, `plaintext`, `active`, `order`) VALUES
@@ -174,7 +155,7 @@ add_option('inspection_qrcode_size', '160');
 /*
 
 DROP TABLE `tblinspections`;
-DROP TABLE `tblinspection_activity`, `tblinspection_items`, `tblinspection_members`;
+DROP TABLE `tblinspection_activity`, `tblinspection_members`;
 delete FROM `tbloptions` WHERE `name` LIKE '%inspection%';
 DELETE FROM `tblemailtemplates` WHERE `type` LIKE 'inspection';
 

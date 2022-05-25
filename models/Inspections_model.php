@@ -60,15 +60,6 @@ class Inspections_model extends App_Model
                     }
                 }
 
-                $inspection->items = get_items_by_type('inspection', $id);
-                if(isset($inspection->inspection_id)){
-
-                    if ($inspection->inspection_id != 0) {
-                        $this->load->model('inspections_model');
-                        $inspection->inspection_data = $this->inspections_model->get($inspection->inspection_id);
-                    }
-
-                }
                 $inspection->client = $this->clients_model->get($inspection->clientid);
 
                 if (!$inspection->client) {
@@ -184,19 +175,8 @@ class Inspections_model extends App_Model
         $new_jobreport_data['status']    = 1;
         $new_jobreport_data['adminnote'] = '';
 
-        $new_jobreport_data['newitems']              = [];
-
         $custom_fields_items                       = get_custom_fields('items');
-        $key                                       = 1;
-        foreach ($_inspection->items as $item) {
-            $new_jobreport_data['newitems'][$key]['description']      = $item['description'];
-            $new_jobreport_data['newitems'][$key]['long_description'] = clear_textarea_breaks($item['long_description']);
-            $new_jobreport_data['newitems'][$key]['qty']              = $item['qty'];
-            $new_jobreport_data['newitems'][$key]['unit']             = $item['unit'];
-            $new_jobreport_data['newitems'][$key]['order'] = $item['item_order'];
-            $key++;
-        }
-
+       
         include_once(FCPATH . 'modules/jobreports/models/Jobreports_model.php');
 
         $this->load->model('jobreports_model');
@@ -219,14 +199,6 @@ class Inspections_model extends App_Model
                 'addedfrom'  => $_inspection->addedfrom,
                 'assigned' => get_option('default_jobreport_assigned'),
             ]);
-
-            /*
-            foreach ($new_jobreport_data['newitems'] as $key => $item) {
-                if ($new_item_added = add_new_jobreport_item_post($item, $id, 'jobreport')) {
-                    $affectedRows++;
-                }
-            }
-            */
 
             // Update inspection with the new jobreport data and set to status accepted
             $this->db->where('id', $_inspection->id);
@@ -292,30 +264,8 @@ class Inspections_model extends App_Model
         $new_inspection_data['status']     = 1;
         $new_inspection_data['clientnote'] = $_inspection->clientnote;
         $new_inspection_data['adminnote']  = '';
-        $new_inspection_data['newitems']   = [];
-        $custom_fields_items             = get_custom_fields('items');
-        $key                             = 1;
-        foreach ($_inspection->items as $item) {
-            $new_inspection_data['newitems'][$key]['description']      = $item['description'];
-            $new_inspection_data['newitems'][$key]['long_description'] = clear_textarea_breaks($item['long_description']);
-            $new_inspection_data['newitems'][$key]['qty']              = $item['qty'];
-            $new_inspection_data['newitems'][$key]['unit']             = $item['unit'];
-            $taxes                                                   = get_inspection_item_taxes($item['id']);
-            foreach ($taxes as $tax) {
-                // tax name is in format TAX1|10.00
-                array_push($new_inspection_data['newitems'][$key]['taxname'], $tax['taxname']);
-            }
-            $new_inspection_data['newitems'][$key]['rate']  = $item['rate'];
-            $new_inspection_data['newitems'][$key]['order'] = $item['item_order'];
-            foreach ($custom_fields_items as $cf) {
-                $new_inspection_data['newitems'][$key]['custom_fields']['items'][$cf['id']] = get_custom_field_value($item['id'], $cf['id'], 'items', false);
 
-                if (!defined('COPY_CUSTOM_FIELDS_LIKE_HANDLE_POST')) {
-                    define('COPY_CUSTOM_FIELDS_LIKE_HANDLE_POST', true);
-                }
-            }
-            $key++;
-        }
+        $custom_fields_items             = get_custom_fields('items');
         $id = $this->add($new_inspection_data);
         if ($id) {
             $custom_fields = get_custom_fields('inspection');
@@ -440,12 +390,6 @@ class Inspections_model extends App_Model
         $tags         = isset($data['tags']) ? $data['tags'] : '';
         $equipment    = isset($data['equipment']) ? $data['equipment'] : '';
 
-        $items = [];
-        if (isset($data['newitems'])) {
-            $items = $data['newitems'];
-            unset($data['newitems']);
-        }
-
         $inspection_members = [];
         if (isset($data['inspection_members'])) {
             $inspection_members = $data['inspection_members'];
@@ -464,11 +408,11 @@ class Inspections_model extends App_Model
 
         $hook = hooks()->apply_filters('before_inspection_added', [
             'data'  => $data,
-            'items' => $items,
+            'equipment' => $equipment,
         ]);
 
         $data  = $hook['data'];
-        $items = $hook['items'];
+        $equipment = $hook['equipment'];
 
         unset($data['tags']);
         unset($data['equipment']);
@@ -506,12 +450,6 @@ class Inspections_model extends App_Model
             $equipment_data['rel_id'] = $insert_id;
             $this->{$equipment_model}->create($equipment_data);
 
-            foreach ($items as $key => $item) {
-                if ($new_item_added = add_new_inspection_item_post($item, $insert_id, 'inspection')) {
-                    $affectedRows++;
-                }
-            }
-
             hooks()->do_action('after_inspection_added', $insert_id);
 
             if ($save_and_send === true) {
@@ -522,19 +460,6 @@ class Inspections_model extends App_Model
         }
 
         return false;
-    }
-
-    /**
-     * Get item by id
-     * @param mixed $id item id
-     * @return object
-     */
-    public function get_inspection_item($id)
-    {
-        $this->db->where('rel_id', $id);
-        $this->db->where('rel_type', 'inspection');
-
-        return $this->db->get(db_prefix() . 'inspection_items')->result();
     }
 
     /**
@@ -558,18 +483,6 @@ class Inspections_model extends App_Model
         $original_number_formatted = format_inspection_number($id);
 
         $save_and_send = isset($data['save_and_send']);
-
-        $items = [];
-        if (isset($data['items'])) {
-            $items = $data['items'];
-            unset($data['items']);
-        }
-
-        $newitems = [];
-        if (isset($data['newitems'])) {
-            $newitems = $data['newitems'];
-            unset($data['newitems']);
-        }
 
         $inspection_members = [];
         if (isset($data['inspection_members'])) {
@@ -595,15 +508,13 @@ class Inspections_model extends App_Model
 
         $hook = hooks()->apply_filters('before_inspection_updated', [
             'data'             => $data,
-            'items'            => $items,
-            'newitems'         => $newitems,
+            'equipment'            => $equipment,
             'inspection_members' => $inspection_members,
             'removed_items'    => isset($data['removed_items']) ? $data['removed_items'] : [],
         ], $id);
 
         $data                  = $hook['data'];
-        $items                 = $hook['items'];
-        $newitems              = $hook['newitems'];
+        $equipment                 = $hook['equipment'];
         $inspection_members      = $hook['inspection_members'];
         $data['removed_items'] = $hook['removed_items'];
 
@@ -645,52 +556,7 @@ class Inspections_model extends App_Model
 
             $affectedRows++;
         }
-
-        foreach ($items as $key => $item) {
-            $original_item = $this->get_inspection_item($item['itemid']);
-
-            if (update_inspection_item_post($item['itemid'], $item, 'item_order')) {
-                $affectedRows++;
-            }
-
-            if (update_inspection_item_post($item['itemid'], $item, 'unit')) {
-                $affectedRows++;
-            }
-
-
-            if (update_inspection_item_post($item['itemid'], $item, 'qty')) {
-                $this->log_inspection_activity($id, 'inspection_activity_updated_qty_item', false, serialize([
-                    $item['description'],
-                    $original_item->qty,
-                    $item['qty'],
-                ]));
-                $affectedRows++;
-            }
-
-            if (update_inspection_item_post($item['itemid'], $item, 'description')) {
-                $this->log_inspection_activity($id, 'inspection_activity_updated_item_short_description', false, serialize([
-                    $original_item->description,
-                    $item['description'],
-                ]));
-                $affectedRows++;
-            }
-
-            if (update_inspection_item_post($item['itemid'], $item, 'long_description')) {
-                $this->log_inspection_activity($id, 'inspection_activity_updated_item_long_description', false, serialize([
-                    $original_item->long_description,
-                    $item['long_description'],
-                ]));
-                $affectedRows++;
-            }
-
-        }
-
-        foreach ($newitems as $key => $item) {
-            if ($new_item_added = add_new_inspection_item_post($item, $id, 'inspection')) {
-                $affectedRows++;
-            }
-        }
-
+        
         $_sm = [];
         if (isset($inspection_members)) {
             $_sm['inspection_members'] = $inspection_members;
@@ -915,13 +781,7 @@ class Inspections_model extends App_Model
             }
         }
         $inspection = $this->get($id);
-        /*
-        if (!is_null($inspection->invoiceid) && $simpleDelete == false) {
-            return [
-                'is_invoiced_inspection_delete_error' => true,
-            ];
-        }
-        */
+      
         hooks()->do_action('before_inspection_deleted', $id);
 
         $number = format_inspection_number($id);
@@ -967,20 +827,18 @@ class Inspections_model extends App_Model
 
             $this->db->where('rel_id', $id);
             $this->db->where('rel_type', 'inspection');
-            $this->db->delete(db_prefix() . 'inspection_items');
-
-            $this->db->where('rel_id', $id);
-            $this->db->where('rel_type', 'inspection');
-            $this->db->delete(db_prefix() . 'item_tax');
-
-            $this->db->where('rel_id', $id);
-            $this->db->where('rel_type', 'inspection');
             $this->db->delete(db_prefix() . 'inspection_activity');
 
-            // Delete the items values
+            $tags = get_tags_in($inspection->id, 'inspection');
+
+            $data['jenis_pesawat'] = $tags[0];
+
+            $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
+            
+            // Delete the record from related equipment table
             $this->db->where('rel_id', $id);
             $this->db->where('rel_type', 'inspection');
-            $this->db->delete(db_prefix() . 'itemable');
+            $this->db->delete(db_prefix() . $equipment_type);
 
 
             $attachments = $this->get_attachments($id);

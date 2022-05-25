@@ -170,16 +170,6 @@
             </div>
          </div>
          <div class="row">
-            <div class="col-md-12">
-               <div class="table-responsive">
-                  <?php
-                     $items = get_inspection_items_table_data($inspection, 'inspection');
-                     echo $items->table();
-                  ?>
-               </div>
-            </div>
-
-
             <div class="row mtop25">
                <div class="col-md-12">
                   <div class="col-md-6 text-center">

@@ -20,7 +20,6 @@
 <?php init_tail(); ?>
 
 <script>
-   init_items_sortable(true);
    init_btn_with_tooltips();
    init_datepicker();
    init_selectpicker();

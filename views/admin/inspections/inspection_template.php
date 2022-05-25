@@ -248,7 +248,6 @@
          </div>
       </div>
    </div>
-   <?php $this->load->view('admin/inspections/_add_edit_items'); ?>
    <div class="row">
       <div class="col-md-12 mtop15">
          <div class="panel-body bottom-transaction">

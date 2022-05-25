@@ -422,48 +422,6 @@ function inspection_pdf($inspection, $tag = '')
 }
 
 
-
-/**
- * Get items table for preview
- * @param  object  $transaction   e.q. invoice, estimate from database result row
- * @param  string  $type          type, e.q. invoice, estimate, proposal
- * @param  string  $for           where the items will be shown, html or pdf
- * @param  boolean $admin_preview is the preview for admin area
- * @return object
- */
-function get_inspection_items_table_data($transaction, $type, $for = 'html', $admin_preview = false)
-{
-    include_once(module_libs_path(INSPECTIONS_MODULE_NAME) . 'Inspection_items_table.php');
-
-    $class = new Inspection_items_table($transaction, $type, $for, $admin_preview);
-
-    $class = hooks()->apply_filters('items_table_class', $class, $transaction, $type, $for, $admin_preview);
-
-    if (!$class instanceof App_items_table_template) {
-        show_error(get_class($class) . ' must be instance of "Inspection_items_template"');
-    }
-
-    return $class;
-}
-
-
-/**
- * Get items table for preview
- * @param  object  $transaction   e.q. invoice, estimate from database result row
- * @param  string  $type          type, e.q. invoice, estimate, proposal
- * @param  string  $for           where the items will be shown, html or pdf
- * @param  boolean $admin_preview is the preview for admin area
- * @return object
- */
-function get_equipment_items_table_data($transaction, $type, $for = 'html', $admin_preview = false)
-{
-
-    $text = 'no data available';
-    return $text;
-}
-
-
-
 /**
  * Add new item do database, used for proposals,estimates,credit notes,invoices
  * This is repetitive action, that's why this function exists

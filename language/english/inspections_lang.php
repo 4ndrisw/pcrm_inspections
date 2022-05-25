@@ -243,7 +243,7 @@ $lang['inspection_activity_added_attachment']       = 'Added attachment';
 $lang['inspection_files']                           = 'Inspection Files';
 $lang['inspection_year']                    = 'Year';
 $lang['inspections_report']                        = 'Inspections Report';
-$lang['inspection_items']                          = 'Inspection Items';
+
 $lang['no_inspections_found']                      = 'No Inspections Found';
 $lang['inspection_invoiced']                                  = 'Invoiced';
 $lang['inspection_not_found']                                 = 'Inspection not found';
@@ -303,7 +303,6 @@ $lang['inspection_request_assigned_to_staff']                = 'Inspection Reque
 $lang['show_inspection_request_in_customers_area']              = 'Show Inspection request link in customers area?';
 $lang['customers_inspection_request_link_text']                 = 'Request Inspection';
 $lang['inspection_convert_to_project']                          = 'Convert to Project';
-$lang['inspection_items_convert_to_tasks']                      = 'Items that will be converted to tasks';
 
 $lang['client_zip_inspections']     = 'ZIP Inspections';
 $lang['settings_sales_inspection_prefix']                             = 'Inspection Number Prefix';
@@ -357,7 +356,6 @@ $lang['show_inspection_reminders_on_calendar']    = 'Inspection Reminders';
 $lang['calendar_inspection_reminder']             = 'Inspection Reminder';
 $lang['inspection_files']                           = 'Inspection Files';
 $lang['inspections_report']                        = 'Inspections Report';
-$lang['inspection_items']                          = 'Inspection Items';
 $lang['no_inspections_found']                      = 'No Inspections Found';
 $lang['inspection_not_found']                                 = 'Inspection not found';
 $lang['inspection_due_after']                                      = 'Inspection Due After (days)';

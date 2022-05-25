@@ -82,9 +82,6 @@ $pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
 // The Table
 $pdf->Ln(hooks()->apply_filters('pdf_info_and_table_separator', 2));
 
-// The items table
-$items = get_inspection_items_table_data($inspection, 'inspection', 'pdf');
-
 $company = get_inspection_company_by_clientid($inspection->clientid);
 $address = get_inspection_company_address($inspection->id);
 $jenis_pesawat = render_tags(get_tags_in($inspection->id, 'inspection'));
