@@ -25,7 +25,6 @@
                      <?php echo format_inspection_status($inspection->status,'',true); ?>
                   </h4>
                </div>
-               <?= $inspection->status .' '. $identity_confirmation_enabled ?>
                <div class="col-md-9">
                   <?php
                      // Is not accepted, declined and expired
@@ -124,27 +123,8 @@
 
                      </div>
                </div>
-               <?php
-                  $qrcode_data = site_url('inspections/show/'. $inspection->id .'/'.$inspection->hash) ."\r\n";
-                  //$qrcode_data = '/inspections/show/'. $inspection->id .'/'.$inspection->hash ."\r\n";
-
-                  $this->load->library('ciqrcode');
-                  $params['data'] = $qrcode_data;
-                  $params['level'] = 'H';
-                  $params['size'] = 1;
-                  $params['savename'] = FCPATH.'QRcode/'.$inspection->id.'.png';
-                  $this->ciqrcode->generate($params);                           
-                  echo '<img src="'.base_url().'QRcode/'.$inspection->id.'.png" />';                            
-               ?>
-
-
             </div>
-
          </div>
-
-
-
-
       </div>
    </div>
 </div>
