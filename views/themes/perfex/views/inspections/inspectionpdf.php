@@ -20,7 +20,7 @@ $info_left_column .= pdf_logo_url();
 // Write top left logo and right column info/text
 pdf_multi_row($info_left_column, $info_right_column, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm']);
 
-$pdf->ln(10);
+$pdf->ln(5);
 
 $organization_info = '<div style="color:#424242;">';
     $organization_info .= format_organization_info();
@@ -63,9 +63,24 @@ $right_info = $swap == '1' ? $organization_info : $inspection_info;
 
 $pdf->SetFont('dejavusans');
 pdf_multi_row($left_info, $right_info, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm']);
+$date = $inspection->date;
+$inspection_declare = _l('inspection_declare');
+$getDayName = getDayName($date);
+$getDay = getDay($date);
+$getMonth = getMonth($date);
+$getYear = getYear($date);
+
+$inspection_result = _l('inspection_result');
+$txt = <<<EOD
+$inspection_declare $getDayName $getDay $getMonth $getYear, $inspection_result
+EOD;
+
+// print a block of text using Write()
+$pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
+
 
 // The Table
-$pdf->Ln(hooks()->apply_filters('pdf_info_and_table_separator', 6));
+$pdf->Ln(hooks()->apply_filters('pdf_info_and_table_separator', 2));
 
 // The items table
 $items = get_inspection_items_table_data($inspection, 'inspection', 'pdf');
@@ -76,42 +91,50 @@ $jenis_pesawat = render_tags(get_tags_in($inspection->id, 'inspection'));
 $nama_pesawat = $inspection->equipment->nama_pesawat;
 $nomor_seri = $inspection->equipment->nomor_seri . ' / ' . $inspection->equipment->nomor_unit;
 $kapasitas = $inspection->equipment->kapasitas .' '. $inspection->equipment->satuan_kapasitas;
+$inspection_company = _l('inspection_company_name');
+$inspection_address = _l('inspection_address');
+$inspection_jenis_pesawat = _l('inspection_jenis_pesawat');
+$inspection_nama_pesawat = _l('inspection_nama_pesawat');
+
+$inspection_serial_number = _l('inspection_serial_number');
+$inspection_unit_number = _l('inspection_unit_number');
+$inspection_capacity = _l('inspection_capacity');
 
 $tblhtml = <<<EOD
 <style type="text/css">
 .tg-1e15{border-bottom: 1px solid black;}
-.tg-oe15{width:25%;text-align:left;}
+.tg-oe15{width:30%;text-align:left;}
 .tg-oe16{width:2%;}
 </style>
 <table class="tg">
 <tbody>
   <tr class="tg-1e15">
-    <td class="tg-oe15">Nama Perusahaan</td>
+    <td class="tg-oe15">$inspection_company</td>
     <td class="tg-oe16">:</td>
     <td class="tg-oe17">$company</td>
   </tr>
   <tr class="tg-1e15">
-    <td class="tg-oe15">Alamat Perusahaan</td>
+    <td class="tg-oe15">$inspection_address</td>
     <td class="tg-oe16">:</td>
     <td class="tg-oe17">$address</td>
   </tr>
   <tr class="tg-1e15">
-    <td class="tg-oe15">Jenis Pesawat</td>
+    <td class="tg-oe15">$inspection_jenis_pesawat</td>
     <td class="tg-oe16">:</td>
     <td class="tg-oe17">$jenis_pesawat</td>
   </tr>
   <tr class="tg-1e15">
-    <td class="tg-oe15">Nama Pesawat</td>
+    <td class="tg-oe15">$inspection_nama_pesawat</td>
     <td class="tg-oe16">:</td>
     <td class="tg-oe17">$nama_pesawat</td>
   </tr>
   <tr class="tg-1e15">
-    <td class="tg-oe15">Nomor Seri / Nomor Unit</td>
+    <td class="tg-oe15">$inspection_serial_number / $inspection_unit_number</td>
     <td class="tg-oe16">:</td>
     <td class="tg-oe17">$nomor_seri</td>
   </tr>
   <tr class="tg-1e15">
-    <td class="tg-oe15">Kapasitas</td>
+    <td class="tg-oe15">$inspection_capacity</td>
     <td class="tg-oe16">:</td>
     <td class="tg-oe17">$kapasitas</td>
   </tr>
@@ -183,49 +206,70 @@ $pengujian_operasional_n = '&#9744;';
 if($inspection->equipment->pengujian_operasional == 2){
     $pengujian_operasional_n = '&#9745;';
 }
+$pemeriksan_dokumen = _l('pemeriksan_dokumen');
+$pemeriksan_visual = _l('pemeriksan_visual');
+$pemeriksan_pengaman = _l('pemeriksan_pengaman');
+$pengujian_penetrant = _l('pengujian_penetrant');
+$pengujian_operasional = _l('pengujian_operasional');
+
+$lengkap = _l('lengkap');
+$tidak_lengkap = _l('tidak_lengkap');
+$tidak_ada = _l('tidak_ada');
+$baik = _l('baik');
+$tidak_baik = _l('tidak_baik');
+
+
 
 $tblhtml = <<<EOD
 <style>
 .tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;
+.tg td{border-color:black;border-style:solid;border-width:1px;}
+table tr{ line-height: 2;}
 
 </style>
 <table class="table table-bordered">
      <tbody>
         <tr class="tg pemeriksaan_dokumen">
-           <td width="36%">Pemeriksan Dokumen</td>
+           <td width="36%">$pemeriksan_dokumen</td>
            <td width="1%">:</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_t</span> Lengkap</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_f</span> Tidak lengkap</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_n</span> Tidak ada</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_t</span> $lengkap</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_f</span> $tidak_lengkap</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_n</span> $tidak_ada</td>
         </tr>
         <tr class="tg pemeriksaan_visual">
-           <td width="36%">Pemeriksan Visual</td>
+           <td width="36%">$pemeriksan_visual</td>
            <td width="1%">:</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_t</span> Baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_f</span> Tidak baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_n</span> Tidak ada</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_t</span> $baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_f</span> $tidak_baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_n</span> $tidak_ada</td>
         </tr>
         <tr class="tg pemeriksaan_pengaman">
-           <td width="36%">Pemeriksan Perlengkapan Pengaman</td>
+           <td width="36%">$pemeriksan_pengaman</td>
            <td width="1%">:</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_t</span> Baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_f</span> Tidak baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> Tidak ada</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_t</span> $baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_f</span> $tidak_baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_ada</td>
         </tr>
         <tr class="tg pengujian_penetrant">
-           <td width="36%">Pengujian NDT (Penetrant)</td>
+           <td width="36%">$pengujian_penetrant</td>
            <td width="1%">:</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_t</span> Baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_f</span> Tidak baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_n</span> Tidak ada</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_t</span> $baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_f</span> $tidak_baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_n</span> $tidak_ada</td>
         </tr>
         <tr class="tg pengujian_operasional">
-           <td width="36%">Pengujian Operasional</td>
+           <td width="36%">$pengujian_operasional</td>
            <td width="1%">:</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_t</span> Baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_f</span> Tidak baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_n</span> Tidak ada</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_t</span> $baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_f</span> $tidak_baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_n</span> $tidak_ada</td>
+        </tr>
+        <tr class="tg">
+           <td width="36%"></td>
+           <td width="1%"></td>
+           <td width="20%"></td>
+           <td width="20%"></td>
+           <td width="20%"></td>
         </tr>
      </tbody>
   </table>
@@ -292,7 +336,7 @@ if (!empty($inspection->equipment->kesimpulan)) {
 if (!empty($inspection->clientnote)) {
     $pdf->Ln(4);
     $pdf->SetFont($font_name, 'B', $font_size);
-    $pdf->Cell(0, 0, _l('inspection_order'), 0, 1, 'L', 0, '', 0);
+    $pdf->Cell(0, 0, _l('inspection_regulation'), 0, 1, 'L', 0, '', 0);
     $pdf->SetFont($font_name, '', $font_size);
     $pdf->Ln(1);
     $pdf->writeHTMLCell('', '', '', '', $inspection->clientnote, 0, 1, false, true, 'L', true);
