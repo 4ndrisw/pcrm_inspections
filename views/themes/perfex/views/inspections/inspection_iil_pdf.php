@@ -4,6 +4,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 $dimensions = $pdf->getPageDimensions();
 
+// set auto page breaks
+$pdf->SetAutoPageBreak(false, 5);
+
 $info_right_column = '';
 $info_left_column  = '';
 
@@ -32,7 +35,7 @@ $inspection_info .= '<div style="color:#424242;">';
 $inspection_info .= format_customer_info($inspection, 'inspection', 'billing');
 $inspection_info .= '</div>';
 
-$organization_info .= '<p><strong>'. _l('inspection_members') . '</strong></p>';
+$organization_info .= '<div><strong>'. _l('inspection_members') . '</strong></div>';
 
 $CI = &get_instance();
 $CI->load->model('inspections_model');
@@ -84,10 +87,13 @@ $pdf->Ln(hooks()->apply_filters('pdf_info_and_table_separator', 2));
 
 $company = get_inspection_company_by_clientid($inspection->clientid);
 $address = get_inspection_company_address($inspection->id);
-$jenis_pesawat = render_tags(get_tags_in($inspection->id, 'inspection'));
-$nama_pesawat = $inspection->equipment->nama_pesawat;
-$nomor_seri = $inspection->equipment->nomor_seri . ' / ' . $inspection->equipment->nomor_unit;
-$kapasitas = $inspection->equipment->kapasitas .' '. $inspection->equipment->satuan_kapasitas;
+$nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
+$nomor_seri = isset($inspection->equipment['nomor_seri']) ? $inspection->equipment['nomor_seri'] : '&emsp;';
+$nomor_unit = isset($inspection->equipment['nomor_unit']) ? ' / ' .$inspection->equipment['nomor_unit'] : '';
+$nomor_seri = $nomor_seri . $nomor_unit;
+$kapasitas = isset($inspection->equipment['kapasitas']) ? $inspection->equipment['kapasitas'] : '';
+$satuan_kapasitas = isset($inspection->equipment['satuan_kapasitas']) ? ' / ' . $inspection->equipment['satuan_kapasitas'] : '';
+$kapasitas = $kapasitas . $satuan_kapasitas;
 $inspection_company = _l('inspection_company_name');
 $inspection_address = _l('inspection_address');
 $inspection_jenis_pesawat = _l('inspection_jenis_pesawat');
@@ -116,11 +122,6 @@ $tblhtml = <<<EOD
     <td class="tg-oe17">$address</td>
   </tr>
   <tr class="tg-1e15">
-    <td class="tg-oe15">$inspection_jenis_pesawat</td>
-    <td class="tg-oe16">:</td>
-    <td class="tg-oe17">$jenis_pesawat</td>
-  </tr>
-  <tr class="tg-1e15">
     <td class="tg-oe15">$inspection_nama_pesawat</td>
     <td class="tg-oe16">:</td>
     <td class="tg-oe17">$nama_pesawat</td>
@@ -143,70 +144,70 @@ $pdf->SetFont('dejavusans');
 $pdf->writeHTML($tblhtml, true, false, false, false, '');
 
 $pemeriksaan_dokumen_t = '&#9744;';
-if($inspection->equipment->pemeriksaan_dokumen == 1){
+if(isset($inspection->equipment['pemeriksaan_dokumen']) && $inspection->equipment['pemeriksaan_dokumen'] == 1){
     $pemeriksaan_dokumen_t = '&#9745;';
 }
 $pemeriksaan_dokumen_f = '&#9744;';
-if($inspection->equipment->pemeriksaan_dokumen == 0){
+if(isset($inspection->equipment['pemeriksaan_dokumen']) && $inspection->equipment['pemeriksaan_dokumen'] == 0){
     $pemeriksaan_dokumen_f = '&#9745;';
 }
 $pemeriksaan_dokumen_n = '&#9744;';
-if($inspection->equipment->pemeriksaan_dokumen == 2){
+if(isset($inspection->equipment['pemeriksaan_dokumen']) && $inspection->equipment['pemeriksaan_dokumen'] == 2){
     $pemeriksaan_dokumen_n = '&#9745;';
 }
 
 $pemeriksaan_visual_t = '&#9744;';
-if($inspection->equipment->pemeriksaan_visual == 1){
+if(isset($inspection->equipment['pemeriksaan_visual']) && $inspection->equipment['pemeriksaan_visual'] == 1){
     $pemeriksaan_visual_t = '&#9745;';
 }
 $pemeriksaan_visual_f = '&#9744;';
-if($inspection->equipment->pemeriksaan_visual == 0){
+if(isset($inspection->equipment['pemeriksaan_visual']) && $inspection->equipment['pemeriksaan_visual'] == 0){
     $pemeriksaan_visual_f = '&#9745;';
 }
 $pemeriksaan_visual_n = '&#9744;';
-if($inspection->equipment->pemeriksaan_visual == 2){
+if(isset($inspection->equipment['pemeriksaan_visual']) && $inspection->equipment['pemeriksaan_visual'] == 2){
     $pemeriksaan_visual_n = '&#9745;';
 }
 $pemeriksaan_pengaman_t = '&#9744;';
-if($inspection->equipment->pemeriksaan_pengaman == 1){
+if(isset($inspection->equipment['pemeriksaan_pengaman']) && $inspection->equipment['pemeriksaan_pengaman'] == 1){
     $pemeriksaan_pengaman_t = '&#9745;';
 }
 $pemeriksaan_pengaman_f = '&#9744;';
-if($inspection->equipment->pemeriksaan_pengaman == 0){
+if(isset($inspection->equipment['pemeriksaan_pengaman']) && $inspection->equipment['pemeriksaan_pengaman'] == 0){
     $pemeriksaan_pengaman_f = '&#9745;';
 }
 $pemeriksaan_pengaman_n = '&#9744;';
-if($inspection->equipment->pemeriksaan_pengaman == 2){
+if(isset($inspection->equipment['pemeriksaan_pengaman']) && $inspection->equipment['pemeriksaan_pengaman'] == 2){
     $pemeriksaan_pengaman_n = '&#9745;';
 }
-$pengujian_penetrant_t = '&#9744;';
-if($inspection->equipment->pengujian_penetrant == 1){
-    $pengujian_penetrant_t = '&#9745;';
+$pengujian_infrared_t = '&#9744;';
+if(isset($inspection->equipment['pengujian_infrared']) && $inspection->equipment['pengujian_infrared'] == 1){
+    $pengujian_infrared_t = '&#9745;';
 }
-$pengujian_penetrant_f = '&#9744;';
-if($inspection->equipment->pengujian_penetrant == 0){
-    $pengujian_penetrant_f = '&#9745;';
+$pengujian_infrared_f = '&#9744;';
+if(isset($inspection->equipment['pengujian_infrared']) && $inspection->equipment['pengujian_infrared'] == 0){
+    $pengujian_infrared_f = '&#9745;';
 }
-$pengujian_penetrant_n = '&#9744;';
-if($inspection->equipment->pengujian_penetrant == 2){
-    $pengujian_penetrant_n = '&#9745;';
+$pengujian_infrared_n = '&#9744;';
+if(isset($inspection->equipment['pengujian_infrared']) && $inspection->equipment['pengujian_infrared'] == 2){
+    $pengujian_infrared_n = '&#9745;';
 }
 $pengujian_operasional_t = '&#9744;';
-if($inspection->equipment->pengujian_operasional == 1){
+if(isset($inspection->equipment['pengujian_operasional']) && $inspection->equipment['pengujian_operasional'] == 1){
     $pengujian_operasional_t = '&#9745;';
 }
 $pengujian_operasional_f = '&#9744;';
-if($inspection->equipment->pengujian_operasional == 0){
+if(isset($inspection->equipment['pengujian_operasional']) && $inspection->equipment['pengujian_operasional'] == 0){
     $pengujian_operasional_f = '&#9745;';
 }
 $pengujian_operasional_n = '&#9744;';
-if($inspection->equipment->pengujian_operasional == 2){
+if(isset($inspection->equipment['pengujian_operasional']) && $inspection->equipment['pengujian_operasional'] == 2){
     $pengujian_operasional_n = '&#9745;';
 }
 $pemeriksan_dokumen = _l('pemeriksan_dokumen');
 $pemeriksan_visual = _l('pemeriksan_visual');
 $pemeriksan_pengaman = _l('pemeriksan_pengaman');
-$pengujian_penetrant = _l('pengujian_penetrant');
+$pengujian_infrared = _l('pengujian_infrared');
 $pengujian_operasional = _l('pengujian_operasional');
 
 $lengkap = _l('lengkap');
@@ -247,12 +248,12 @@ table tr{ line-height: 2;}
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_f</span> $tidak_baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_ada</td>
         </tr>
-        <tr class="tg pengujian_penetrant">
-           <td width="36%">$pengujian_penetrant</td>
+        <tr class="tg pengujian_infrared">
+           <td width="36%">$pengujian_infrared</td>
            <td width="1%">:</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_t</span> $baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_n</span> $tidak_ada</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_infrared_t</span> $baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_infrared_f</span> $tidak_baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_infrared_n</span> $tidak_ada</td>
         </tr>
         <tr class="tg pengujian_operasional">
            <td width="36%">$pengujian_operasional</td>
@@ -297,6 +298,7 @@ EOF;
 $client_info = '<div style="text-align:center;">';
     $client_info .= $inspection->client_company .'<br />';
 
+
 if ($inspection->signed != 0) {
     $client_info .= _l('inspection_signed_by') . ": {$inspection->acceptance_firstname} {$inspection->acceptance_lastname}" . '<br />';
     $client_info .= _l('inspection_signed_date') . ': ' . _dt($inspection->acceptance_date_string) . '<br />';
@@ -312,39 +314,51 @@ $left_info  = $swap == '1' ? $client_info : $assigned_info;
 $right_info = $swap == '1' ? $assigned_info : $client_info;
 pdf_multi_row($left_info, $right_info, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm']);
 
-if (!empty($inspection->equipment->temuan)) {
-    $pdf->Ln(4);
+$regulasi = '';
+$rline = 4;
+$tline = 15;
+if (!empty($inspection->equipment['regulasi'])) {
+    $regulasi = $inspection->equipment['regulasi'];
+    $rline = 4;
+}
+    $pdf->Ln($rline);
+    $pdf->SetFont($font_name, 'B', $font_size);
+    $pdf->Cell(0, 0, _l('equipment_regulasi'), 0, 1, 'L', 0, '', 0);
+    $pdf->SetFont($font_name, '', $font_size);
+    //$pdf->Ln(1);
+    $pdf->writeHTMLCell('', '', '', '', $regulasi, 0, 1, false, true, 'L', true);
+
+$temuan = '';
+if (!empty($inspection->equipment['temuan'])) {
+    $temuan = $inspection->equipment['temuan'];
+    $tline = 2;
+}
+    $pdf->Ln($tline);
     $pdf->SetFont($font_name, 'B', $font_size);
     $pdf->Cell(0, 0, _l('equipment_temuan'), 0, 1, 'L', 0, '', 0);
     $pdf->SetFont($font_name, '', $font_size);
-    $pdf->Ln(1);
-    $pdf->writeHTMLCell('', '', '', '', $equipment->temuan, 0, 1, false, true, 'L', true);
-}
+    $pdf->writeHTMLCell('', '', '', '', format_unorderedText($temuan), 0, 1, false, true, 'L', true);
 
-if (!empty($inspection->equipment->kesimpulan)) {
-    $pdf->Ln(4);
+$kesimpulan = '';
+$kline = 8;
+$sline = 15;
+if (!empty($inspection->equipment['kesimpulan'])) {
+    $kesimpulan = $inspection->equipment['kesimpulan'];
+    $kline = 4;
+    $sline = 4;
+}
+    $pdf->Ln($kline);
     $pdf->SetFont($font_name, 'B', $font_size);
     $pdf->Cell(0, 0, _l('equipment_kesimpulan'), 0, 1, 'L', 0, '', 0);
     $pdf->SetFont($font_name, '', $font_size);
-    $pdf->Ln(1);
-    $pdf->writeHTMLCell('', '', '', '', $equipment->kesimpulan, 0, 1, false, true, 'L', true);
-}
-
-if (!empty($inspection->clientnote)) {
-    $pdf->Ln(4);
-    $pdf->SetFont($font_name, 'B', $font_size);
-    $pdf->Cell(0, 0, _l('inspection_regulation'), 0, 1, 'L', 0, '', 0);
-    $pdf->SetFont($font_name, '', $font_size);
-    $pdf->Ln(1);
-    $pdf->writeHTMLCell('', '', '', '', $inspection->clientnote, 0, 1, false, true, 'L', true);
-}
+    $pdf->writeHTMLCell('', '', '', '', format_unorderedText($kesimpulan), 0, 1, false, true, 'L', true);
 
 if (!empty($inspection->terms)) {
-    $pdf->Ln(4);
+    $pdf->Ln($sline);
     $pdf->SetFont($font_name, 'B', $font_size);
     $pdf->Cell(0, 0, _l('terms_and_conditions') . ":", 0, 1, 'L', 0, '', 0);
     $pdf->SetFont($font_name, '', $font_size);
     $pdf->Ln(1);
-    $pdf->writeHTMLCell('', '', '', '', $inspection->terms, 0, 1, false, true, 'L', true);
+    $pdf->writeHTMLCell('', '', '', '', format_unorderedText($inspection->terms), 0, 1, false, true, 'L', true);
 }
 

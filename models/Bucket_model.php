@@ -16,7 +16,7 @@ class Bucket_model extends App_Model
      * @param array $where perform where
      * @return mixed
      */
-    public function get($id = '', $equiptment_type='',  $where = [])
+    public function get($id = '',  $where = [])
     {
         $this->db->select('*,' . db_prefix() . 'bucket.id');
         $this->db->from(db_prefix() . 'bucket');

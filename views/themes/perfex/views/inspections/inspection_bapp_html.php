@@ -207,20 +207,32 @@
                </div>
             </div>
 
-
-
-
-            <?php if(!empty($inspection->clientnote)){ ?>
-            <div class="col-md-12 inspection-html-note">
-            <hr />
-               <b><?php echo _l('inspection_note'); ?></b><br /><?php echo $inspection->clientnote; ?>
+            <div class="row">
+               <?php if(!empty($equipment['regulasi'])){ ?>
+               <div class="col-md-12 inspection-html-equipment-regulasi">
+                  <hr />
+                  <b><?php echo _l('equipment_regulasi'); ?></b><br /><?php echo $equipment['regulasi']; ?>
+               </div>
+               <?php } ?>
+               <?php if(!empty($equipment['regulasi'])){ ?>
+               <div class="col-md-12 inspection-html-equipment-temuan">
+                  <hr />
+                  <b><?php echo _l('equipment_temuan'); ?></b><br /><?php echo $equipment['temuan']; ?>
+               </div>
+               <?php } ?>
+               <?php if(!empty($equipment['kesimpulan'])){ ?>
+               <div class="col-md-12 inspection-html-equipment-kesimpulan">
+                  <hr />
+                  <b><?php echo _l('equipment_kesimpulan'); ?></b><br /><?php echo $equipment['kesimpulan']; ?>
+               </div>
+               <?php } ?>
+               <?php if(!empty($inspection->terms)){ ?>
+               <div class="col-md-12 inspection-html-terms-and-conditions">
+                  <b><?php echo _l('terms_and_conditions'); ?>:</b><br /><?php echo $inspection->terms; ?>
+               </div>
+               <?php } ?>
+               
             </div>
-            <?php } ?>
-            <?php if(!empty($inspection->terms)){ ?>
-            <div class="col-md-12 inspection-html-terms-and-conditions">
-               <b><?php echo _l('terms_and_conditions'); ?>:</b><br /><?php echo $inspection->terms; ?>
-            </div>
-            <?php } ?>
 
          </div>
       </div>

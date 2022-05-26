@@ -803,7 +803,23 @@ function format_company_info()
     $format = preg_replace('/\s+/', ' ', $format);
     $format = trim($format);
 
-
-
     return $format;
+}
+
+ /**
+ * Format company info/address format
+ * @return string
+ */
+function format_unorderedText($text)
+{
+    log_activity( $text );
+    $lists = explode('-', trim($text));
+    $output = '';
+    foreach($lists as $li){
+        if(!empty($li)){
+            $output .= '<li class="text-item">' . $li . '</li>';            
+        }
+    }
+
+    return '<ul class="text-items">'.$output.'</ul>';
 }

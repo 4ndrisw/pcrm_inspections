@@ -20,6 +20,7 @@ function validate_inspection_form(selector) {
         },
         date: 'required',
         tag: 'required',
+        equipment_category: 'required',
         tags: 'required',
         number: {
             required: true

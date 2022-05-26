@@ -81,9 +81,8 @@ class Myinspection extends ClientsController
         include_once($model_path);
         $this->load->model($equipment_model);
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
-        $data['equipment'] = $equipment;
-
-        $equipment_name = isset($equipment->nama_pesawat) ? $equipment->nama_pesawat : '';
+        $data['equipment'] = $equipment[0];
+        $equipment_name = isset($equipment[0]['nama_pesawat']) ? $equipment[0]['nama_pesawat'] : '';
         
         $data['title'] = $inspection_number;
 
@@ -213,7 +212,7 @@ class Myinspection extends ClientsController
         include_once($model_path);
         $this->load->model($equipment_model);
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
-        $data['equipment'] = $equipment;
+        $data['equipment'] = $equipment[0];
         
         $data['inspection']                     = hooks()->apply_filters('inspection_html_pdf_data', $inspection);
         $data['bodyclass']                     = 'viewinspection';
@@ -231,9 +230,7 @@ class Myinspection extends ClientsController
         $qrcode_data .= _l('inspection_date') . ' : ' . $inspection->date ."\r\n";
         $qrcode_data .= _l('inspection_datesend') . ' : ' . $inspection->datesend ."\r\n";
         $qrcode_data .= _l('inspection_assigned_string') . ' : ' . get_staff_full_name($inspection->assigned) ."\r\n";
-        $qrcode_data .= _l('inspection_url') . ' : ' . site_url('inspections/show/'. $inspection->id .'/'.$inspection->hash) ."\r\n";
-
-
+        
         $inspection_path = get_upload_path_by_type('inspections') . $inspection->id . '/';
         _maybe_create_upload_path('uploads/inspections');
         _maybe_create_upload_path('uploads/inspections/'.$inspection_path);
@@ -303,7 +300,7 @@ class Myinspection extends ClientsController
         include_once($model_path);
         $this->load->model($equipment_model);
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
-        $inspection->equipment = $equipment;
+        $inspection->equipment = $equipment[0];
 
 
         try {

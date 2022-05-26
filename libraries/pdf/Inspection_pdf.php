@@ -47,7 +47,11 @@ class Inspection_pdf extends App_pdf
 
     protected function file_path()
     {
-        $customPath = APPPATH . 'views/themes/' . active_clients_theme() . '/views/my_inspectionpdf.php';
+        $filePath = 'my_inspectionpdf.php';
+        if(isset($this->inspection->equipment_category)){
+            $filePath = 'inspection_'. $this->inspection->equipment_category .'_pdf.php';
+        }
+        $customPath = module_views_path('inspections','themes/' . active_clients_theme() . '/views/inspections/' . $filePath);
         $actualPath = module_views_path('inspections','themes/' . active_clients_theme() . '/views/inspections/inspectionpdf.php');
 
         if (file_exists($customPath)) {

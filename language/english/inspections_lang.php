@@ -105,7 +105,7 @@ $lang['clients_my_inspections']                   = 'Inspections';
 $lang['inspection_this_week']                = 'Inspections this week';
 $lang['inspection_date']                = 'Inspection date';
 $lang['inspection_datesend']                = 'Inspection sent date';
-$lang['inspection_assigned_string']                = 'Submitted by';
+$lang['inspection_assigned_string']                = 'Inspected by';
 $lang['inspection_url']                = 'long_url';
 $lang['inspection_send_to_customer_already_sent']                = 'Inspection already sent to customer_';
 $lang['inspection_list_client']                = 'Customer';
@@ -124,6 +124,7 @@ $lang['equipment_kesimpulan']                             = 'Suggest / Conclusio
 $lang['inspection_address']                             = 'Address';
 $lang['inspection_jenis_pesawat']                             = 'Type of equipment';
 $lang['inspection_nama_pesawat']                             = 'Name of equipment';
+$lang['inspection_equipment_category']                             = 'Category';
 
 $lang['inspection_serial_number']                             = 'Serial number';
 $lang['inspection_unit_number']                             = 'Unit number';
@@ -143,6 +144,16 @@ $lang['baik']                             = 'Good';
 $lang['tidak_baik']                             = 'Not good';
 $lang['inspection_declare']                             = 'Hereby declare that inspection and testing have been carried out on the date';
 $lang['inspection_result'] 	='with the following results';
+
+$lang['regulation_of_paa']                             = 'Regulation of PAA';
+$lang['regulation_of_pubt']                             = 'Regulation of PUBT';
+$lang['regulation_of_lie']                             = 'Regulation of LIE';
+$lang['regulation_of_ipp']                             = 'Regulation of IPP';
+$lang['regulation_of_iil']                             = 'Regulation of IIL';
+$lang['regulation_of_ipk']                             = 'Regulation of IPK';
+$lang['regulation_of_ptp']                             = 'Regulation of PTP';
+
+
 
 
 /*

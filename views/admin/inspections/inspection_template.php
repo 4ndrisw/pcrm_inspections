@@ -179,7 +179,18 @@
                   <?php echo render_date_input('date','inspection_add_edit_date',$value); ?>
                </div>
                <div class="col-md-6">
-                  
+               <?php 
+                  $selected = (isset($inspection) ? $inspection->equipment_category : '');
+                  foreach($categories as $category){
+                   if(isset($inspection)){
+                     if($inspection->equipment_category == $category['code']) {
+                       $selected = $category['code'];
+                     }
+                   }
+                  }
+                  echo render_select('equipment_category',$categories,array('code',array('title')),'inspection_equipment_category',$selected);
+               ?>
+
                </div>
             </div>
             <div class="clearfix mbot15"></div>

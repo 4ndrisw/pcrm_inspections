@@ -10,7 +10,10 @@ class Inspections extends AdminController
     {
         parent::__construct();
         $this->load->model('inspections_model');
+        $this->load->model('equipment_category_model');
         $this->load->model('clients_model');
+        $this->categories = $this->equipment_category_model->get();
+
     }
 
     /* Get all inspections in case user go on index page */
@@ -80,7 +83,7 @@ class Inspections extends AdminController
         include_once($model_path);
         $this->load->model($equipment_model);
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
-        $data['equipment'] = $equipment;
+        $data['equipment'] = $equipment[0];
 
         $data['send_later'] = false;
         if ($this->session->has_userdata('send_later')) {
@@ -149,6 +152,7 @@ class Inspections extends AdminController
         }
 
         $data['staff']             = $this->staff_model->get('', ['active' => 1]);
+        $data['categories']        = $this->equipment_category_model->get();
         $data['inspection_statuses'] = $this->inspections_model->get_statuses();
         $data['title']             = $title;
 
@@ -216,7 +220,8 @@ class Inspections extends AdminController
             include_once($model_path);
             $this->load->model($equipment_model);
             $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
-            $data['equipment'] = $equipment;
+            
+            $data['equipment'] = $equipment[0];
 
             $data['edit']     = true;
             $title            = _l('edit', _l('inspection_lowercase'));
@@ -230,6 +235,7 @@ class Inspections extends AdminController
         $data['inspection_members']  = $this->inspections_model->get_inspection_members($id);
         
         $data['staff']             = $this->staff_model->get('', ['active' => 1]);
+        $data['categories']        = $this->equipment_category_model->get();
         $data['inspection_statuses'] = $this->inspections_model->get_statuses();
         $data['title']             = $title;
         $this->load->view('admin/inspections/inspection_update', $data);

@@ -373,6 +373,36 @@
                      <?php } ?>  
 
                   </div>
+                  
+                  <div class="row">
+                     <div class="col-md-12">
+                        <?php if(!empty($equipment['regulasi'])){ ?>
+                        <div class="col-md-12 inspection-html-equipment-regulasi">
+                           <hr />
+                           <b><?php echo _l('equipment_regulasi'); ?></b><br /><?php echo format_unorderedText($equipment['regulasi']); ?>
+                        </div>
+                        <?php } ?>
+                        <?php if(!empty($equipment['regulasi'])){ ?>
+                        <div class="col-md-12 inspection-html-equipment-temuan">
+                           <hr />
+                           <b><?php echo _l('equipment_temuan'); ?></b><br /><?php echo format_unorderedText($equipment['temuan']); ?>
+                        </div>
+                        <?php } ?>
+                        <?php if(!empty($equipment['kesimpulan'])){ ?>
+                        <div class="col-md-12 inspection-html-equipment-kesimpulan">
+                           <hr />
+                           <b><?php echo _l('equipment_kesimpulan'); ?></b><br /><?php echo format_unorderedText($equipment['kesimpulan']); ?>
+                        </div>
+                        <?php } ?>
+                        <?php if(!empty($inspection->terms)){ ?>
+                        <div class="col-md-12 inspection-html-terms-and-conditions">
+                           <b><?php echo _l('terms_and_conditions'); ?>:</b><br /><?php echo format_unorderedText($inspection->terms); ?>
+                        </div>
+                        <?php } ?>
+                     </div>
+                  </div>
+
+
                </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="tab_reminders">
