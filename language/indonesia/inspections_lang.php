@@ -56,6 +56,8 @@ $lang['inspection_equipment_category']                             = 'Kategori';
 $lang['inspection_serial_number']                             = 'Nomor seri';
 $lang['inspection_unit_number']                             = 'Nomor unit';
 $lang['inspection_capacity']                             = 'Kapasitas';
+$lang['sticker']                              = 'Sticker';
+$lang['inspection_report']                              = 'Inspection report';
 
 $lang['inspection_start_date']                              = 'Tanggal';
 $lang['inspection_select_customer']                 = 'Customer';
@@ -163,10 +165,11 @@ $lang['alamat_perusahaan']                             = 'Alamat';
 $lang['nomor_seri']                             = 'Nomor seri'; 
 $lang['nomor_unit']                             = 'Nomor unit'; 
 $lang['jenis_pesawat']                             = 'Jenis pesawat';
-$lang['type_model']                             = 'Tipe / model'; 
+$lang['type_model']                             = 'Tipe/model'; 
 $lang['nama_pesawat']                             = 'Nama pesawat'; 
 $lang['kapasitas']                             = 'Kapacitas'; 
 $lang['satuan_kapasitas']                             = 'Satuan kapasitas'; 
+$lang['inspection_type_model']                             = 'Tipe/model';
 
 
 /*

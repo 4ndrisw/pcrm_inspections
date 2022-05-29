@@ -450,6 +450,13 @@ class Inspections_model extends App_Model
             $equipment_data['rel_id'] = $insert_id;
             $this->{$equipment_model}->create($equipment_data);
 
+            $_sm = [];
+            if (isset($inspection_members)) {
+                $_sm['inspection_members'] = $inspection_members;
+            }
+
+            $this->add_edit_inspection_members($_sm, $insert_id);
+
             hooks()->do_action('after_inspection_added', $insert_id);
 
             if ($save_and_send === true) {

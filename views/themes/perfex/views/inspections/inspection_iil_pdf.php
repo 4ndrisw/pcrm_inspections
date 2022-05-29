@@ -97,22 +97,22 @@ label.field-label{display:inline-block; width:20%;}
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="120" class="tg-oe17">$nama_pesawat</td>
+    <td width ="170" class="tg-oe17">$nama_pesawat</td>
   </tr>
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_serial_number</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="120" class="tg-oe17">$nomor_seri</td>
+    <td width ="170" class="tg-oe17">$nomor_seri</td>
   </tr>
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_unit_number</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="120" class="tg-oe17">$nomor_unit</td>
+    <td width ="170" class="tg-oe17">$nomor_unit</td>
   </tr>
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_capacity</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="120" class="tg-oe17">$kapasitas</td>
+    <td width ="170" class="tg-oe17">$kapasitas</td>
   </tr>
 </tbody>
 </table>

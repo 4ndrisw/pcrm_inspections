@@ -1,7 +1,4 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
-<?php //echo form_hidden('equipment_type','bucket'); ?>
-
-
 
       <div class="horizontal-scrollable-tabs mbot15">
          <div class="scroller arrow-left"><i class="fa fa-angle-left"></i></div>

@@ -50,6 +50,8 @@ $lang['inspection_serial_number']                             = 'Serial number';
 $lang['inspection_unit_number']                             = 'Unit number';
 $lang['inspection_capacity']                             = 'Capacity';
 
+$lang['sticker']                              = 'Sticker';
+$lang['inspection_report']                              = 'Inspection report';
 $lang['inspection_number']                              = 'Number';
 $lang['inspection_company_name']                              = 'Company';
 $lang['inspection_address']                             = 'Address';
@@ -57,6 +59,7 @@ $lang['inspection_start_date']                              = 'Date';
 $lang['inspection_jenis_pesawat']                             = 'Type of equipment';
 $lang['inspection_nama_pesawat']                             = 'Equipment';
 $lang['inspection_equipment_category']                             = 'Category';
+$lang['inspection_type_model']                             = 'Type/model';
 
 $lang['inspection_select_customer']                 = 'Customer';
 $lang['inspection_add_edit_number']                 = 'Inspection Number';

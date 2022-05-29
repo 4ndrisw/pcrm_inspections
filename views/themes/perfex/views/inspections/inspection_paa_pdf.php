@@ -72,6 +72,7 @@ $address = get_inspection_company_address($inspection->id);
 $nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
 $nomor_seri = isset($inspection->equipment['nomor_seri']) ? $inspection->equipment['nomor_seri'] : '';
 $nomor_unit = isset($inspection->equipment['nomor_unit']) ? $inspection->equipment['nomor_unit'] : '';
+$type_model = isset($inspection->equipment['type_model']) ? $inspection->equipment['type_model'] : '';
 
 $kapasitas = isset($inspection->equipment['kapasitas']) ? $inspection->equipment['kapasitas'] : '';
 $satuan_kapasitas = isset($inspection->equipment['satuan_kapasitas']) ? ' ' . $inspection->equipment['satuan_kapasitas'] : '';
@@ -81,6 +82,7 @@ $inspection_address = _l('inspection_address');
 $inspection_jenis_pesawat = _l('inspection_jenis_pesawat');
 $inspection_nama_pesawat = _l('inspection_nama_pesawat');
 $inspection_unit_number = _l('inspection_unit_number');
+$inspection_type_model = _l('inspection_type_model');
 $inspection_serial_number = _l('inspection_serial_number');
 $inspection_capacity = _l('inspection_capacity');
 
@@ -97,22 +99,27 @@ label.field-label{display:inline-block; width:20%;}
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="120" class="tg-oe17">$nama_pesawat</td>
+    <td width ="170" class="tg-oe17">$nama_pesawat</td>
   </tr>
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_serial_number</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="120" class="tg-oe17">$nomor_seri</td>
+    <td width ="170" class="tg-oe17">$nomor_seri</td>
   </tr>
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_unit_number</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="120" class="tg-oe17">$nomor_unit</td>
+    <td width ="170" class="tg-oe17">$nomor_unit</td>
+  </tr>
+  <tr class="tg-1e15">
+    <td width ="130" class="tg-oe15">$inspection_type_model</td>
+    <td width ="10" class="tg-oe16">:</td>
+    <td width ="170" class="tg-oe17">$type_model</td>
   </tr>
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_capacity</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="120" class="tg-oe17">$kapasitas</td>
+    <td width ="170" class="tg-oe17">$kapasitas</td>
   </tr>
 </tbody>
 </table>
@@ -129,6 +136,7 @@ foreach($inspection_members as $member){
 $pdf->SetFont('dejavusans');
 
 pdf_multi_row($member_info, $tblhtml, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm'], true);
+$pdf->ln(2);
 
 $pemeriksaan_dokumen_t = '&#9744;';
 if(isset($inspection->equipment['pemeriksaan_dokumen']) && $inspection->equipment['pemeriksaan_dokumen'] == 1){
@@ -167,17 +175,17 @@ $pemeriksaan_pengaman_n = '&#9744;';
 if(isset($inspection->equipment['pemeriksaan_pengaman']) && $inspection->equipment['pemeriksaan_pengaman'] == 3){
     $pemeriksaan_pengaman_n = '&#9745;';
 }
-$pengujian_infrared_t = '&#9744;';
-if(isset($inspection->equipment['pengujian_infrared']) && $inspection->equipment['pengujian_infrared'] == 1){
-    $pengujian_infrared_t = '&#9745;';
+$pengujian_penetrant_t = '&#9744;';
+if(isset($inspection->equipment['pengujian_penetrant']) && $inspection->equipment['pengujian_penetrant'] == 1){
+    $pengujian_penetrant_t = '&#9745;';
 }
-$pengujian_infrared_f = '&#9744;';
-if(isset($inspection->equipment['pengujian_infrared']) && $inspection->equipment['pengujian_infrared'] == 2){
-    $pengujian_infrared_f = '&#9745;';
+$pengujian_penetrant_f = '&#9744;';
+if(isset($inspection->equipment['pengujian_penetrant']) && $inspection->equipment['pengujian_penetrant'] == 2){
+    $pengujian_penetrant_f = '&#9745;';
 }
-$pengujian_infrared_n = '&#9744;';
-if(isset($inspection->equipment['pengujian_infrared']) && $inspection->equipment['pengujian_infrared'] == 3){
-    $pengujian_infrared_n = '&#9745;';
+$pengujian_penetrant_n = '&#9744;';
+if(isset($inspection->equipment['pengujian_penetrant']) && $inspection->equipment['pengujian_penetrant'] == 3){
+    $pengujian_penetrant_n = '&#9745;';
 }
 $pengujian_operasional_t = '&#9744;';
 if(isset($inspection->equipment['pengujian_operasional']) && $inspection->equipment['pengujian_operasional'] == 1){
@@ -194,7 +202,7 @@ if(isset($inspection->equipment['pengujian_operasional']) && $inspection->equipm
 $pemeriksaan_dokumen = _l('pemeriksaan_dokumen');
 $pemeriksaan_visual = _l('pemeriksaan_visual');
 $pemeriksaan_pengaman = _l('pemeriksaan_pengaman');
-$pengujian_infrared = _l('pengujian_infrared');
+$pengujian_penetrant = _l('pengujian_penetrant');
 $pengujian_operasional = _l('pengujian_operasional');
 
 $lengkap = _l('lengkap');
@@ -235,12 +243,12 @@ table tr{ line-height: 2;}
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_f</span> $tidak_baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_ada</td>
         </tr>
-        <tr class="tg pengujian_infrared">
-           <td width="36%">$pengujian_infrared</td>
+        <tr class="tg pengujian_penetrant">
+           <td width="36%">$pengujian_penetrant</td>
            <td width="1%">:</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_infrared_t</span> $baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_infrared_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_infrared_n</span> $tidak_ada</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_t</span> $baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_f</span> $tidak_baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_n</span> $tidak_ada</td>
         </tr>
         <tr class="tg pengujian_operasional">
            <td width="36%">$pengujian_operasional</td>
