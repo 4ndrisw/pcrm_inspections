@@ -817,6 +817,17 @@ class Inspections_model extends App_Model
             $this->db->where('rel_id', $id);
             $this->db->delete(db_prefix() . 'views_tracking');
 
+            $tags = get_tags_in($id, 'inspection');
+            log_activity(json_encode($tags));
+          
+            $equipment_type = strtolower(str_replace(' ', '_', $tags[0]));
+            log_activity($equipment_type);
+            
+            // Delete the record from related equipment table
+            $this->db->where('rel_id', $id);
+            $this->db->delete(db_prefix() . $equipment_type);
+
+
             $this->db->where('rel_type', 'inspection');
             $this->db->where('rel_id', $id);
             $this->db->delete(db_prefix() . 'taggables');
@@ -828,18 +839,6 @@ class Inspections_model extends App_Model
             $this->db->where('rel_id', $id);
             $this->db->where('rel_type', 'inspection');
             $this->db->delete(db_prefix() . 'inspection_activity');
-
-            $tags = get_tags_in($inspection->id, 'inspection');
-
-            $data['jenis_pesawat'] = $tags[0];
-
-            $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
-            
-            // Delete the record from related equipment table
-            $this->db->where('rel_id', $id);
-            $this->db->where('rel_type', 'inspection');
-            $this->db->delete(db_prefix() . $equipment_type);
-
 
             $attachments = $this->get_attachments($id);
             foreach ($attachments as $attachment) {

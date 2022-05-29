@@ -97,15 +97,15 @@
          <div class="clearfix"></div>
       </div>
       <hr  />
-      <?php echo render_textarea('settings[predefined_terms_inspection]','predefined_terms',get_option('predefined_terms_inspection'),array('rows'=>2)); ?>
+      <?php echo render_textarea('settings[predefined_terms_inspection]','predefined_terms',get_option('predefined_terms_inspection'),array('rows'=>3)); ?>
 
-      <?php echo render_textarea('settings[predefined_regulation_of_paa]','regulation_of_paa',get_option('predefined_regulation_of_paa'),array('rows'=>2)); ?>
-      <?php echo render_textarea('settings[predefined_regulation_of_pubt]','regulation_of_pubt',get_option('predefined_regulation_of_pubt'),array('rows'=>2)); ?>
-      <?php echo render_textarea('settings[predefined_regulation_of_lie]','regulation_of_lie',get_option('predefined_regulation_of_lie'),array('rows'=>2)); ?>
-      <?php echo render_textarea('settings[predefined_regulation_of_ipp]','regulation_of_ipp',get_option('predefined_regulation_of_ipp'),array('rows'=>2)); ?>
-      <?php echo render_textarea('settings[predefined_regulation_of_iil]','regulation_of_iil',get_option('predefined_regulation_of_iil'),array('rows'=>2)); ?>
-      <?php echo render_textarea('settings[predefined_regulation_of_ipk]','regulation_of_ipk',get_option('predefined_regulation_of_ipk'),array('rows'=>2)); ?>
-      <?php echo render_textarea('settings[predefined_regulation_of_ptp]','regulation_of_ptp',get_option('predefined_regulation_of_ptp'),array('rows'=>2)); ?>
+      <?php echo render_textarea('settings[predefined_regulation_of_paa]','regulation_of_paa',get_option('predefined_regulation_of_paa'),array('rows'=>3)); ?>
+      <?php echo render_textarea('settings[predefined_regulation_of_pubt]','regulation_of_pubt',get_option('predefined_regulation_of_pubt'),array('rows'=>3)); ?>
+      <?php echo render_textarea('settings[predefined_regulation_of_lie]','regulation_of_lie',get_option('predefined_regulation_of_lie'),array('rows'=>3)); ?>
+      <?php echo render_textarea('settings[predefined_regulation_of_ipp]','regulation_of_ipp',get_option('predefined_regulation_of_ipp'),array('rows'=>3)); ?>
+      <?php echo render_textarea('settings[predefined_regulation_of_iil]','regulation_of_iil',get_option('predefined_regulation_of_iil'),array('rows'=>3)); ?>
+      <?php echo render_textarea('settings[predefined_regulation_of_ipk]','regulation_of_ipk',get_option('predefined_regulation_of_ipk'),array('rows'=>3)); ?>
+      <?php echo render_textarea('settings[predefined_regulation_of_ptp]','regulation_of_ptp',get_option('predefined_regulation_of_ptp'),array('rows'=>3)); ?>
 
 
    </div>

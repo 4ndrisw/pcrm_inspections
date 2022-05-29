@@ -132,6 +132,15 @@ $lang['equipment_kesimpulan']                             = 'Saran / Kesimpulan'
 $lang['inspection_declare']                             = 'Dengan ini menyatakan bahwa pemeriksaan dan pengujian telah dilaksanakan pada tanggal ';
 $lang['inspection_result'] 	='dengan hasil sebagai berikut.';
 
+$lang['pemeriksaan_dokumen']                             = 'Pemeriksaan dokumen';
+$lang['pemeriksaan_visual']                             = 'Pemeriksaan visual';
+$lang['pemeriksaan_pengaman']                             = 'Pemeriksaan peralatan pengaman';
+$lang['pengujian_penetrant']                             = 'Pengujian penetrant';
+$lang['pengujian_operasional']                             = 'Pengujian operation';
+$lang['pengujian_thickness']                             = 'Pengujian thickness';
+$lang['pengujian_infrared']                             = 'Pengujian panas inframerah';
+
+
 $lang['regulation_of_paa']                             = 'Regulasi PAA';
 $lang['regulation_of_pubt']                             = 'Regulasi PUBT';
 $lang['regulation_of_lie']                             = 'Regulasi LIE';

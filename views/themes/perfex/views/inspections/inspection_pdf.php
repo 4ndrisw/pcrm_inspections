@@ -276,13 +276,14 @@ $pdf->setFontSubsetting(true);
 $pdf->SetFont('dejavusans');
 
 $pdf->writeHTML($tblhtml, true, false, false, false, '');
-
-$assigned_path = <<<EOF
+a
+$aassigned_path = <<<EOF
         <img width="150" height="150" src="$inspection->assigned_path">
-    EOF;    
+    EOF;
+$assigned_path = $inspection->status;    
 $assigned_info = '<div style="text-align:center;">';
     $assigned_info .= get_option('invoice_company_name') . '<br />';
-    $assigned_info .= $assigned_path . '<br />';
+    //$assigned_info .= $assigned_path . '<br />';
 
 if ($inspection->assigned != 0 && get_option('show_assigned_on_inspections') == 1) {
     $assigned_info .= get_staff_full_name($inspection->assigned);

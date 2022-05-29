@@ -46,7 +46,8 @@ class Listrik_model extends App_Model
 
     public function create($data){
         $data['jenis_pesawat'] = 'listrik';
-        
+        $data['regulasi'] = get_option('predefined_regulation_of_iil');
+
         $this->db->insert(db_prefix().'listrik', $data);
         $equipment_id = $this->db->insert_id();
 

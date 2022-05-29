@@ -260,6 +260,25 @@
       </div>
    </div>
    <div class="row">
+      <div class="col-md-12">
+         <div class="panel-body equiptment-data mbot10">
+            <?php 
+            if(isset($inspection)){
+               $tag = get_tags_in($inspection->id,'inspection')[0];
+               $equiptment = str_replace(' ', '_', trim(strtolower($tag)));
+               
+               if(1){
+                  $this->load->view('admin/equiptment/'. $equiptment .'_template');
+               }
+               else{
+                  echo '<div class="alert alert-danger">';
+                  echo  '<strong>Danger! </strong>' . $equiptment .'_template is not found.';
+                  echo '</div>';
+               }
+            }
+            ?>
+         </div>
+      </div>      
       <div class="col-md-12 mtop15">
          <div class="panel-body bottom-transaction">
            <?php //$value = (isset($inspection) ? $inspection->clientnote : get_option('predefined_clientnote_inspection')); ?>
@@ -293,26 +312,6 @@
       </div>
       
    </div>
-
-         <div class="col-md-12">
-            <div class="panel-body equiptment-data mbot10">
-               <?php 
-               if(isset($inspection)){
-                  $tag = get_tags_in($inspection->id,'inspection')[0];
-                  $equiptment = str_replace(' ', '_', trim(strtolower($tag)));
-                  
-                  if(1){
-                     $this->load->view('admin/equiptment/'. $equiptment .'_template');
-                  }
-                  else{
-                     echo '<div class="alert alert-danger">';
-                     echo  '<strong>Danger! </strong>' . $equiptment .'_template is not found.';
-                     echo '</div>';
-                  }
-               }
-               ?>
-            </div>
-         </div>
          
  <div class="btn-bottom-pusher"></div>
 

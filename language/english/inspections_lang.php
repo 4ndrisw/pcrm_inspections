@@ -131,9 +131,9 @@ $lang['equipment_temuan']                             = 'Note / Finding :';
 $lang['equipment_kesimpulan']                             = 'Suggest / Conclusion:';
 
 $lang['inspection_regulation']                             = 'Regulation';
-$lang['pemeriksan_dokumen']                             = 'Document inspection';
-$lang['pemeriksan_visual']                             = 'Visual inspection';
-$lang['pemeriksan_pengaman']                             = 'Safety device inspection';
+$lang['pemeriksaan_dokumen']                             = 'Document inspection';
+$lang['pemeriksaan_visual']                             = 'Visual inspection';
+$lang['pemeriksaan_pengaman']                             = 'Safety device inspection';
 $lang['pengujian_penetrant']                             = 'Penetrant testing';
 $lang['pengujian_operasional']                             = 'Operation testing';
 $lang['pengujian_thickness']                             = 'Thickness testing';
@@ -157,6 +157,13 @@ $lang['regulation_of_iil']                             = 'Regulation of IIL';
 $lang['regulation_of_ipk']                             = 'Regulation of IPK';
 $lang['regulation_of_ptp']                             = 'Regulation of PTP';
 
+$lang['inspection_bapr']                             = 'BAPR'; 
+$lang['inspection_general_data']                             = 'General data'; 
+$lang['inspection_technical_data']                             = 'Technical data';
+$lang['inspection_operation_test']                             = 'Operation';
+$lang['inspection_safety_test']                             = 'Safety device';
+$lang['inspection_infrared_test']                             = 'Thermal Infrared';
+$lang['inspection_conclusion']                             = 'Conclusion';
 
 
 

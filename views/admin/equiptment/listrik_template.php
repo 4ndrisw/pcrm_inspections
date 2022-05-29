@@ -21,6 +21,9 @@
                   <a href="#inspection_operation_test" aria-controls="inspection_operation_test" role="tab" data-toggle="tab"><?php echo _l('inspection_operation_test'); ?></a>
                </li>
                <li role="presentation">
+                  <a href="#inspection_infrared_test" aria-controls="inspection_infrared_test" role="tab" data-toggle="tab"><?php echo _l('inspection_infrared_test'); ?></a>
+               </li>
+               <li role="presentation">
                   <a href="#inspection_safety_test" aria-controls="inspection_safety_test" role="tab" data-toggle="tab"><?php echo _l('inspection_safety_test'); ?></a>
                </li>
                <li role="presentation">
@@ -268,6 +271,19 @@
 
             </div>
          </div>
+         <div role="tabpanel" class="tab-pane" id="inspection_infrared_test">
+            <h4 class="bold">
+               <?php echo _l('inspection_infrared_test'); ?>
+            </h4>
+            <p class="text-muted">
+               <p><?php echo _l('inspection_infrared_test'); ?></p>
+            </p>
+            <hr />
+            <div class="row">
+
+            </div>
+         </div>
+         
          <div role="tabpanel" class="tab-pane" id="inspection_safety_test">
             <h4 class="bold">
                <?php echo _l('inspection_safety_test'); ?>

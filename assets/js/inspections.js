@@ -22,6 +22,8 @@ function validate_inspection_form(selector) {
         tag: 'required',
         equipment_category: 'required',
         tags: 'required',
+        assigned: 'required',
+        inspection_members: 'required',
         number: {
             required: true
         }

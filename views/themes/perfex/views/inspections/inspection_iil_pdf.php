@@ -191,9 +191,9 @@ $pengujian_operasional_n = '&#9744;';
 if(isset($inspection->equipment['pengujian_operasional']) && $inspection->equipment['pengujian_operasional'] == 3){
     $pengujian_operasional_n = '&#9745;';
 }
-$pemeriksan_dokumen = _l('pemeriksan_dokumen');
-$pemeriksan_visual = _l('pemeriksan_visual');
-$pemeriksan_pengaman = _l('pemeriksan_pengaman');
+$pemeriksaan_dokumen = _l('pemeriksaan_dokumen');
+$pemeriksaan_visual = _l('pemeriksaan_visual');
+$pemeriksaan_pengaman = _l('pemeriksaan_pengaman');
 $pengujian_infrared = _l('pengujian_infrared');
 $pengujian_operasional = _l('pengujian_operasional');
 
@@ -215,21 +215,21 @@ table tr{ line-height: 2;}
 <table class="table table-bordered">
      <tbody>
         <tr class="tg pemeriksaan_dokumen">
-           <td width="36%">$pemeriksan_dokumen</td>
+           <td width="36%">$pemeriksaan_dokumen</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_t</span> $lengkap</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_f</span> $tidak_lengkap</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_n</span> $tidak_ada</td>
         </tr>
         <tr class="tg pemeriksaan_visual">
-           <td width="36%">$pemeriksan_visual</td>
+           <td width="36%">$pemeriksaan_visual</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_f</span> $tidak_baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_n</span> $tidak_ada</td>
         </tr>
         <tr class="tg pemeriksaan_pengaman">
-           <td width="36%">$pemeriksan_pengaman</td>
+           <td width="36%">$pemeriksaan_pengaman</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_f</span> $tidak_baik</td>
@@ -267,9 +267,12 @@ $pdf->SetFont('dejavusans');
 
 $pdf->writeHTML($tblhtml, true, false, false, false, '');
 
-$assigned_path = <<<EOF
-        <img width="150" height="150" src="$inspection->assigned_path">
-    EOF;    
+$assigned_path = '<br /><br /><br /><br /><br />';
+if($inspection->status != 1){
+    $assigned_path = <<<EOF
+            <img width="150" height="150" src="$inspection->assigned_path">
+        EOF;
+}
 $assigned_info = '<div style="text-align:center;">';
     $assigned_info .= get_option('invoice_company_name') . '<br />';
     $assigned_info .= $assigned_path . '<br />';
@@ -304,10 +307,11 @@ pdf_multi_row($left_info, $right_info, $pdf, ($dimensions['wk'] / 2) - $dimensio
 
 $regulasi = '';
 $rline = 4;
-$tline = 15;
+$tline = 12;
 if (!empty($inspection->equipment['regulasi'])) {
     $regulasi = $inspection->equipment['regulasi'];
     $rline = 4;
+    $tline = 2;
 }
     $pdf->Ln($rline);
     $pdf->SetFont($font_name, 'B', $font_size);
@@ -317,9 +321,11 @@ if (!empty($inspection->equipment['regulasi'])) {
     $pdf->writeHTMLCell('', '', '', '', format_unorderedText($regulasi), 0, 1, false, true, 'L', true);
 
 $temuan = '';
+$kline = 18;
 if (!empty($inspection->equipment['temuan'])) {
     $temuan = $inspection->equipment['temuan'];
     $tline = 2;
+    $kline = 2;
 }
     $pdf->Ln($tline);
     $pdf->SetFont($font_name, 'B', $font_size);
@@ -328,12 +334,11 @@ if (!empty($inspection->equipment['temuan'])) {
     $pdf->writeHTMLCell('', '', '', '', format_unorderedText($temuan), 0, 1, false, true, 'L', true);
 
 $kesimpulan = '';
-$kline = 8;
-$sline = 15;
+$sline = 18;
 if (!empty($inspection->equipment['kesimpulan'])) {
     $kesimpulan = $inspection->equipment['kesimpulan'];
     $kline = 4;
-    $sline = 4;
+    $sline = 2;
 }
     $pdf->Ln($kline);
     $pdf->SetFont($font_name, 'B', $font_size);
@@ -341,11 +346,12 @@ if (!empty($inspection->equipment['kesimpulan'])) {
     $pdf->SetFont($font_name, '', $font_size);
     $pdf->writeHTMLCell('', '', '', '', format_unorderedText($kesimpulan), 0, 1, false, true, 'L', true);
 
-if (!empty($inspection->terms)) {
     $pdf->Ln($sline);
     $pdf->SetFont($font_name, 'B', $font_size);
     $pdf->Cell(0, 0, _l('terms_and_conditions') . ":", 0, 1, 'L', 0, '', 0);
     $pdf->SetFont($font_name, '', $font_size);
+    
+if (!empty($inspection->terms) && ($inspection->status != 1)) {
     $pdf->Ln(1);
     $pdf->writeHTMLCell('', '', '', '', format_unorderedText($inspection->terms), 0, 1, false, true, 'L', true);
 }
