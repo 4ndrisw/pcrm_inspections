@@ -164,15 +164,15 @@
                            <div class="col-xs-12 col-sm-8">
                               <div class="row">
                                  <div class="col-xs-12 col-sm-4 no-padding">
-                                    <input type="radio" class="btn-check" id="pengujian_infrared_t" name="equipment[pengujian_infrared]"" value="1" <?php if(isset($equipment)){if($equipment['pengujian_infrared'] == 1){echo ' checked';}}; ?>>
+                                    <input type="radio" class="btn-check" id="pengujian_infrared_t" name="equipment[pengujian_infrared]" value="1" <?php if(isset($equipment)){if($equipment['pengujian_infrared'] == 1){echo ' checked';}}; ?>>
                                     <label class="btn btn-secondary" for="pengujian_infrared_t"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="<?php echo _l('baik'); ?>" ></i> <?php echo _l('baik'); ?></label>
                                  </div>
                                  <div class="col-xs-12 col-sm-4 no-padding">
-                                    <input type="radio" class="btn-check" id="pengujian_infrared_f" name="equipment[pengujian_infrared]"" value="2" <?php if(isset($equipment)){if($equipment['pengujian_infrared'] == 2){echo 'checked';}}; ?>>
+                                    <input type="radio" class="btn-check" id="pengujian_infrared_f" name="equipment[pengujian_infrared]" value="2" <?php if(isset($equipment)){if($equipment['pengujian_infrared'] == 2){echo 'checked';}}; ?>>
                                     <label class="btn btn-secondary" for="pengujian_infrared_f"><?php echo _l('tidak_baik'); ?></label>
                                  </div>
                                  <div class="col-xs-12 col-sm-4 no-padding">
-                                    <input type="radio" class="btn-check" id="pengujian_infrared_n" name="equipment[pengujian_infrared]"" value="3" <?php if(isset($equipment)){if($equipment['pengujian_infrared'] == 3){echo 'checked';}}; ?>>
+                                    <input type="radio" class="btn-check" id="pengujian_infrared_n" name="equipment[pengujian_infrared]" value="3" <?php if(isset($equipment)){if($equipment['pengujian_infrared'] == 3){echo 'checked';}}; ?>>
                                     <label class="btn btn-secondary" for="pengujian_infrared_n"><?php echo _l('tidak_ada'); ?></label>
                                  </div>
                               </div>

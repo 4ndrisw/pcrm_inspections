@@ -102,23 +102,6 @@
             </div>
          </div>
          <div class="row">
-            <div class="col-md-12">
-               <p>
-               Sesuai dengan Undang – Undang No.1 tahun 1970 dan Peraturan Menteri Tenaga Kerja No. Per-08/MEN/2020
-   Tentang Tentang Pesawat Angkat Dan Angkut.
-               <?php echo get_option('predefined_clientinfo_inspection'); ?>   
-               </p>
-               <p>
-                  <?php $date = $inspection->date; ?>
-                  Pada hari ini <?= getDayName($date) ?>, tanggal <?= getDay($date) ?> bulan <?= getMonth($date) ?> tahun  <?= getYear($date) ?>, telah dilakukan Pemeriksaan
-   dan Pengujian Peralatan K3 dengan keterangan sebagai berikut :
-               </p>
-               <?php
-                  $this->load->view('themes/'. active_clients_theme() .'/template_parts/inspections_report', $inspection);
-               ?>
-            </div>
-         </div>
-         <div class="row">
             <div class="col-md-6">
                <div class="container-fluid">
                   <?php if(!empty($inspection_members)){ ?>
@@ -170,6 +153,20 @@
             </div>
          </div>
          <div class="row">
+            <div class="col-md-12">
+               <p>
+                  <?php echo _l('inspection_declare') .' '. getDayName($inspection->date) .' '. getDay($inspection->date) .' '. getMonth($inspection->date) .' '. getYear($inspection->date) .' '. _l('inspection_result') ;?>
+               </p>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-12">
+               <?php
+                  $this->load->view('themes/'. active_clients_theme() .'/template_parts/inspections_report', $inspection);
+               ?>
+            </div>
+         </div>
+         <div class="row">
             <div class="row mtop25">
                <div class="col-md-12">
                   <div class="col-md-6 text-center">
@@ -211,24 +208,25 @@
                <?php if(!empty($equipment['regulasi'])){ ?>
                <div class="col-md-12 inspection-html-equipment-regulasi">
                   <hr />
-                  <b><?php echo _l('equipment_regulasi'); ?></b><br /><?php echo $equipment['regulasi']; ?>
+                  <b><?php echo _l('equipment_regulasi'); ?></b><br /><?php echo format_unorderedText($equipment['regulasi']); ?>
                </div>
                <?php } ?>
                <?php if(!empty($equipment['regulasi'])){ ?>
                <div class="col-md-12 inspection-html-equipment-temuan">
                   <hr />
-                  <b><?php echo _l('equipment_temuan'); ?></b><br /><?php echo $equipment['temuan']; ?>
+                  <b><?php echo _l('equipment_temuan'); ?></b><br /><?php echo format_unorderedText($equipment['temuan']); ?>
                </div>
                <?php } ?>
                <?php if(!empty($equipment['kesimpulan'])){ ?>
                <div class="col-md-12 inspection-html-equipment-kesimpulan">
                   <hr />
-                  <b><?php echo _l('equipment_kesimpulan'); ?></b><br /><?php echo $equipment['kesimpulan']; ?>
+                  <b><?php echo _l('equipment_kesimpulan'); ?></b><br /><?php echo format_unorderedText($equipment['kesimpulan']); ?>
                </div>
                <?php } ?>
                <?php if(!empty($inspection->terms)){ ?>
                <div class="col-md-12 inspection-html-terms-and-conditions">
-                  <b><?php echo _l('terms_and_conditions'); ?>:</b><br /><?php echo $inspection->terms; ?>
+                  <hr />
+                  <b><?php echo _l('terms_and_conditions'); ?>:</b><br /><?php echo format_unorderedText($inspection->terms); ?>
                </div>
                <?php } ?>
                

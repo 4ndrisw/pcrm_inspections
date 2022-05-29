@@ -204,7 +204,7 @@ function _bulk_pdf_export_maybe_tag($tag, &$pdf)
  * @param  integer $left_width left row width
  * @return null
  */
-function pdf_multi_row($left, $right, $pdf, $left_width = 40)
+function pdf_multi_row($left, $right, $pdf, $left_width = 40, $align_right = false)
 {
     // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0)
 
@@ -220,7 +220,9 @@ function pdf_multi_row($left, $right, $pdf, $left_width = 40)
     $pdf->setPage($page_start);
 
     // write the right cell
-    $pdf->MultiCell(0, 0, $right, 0, 'R', 0, 1, $pdf->GetX(), $y_start, true, 0, true);
+    $r = 'R';
+    if($align_right){ $r = 'L'; }
+    $pdf->MultiCell(0, 0, $right, 0, $r, 0, 1, $pdf->GetX(), $y_start, true, 0, true);
 
     $page_end_2 = $pdf->getPage();
     $y_end_2    = $pdf->GetY();

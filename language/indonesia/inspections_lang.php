@@ -48,7 +48,15 @@ $lang['inspection_table_item_heading']     = 'Item';
 $lang['inspection_table_quantity_heading'] = 'Qty';
 
 $lang['inspection_number']                              = 'Nomor';
-$lang['inspection_company']                              = 'Perusahaan';
+$lang['inspection_company_name']                              = 'Perusahaan';
+$lang['inspection_address']                             = 'Alamat';
+$lang['inspection_jenis_pesawat']                             = 'Jenis pesawat';
+$lang['inspection_nama_pesawat']                             = 'Nama pesawat';
+$lang['inspection_equipment_category']                             = 'Kategori';
+$lang['inspection_serial_number']                             = 'Nomor seri';
+$lang['inspection_unit_number']                             = 'Nomor unit';
+$lang['inspection_capacity']                             = 'Kapasitas';
+
 $lang['inspection_start_date']                              = 'Tanggal';
 $lang['inspection_select_customer']                 = 'Customer';
 $lang['inspection_add_edit_number']                 = 'Nomor BAPR';
@@ -115,6 +123,23 @@ $lang['inspection_members']                = 'Staf yg bertugas';
 $lang['inspection_list_status']                = 'Status';
 $lang['inspection_qrcode_size']                = 'Ukuran qrcode BAPR';
 $lang['inspection_pdf_heading']            = 'Berita Acara Pelaksanaan Riksa Uji ';
+
+
+$lang['equipment_regulasi']                             = 'Regulasi';
+$lang['equipment_temuan']                             = 'Temuan';
+$lang['equipment_kesimpulan']                             = 'Saran / Kesimpulan';
+
+$lang['inspection_declare']                             = 'Dengan ini menyatakan bahwa pemeriksaan dan pengujian telah dilaksanakan pada tanggal ';
+$lang['inspection_result'] 	='dengan hasil sebagai berikut.';
+
+$lang['regulation_of_paa']                             = 'Regulasi PAA';
+$lang['regulation_of_pubt']                             = 'Regulasi PUBT';
+$lang['regulation_of_lie']                             = 'Regulasi LIE';
+$lang['regulation_of_ipp']                             = 'Regulasi IPP';
+$lang['regulation_of_iil']                             = 'Regulasi IIL';
+$lang['regulation_of_ipk']                             = 'Regulasi IPK';
+$lang['regulation_of_ptp']                             = 'Regulasi PTP';
+
 
 /*
 

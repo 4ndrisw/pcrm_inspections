@@ -296,12 +296,12 @@ class Myinspection extends ClientsController
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
         $equipment_model = $equipment_type .'_model';
         $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
-
+        
+        
         include_once($model_path);
         $this->load->model($equipment_model);
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
         $inspection->equipment = $equipment[0];
-
 
         try {
             $pdf = inspection_pdf($inspection);

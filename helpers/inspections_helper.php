@@ -812,8 +812,7 @@ function format_company_info()
  */
 function format_unorderedText($text)
 {
-    log_activity( $text );
-    $lists = explode('-', trim($text));
+    $lists = explode('*', trim($text));
     $output = '';
     foreach($lists as $li){
         if(!empty($li)){

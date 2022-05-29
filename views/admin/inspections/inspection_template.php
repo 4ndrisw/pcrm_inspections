@@ -262,8 +262,8 @@
    <div class="row">
       <div class="col-md-12 mtop15">
          <div class="panel-body bottom-transaction">
-           <?php $value = (isset($inspection) ? $inspection->clientnote : get_option('predefined_clientnote_inspection')); ?>
-           <?php echo render_textarea('clientnote','inspection_add_edit_client_note',$value,array(),array(),'mtop15'); ?>
+           <?php //$value = (isset($inspection) ? $inspection->clientnote : get_option('predefined_clientnote_inspection')); ?>
+           <?php //echo render_textarea('clientnote','inspection_add_edit_client_note',$value,array(),array(),'mtop15'); ?>
            <?php $value = (isset($inspection) ? $inspection->terms : get_option('predefined_terms_inspection')); ?>
            <?php echo render_textarea('terms','terms_and_conditions',$value,array(),array(),'mtop15'); ?>
          </div>

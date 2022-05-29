@@ -39,11 +39,11 @@
         $pemeriksaan_dokumen_t = '&#9745;';
      }
      $pemeriksaan_dokumen_f = '&#9744;';
-     if(isset($equipment['pemeriksaan_dokumen']) && ($equipment['pemeriksaan_dokumen'] == 0)){
+     if(isset($equipment['pemeriksaan_dokumen']) && ($equipment['pemeriksaan_dokumen'] == 2)){
         $pemeriksaan_dokumen_f = '&#9745;';
      }
      $pemeriksaan_dokumen_n = '&#9744;';
-     if(isset($equipment['pemeriksaan_dokumen']) && ($equipment['pemeriksaan_dokumen'] == 2)){
+     if(isset($equipment['pemeriksaan_dokumen']) && ($equipment['pemeriksaan_dokumen'] == 3)){
         $pemeriksaan_dokumen_n = '&#9745;';
      }
 
@@ -52,11 +52,11 @@
         $pemeriksaan_visual_t = '&#9745;';
      }
      $pemeriksaan_visual_f = '&#9744;';
-     if(isset($equipment['pemeriksaan_visual']) && $equipment['pemeriksaan_visual'] == 0){
+     if(isset($equipment['pemeriksaan_visual']) && $equipment['pemeriksaan_visual'] == 2){
         $pemeriksaan_visual_f = '&#9745;';
      }
      $pemeriksaan_visual_n = '&#9744;';
-     if(isset($equipment['pemeriksaan_visual']) && $equipment['pemeriksaan_visual'] == 2){
+     if(isset($equipment['pemeriksaan_visual']) && $equipment['pemeriksaan_visual'] == 3){
         $pemeriksaan_visual_n = '&#9745;';
      }
 
@@ -65,11 +65,11 @@
         $pemeriksaan_pengaman_t = '&#9745;';
      }
      $pemeriksaan_pengaman_f = '&#9744;';
-     if(isset($equipment['pemeriksaan_pengaman']) && $equipment['pemeriksaan_pengaman'] == 0){
+     if(isset($equipment['pemeriksaan_pengaman']) && $equipment['pemeriksaan_pengaman'] == 2){
         $pemeriksaan_pengaman_f = '&#9745;';
      }
      $pemeriksaan_pengaman_n = '&#9744;';
-     if(isset($equipment['pemeriksaan_pengaman']) && $equipment['pemeriksaan_pengaman'] == 2){
+     if(isset($equipment['pemeriksaan_pengaman']) && $equipment['pemeriksaan_pengaman'] == 3){
         $pemeriksaan_pengaman_n = '&#9745;';
      }
 
@@ -78,11 +78,11 @@
         $pengujian_penetrant_t = '&#9745;';
      }
      $pengujian_penetrant_f = '&#9744;';
-     if(isset($equipment['pengujian_penetrant']) && $equipment['pengujian_penetrant'] == 0){
+     if(isset($equipment['pengujian_penetrant']) && $equipment['pengujian_penetrant'] == 2){
         $pengujian_penetrant_f = '&#9745;';
      }
      $pengujian_penetrant_n = '&#9744;';
-     if(isset($equipment['pengujian_penetrant']) && $equipment['pengujian_penetrant'] == 2){
+     if(isset($equipment['pengujian_penetrant']) && $equipment['pengujian_penetrant'] == 3){
         $pengujian_penetrant_n = '&#9745;';
      }
 
@@ -91,11 +91,11 @@
         $pengujian_infrared_t = '&#9745;';
      }
      $pengujian_infrared_f = '&#9744;';
-     if(isset($equipment['pengujian_infrared']) && $equipment['pengujian_infrared'] == 0){
+     if(isset($equipment['pengujian_infrared']) && $equipment['pengujian_infrared'] == 2){
         $pengujian_infrared_f = '&#9745;';
      }
      $pengujian_infrared_n = '&#9744;';
-     if(isset($equipment['pengujian_infrared']) && $equipment['pengujian_infrared'] == 2){
+     if(isset($equipment['pengujian_infrared']) && $equipment['pengujian_infrared'] == 3){
         $pengujian_infrared_n = '&#9745;';
      }
 
@@ -104,11 +104,11 @@
         $pengujian_operasional_t = '&#9745;';
      }
      $pengujian_operasional_f = '&#9744;';
-     if(isset($equipment['pengujian_operasional']) && $equipment['pengujian_operasional'] == 0){
+     if(isset($equipment['pengujian_operasional']) && $equipment['pengujian_operasional'] == 2){
         $pengujian_operasional_f = '&#9745;';
      }
      $pengujian_operasional_n = '&#9744;';
-     if(isset($equipment['pengujian_operasional']) && $equipment['pengujian_operasional'] == 2){
+     if(isset($equipment['pengujian_operasional']) && $equipment['pengujian_operasional'] == 3){
         $pengujian_operasional_n = '&#9745;';
      }
 

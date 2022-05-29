@@ -96,3 +96,13 @@
 }
 
 #inspection-preview .text-item{list-style: disc;}
+
+label.field-label{display: inline-block; width: 20%;}
+
+ul.text-items {
+    margin-left: 15px;
+}
+
+li.text-item {
+    list-style: auto;
+}

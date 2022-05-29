@@ -217,4 +217,3 @@ if(($CI->uri->segment(0)=='admin' && $CI->uri->segment(1)=='inspections') || $CI
     $CI->app_css->add(INSPECTIONS_MODULE_NAME.'-css', base_url('modules/'.INSPECTIONS_MODULE_NAME.'/assets/css/'.INSPECTIONS_MODULE_NAME.'.css'));
     $CI->app_scripts->add(INSPECTIONS_MODULE_NAME.'-js', base_url('modules/'.INSPECTIONS_MODULE_NAME.'/assets/js/'.INSPECTIONS_MODULE_NAME.'.js'));
 }
-
