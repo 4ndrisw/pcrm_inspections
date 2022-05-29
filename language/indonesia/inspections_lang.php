@@ -140,6 +140,15 @@ $lang['pengujian_operasional']                             = 'Pengujian operatio
 $lang['pengujian_thickness']                             = 'Pengujian thickness';
 $lang['pengujian_infrared']                             = 'Pengujian panas inframerah';
 
+$lang['inspection_bapr']                             = 'BAPR'; 
+$lang['inspection_general_data']                             = 'Data umum'; 
+$lang['inspection_technical_data']                             = 'Data teknik';
+$lang['inspection_operation_test']                             = 'Operasional';
+$lang['inspection_safety_test']                             = 'Pengaman';
+$lang['inspection_infrared_test']                             = 'Infra merah';
+$lang['inspection_penetrant_test']                             = 'Penetrant';
+$lang['inspection_conclusion']                             = 'Kesimpulan';
+
 
 $lang['regulation_of_paa']                             = 'Regulasi PAA';
 $lang['regulation_of_pubt']                             = 'Regulasi PUBT';
@@ -148,6 +157,16 @@ $lang['regulation_of_ipp']                             = 'Regulasi IPP';
 $lang['regulation_of_iil']                             = 'Regulasi IIL';
 $lang['regulation_of_ipk']                             = 'Regulasi IPK';
 $lang['regulation_of_ptp']                             = 'Regulasi PTP';
+
+$lang['nama_perusahaan']                             = 'Perusahaan'; 
+$lang['alamat_perusahaan']                             = 'Alamat'; 
+$lang['nomor_seri']                             = 'Nomor seri'; 
+$lang['nomor_unit']                             = 'Nomor unit'; 
+$lang['jenis_pesawat']                             = 'Jenis pesawat';
+$lang['type_model']                             = 'Tipe / model'; 
+$lang['nama_pesawat']                             = 'Nama pesawat'; 
+$lang['kapasitas']                             = 'Kapacitas'; 
+$lang['satuan_kapasitas']                             = 'Satuan kapasitas'; 
 
 
 /*

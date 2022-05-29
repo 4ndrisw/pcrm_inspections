@@ -12,27 +12,23 @@ class Forklift_model extends App_Model
 
     /**
      * Get forklift/s
-     * @param mixed $id forklift id
+     * @param mixed $id bucket id
      * @param array $where perform where
      * @return mixed
      */
     public function get($id = '',  $where = [])
     {
+        if (is_numeric($id)) {
+            $this->db->where('staffid', $id);
+            $category = $this->db->get(db_prefix() . 'forklift')->row();
+
+            return $category;
+        }
         $this->db->select('*,' . db_prefix() . 'forklift.id');
         $this->db->from(db_prefix() . 'forklift');
         $this->db->where($where);
-        $results = $this->db->get()->result();
-        return reset($results);
-    }
-
-    public function create($data){
-        $data['jenis_pesawat'] = 'Chain hoist';
-        
-        $this->db->insert(db_prefix().'forklift', $data);
-        $equipment_id = $this->db->insert_id();
-
-        hooks()->do_action('after_forklift_added', $equipment_id);
-        return $equipment_id;
+        $results = $this->db->get()->result_array();
+        return $results;
     }
 
     public function create_or_update($data, $rel_id){
@@ -46,6 +42,17 @@ class Forklift_model extends App_Model
             $data['rel_id'] = $rel_id;
             $this->db->insert(db_prefix().'forklift', $data);
         }
+    }
+
+    public function create($data){
+        $data['jenis_pesawat'] = 'forklift';
+        $data['regulasi'] = get_option('predefined_regulation_of_paa');
+
+        $this->db->insert(db_prefix().'forklift', $data);
+        $equipment_id = $this->db->insert_id();
+
+        hooks()->do_action('after_forklift_added', $equipment_id);
+        return $equipment_id;
     }
 
     public function update($data, $rel_id){

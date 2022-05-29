@@ -46,7 +46,7 @@
                        <?php $value = (isset($equipment['nama_perusahaan']) ? $equipment['nama_perusahaan'] : get_inspection_company_name($equipment['rel_id'])); ?>
                        <?php echo render_input('equipment[nama_perusahaan]','nama_perusahaan',$value); ?>
 
-                       <?php $value = (isset($equipment->alamat_perusahaan) ? $equipment->alamat_perusahaan : get_inspection_company_address($equipment['rel_id'])); ?>
+                       <?php $value = (isset($equipment['alamat_perusahaan']) ? $equipment['alamat_perusahaan'] : get_inspection_company_address($equipment['rel_id'])); ?>
                        <?php echo render_input('equipment[alamat_perusahaan]','alamat_perusahaan',$value); ?>
 
                        <?php $value = (isset($equipment['nomor_seri']) ? $equipment['nomor_seri'] : ''); ?>
@@ -283,7 +283,7 @@
 
             </div>
          </div>
-         
+
          <div role="tabpanel" class="tab-pane" id="inspection_safety_test">
             <h4 class="bold">
                <?php echo _l('inspection_safety_test'); ?>

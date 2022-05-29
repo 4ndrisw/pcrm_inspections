@@ -111,7 +111,6 @@
      if(isset($equipment['pengujian_operasional']) && $equipment['pengujian_operasional'] == 3){
         $pengujian_operasional_n = '&#9745;';
      }
-
   ?>
   <table class="table table-bordered">
      <tbody>
@@ -137,7 +136,7 @@
            <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_pengaman_n ?> </span> Tidak ada</td>
         </tr>
 
-        <?php if(isset($equipment['pengujian_penetrant'])){ ?>
+        <?php if(isset($inspection->equipment_category) && ($inspection->equipment_category == 'paa')){ ?>
            <tr class="pengujian_penetrant">
               <td width="32%">Pengujian NDT (Penetrant)</td>
               <td width="1%">:</td>
@@ -147,7 +146,7 @@
            </tr>         
         <?php } ?>
 
-        <?php if(isset($equipment['pengujian_infrared'])){ ?>
+        <?php if(isset($inspection->equipment_category) && ($inspection->equipment_category == 'iil')){ ?>
            <tr class="pengujian_infrared">
               <td width="32%">Pengujian Termal Infrared</td>
               <td width="1%">:</td>

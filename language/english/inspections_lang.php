@@ -163,8 +163,19 @@ $lang['inspection_technical_data']                             = 'Technical data
 $lang['inspection_operation_test']                             = 'Operation';
 $lang['inspection_safety_test']                             = 'Safety device';
 $lang['inspection_infrared_test']                             = 'Thermal Infrared';
+$lang['inspection_penetrant_test']                             = 'Penetrant';
 $lang['inspection_conclusion']                             = 'Conclusion';
 
+
+$lang['nama_perusahaan']                             = 'Company'; 
+$lang['alamat_perusahaan']                             = 'Address'; 
+$lang['nomor_seri']                             = 'Serial number'; 
+$lang['nomor_unit']                             = 'Unit number'; 
+$lang['jenis_pesawat']                             = 'Type of equipment'; 
+$lang['type_model']                             = 'Type / model'; 
+$lang['nama_pesawat']                             = 'Name of equipment'; 
+$lang['kapasitas']                             = 'Capacity'; 
+$lang['satuan_kapasitas']                             = 'Unit capacity'; 
 
 
 /*
