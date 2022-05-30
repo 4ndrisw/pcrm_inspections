@@ -130,6 +130,8 @@ $lang['inspection_list_status']                = 'Status';
 $lang['inspection_qrcode_size']                = 'Inspection qrcode size';
 $lang['inspection_equipment_nama_pesawat']                = 'Equipment';
 $lang['inspection_company']                             = 'PJK3';
+
+$lang['equiptment_type']                             = 'Equiptment type';
 $lang['equipment_temuan']                             = 'Note / Finding :';
 $lang['equipment_kesimpulan']                             = 'Suggest / Conclusion:';
 

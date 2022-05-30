@@ -126,7 +126,7 @@ $lang['inspection_list_status']                = 'Status';
 $lang['inspection_qrcode_size']                = 'Ukuran qrcode BAPR';
 $lang['inspection_pdf_heading']            = 'Berita Acara Pelaksanaan Riksa Uji ';
 
-
+$lang['equiptment_type']                             = 'Jenis pesawat';
 $lang['equipment_regulasi']                             = 'Regulasi';
 $lang['equipment_temuan']                             = 'Temuan';
 $lang['equipment_kesimpulan']                             = 'Saran / Kesimpulan';
