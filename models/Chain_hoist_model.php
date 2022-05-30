@@ -34,7 +34,7 @@ class Chain_hoist_model extends App_Model
 
     public function create($data){
         $data['jenis_pesawat'] = 'Chain hoist';
-        
+        $data['regulasi'] = get_option('predefined_regulation_of_paa');
         $this->db->insert(db_prefix().'chain_hoist', $data);
         $equipment_id = $this->db->insert_id();
 

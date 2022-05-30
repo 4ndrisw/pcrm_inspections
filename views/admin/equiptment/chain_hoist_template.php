@@ -18,6 +18,9 @@
                   <a href="#inspection_operation_test" aria-controls="inspection_operation_test" role="tab" data-toggle="tab"><?php echo _l('inspection_operation_test'); ?></a>
                </li>
                <li role="presentation">
+                  <a href="#inspection_penetrant_test" aria-controls="inspection_penetrant_test" role="tab" data-toggle="tab"><?php echo _l('inspection_penetrant_test'); ?></a>
+               </li>
+               <li role="presentation">
                   <a href="#inspection_safety_test" aria-controls="inspection_safety_test" role="tab" data-toggle="tab"><?php echo _l('inspection_safety_test'); ?></a>
                </li>
                <li role="presentation">
@@ -37,27 +40,29 @@
                <div class="panel-body ">
                   <div class="row">
                      <div class="col-md-6">
-                       <?php $value = (isset($equipment['nama_perusahaan']) ? $equipment['nama_perusahaan'] : get_inspection_company_name($equipment['rel_id'])); ?>
+                       <?php $value = isset($equipment['nama_perusahaan']) ? $equipment['nama_perusahaan'] : get_inspection_company_name($equipment['rel_id']); ?>
                        <?php echo render_input('equipment[nama_perusahaan]','nama_perusahaan',$value); ?>
 
-                       <?php $value = (isset($equipment->alamat_perusahaan) ? $equipment->alamat_perusahaan : get_inspection_company_address($equipment['rel_id'])); ?>
+                       <?php $value = isset($equipment['alamat_perusahaan']) ? $equipment['alamat_perusahaan'] : get_inspection_company_address($equipment['rel_id']); ?>
                        <?php echo render_input('equipment[alamat_perusahaan]','alamat_perusahaan',$value); ?>
 
-                       <?php $value = (isset($equipment['nomor_seri']) ? $equipment['nomor_seri'] : ''); ?>
+                       <?php $value = isset($equipment['nomor_seri']) ? $equipment['nomor_seri'] : ''; ?>
                        <?php echo render_input('equipment[nomor_seri]','nomor_seri',$value); ?>
                     
-                       <?php $value = (isset($equipment['nomor_unit']) ? $equipment['nomor_unit'] : ''); ?>
+                       <?php $value = isset($equipment['nomor_unit']) ? $equipment['nomor_unit'] : ''; ?>
                        <?php echo render_input('equipment[nomor_unit]','nomor_unit',$value); ?>
 
                      </div>
                      <div class="col-md-6">
-                        <?php $value = (isset($equipment['jenis_pesawat']) ? $equipment['jenis_pesawat'] : 'Listrik'); ?>
+                        <?php $value = isset($equipment['jenis_pesawat']) ? $equipment['jenis_pesawat'] : 'Chain hoist'; ?>
                         <?php echo render_input('equipment[jenis_pesawat]','jenis_pesawat',$value); ?>
-                        <?php $value = (isset($equipment['nama_pesawat']) ? $equipment['nama_pesawat'] : ''); ?>
+                        <?php $value = isset($equipment['type_model']) ? $equipment['type_model'] : ''; ?>
+                        <?php echo render_input('equipment[type_model]','type_model',$value); ?>
+                        <?php $value = isset($equipment['nama_pesawat']) ? $equipment['nama_pesawat'] : ''; ?>
                         <?php echo render_input('equipment[nama_pesawat]','nama_pesawat',$value); ?>
-                        <?php $value = (isset($equipment['kapasitas']) ? $equipment['kapasitas'] : ''); ?>
+                        <?php $value = isset($equipment['kapasitas']) ? $equipment['kapasitas'] : ''; ?>
                         <?php echo render_input('equipment[kapasitas]','kapasitas',$value); ?>
-                        <?php $value = (isset($equipment['satuan_kapasitas']) ? $equipment['satuan_kapasitas'] : ''); ?>
+                        <?php $value = isset($equipment['satuan_kapasitas']) ? $equipment['satuan_kapasitas'] : ''; ?>
                         <?php echo render_input('equipment[satuan_kapasitas]','satuan_kapasitas',$value); ?>
                      </div>
 
@@ -71,6 +76,8 @@
                         <div class="row vertical-align-middle pemeriksaan_dokumen text-center">
                            <div class="col-xs-12 col-sm-3">
                               <label class="btn-secondary"><?= _l('pemeriksaan_dokumen') ?> </label>
+                              <?php $equipment_pemeriksaan_dokumen = isset($equipment_pemeriksaan_dokumen) ? $equipment_pemeriksaan_dokumen : ''; ?>
+                              <?= $equipment_pemeriksaan_dokumen ?>
                            </div>
                            <div class="col-sm-1 no-padding hidden-xs text-center">
                               :
@@ -82,11 +89,11 @@
                                     <label class="btn btn-secondary" for="pemeriksaan_dokumen_t"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="<?php echo _l('dokumen_lengkap'); ?>" ></i> <?php echo _l('lengkap'); ?></label>
                                  </div>
                                  <div class="col-xs-12 col-sm-4 no-padding">
-                                    <input type="radio" class="btn-check" id="pemeriksaan_dokumen_f" name="equipment[pemeriksaan_dokumen]" value="0" <?php if(isset($equipment)){if($equipment['pemeriksaan_dokumen'] == 0){echo 'checked';}}; ?>>
+                                    <input type="radio" class="btn-check" id="pemeriksaan_dokumen_f" name="equipment[pemeriksaan_dokumen]" value="2" <?php if(isset($equipment)){if($equipment['pemeriksaan_dokumen'] == 2){echo 'checked';}}; ?>>
                                     <label class="btn btn-secondary" for="pemeriksaan_dokumen_f"><?php echo _l('tidak_lengkap'); ?></label>
                                  </div>
                                  <div class="col-xs-12 col-sm-4 no-padding">
-                                    <input type="radio" class="btn-check" id="pemeriksaan_dokumen_n" name="equipment[pemeriksaan_dokumen]" value="2" <?php if(isset($equipment)){if($equipment['pemeriksaan_dokumen'] == 2){echo 'checked';}}; ?>>
+                                    <input type="radio" class="btn-check" id="pemeriksaan_dokumen_n" name="equipment[pemeriksaan_dokumen]" value="3" <?php if(isset($equipment)){if($equipment['pemeriksaan_dokumen'] == 3){echo 'checked';}}; ?>>
                                     <label class="btn btn-secondary" for="pemeriksaan_dokumen_n"><?php echo _l('tidak_ada'); ?></label>
                                  </div>
                               </div>
@@ -109,11 +116,11 @@
                                     <label class="btn btn-secondary" for="pemeriksaan_visual_t"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="<?php echo _l('baik'); ?>" ></i> <?php echo _l('baik'); ?></label>
                                  </div>
                                  <div class="col-xs-12 col-sm-4 no-padding">
-                                    <input type="radio" class="btn-check" id="pemeriksaan_visual_f" name="equipment[pemeriksaan_visual]" value="0" <?php if(isset($equipment)){if($equipment['pemeriksaan_visual'] == 0){echo 'checked';}}; ?>>
+                                    <input type="radio" class="btn-check" id="pemeriksaan_visual_f" name="equipment[pemeriksaan_visual]" value="2" <?php if(isset($equipment)){if($equipment['pemeriksaan_visual'] == 2){echo 'checked';}}; ?>>
                                     <label class="btn btn-secondary" for="pemeriksaan_visual_f"><?php echo _l('tidak_baik'); ?></label>
                                  </div>
                                  <div class="col-xs-12 col-sm-4 no-padding">
-                                    <input type="radio" class="btn-check" id="pemeriksaan_visual_n" name="equipment[pemeriksaan_visual]" value="2" <?php if(isset($equipment)){if($equipment['pemeriksaan_visual'] == 2){echo 'checked';}}; ?>>
+                                    <input type="radio" class="btn-check" id="pemeriksaan_visual_n" name="equipment[pemeriksaan_visual]" value="3" <?php if(isset($equipment)){if($equipment['pemeriksaan_visual'] == 3){echo 'checked';}}; ?>>
                                     <label class="btn btn-secondary" for="pemeriksaan_visual_n"><?php echo _l('tidak_ada'); ?></label>
                                  </div>
                               </div>
@@ -123,7 +130,8 @@
                         <div class="row vertical-align-middle pemeriksaan_pengaman text-center">
                            <div class="col-xs-12 col-sm-3">
                               <label class="btn-secondary"><?= _l('pemeriksaan_pengaman') ?> </label>
-                              <? isset($equipment_pemeriksaan_pengaman) ? $equipment_pemeriksaan_pengaman : ''; ?>
+                              <?php $equipment_pemeriksaan_pengaman = isset($equipment_pemeriksaan_pengaman) ? $equipment_pemeriksaan_pengaman : ''; ?>
+                              <?= $equipment_pemeriksaan_pengaman ?>
                            </div>
                            <div class="col-sm-1  no-padding hidden-xs text-center">
                               :
@@ -135,11 +143,11 @@
                                     <label class="btn btn-secondary" for="pemeriksaan_pengaman_t"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="<?php echo _l('baik'); ?>" ></i> <?php echo _l('baik'); ?></label>
                                  </div>
                                  <div class="col-xs-12 col-sm-4 no-padding">
-                                    <input type="radio" class="btn-check" id="pemeriksaan_pengaman_f" name="equipment[pemeriksaan_pengaman]" value="0" <?php if(isset($equipment)){if($equipment['pemeriksaan_pengaman'] == 0){echo 'checked';}}; ?>>
+                                    <input type="radio" class="btn-check" id="pemeriksaan_pengaman_f" name="equipment[pemeriksaan_pengaman]" value="2" <?php if(isset($equipment)){if($equipment['pemeriksaan_pengaman'] == 2){echo 'checked';}}; ?>>
                                     <label class="btn btn-secondary" for="pemeriksaan_pengaman_f"><?php echo _l('tidak_baik'); ?></label>
                                  </div>
                                  <div class="col-xs-12 col-sm-4 no-padding">
-                                    <input type="radio" class="btn-check" id="pemeriksaan_pengaman_n" name="equipment[pemeriksaan_pengaman]" value="2" <?php if(isset($equipment)){if($equipment['pemeriksaan_pengaman'] == 2){echo 'checked';}}; ?>>
+                                    <input type="radio" class="btn-check" id="pemeriksaan_pengaman_n" name="equipment[pemeriksaan_pengaman]" value="3" <?php if(isset($equipment)){if($equipment['pemeriksaan_pengaman'] == 3){echo 'checked';}}; ?>>
                                     <label class="btn btn-secondary" for="pemeriksaan_pengaman_n"><?php echo _l('tidak_ada'); ?></label>
                                  </div>
                               </div>
@@ -162,11 +170,11 @@
                                     <label class="btn btn-secondary" for="pengujian_penetrant_t"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="<?php echo _l('baik'); ?>" ></i> <?php echo _l('baik'); ?></label>
                                  </div>
                                  <div class="col-xs-12 col-sm-4 no-padding">
-                                    <input type="radio" class="btn-check" id="pengujian_penetrant_f" name="equipment[pengujian_penetrant]" value="0" <?php if(isset($equipment)){if($equipment['pengujian_penetrant'] == 0){echo 'checked';}}; ?>>
+                                    <input type="radio" class="btn-check" id="pengujian_penetrant_f" name="equipment[pengujian_penetrant]" value="2" <?php if(isset($equipment)){if($equipment['pengujian_penetrant'] == 2){echo 'checked';}}; ?>>
                                     <label class="btn btn-secondary" for="pengujian_penetrant_f"><?php echo _l('tidak_baik'); ?></label>
                                  </div>
                                  <div class="col-xs-12 col-sm-4 no-padding">
-                                    <input type="radio" class="btn-check" id="pengujian_penetrant_n" name="equipment[pengujian_penetrant]" value="2" <?php if(isset($equipment)){if($equipment['pengujian_penetrant'] == 2){echo 'checked';}}; ?>>
+                                    <input type="radio" class="btn-check" id="pengujian_penetrant_n" name="equipment[pengujian_penetrant]" value="3" <?php if(isset($equipment)){if($equipment['pengujian_penetrant'] == 3){echo 'checked';}}; ?>>
                                     <label class="btn btn-secondary" for="pengujian_penetrant_n"><?php echo _l('tidak_ada'); ?></label>
                                  </div>
                               </div>
@@ -189,11 +197,11 @@
                                     <label class="btn btn-secondary" for="pengujian_operasional_t"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="<?php echo _l('baik'); ?>" ></i> <?php echo _l('baik'); ?></label>
                                  </div>
                                  <div class="col-xs-12 col-sm-4 no-padding">
-                                    <input type="radio" class="btn-check" id="pengujian_operasional_f" name="equipment[pengujian_operasional]" value="0" <?php if(isset($equipment)){if($equipment['pengujian_operasional'] == 0){echo 'checked';}}; ?>>
+                                    <input type="radio" class="btn-check" id="pengujian_operasional_f" name="equipment[pengujian_operasional]" value="2" <?php if(isset($equipment)){if($equipment['pengujian_operasional'] == 2){echo 'checked';}}; ?>>
                                     <label class="btn btn-secondary" for="pengujian_operasional_f"><?php echo _l('tidak_baik'); ?></label>
                                  </div>
                                  <div class="col-xs-12 col-sm-4 no-padding">
-                                    <input type="radio" class="btn-check" id="pengujian_operasional_n" name="equipment[pengujian_operasional]" value="2" <?php if(isset($equipment)){if($equipment['pengujian_operasional'] == 2){echo 'checked';}}; ?>>
+                                    <input type="radio" class="btn-check" id="pengujian_operasional_n" name="equipment[pengujian_operasional]" value="3" <?php if(isset($equipment)){if($equipment['pengujian_operasional'] == 3){echo 'checked';}}; ?>>
                                     <label class="btn btn-secondary" for="pengujian_operasional_n"><?php echo _l('tidak_ada'); ?></label>
                                  </div>
                               </div>
@@ -201,28 +209,14 @@
                         </div>
                      </div>
                   </div>
-                  <?php $value = (isset($equipment['regulasi']) ? $equipment['regulasi'] : ''); ?>
+                  <?php $value = (!empty($equipment['regulasi']) ? $equipment['regulasi'] : get_option('predefined_regulation_of_paa')); ?>
                   <?php echo render_textarea('equipment[regulasi]','equipment_regulasi',$value); ?>
-                  <?php $value = (isset($equipment['temuan']) ? $equipment['temuan'] : ''); ?>
+                  <?php $value = (!empty($equipment['temuan']) ? $equipment['temuan'] : ''); ?>
                   <?php echo render_textarea('equipment[temuan]','equipment_temuan',$value); ?>
-                  <?php $value = (isset($equipment['kesimpulan']) ? $equipment['kesimpulan'] : ''); ?>
+                  <?php $value = (!empty($equipment['kesimpulan']) ? $equipment['kesimpulan'] : ''); ?>
                   <?php echo render_textarea('equipment[kesimpulan]','equipment_kesimpulan',$value); ?>
                </div>
             </div>
-
-<!--
-<div class="btn-group">
-  <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked />
-  <label class="btn btn-secondary" for="option1">Checked</label>
-
-  <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" />
-  <label class="btn btn-secondary" for="option2">Radio</label>
-
-  <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" />
-  <label class="btn btn-secondary" for="option3">Radio</label>
-</div>
--->
-
          </div> <!-- end tabpanel-->
          <div role="tabpanel" class="tab-pane" id="inspection_general_data">
 
@@ -262,6 +256,19 @@
 
             </div>
          </div>
+         <div role="tabpanel" class="tab-pane" id="inspection_penetrant_test">
+            <h4 class="bold">
+               <?php echo _l('inspection_penetrant_test'); ?>
+            </h4>
+            <p class="text-muted">
+               <p><?php echo _l('inspection_penetrant_test'); ?></p>
+            </p>
+            <hr />
+            <div class="row">
+
+            </div>
+         </div>
+
          <div role="tabpanel" class="tab-pane" id="inspection_safety_test">
             <h4 class="bold">
                <?php echo _l('inspection_safety_test'); ?>
