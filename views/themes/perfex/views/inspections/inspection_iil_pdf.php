@@ -120,16 +120,20 @@ EOD;
 
 
 $i=1;
-$member_info = '<div><strong>'. _l('inspection_members') . '</strong></div>';
+$left_info = '<div><strong>'. _l('inspection_members') . '</strong></div>';
 foreach($inspection_members as $member){
-  $member_info .=  $i.'. ' .$member['firstname'] .' '. $member['lastname']. '<br />';
+  $left_info .=  $i.'. ' .$member['firstname'] .' '. $member['lastname']. '<br />';
   $i++;
 }
+$tag = get_tags_in($inspection->id,'inspection')[0];
+$equiptment_type = isset($tag) ? $tag : '';
+$left_info .= '<div><strong>'. _l('equiptment_type') . '</strong></div>';
+$left_info .= $equiptment_type;
 
 $pdf->SetFont('dejavusans');
+pdf_multi_row($left_info, $tblhtml, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm'], true);
 
-pdf_multi_row($member_info, $tblhtml, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm'], true);
-
+$pdf->ln(2);
 $pemeriksaan_dokumen_t = '&#9744;';
 if(isset($inspection->equipment['pemeriksaan_dokumen']) && $inspection->equipment['pemeriksaan_dokumen'] == 1){
     $pemeriksaan_dokumen_t = '&#9745;';
