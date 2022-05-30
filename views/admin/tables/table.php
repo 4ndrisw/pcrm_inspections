@@ -12,7 +12,7 @@ $aColumns = [
     'formatted_number',
     db_prefix() . 'clients.company',
     'project_id',
-    //db_prefix() . 'projects.name',
+    'equiptment_type',
     'status',
     db_prefix() . 'inspections.date',
     'acceptance_firstname',
@@ -59,10 +59,12 @@ foreach ($rResult as $aRow) {
             $_data .= '</div>';
         }elseif ($aColumns[$i] == 'project_id') {
             $_data = get_project_name_by_id($_data);
-        }/*
-        elseif ($aColumns[$i] == 'name') {
+        }
+        elseif ($aColumns[$i] == 'equiptment_type') {
+            $tag = get_tags_in($aRow['id'],'inspection')[0];
+            $_data = isset($tag) ? $tag : '';
             $_data = $_data;
-        }*/
+        }
         elseif ($aColumns[$i] == 'status') {
 
             $span = '';
