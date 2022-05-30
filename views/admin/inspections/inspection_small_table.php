@@ -18,6 +18,7 @@
         <?php render_datatable(array(
             _l('inspection_number'),
             _l('inspection_company'),
+            _l('equiptment_type'),
             _l('inspection_start_date'),
             ),'inspections'); ?>
      </div>

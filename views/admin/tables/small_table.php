@@ -5,6 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $aColumns = [
     'formatted_number',
     'company',
+    'equiptment_type',
     'date',
 ];
 
@@ -35,6 +36,11 @@ foreach ($rResult as $aRow) {
                 $_data .= ' | <a href="' . admin_url('inspections/delete/' . $aRow['id']) . '" class="text-danger _delete">' . _l('delete') . '</a>';
             }
             $_data .= '</div>';
+        }
+        elseif ($aColumns[$i] == 'equiptment_type') {
+            $tag = get_tags_in($aRow['id'],'inspection')[0];
+            $_data = isset($tag) ? $tag : '';
+            $_data = $_data;
         } elseif ($aColumns[$i] == 'date') {
             $_data = _d($_data);
         } 
