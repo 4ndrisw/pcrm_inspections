@@ -140,6 +140,7 @@ $lang['pemeriksaan_dokumen']                             = 'Document inspection'
 $lang['pemeriksaan_visual']                             = 'Visual inspection';
 $lang['pemeriksaan_pengaman']                             = 'Safety device inspection';
 $lang['pengujian_penetrant']                             = 'Penetrant testing';
+$lang['pengujian_thickness']                             = 'Ultrasonographic testing';
 $lang['pengujian_operasional']                             = 'Operation testing';
 $lang['pengujian_thickness']                             = 'Thickness testing';
 $lang['pengujian_infrared']                             = 'Thermal infrafed testing';

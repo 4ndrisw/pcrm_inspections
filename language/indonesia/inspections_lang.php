@@ -138,6 +138,7 @@ $lang['pemeriksaan_dokumen']                             = 'Pemeriksaan dokumen'
 $lang['pemeriksaan_visual']                             = 'Pemeriksaan visual';
 $lang['pemeriksaan_pengaman']                             = 'Pemeriksaan peralatan pengaman';
 $lang['pengujian_penetrant']                             = 'Pengujian penetrant';
+$lang['pengujian_thickness']                             = 'Pengujian thickness';
 $lang['pengujian_operasional']                             = 'Pengujian operation';
 $lang['pengujian_thickness']                             = 'Pengujian thickness';
 $lang['pengujian_infrared']                             = 'Pengujian panas inframerah';

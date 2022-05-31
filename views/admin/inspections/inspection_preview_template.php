@@ -254,6 +254,7 @@
                                  </span>
                               </a>
                            </div>
+                           <p></p>
                            <div class="inspection_report">
                               <p><?= _l('inspection_report') ?></p>
                               <?php

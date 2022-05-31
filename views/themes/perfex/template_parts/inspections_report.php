@@ -86,6 +86,19 @@
         $pengujian_penetrant_n = '&#9745;';
      }
 
+     $pengujian_thickness_t = '&#9744;';
+     if(isset($equipment['pengujian_thickness']) && $equipment['pengujian_thickness'] == 1){
+        $pengujian_thickness_t = '&#9745;';
+     }
+     $pengujian_thickness_f = '&#9744;';
+     if(isset($equipment['pengujian_thickness']) && $equipment['pengujian_thickness'] == 2){
+        $pengujian_thickness_f = '&#9745;';
+     }
+     $pengujian_thickness_n = '&#9744;';
+     if(isset($equipment['pengujian_thickness']) && $equipment['pengujian_thickness'] == 3){
+        $pengujian_thickness_n = '&#9745;';
+     }
+
      $pengujian_infrared_t = '&#9744;';
      if(isset($equipment['pengujian_infrared']) && $equipment['pengujian_infrared'] == 1){
         $pengujian_infrared_t = '&#9745;';
@@ -136,13 +149,22 @@
            <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_pengaman_n ?> </span> Tidak ada</td>
         </tr>
 
-        <?php if(isset($inspection->equipment_category) && ($inspection->equipment_category == 'paa')){ ?>
+        <?php if(isset($inspection->equipment_category) && ($inspection->equipment_category == 'paa' || $inspection->equipment_category == 'pubt')){ ?>
            <tr class="pengujian_penetrant">
               <td width="32%">Pengujian NDT (Penetrant)</td>
               <td width="1%">:</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_penetrant_t ?> </span> Baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_penetrant_f ?> </span> Tidak baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_penetrant_n ?> </span> Tidak ada</td>
+           </tr>         
+        <?php } ?>
+        <?php if(isset($inspection->equipment_category) && ($inspection->equipment_category == 'pubt')){ ?>
+           <tr class="pengujian_thickness">
+              <td width="32%">Pengujian NDT (thickness)</td>
+              <td width="1%">:</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thickness_t ?> </span> Baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thickness_f ?> </span> Tidak baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thickness_n ?> </span> Tidak ada</td>
            </tr>         
         <?php } ?>
 
