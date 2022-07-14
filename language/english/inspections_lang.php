@@ -131,7 +131,7 @@ $lang['inspection_qrcode_size']                = 'Inspection qrcode size';
 $lang['inspection_equipment_nama_pesawat']                = 'Equipment';
 $lang['inspection_company']                             = 'PJK3';
 
-$lang['equiptment_type']                             = 'Equiptment type';
+$lang['equipment_type']                             = 'Equiptment type';
 $lang['equipment_temuan']                             = 'Note / Finding :';
 $lang['equipment_kesimpulan']                             = 'Suggest / Conclusion:';
 
@@ -172,7 +172,6 @@ $lang['inspection_infrared_test']                             = 'Thermal Infrare
 $lang['inspection_penetrant_test']                             = 'Penetrant';
 $lang['inspection_conclusion']                             = 'Conclusion';
 
-
 $lang['nama_perusahaan']                             = 'Company'; 
 $lang['alamat_perusahaan']                             = 'Address'; 
 $lang['nomor_seri']                             = 'Serial number'; 
@@ -182,6 +181,26 @@ $lang['type_model']                             = 'Type / model';
 $lang['nama_pesawat']                             = 'Name of equipment'; 
 $lang['kapasitas']                             = 'Capacity'; 
 $lang['satuan_kapasitas']                             = 'Unit capacity'; 
+$lang['inspection_send_to_customer_already_sent_2']              = 'Inspection already sent send to customer'; 
+$lang['inspection_status_change']                               = 'Imported attachment from email';
+$lang['inspection_status_updated']                              = 'Inspection Status Updated: From: %s to %s';
+$lang['inspection_customer_accepted']                           = 'Congratulations! Client accepted inspection with number %s';
+$lang['inspection_customer_declined']                           = 'Client declined inspection with number %s';
+$lang['inspection_activity_converted']                              = 'converted this inspection to invoice.<br /> %s';
+$lang['inspection_activity_created']                                = 'Created the inspection';
+$lang['inspection_activity_added_team_member']                = 'Added team member to Inspection';
+$lang['inspection_activity_equipment_type_changed']                = 'Equiptment type changed';
+
+$lang['inspections_list_all']                       = 'All';
+$lang['inspection_already_send_to_client_tooltip']  = 'This inspection is already sent to the client %s';
+$lang['inspection_send_to_client_modal_heading']    = 'Send inspection to client';
+$lang['inspection_send_to_client_attach_pdf']       = 'Attach inspection PDF';
+$lang['inspection_send_to_client_preview_template'] = 'Preview Email Template';
+
+$lang['attach_file']                 						= 'File';
+$lang['customer_permission_inspection'] = 'Inspections';
+$lang['not_inspection_remove_inspection_item'] = 'Remove inspection item';
+
 
 
 /*
@@ -246,12 +265,6 @@ $lang['proposal_convert_to_inspection']           = 'Convert to Inspection';
 $lang['proposal_converted_to_inspection_success'] = 'Proposal converted to inspection successfully';
 $lang['proposal_converted_to_inspection_fail']    = 'Failed to convert proposal to inspection';
 $lang['customer_have_inspections_by']      = 'Contains inspections by status %s';
-$lang['not_inspection_status_change']                               = 'Imported attachment from email';
-$lang['not_inspection_status_updated']                              = 'Inspection Status Updated: From: %s to %s';
-$lang['not_inspection_customer_accepted']                           = 'Congratulations! Client accepted inspection with number %s';
-$lang['not_inspection_customer_declined']                           = 'Client declined inspection with number %s';
-$lang['inspection_activity_converted']                              = 'converted this inspection to invoice.<br /> %s';
-$lang['inspection_activity_created']                                = 'Created the inspection';
 $lang['inspection_activity_removed_item']                   = 'removed item <b>%s</b>';
 $lang['inspection_activity_number_changed']                         = 'Inspection number changed from %s to %s';
 $lang['inspection_activity_updated_item_short_description'] = 'updated item short description from %s to %s';

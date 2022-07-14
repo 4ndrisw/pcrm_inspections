@@ -75,3 +75,134 @@ function inspection_mark_as(status_id, inspection_id) {
         table_inspections.DataTable().ajax.reload(null, false);
     });
 }
+
+
+$("body").on('change', '.f_project_id #project_id', function () {
+    var val = $(this).val();
+    var scheduleAjax = $('select[name="schedule_id"]');
+    var clonedschedulesAjaxSearchSelect = scheduleAjax.html('').clone();
+    var schedulesWrapper = $('.schedules-wrapper');
+    scheduleAjax.selectpicker('destroy').remove();
+    scheduleAjax = clonedschedulesAjaxSearchSelect;
+    $('#schedule_ajax_search_wrapper').append(clonedschedulesAjaxSearchSelect);
+    init_ajax_schedule_search_by_project_id();
+});
+
+// Ajax schedule search but only for specific project
+function init_ajax_schedule_search_by_project_id(selector) {
+    selector = typeof (selector) == 'undefined' ? '#schedule_id.ajax-search' : selector;
+    init_schedule_search('schedule', selector, {
+        project_id: function () {
+            return $('#project_id').val();
+        }
+    });
+}
+
+
+function init_schedule_search(type, selector, server_data, url) {
+    var ajaxSelector = $('body').find(selector);
+    var e = document.getElementById("project_id");
+
+      //var as = document.forms[0].project_id.value;
+      var pid = e.options[e.selectedIndex].value;
+      console.log(pid);
+
+    if (ajaxSelector.length) {
+        var options = {
+            ajax: {
+                url: (typeof (url) == 'undefined' ? admin_url + 'schedules/schedules_by_project_id/'+pid : url),
+                data: function () {
+                    var data = {};
+                    data.type = type;
+                    data.rel_id = '';
+                    data.q = '{{{q}}}';
+                    if (typeof (server_data) != 'undefined') {
+                        jQuery.extend(data, server_data);
+                    }
+                    return data;
+                }
+            },
+            locale: {
+                emptyTitle: app.lang.search_ajax_empty,
+                statusInitialized: app.lang.search_ajax_initialized,
+                statusSearching: app.lang.search_ajax_searching,
+                statusNoResults: app.lang.not_results_found,
+                searchPlaceholder: app.lang.search_ajax_placeholder,
+                currentlySelected: app.lang.currently_selected
+            },
+            requestDelay: 500,
+            cache: false,
+            preprocessData: function (processData) {
+                var bs_data = [];
+                var len = processData.length;
+                for (var i = 0; i < len; i++) {
+                    var tmp_data = {
+                        'value': processData[i].id,
+                        'text': processData[i].name,
+                    };
+                    if (processData[i].subtext) {
+                        tmp_data.data = {
+                            subtext: processData[i].subtext
+                        };
+                    }
+                    bs_data.push(tmp_data);
+                }
+                return bs_data;
+            },
+            preserveSelectedPosition: 'after',
+            preserveSelected: true
+        };
+        if (ajaxSelector.data('empty-title')) {
+            options.locale.emptyTitle = ajaxSelector.data('empty-title');
+        }
+        ajaxSelector.selectpicker().ajaxSelectPicker(options);
+    }
+}
+
+
+function inspection_add_inspection_item(inspection_id, project_id, task_id) {
+    var data = {};
+    data.inspection_id = inspection_id;
+    data.project_id = project_id;
+    data.task_id = task_id;
+    $.post(admin_url + 'inspections/add_inspection_item', data).done(function (response) {
+        reload_inspections_tables();
+    });
+}
+
+
+// From inspection table mark as
+function inspection_remove_inspection_item(inspection_id, task_id) {
+    var data = {};
+    data.inspection_id = inspection_id;
+    data.task_id = task_id;
+    $.post(admin_url + 'inspections/remove_inspection_item', data).done(function (response) {
+        reload_inspections_tables();
+    });
+}
+
+
+function reload_inspections_tables() {
+    var av_inspections_tables = ['.table-inspections', '.table-rel-inspections', '.table-inspection-items', '.table-inspection-related'];
+    //var av_inspections_tables = ['.inspection-items-proposed'];
+    $.each(av_inspections_tables, function (i, selector) {
+        if ($.fn.DataTable.isDataTable(selector)) {
+            $(selector).DataTable().ajax.reload(null, false);
+        }
+    });
+}
+
+
+// From inspection table mark as
+function inspection_update_inspection_data(values) {
+    var data = {};
+    data.rel_id = values.rel_id;
+    data.jenis_pesawat = values.jenis_pesawat;
+    data.task_id = values.task_id;
+    data.field = values.field;
+    data.text = values.text;
+    $.post(admin_url + 'inspections/update_inspection_data', data).done(function (response) {
+        reload_inspections_tables();
+    });
+}
+

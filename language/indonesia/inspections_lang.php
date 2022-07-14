@@ -126,7 +126,7 @@ $lang['inspection_list_status']                = 'Status';
 $lang['inspection_qrcode_size']                = 'Ukuran qrcode BAPR';
 $lang['inspection_pdf_heading']            = 'Berita Acara Pelaksanaan Riksa Uji ';
 
-$lang['equiptment_type']                             = 'Jenis pesawat';
+$lang['equipment_type']                             = 'Jenis pesawat';
 $lang['equipment_regulasi']                             = 'Regulasi';
 $lang['equipment_temuan']                             = 'Temuan';
 $lang['equipment_kesimpulan']                             = 'Saran / Kesimpulan';
@@ -171,6 +171,29 @@ $lang['nama_pesawat']                             = 'Nama pesawat';
 $lang['kapasitas']                             = 'Kapacitas'; 
 $lang['satuan_kapasitas']                             = 'Satuan kapasitas'; 
 $lang['inspection_type_model']                             = 'Tipe/model';
+
+$lang['inspection_send_to_customer_already_sent_2']              = 'BAPR telah dikirim ke pelanggan'; 
+
+$lang['inspection_status_change']                   = 'Impor lampiran dari Email';
+$lang['inspection_status_updated']                  = 'Status BAPP Diperbarui: Dari: %s menjadi %s';
+$lang['inspection_customer_accepted']                           	= 'Selamat! Klien menerima BAPP dengan nomor %s';
+$lang['inspection_customer_declined']                           	= 'Klien menolak BAPP dengan nomor %s';
+$lang['inspection_activity_converted']                              	= 'BAPP ini dikonversi menjadi invoice.<br /> %s';
+$lang['inspection_activity_created']                                	= 'BAPP Dibuat';
+
+$lang['inspection_activity_added_team_member']                = 'Menambahkan team member ke Inspeksi';
+$lang['inspection_activity_equipment_type_changed']                = 'Equiptment type changed';
+
+$lang['inspections_list_all']                 						= 'Semua';
+$lang['inspection_already_send_to_client_tooltip'] 					= 'Inspeksi ini telah dikirim kepada klien %s';
+$lang['inspection_send_to_client_modal_heading']    					= 'Kirim Inspeksi ke Klien';
+$lang['inspection_send_to_client_attach_pdf']       					= 'Lampirkan Inspeksi dalam format PDF';
+$lang['inspection_send_to_client_preview_template'] 					= 'Tinjau Template Email';
+
+$lang['attach_file']                 						= 'File';
+$lang['customer_permission_inspection'] = 'Inspections';
+$lang['not_inspection_remove_inspection_item'] = 'Hapus item ini';
+
 
 
 /*
@@ -279,12 +302,6 @@ $lang['proposal_convert_to_inspection']           = 'Konversi menjadi BAPR';
 $lang['proposal_converted_to_inspection_success'] = 'Proposal berhasil dikonversi menjadi BAPR';
 $lang['proposal_converted_to_inspection_fail']    = 'Gagal mengkonversi Proposal menjadi BAPR';
 $lang['customer_have_inspections_by']      		= 'Berisi BAPP berdasarkan status %s';
-$lang['not_inspection_status_change']                   = 'Impor lampiran dari Email';
-$lang['not_inspection_status_updated']                  = 'Status BAPP Diperbarui: Dari: %s menjadi %s';
-$lang['not_inspection_customer_accepted']                           	= 'Selamat! Klien menerima BAPP dengan nomor %s';
-$lang['not_inspection_customer_declined']                           	= 'Klien menolak BAPP dengan nomor %s';
-$lang['inspection_activity_converted']                              	= 'BAPP ini dikonversi menjadi invoice.<br /> %s';
-$lang['inspection_activity_created']                                	= 'BAPP Dibuat';
 $lang['invoice_inspection_activity_removed_item']                   	= 'Hapus item <b>%s</b>';
 $lang['inspection_activity_number_changed']                         	= 'Nomor BAPP berubah dari %s menjadi %s';
 $lang['invoice_inspection_activity_updated_item_short_description'] 	= 'Deskripsi singkat item diperbarui dari %s menjadi %s';

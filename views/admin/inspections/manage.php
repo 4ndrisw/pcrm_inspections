@@ -18,7 +18,7 @@
                         _l('inspection_number'),
                         _l('inspection_company'),
                         _l('inspection_list_project'),
-                        _l('equiptment_type'),
+                        _l('equipment_type'),
                         _l('inspection_status'),
                         _l('inspection_start_date'),
                         _l('inspection_acceptance_name'),

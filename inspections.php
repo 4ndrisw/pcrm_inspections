@@ -15,7 +15,7 @@ define('INSPECTION_ATTACHMENTS_FOLDER', 'uploads/inspections/');
 hooks()->add_filter('before_inspection_updated', '_format_data_inspection_feature');
 hooks()->add_filter('before_inspection_added', '_format_data_inspection_feature');
 
-hooks()->add_action('after_cron_run', 'inspections_notification');
+//hooks()->add_action('after_cron_run', 'inspections_notification');
 hooks()->add_action('admin_init', 'inspections_module_init_menu_items');
 hooks()->add_action('admin_init', 'inspections_permissions');
 hooks()->add_action('clients_init', 'inspections_clients_area_menu_items');
@@ -29,6 +29,9 @@ hooks()->add_filter('global_search_result_query', 'inspections_global_search_res
 hooks()->add_filter('global_search_result_output', 'inspections_global_search_result_output', 10, 2);
 hooks()->add_filter('get_dashboard_widgets', 'inspections_add_dashboard_widget');
 hooks()->add_filter('module_inspections_action_links', 'module_inspections_action_links');
+
+hooks()->add_action('after_inspection_added', 'add_inspection_related');
+hooks()->add_action('after_inspection_copied', 'add_inspection_related');
 
 add_option('predefined_clientinfo_inspection', 'In accordance with Law No. 1 of 1970 and Regulation of the Minister of Manpower No. Per-08/MEN/2020 Regarding Lifting And Transporting Aircraft.');
 

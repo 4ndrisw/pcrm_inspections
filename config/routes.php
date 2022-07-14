@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-$route['inspections/inspection/(:num)/(:any)'] = 'inspection/index/$1/$2';
+//$route['inspections/inspection/(:num)/(:any)'] = 'inspection/index/$1/$2';
 
 /**
  * @since 2.0.0

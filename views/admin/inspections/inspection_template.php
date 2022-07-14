@@ -39,6 +39,23 @@
               </select>
             </div>
            </div>
+
+
+
+            <div class="form-group select-placeholder schedules-wrapper<?php if((!isset($inspection)) || (isset($inspection) && !project_has_schedules($inspection->project_id))){ echo ' hide';} ?>">
+             <label for="schedule_id"><?php echo _l('schedule'); ?></label>
+             <div id="schedule_ajax_search_wrapper">
+               <select name="schedule_id" id="schedule_id" class="schedules ajax-search" data-live-search="true" data-width="100%" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
+                <?php
+                  if(isset($inspection) && $inspection->schedule_id != 0){
+                    echo '<option value="'.$inspection->schedule_id.'" selected>'.format_schedule_number($inspection->schedule_id).'</option>';
+                  }
+                ?>
+              </select>
+            </div>
+           </div>
+           
+
             <div class="row">
                <div class="col-md-12">
                   <a href="#" class="edit_shipping_billing_info" data-toggle="modal" data-target="#billing_and_shipping_details"><i class="fa fa-pencil-square-o"></i></a>
@@ -268,7 +285,7 @@
                $equiptment = str_replace(' ', '_', trim(strtolower($tag)));
                
                if(1){
-                  $this->load->view('admin/equiptment/'. $equiptment .'_template');
+                  $this->load->view('admin/equipment/'. $equiptment .'_template');
                }
                else{
                   echo '<div class="alert alert-danger">';

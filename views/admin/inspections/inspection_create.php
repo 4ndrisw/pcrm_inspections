@@ -24,6 +24,7 @@
 		validate_inspection_form();
 		// Project ajax search
 		init_ajax_project_search_by_customer_id();
+		init_ajax_schedule_search_by_project_id();
 	});
 </script>
 </body>

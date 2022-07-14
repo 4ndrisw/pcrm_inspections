@@ -5,7 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $aColumns = [
     'formatted_number',
     'company',
-    'equiptment_type',
+    'equipment_type',
     'date',
 ];
 
@@ -37,7 +37,7 @@ foreach ($rResult as $aRow) {
             }
             $_data .= '</div>';
         }
-        elseif ($aColumns[$i] == 'equiptment_type') {
+        elseif ($aColumns[$i] == 'equipment_type') {
             $tag = get_tags_in($aRow['id'],'inspection')[0];
             $_data = isset($tag) ? $tag : '';
             $_data = $_data;

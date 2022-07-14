@@ -1,109 +1,19 @@
 <?php
 
 defined('BASEPATH') or exit('No direct script access allowed');
-
-if (!$CI->db->table_exists(db_prefix() . 'inspections')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "inspections` (
-      `id` int(11) NOT NULL,
-      `staff_id` int(11) NOT NULL DEFAULT 0,
-      `sent` tinyint(1) NOT NULL DEFAULT 0,
-      `datesend` datetime DEFAULT NULL,
-      `clientid` int(11) NOT NULL DEFAULT 0,
-      `deleted_customer_name` varchar(100) DEFAULT NULL,
-      `project_id` int(11) NOT NULL DEFAULT 0,
-      `number` int(11) NOT NULL DEFAULT 0,
-      `prefix` varchar(50) DEFAULT NULL,
-      `number_format` int(11) NOT NULL DEFAULT 0,
-      `formatted_number` varchar(20) DEFAULT NULL,
-      `hash` varchar(32) DEFAULT NULL,
-      `datecreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      `date` date DEFAULT NULL,
-      `expirydate` date DEFAULT NULL,
-      `addedfrom` int(11) NOT NULL DEFAULT 0,
-      `status` int(11) NOT NULL DEFAULT 1,
-      `clientnote` text DEFAULT NULL,
-      `adminnote` text DEFAULT NULL,
-      `jobreportid` int(11) DEFAULT NULL,
-      `jobreport_date` datetime DEFAULT NULL,
-      `terms` text DEFAULT NULL,
-      `reference_no` varchar(100) DEFAULT NULL,
-      `assigned` int(11) NOT NULL DEFAULT 0,
-      `billing_street` varchar(200) DEFAULT NULL,
-      `billing_city` varchar(100) DEFAULT NULL,
-      `billing_state` varchar(100) DEFAULT NULL,
-      `billing_zip` varchar(100) DEFAULT NULL,
-      `billing_country` int(11) DEFAULT NULL,
-      `shipping_street` varchar(200) DEFAULT NULL,
-      `shipping_city` varchar(100) DEFAULT NULL,
-      `shipping_state` varchar(100) DEFAULT NULL,
-      `shipping_zip` varchar(100) DEFAULT NULL,
-      `shipping_country` int(11) DEFAULT NULL,
-      `include_shipping` tinyint(1) NOT NULL DEFAULT 0,
-      `show_shipping_on_inspection` tinyint(1) NOT NULL DEFAULT 1,
-      `show_quantity_as` int(11) NOT NULL DEFAULT 1,
-      `pipeline_order` int(11) DEFAULT 1,
-      `is_expiry_notified` int(11) NOT NULL DEFAULT 0,
-      `signed` tinyint(1) NOT NULL DEFAULT 0,
-      `acceptance_firstname` varchar(50) DEFAULT NULL,
-      `acceptance_lastname` varchar(50) DEFAULT NULL,
-      `acceptance_email` varchar(100) DEFAULT NULL,
-      `acceptance_date` datetime DEFAULT NULL,
-      `acceptance_ip` varchar(40) DEFAULT NULL,
-      `signature` varchar(40) DEFAULT NULL,
-      `short_link` varchar(100) DEFAULT NULL,
-      `inspector_name` varchar(100) DEFAULT NULL
-    ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
-
-    $CI->db->query('ALTER TABLE `' . db_prefix() . 'inspections`
-      ADD PRIMARY KEY (`id`),
-      ADD UNIQUE( `number`),
-      ADD KEY `signed` (`signed`),
-      ADD KEY `status` (`status`),
-      ADD KEY `clientid` (`clientid`),
-      ADD KEY `project_id` (`project_id`),
-      ADD KEY `date` (`date`);');
-
-    $CI->db->query('ALTER TABLE `' . db_prefix() . 'inspections`
-      MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1');
-}
+require_once('install/inspections.php');
+require_once('install/inspection_members.php');
+require_once('install/inspection_activity.php');
+require_once('install/inspection_items.php');
+require_once('install/equipment_category.php');
 
 
-if (!$CI->db->table_exists(db_prefix() . 'inspection_members')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "inspection_members` (
-      `id` int(11) NOT NULL,
-      `inspection_id` int(11) NOT NULL DEFAULT 0,
-      `staff_id` int(11) NOT NULL DEFAULT 0
-    ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
-
-    $CI->db->query('ALTER TABLE `' . db_prefix() . 'inspection_members`
-      ADD PRIMARY KEY (`id`),
-      ADD KEY `staff_id` (`staff_id`),
-      ADD KEY `inspection_id` (`inspection_id`) USING BTREE;');
-
-    $CI->db->query('ALTER TABLE `' . db_prefix() . 'inspection_members`
-      MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1');
-}
-
-if (!$CI->db->table_exists(db_prefix() . 'inspection_activity')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "inspection_activity` (
-  `id` int(11) NOT NULL,
-  `rel_type` varchar(20) DEFAULT NULL,
-  `rel_id` int(11) NOT NULL,
-  `description` text NOT NULL,
-  `additional_data` text DEFAULT NULL,
-  `staffid` varchar(11) DEFAULT NULL,
-  `full_name` varchar(100) DEFAULT NULL,
-  `date` datetime NOT NULL
-    ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
-
-    $CI->db->query('ALTER TABLE `' . db_prefix() . 'inspection_activity`
-        ADD PRIMARY KEY (`id`),
-        ADD KEY `date` (`date`);');
-
-    $CI->db->query('ALTER TABLE `' . db_prefix() . 'inspection_activity`
-      MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1');
-}
-
+require_once('install/bejana_tekan.php');
+require_once('install/forklift.php');
+require_once('install/overhead_crane.php');
+require_once('install/lsitrik.php');
+require_once('install/petir.php');
+require_once('install/compressor.php');
 
 $CI->db->query("
 INSERT INTO `tblemailtemplates` (`type`, `slug`, `language`, `name`, `subject`, `message`, `fromname`, `fromemail`, `plaintext`, `active`, `order`) VALUES
@@ -157,9 +67,18 @@ add_option('inspection_qrcode_size', '160');
 
 
 /*
+DROP TABLE if EXISTS `tblinspections`;
+DROP TABLE if EXISTS `tblinspection_activity`, `tblinspection_members`;
 
-DROP TABLE `tblinspections`;
-DROP TABLE `tblinspection_activity`, `tblinspection_members`;
+DROP TABLE if EXISTS `tblinspection_items`;
+DROP TABLE if EXISTS `tblbejana_tekan`;
+
+DROP TABLE if EXISTS `tblforklift`;
+DROP TABLE if EXISTS `tblforklift`;
+DROP TABLE if EXISTS `tblpetir`;
+DROP TABLE if EXISTS `tbllistrik`;
+
+
 delete FROM `tbloptions` WHERE `name` LIKE '%inspection%';
 DELETE FROM `tblemailtemplates` WHERE `type` LIKE 'inspection';
 

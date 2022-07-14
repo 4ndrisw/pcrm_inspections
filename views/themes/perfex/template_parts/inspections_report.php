@@ -16,18 +16,34 @@
         <tr>
            <td style="width:20%">Nama Pesawat</td>
            <td style="width:2%">:</td>
-           <td><?= isset($equipment['nama_pesawat']) ? $equipment['nama_pesawat'] : '' ?></td>      
+           <td class="editable" data-field="nama_pesawat" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment[0]['nama_pesawat']) ? $equipment[0]['nama_pesawat'] : '' ?></td>      
         </tr>
         <tr>
-           <td style="width:20%">Nomor Seri / Nomor Unit</td>
+           <td style="width:20%">Nomor Seri</td>
            <td style="width:2%">:</td>
-           <td><?= (isset($equipment['nomor_seri']) ? $equipment['nomor_seri'] : '') . ' / ' . (isset($equipment['nomor_unit']) ? $equipment['nomor_unit'] : '') ?></td>      
+           <td class="editable" data-field="nomor_seri" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment[0]['nomor_seri']) ? $equipment[0]['nomor_seri'] : '' ?></td>      
+        </tr>
+        <tr>
+           <td style="width:20%">Nomor Unit</td>
+           <td style="width:2%">:</td>
+           <td class="editable" data-field="nomor_unit" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment[0]['nomor_unit']) ? $equipment[0]['nomor_unit'] : '' ?></td>
+        </tr>
+        <tr>
+           <td style="width:20%">Type / Model</td>
+           <td style="width:2%">:</td>
+           <td class="editable" data-field="type_model" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment[0]['type_model']) ? $equipment[0]['type_model'] : '' ?></td>
         </tr>
         <tr>
            <td style="width:20%">Kapasitas</td>
            <td style="width:2%">:</td>
-           <td><?= (isset($equipment['kapasitas']) ? $equipment['kapasitas'] : '') .' '. (isset($equipment['satuan_kapasitas']) ? $equipment['satuan_kapasitas'] : '') ?></td>      
+           <td class="editable" data-field="kapasitas" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment[0]['kapasitas']) ? $equipment[0]['kapasitas'] : '' ?></td>
         </tr>
+        <tr>
+           <td style="width:20%">Satuan</td>
+           <td style="width:2%">:</td>
+           <td class="editable" data-field="satuan_kapasitas" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment[0]['satuan_kapasitas']) ? $equipment[0]['satuan_kapasitas'] : '' ?></td>
+        </tr>
+     
      </tbody>
   </table>
 </div>

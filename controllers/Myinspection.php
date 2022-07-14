@@ -106,12 +106,14 @@ class Myinspection extends ClientsController
         $qrcode_data .= _l('inspection_date') . ' : ' . $inspection->date ."\r\n";
         $qrcode_data .= _l('inspection_equipment_nama_pesawat') . ' : ' . $equipment_name ."\r\n";
         $qrcode_data .= _l('inspection_assigned_string') . ' : ' . get_staff_full_name($inspection->assigned) ."\r\n";
-        $qrcode_data .= _l('inspection_company') . ' : ' . get_option('invoice_company_name') ."\r\n";
+        //$qrcode_data .= _l('inspection_company') . ' : ' . get_option('invoice_company_name') ."\r\n";
         
 
         $inspection_path = get_upload_path_by_type('inspections') . $inspection->id . '/';
         _maybe_create_upload_path('uploads/inspections');
         _maybe_create_upload_path('uploads/inspections/'.$inspection_path);
+        
+        log_activity($qrcode_data);
 
         $params['data'] = $qrcode_data;
         $params['writer'] = 'png';

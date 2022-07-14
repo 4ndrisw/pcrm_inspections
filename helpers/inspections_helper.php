@@ -781,3 +781,22 @@ function format_unorderedText($text)
 
     return '<ul class="text-items">'.$output.'</ul>';
 }
+
+
+function add_inspection_related($insert_id){
+
+    $CI = &get_instance();
+    $CI->load->model('inspections_model');
+    
+    $inspection = $CI->inspections_model->get($insert_id);
+
+    $items = $CI->inspections_model->get_available_tasks($inspection->id, $inspection->project_id);
+    
+    foreach($items as $item){
+        $item['inspection_id']=$insert_id;
+        
+        $CI->db->insert(db_prefix().'inspection_items', $item);
+        
+    }
+
+}

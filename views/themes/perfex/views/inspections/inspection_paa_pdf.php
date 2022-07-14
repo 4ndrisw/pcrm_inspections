@@ -132,9 +132,9 @@ foreach($inspection_members as $member){
   $i++;
 }
 $tag = get_tags_in($inspection->id,'inspection')[0];
-$equiptment_type = isset($tag) ? $tag : '';
-$left_info .= '<div><strong>'. _l('equiptment_type') . '</strong></div>';
-$left_info .= $equiptment_type;
+$equipment_type = isset($tag) ? $tag : '';
+$left_info .= '<div><strong>'. _l('equipment_type') . '</strong></div>';
+$left_info .= $equipment_type;
 
 $pdf->SetFont('dejavusans');
 pdf_multi_row($left_info, $tblhtml, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm'], true);

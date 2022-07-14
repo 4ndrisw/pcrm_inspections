@@ -323,6 +323,17 @@
                         </div>
                      </div>
                   </div>
+                  <?php 
+//                  echo '<pre>';
+//                  var_dump($inspection->equipment_type);
+//                  echo '</pre>';
+                  ?>
+
+
+                     <?php
+                        $this->load->view('themes/'. active_clients_theme() .'/template_parts/inspections_report', $inspection);
+                     ?>
+                  
                   <div class="row">
                      <?php if(count($inspection->attachments) > 0){ ?>
                         <div class="clearfix"></div>
@@ -369,11 +380,7 @@
                      <?php } ?>  
 
                   </div>
-                  <div class="inspection-items">
-                        <?php
-                           $this->load->view('admin/inspections/inspection_table_items');
-                        ?>
-                  </div>                  
+                  
 
                </div>
             </div>

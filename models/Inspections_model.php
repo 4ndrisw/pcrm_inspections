@@ -66,6 +66,7 @@ class Inspections_model extends App_Model
                     $inspection->client          = new stdClass();
                     $inspection->client->company = $inspection->deleted_customer_name;
                 }
+                $inspection->inspection_items = $this->get_inspection_items($inspection->id, $inspection->project_id);
 
                 $this->load->model('email_schedule_model');
                 $inspection->inspectiond_email = $this->email_schedule_model->get($id, 'inspection');
@@ -448,6 +449,7 @@ class Inspections_model extends App_Model
             $this->load->model($equipment_model);
 
             $equipment_data['rel_id'] = $insert_id;
+            //$equipment_data['task_id'] = $task_id;
             $this->{$equipment_model}->create($equipment_data);
 
             $_sm = [];
@@ -708,8 +710,31 @@ class Inspections_model extends App_Model
                     $this->log_inspection_activity($id, 'inspection_activity_marked', false, serialize([
                         '<status>' . $action . '</status>',
                     ]));
+
+                    /*
+                     *
+                     * add equipment here
+                     * get_inspection_items($inspection_id, $project_id)
+                     *
+                     *
+                     */
+                    $inspection_items = $this->get_inspection_items($inspection->id, $inspection->project_id);
+                    foreach($inspection_items as $item){
+                        $equipment = ucfirst(strtolower(str_replace(' ', '_', $item['tag_name'])));
+                        $equipment_model = $equipment .'_model';
+                        include_once(__DIR__ . '/' . $equipment_model .'.php');
+                        $this->load->model($equipment_model);
+
+                        $equipment_data['rel_id'] = $inspection->id;
+                        $equipment_data['task_id'] = $item['task_id'];
+                        $this->{$equipment_model}->create($equipment_data);
+                    }
+
+
                     pusher_trigger_notification($notifiedUsers);
                     hooks()->do_action('inspection_send_to_customer_already_sent', $inspection);
+                    
+
 
                     return true;
                 }
@@ -1486,6 +1511,95 @@ class Inspections_model extends App_Model
         return $this->db->get_compiled_select(db_prefix() . 'inspections');
 //        return $this->db->get(db_prefix() . 'inspections')->get_compiled_select();
 //        return $this->db->get(db_prefix() . 'inspections')->result_array();
+    }
+
+    public function get_available_tasks($inspection_id, $project_id){
+
+        $this->db->select([db_prefix() . 'projects.id AS project_id', db_prefix() . 'tasks.id AS task_id']);
+
+        $this->db->join(db_prefix() . 'projects', db_prefix() . 'tasks.rel_id = ' . db_prefix() . 'projects.id', 'left');
+        $this->db->join(db_prefix() . 'inspection_items', db_prefix() . 'tasks.id = ' . db_prefix() . 'inspection_items.task_id', 'left');
+
+        $this->db->where(db_prefix() . 'tasks.rel_id =' . $project_id);
+        $this->db->where(db_prefix() . 'tasks.rel_type = ' . "'project'");
+        $this->db->where(db_prefix() . 'inspection_items.task_id IS NULL');
+
+        //return $this->db->get_compiled_select(db_prefix() . 'tasks');
+        return $this->db->get(db_prefix() . 'tasks')->result_array();
+    }
+
+
+    public function get_inspection_items($inspection_id, $project_id){
+        $this->db->select([db_prefix() . 'tasks.id AS task_id',db_prefix() . 'tasks.name', db_prefix() . 'tasks.rel_id', db_prefix() . 'tasks.dateadded', db_prefix() . 'tags.name AS tag_name']);
+        $this->db->where(db_prefix() . 'tasks.rel_id =' . $project_id);
+        
+        $this->db->join(db_prefix() . 'inspection_items', db_prefix() . 'inspection_items.task_id = ' . db_prefix() . 'tasks.id', 'left');
+        $this->db->join(db_prefix() . 'taggables', db_prefix() . 'taggables.rel_id = ' . db_prefix() . 'tasks.id', 'left');
+        $this->db->join(db_prefix() . 'tags', db_prefix() . 'taggables.tag_id = ' . db_prefix() . 'tags.id', 'left');
+
+        $this->db->where(db_prefix() . 'tasks.rel_type = ' . "'project'");
+        $this->db->where(db_prefix() . 'inspection_items.inspection_id = ' . $inspection_id);
+        $this->db->where(db_prefix() . 'inspection_items.project_id = ' . $project_id);
+
+        //return $this->db->get_compiled_select(db_prefix() . 'tasks');
+        return $this->db->get(db_prefix() . 'tasks')->result_array();
+
+    }
+
+    
+    public function inspection_add_inspection_item($data){
+        
+        $this->db->insert(db_prefix() . 'inspection_items', [
+                'inspection_id'      => $data['inspection_id'],
+                'project_id' => $data['project_id'],
+                'task_id'              => $data['task_id']]);
+    }
+
+
+
+    public function inspection_remove_inspection_item($data)
+    {
+
+        $affectedRows   = 0;
+
+        //$this->db->where('inspection_id', $data['inspection_id']);
+        //$this->db->where('task_id', $data['task_id']);
+        //$id = $this->db->get(db_prefix() . 'inspection_items')->row();
+        //if(isset($id)){
+            $this->db->delete(db_prefix() . 'inspection_items', [
+                'inspection_id' => $data['inspection_id'],
+                'task_id' => $data['task_id'],
+            ]);            
+        //}
+
+        $_log_message = '';
+
+        if ($this->db->affected_rows() > 0) {
+            $affectedRows++;
+                $_log_message    = 'not_inspection_remove_inspection_item';
+                $additional_data = serialize([
+                    get_staff_full_name(),
+                    $data['inspection_id'],
+                    $data['task_id'],
+                ]);
+
+                hooks()->do_action('inspection_remove_inspection_item', [
+                    'inspection_id' => $data['inspection_id'],
+                    'task_id' => $data['task_id'],
+                ]);
+            
+        }
+
+        if ($affectedRows > 0) {
+            if ($_log_message == '') {
+                return true;
+            }
+            $this->log_inspection_activity($data['inspection_id'], $_log_message, false, $additional_data);
+
+            return true;
+        }
+
+        return false;
     }
 
 
