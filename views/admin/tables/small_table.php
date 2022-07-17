@@ -5,7 +5,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $aColumns = [
     'formatted_number',
     'company',
-    'equipment_type',
     'date',
 ];
 

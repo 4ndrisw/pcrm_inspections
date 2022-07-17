@@ -195,8 +195,10 @@
                   <?php $value = (isset($inspection) ? _d($inspection->date) : _d(date('Y-m-d'))); ?>
                   <?php echo render_date_input('date','inspection_add_edit_date',$value); ?>
                </div>
+               <!--
                <div class="col-md-6">
                <?php 
+                  /*
                   $selected = (isset($inspection) ? $inspection->equipment_category : '');
                   foreach($categories as $category){
                    if(isset($inspection)){
@@ -206,9 +208,11 @@
                    }
                   }
                   echo render_select('equipment_category',$categories,array('code',array('title')),'inspection_equipment_category',$selected);
+                  */
                ?>
 
                </div>
+               -->
             </div>
             <div class="clearfix mbot15"></div>
             <?php $rel_id = (isset($inspection) ? $inspection->id : false); ?>
@@ -221,10 +225,14 @@
          </div>
          <div class="col-md-6">
             <div class="panel_s no-shadow">
+               
+               <!--
                <div class="form-group">
                   <label for="tags" class="control-label"><i class="fa fa-tag" aria-hidden="true"></i> <?php echo _l('tags'); ?></label>
                   <input type="text" class="tagsinput" id="tags" name="tags" value="<?php echo (isset($inspection) ? prep_tags_input(get_tags_in($inspection->id,'inspection')) : ''); ?>" data-role="tagsinput">
                </div>
+               -->
+
                <div class="row">
                    <div class="col-md-6">
                      <div class="form-group select-placeholder">

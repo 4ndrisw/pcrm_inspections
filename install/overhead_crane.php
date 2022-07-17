@@ -22,6 +22,7 @@ if (!$CI->db->table_exists(db_prefix() . 'overhead_crane')) {
 
     $CI->db->query('ALTER TABLE `' . db_prefix() . 'overhead_crane`
       ADD PRIMARY KEY (`id`),
+      ADD UNIQUE KEY `rel_id_task_id` (`rel_id`,`task_id`) USING BTREE,
       ADD KEY `rel_id` (`rel_id`),
       ADD KEY `nama_perusahaan` (`nama_perusahaan`),
       ADD KEY `jenis_pesawat` (`jenis_pesawat`),

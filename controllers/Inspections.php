@@ -72,7 +72,7 @@ class Inspections extends AdminController
         $data['members']           = $this->staff_model->get('', ['active' => 1]);
         $data['inspection_statuses'] = $this->inspections_model->get_statuses();
         $data['totalNotes']        = total_rows(db_prefix() . 'notes', ['rel_id' => $id, 'rel_type' => 'inspection']);
-
+        /*
         $tags = get_tags_in($inspection->id, 'inspection');
         
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
@@ -83,7 +83,8 @@ class Inspections extends AdminController
         $this->load->model($equipment_model);
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
         $data['equipment'] = $equipment[0];
-
+        */
+        
         $data['send_later'] = false;
         if ($this->session->has_userdata('send_later')) {
             $data['send_later'] = true;
@@ -137,6 +138,7 @@ class Inspections extends AdminController
 
         $data['activity']          = $this->inspections_model->get_inspection_activity($id);
         $data['task']          = $task;
+
         $data['members']           = $this->staff_model->get('', ['active' => 1]);
         $data['inspection_statuses'] = $this->inspections_model->get_statuses();
         $data['totalNotes']        = total_rows(db_prefix() . 'notes', ['rel_id' => $id, 'rel_type' => 'inspection']);
@@ -513,28 +515,22 @@ class Inspections extends AdminController
 
     public function table_items()
     {
-
         $this->app->get_table_data(module_views_path('inspections', 'admin/tables/table_items'));
     }
 
     public function table_items_submitted()
     {
-
         $this->app->get_table_data(module_views_path('inspections', 'admin/tables/table_items_submitted'));
     }
 
     public function table_related($licence_id='')
     {
-
         $this->app->get_table_data(module_views_path('inspections', 'admin/tables/table_related'));
     }
 
     public function add_inspection_item()
     {
         if ($this->input->post() && $this->input->is_ajax_request()) {
-            $x = $this->input->post();
-            log_activity(json_encode($x));
-            
             $this->inspections_model->inspection_add_inspection_item($this->input->post());
         }
     }
@@ -561,11 +557,39 @@ class Inspections extends AdminController
         //include_once($model_path);
         $this->load->model($equipment_model);
         $this->{$equipment_model}->update($this->input->post(), $rel_id, $task_id);
-            
-
-
     }
 
+    public function change_inspection_status(){
+
+        //if ($this->input->post() && $this->input->is_ajax_request()) {
+            $input = $this->input->post();
+            log_activity(json_encode($input));
+
+            //$this->inspections_model->inspection_remove_inspection_item($this->input->post());
+        //}
+    }
+
+
+    /* Change client status / active / inactive */
+    public function inspection_status_change($params, $status)
+    {
+
+        list($data['rel_id'], $data['task_id'], $data['jenis_pesawat'], $data['pengujian']) = explode("-",$params);
+
+        log_activity(json_encode($data));
+            
+        $equipment_model = $data['jenis_pesawat'] .'_model';
+        $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
+
+        include_once($model_path);
+        $this->load->model($equipment_model);
+        
+        log_activity($status);
+
+        //if ($this->input->is_ajax_request()) {
+            $this->{$equipment_model}->update_pengujian_status($data, $status);
+        //}
+    }
 
 
 }

@@ -439,7 +439,7 @@ class Inspections_model extends App_Model
             $this->db->update(db_prefix() . 'options');
 
             handle_tags_save($tags, $insert_id, 'inspection');
-            
+            /*
             //$tags = $data['tags'];
             $tags = empty($tags) ? [] : explode(',', $tags);
             $tag = $tags[0];
@@ -451,6 +451,7 @@ class Inspections_model extends App_Model
             $equipment_data['rel_id'] = $insert_id;
             //$equipment_data['task_id'] = $task_id;
             $this->{$equipment_model}->create($equipment_data);
+            */
 
             $_sm = [];
             if (isset($inspection_members)) {
@@ -722,12 +723,17 @@ class Inspections_model extends App_Model
                     foreach($inspection_items as $item){
                         $equipment = ucfirst(strtolower(str_replace(' ', '_', $item['tag_name'])));
                         $equipment_model = $equipment .'_model';
+                        
+                        $tags = get_tags_in($item['task_id'], 'task');
+                        $equipment_type = strtolower(str_replace(' ', '_', $tags[0]));
+
                         include_once(__DIR__ . '/' . $equipment_model .'.php');
                         $this->load->model($equipment_model);
 
                         $equipment_data['rel_id'] = $inspection->id;
                         $equipment_data['task_id'] = $item['task_id'];
-                        $this->{$equipment_model}->create($equipment_data);
+                        $equipment_data['jenis_pesawat'] = $tags[0];
+                        $this->{$equipment_model}->create_or_update($equipment_data,$inspection->id, $item['task_id'], $equipment_type);
                     }
 
 
@@ -848,14 +854,14 @@ class Inspections_model extends App_Model
             $this->db->where('rel_type', 'inspection');
             $this->db->where('rel_id', $id);
             $this->db->delete(db_prefix() . 'views_tracking');
-
+            /*
             $tags = get_tags_in($id, 'inspection');          
             $equipment_type = strtolower(str_replace(' ', '_', $tags[0]));
             
             // Delete the record from related equipment table
             $this->db->where('rel_id', $id);
             $this->db->delete(db_prefix() . $equipment_type);
-
+            */
 
             $this->db->where('rel_type', 'inspection');
             $this->db->where('rel_id', $id);

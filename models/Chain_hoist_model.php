@@ -33,7 +33,6 @@ class Chain_hoist_model extends App_Model
     }
 
     public function create($data){
-        $data['jenis_pesawat'] = 'Chain hoist';
         $data['regulasi'] = get_option('predefined_regulation_of_paa');
         $this->db->insert(db_prefix().'chain_hoist', $data);
         $equipment_id = $this->db->insert_id();
@@ -42,16 +41,17 @@ class Chain_hoist_model extends App_Model
         return $equipment_id;
     }
 
-    public function create_or_update($data, $rel_id){
+    public function create_or_update($data, $rel_id, $task_id, $equipment_type){
         $this->db->select('id');
         $this->db->where('rel_id', $rel_id);
-        $exists = $this->db->get(db_prefix() . 'chain_hoist')->result();
+        $this->db->where('task_id', $task_id);
+        $exists = $this->db->get(db_prefix() . $equipment_type)->result();
         if($exists){
             $this->db->where('rel_id', $rel_id);
-            $this->db->update(db_prefix() . 'chain_hoist', $data);
+            $this->db->where('task_id', $task_id);
+            $this->db->update(db_prefix() . $equipment_type, $data);
         }else{
-            $data['rel_id'] = $rel_id;
-            $this->db->insert(db_prefix().'chain_hoist', $data);
+            $this->db->insert(db_prefix(). $equipment_type, $data);
         }
     }
 

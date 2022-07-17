@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');?>
 
+
 <div class ="table-responsive">
   <table id="<?= 'inspection-'.$inspection->id ?>" class="table inspection table-bordered">
      <tbody>
@@ -47,7 +48,6 @@
      </tbody>
   </table>
 </div>
-
 <div class ="table-responsive">
   <?php 
      $pemeriksaan_dokumen_t = '&#9744;';
@@ -201,6 +201,36 @@
            <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_operasional_f ?> </span> Tidak baik</td>
            <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_operasional_n ?> </span> Tidak ada</td>
         </tr>
+        <tr>
+           <td width="32%">Pengujian Operasional</td>
+           <td width="1%">:</td>
+           <!-- <td width="22%"><span style='font-size:2.5rem;'><?//= $pengujian_operasional_t ?> </span> Baik</td> -->
+           <td class="slider" width="22%">
+           <input type="checkbox" data-switch-url= "<?=admin_url() ?>inspections/inspection_status_change" name="pengujian_operasional_t" class="slider-checkbox" id="pengujian_operasional_t" data-id="<?= $inspection->id ?>-<?= $task->id ?>-<?= $inspection->equipment_type ?>-pengujian_operasional_t" data-pengujian ="pengujian_operasional_t"/>
+           <label class="slider-label" for="pengujian_operasional_t">
+              
+               <span class="slider-inner"></span>
+               <span class="slider-circle"></span>
+           </label>
+           </td>
+           <td width="22%" class="slider">
+             <input type="checkbox" name="pengujian_operasional_f" value="None" class="slider-checkbox" id="pengujian_operasional_f" onclick="inspection_item_pengujian_operasional(<?= $inspection->id ?>, <?= $task->id ?>, 'pengujian_operasional_f')" class="slider-checkbox" <?php if(isset($pengujian_operasional_f)) echo 'checked = checked'; ?>/>
+             <label class="slider-label" for="pengujian_operasional_f">
+               <span class="slider-inner"></span>
+               <span class="slider-circle"></span>
+             </label>
+           </td>
+
+           <td width="22%" class="slider">
+             <input type="checkbox" name="pengujian_data" class="slider-checkbox" id="pengujian_operasional_n" data-switch-url= "<?=admin_url() ?>inspections/inspection_status_change" data-id="98" data-pengujian ="pengujian_operasional_n" class="onoffswitch-checkbox" <?php if(isset($pengujian_operasional_n)) echo 'checked = checked'; ?>/>
+             <label class="slider-label" for="pengujian_operasional_n">
+               <span class="slider-inner"></span>
+               <span class="slider-circle"></span>
+             </label>
+           </td>
+
+        </tr>
+
      </tbody>
   </table>
 </div>	    

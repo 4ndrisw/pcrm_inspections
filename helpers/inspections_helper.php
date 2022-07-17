@@ -674,11 +674,6 @@ function inspection_app_client_includes()
 }
 
 
-function after_inspection_updated($id){
-
-
-}
-
 function inspection_create_assigned_qrcode_hook($id){
      
      log_activity( 'Hello, world!' );

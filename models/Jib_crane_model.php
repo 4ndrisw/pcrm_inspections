@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Petir_model extends App_Model
+class Jib_crane_model extends App_Model
 {
     public function __construct()
     {
@@ -11,8 +11,8 @@ class Petir_model extends App_Model
      }
 
     /**
-     * Get petir/s
-     * @param mixed $id petir id
+     * Get jib_crane/s
+     * @param mixed $id jib_crane id
      * @param array $where perform where
      * @return mixed
      */
@@ -20,12 +20,12 @@ class Petir_model extends App_Model
     {
         if (is_numeric($id)) {
             $this->db->where('staffid', $id);
-            $category = $this->db->get(db_prefix() . 'petir')->row();
+            $category = $this->db->get(db_prefix() . 'jib_crane')->row();
 
             return $category;
         }
-        $this->db->select('*,' . db_prefix() . 'petir.id');
-        $this->db->from(db_prefix() . 'petir');
+        $this->db->select('*,' . db_prefix() . 'jib_crane.id');
+        $this->db->from(db_prefix() . 'jib_crane');
         $this->db->where($where);
         $results = $this->db->get()->result_array();
         return $results;
@@ -34,10 +34,10 @@ class Petir_model extends App_Model
 
     public function create($data){
         $data['regulasi'] = get_option('predefined_regulation_of_paa');
-        $this->db->insert(db_prefix().'petir', $data);
+        $this->db->insert(db_prefix().'jib_crane', $data);
         $equipment_id = $this->db->insert_id();
 
-        hooks()->do_action('after_petir_added', $equipment_id);
+        hooks()->do_action('after_jib_crane_added', $equipment_id);
         return $equipment_id;
     }
 
@@ -55,17 +55,10 @@ class Petir_model extends App_Model
         }
     }
 
-    public function update($data, $rel_id, $task_id){
-        $field_nama_pesawat = $data['field'];
-        unset($data['field']);
-        $data_nama_pesawat = htmlspecialchars($data['text'], ENT_QUOTES);
-        unset($data['text']);
-        $data[$field_nama_pesawat] = $data_nama_pesawat;
-
+    public function update($data, $rel_id){
         $this->db->select('id');
         $this->db->where('rel_id', $rel_id);
-        $this->db->where('task_id', $task_id);
-        $this->db->update(db_prefix() . 'petir', $data);
+        $this->db->update(db_prefix() . 'jib_crane', $data);
     }
 
 }

@@ -55,6 +55,15 @@ function validate_inspection_form(selector) {
 
 }
 
+function validateNumber(){
+
+  var z = document.forms["myForm"]["num"].value;
+
+  if(!/^[0-9]+$/.test(z)){
+    alert("Please only enter numeric characters only for your Age! (Allowed input:0-9)")
+  }
+
+}
 
 // Get the preview main values
 function get_inspection_item_preview_values() {
@@ -205,4 +214,34 @@ function inspection_update_inspection_data(values) {
         reload_inspections_tables();
     });
 }
+
+
+// From inspection table mark as
+function inspection_item_pengujian_operasional(inspection_id, task_id, pengujian) {
+    var data = {};
+    data.inspection_id = inspection_id;
+    data.task_id = task_id;
+    data.pengujian = pengujian;
+    var pengujian_data = $("input[name='pengujian_data']").val();
+    data.pengujian_data = pengujian_data;
+    var check = ($(this).is(':checked')) ? '1' : '0';
+
+
+    data.check = check;
+    $.post(admin_url + 'inspections/change_inspection_status', data).done(function (response) {
+        reload_inspections_tables();
+    });
+}
+
+
+    // Bootstrap switch active or inactive global function
+
+    $("body").on('change', '.slider input', function (event, state, pengujian) {
+        var switch_url = $(this).data('switch-url');
+        var pengujian = $(this).data('pengujian');
+        if (!switch_url) {
+            return;
+        }
+        switch_field(this);
+    });
 
