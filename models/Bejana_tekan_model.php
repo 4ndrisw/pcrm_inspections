@@ -56,9 +56,18 @@ class Bejana_tekan_model extends App_Model
     }
 
 
-    public function update($data, $rel_id){
-        $this->db->select('id');
+    public function update($data, $rel_id, $task_id){
+        
         $this->db->where('rel_id', $rel_id);
+        $this->db->where('task_id', $task_id);
+        $this->db->set($data['field'], $data['text']);
+
+        unset($data['rel_id']);
+        unset($data['task_id']);
+        unset($data['jenis_pesawat']);
+        unset($data['field']);
+        unset($data['text']);
+
         $this->db->update(db_prefix() . 'bejana_tekan', $data);
     }
 
@@ -73,4 +82,14 @@ class Bejana_tekan_model extends App_Model
         $this->db->update(db_prefix() . 'bejana_tekan');
     }
 
+    public function update_pengujian_data($data){
+        $this->db->where('rel_id', $data['rel_id']);
+        $this->db->where('task_id', $data['task_id']);
+        $this->db->set($data['pengujian'], $data['value']);
+        unset($data['value']);
+        unset($data['pengujian']);
+        unset($data['jenis_pesawat']);
+
+        $this->db->update(db_prefix() . 'wheel_loader', $data);
+    }
 }

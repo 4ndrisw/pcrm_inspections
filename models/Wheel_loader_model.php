@@ -69,4 +69,19 @@ class Wheel_loader_model extends App_Model
         $this->db->update(db_prefix() . 'wheel_loader', $data);
     }
 
+    public function update_pengujian_data($data){
+        $rel_id = $data['rel_id'];
+        $task_id = $data['task_id'];
+        $jenis_pesawat = strtolower($data['jenis_pesawat']);
+        $this->db->where('rel_id', $rel_id);
+        $this->db->where('task_id', $task_id);
+        $this->db->set($data['pengujian'], $data['value']);
+        unset($data['value']);
+        unset($data['pengujian']);
+        unset($data['jenis_pesawat']);
+        unset($data['rel_id']);
+        unset($data['task_id']);
+
+        $this->db->update(db_prefix() . $jenis_pesawat, $data);
+    }
 }

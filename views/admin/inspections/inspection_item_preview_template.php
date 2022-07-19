@@ -331,9 +331,10 @@
 
 
                      <?php
-                        $this->load->view('themes/'. active_clients_theme() .'/template_parts/inspections_report', $inspection);
+                        //$this->load->view('themes/'. active_clients_theme() .'/template_parts/inspections_report', $inspection);
                      ?>
                   
+
                   <div class="row">
                      <?php if(count($inspection->attachments) > 0){ ?>
                         <div class="clearfix"></div>

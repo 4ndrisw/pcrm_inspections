@@ -10,6 +10,14 @@
 				<?php $this->load->view('admin/inspections/inspection_item_preview_template'); ?>
 			</div>
 		</div>
+    <div class="row">
+      <div class="col-md-12 no-padding equipment-template">
+        <?php 
+            $template = strtolower($inspection->equipment_type) . '_ajax_template';
+            $this->load->view('admin/equipment/' . $template); 
+        ?>
+      </div>
+    </div>
 	</div>
 </div>
 <?php init_tail(); ?>

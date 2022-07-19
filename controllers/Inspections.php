@@ -154,9 +154,10 @@ class Inspections extends AdminController
         include_once($model_path);
         $this->load->model($equipment_model);
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id, 'task_id' =>$task_id]);
-        $inspection->equipment = $equipment;
+        $inspection->equipment = $equipment[0];
         
         $data['inspection']          = $inspection;
+        $data['equipment']          = reset($equipment);
         
         $data['send_later'] = false;
         if ($this->session->has_userdata('send_later')) {
@@ -548,7 +549,7 @@ class Inspections extends AdminController
         $jenis_pesawat = $this->input->post('jenis_pesawat');
         $task_id = $this->input->post('task_id');
         $rel_id = $this->input->post('rel_id');
-        //log_activity(json_encode($jenis_pesawat));
+        log_activity(json_encode($this->input->post()));
 
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $jenis_pesawat)));
         $equipment_model = $equipment_type .'_model';
@@ -576,7 +577,7 @@ class Inspections extends AdminController
 
         list($data['rel_id'], $data['task_id'], $data['jenis_pesawat'], $data['pengujian']) = explode("-",$params);
 
-        log_activity(json_encode($data));
+        //log_activity(json_encode($params));
             
         $equipment_model = $data['jenis_pesawat'] .'_model';
         $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
@@ -584,7 +585,7 @@ class Inspections extends AdminController
         include_once($model_path);
         $this->load->model($equipment_model);
         
-        log_activity($status);
+        //log_activity($status);
 
         //if ($this->input->is_ajax_request()) {
             $this->{$equipment_model}->update_pengujian_status($data, $status);
@@ -592,4 +593,18 @@ class Inspections extends AdminController
     }
 
 
+    public function item_pengujian_data(){
+        $jenis_pesawat = $this->input->post('jenis_pesawat');
+        $task_id = $this->input->post('task_id');
+        $rel_id = $this->input->post('rel_id');
+        log_activity(json_encode($this->input->post()));
+
+        $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $jenis_pesawat)));
+        $equipment_model = $equipment_type .'_model';
+        $this->load->model($equipment_model);
+
+        if ($this->input->post() && $this->input->is_ajax_request()) {
+            $this->{$equipment_model}->update_pengujian_data($this->input->post());
+        }
+    }
 }

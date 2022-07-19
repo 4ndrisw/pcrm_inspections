@@ -217,6 +217,55 @@ function inspection_update_inspection_data(values) {
 
 
 // From inspection table mark as
+function inspection_item_pengujian_operasional(pengujian, inspection_id, task_id, ) {
+    var data = {};
+    data.inspection_id = inspection_id;
+    data.task_id = task_id;
+    data.pengujian = pengujian;
+    var pengujian_data = $("input[name='pengujian_data']").val();
+    data.pengujian_data = pengujian_data;
+    var check = ($(this).is(':checked')) ? '1' : '0';
+
+
+    data.check = check;
+      console.log(data);
+    $.post(admin_url + 'inspections/change_inspection_status', data).done(function (response) {
+        reload_inspections_tables();
+    });
+}
+
+
+// Bootstrap switch active or inactive global function
+/*
+$("body").on('change', '.slider input', function (event, state, pengujian) {
+    var switch_url = $(this).data('switch-url');
+    var pengujian = $(this).data('pengujian');
+    if (!switch_url) {
+        return;
+    }
+    switch_field(this);
+});
+*/
+/*
+$(".pengujian_operasional").on('change', function(pengujian){ 
+    var data = {};
+
+    //data.inspection_id = inspection_id;
+    //data.task_id = task_id;
+    data.pengujian = $(this).data('pengujian');
+
+      console.log(data);
+
+    $.post(admin_url + 'inspections/inspection_item_pengujian_operasional', data).done(function (response) {
+        reload_inspections_tables();
+    });
+
+});
+*/
+
+/*
+
+// From inspection table mark as
 function inspection_item_pengujian_operasional(inspection_id, task_id, pengujian) {
     var data = {};
     data.inspection_id = inspection_id;
@@ -233,15 +282,19 @@ function inspection_item_pengujian_operasional(inspection_id, task_id, pengujian
     });
 }
 
+*/
 
-    // Bootstrap switch active or inactive global function
 
-    $("body").on('change', '.slider input', function (event, state, pengujian) {
-        var switch_url = $(this).data('switch-url');
-        var pengujian = $(this).data('pengujian');
-        if (!switch_url) {
-            return;
-        }
-        switch_field(this);
-    });
+function inspection_item_pengujian_data(param, jenis_pesawat, pengujian, rel_id, task_id) {
+  var data={}
+  data.value = param.value;
+  data.jenis_pesawat = jenis_pesawat;
+  data.pengujian = pengujian;
+  data.rel_id = rel_id;
+  data.task_id = task_id;  
+  console.log(data);
 
+  $.post(admin_url + 'inspections/item_pengujian_data', data).done(function (response) {
+      reload_inspections_tables();
+  });
+}
