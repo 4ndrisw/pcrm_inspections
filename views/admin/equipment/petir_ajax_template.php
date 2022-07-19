@@ -56,6 +56,11 @@
                                 <td class="editable" data-field="nama_pesawat" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['nama_pesawat']) ? $equipment['nama_pesawat'] : '' ?></td>      
                              </tr>
                              <tr>
+                                <td style="width:20%">Instalatir</td>
+                                <td style="width:2%">:</td>
+                                <td class="editable" data-field="instalatir" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['instalatir']) ? $equipment['instalatir'] : '' ?></td>      
+                             </tr>
+                             <tr>
                                 <td style="width:20%">Nomor Seri</td>
                                 <td style="width:2%">:</td>
                                 <td class="editable" data-field="nomor_seri" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['nomor_seri']) ? $equipment['nomor_seri'] : '' ?></td>      

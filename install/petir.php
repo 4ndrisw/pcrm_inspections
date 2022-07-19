@@ -13,6 +13,7 @@ if (!$CI->db->table_exists(db_prefix() . 'petir')) {
       `jenis_pesawat` varchar(30) NOT NULL,
       `type_model` varchar(30) DEFAULT NULL,
       `nama_pesawat` varchar(50) DEFAULT NULL,
+      `instalatir` varchar(60) DEFAULT NULL,
       `kapasitas` decimal(10,0) DEFAULT NULL,
       `satuan_kapasitas` varchar(10) DEFAULT NULL,
       `satuan_kapasitas` varchar(10) DEFAULT NULL,
