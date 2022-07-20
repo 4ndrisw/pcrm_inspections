@@ -167,6 +167,7 @@ $lang['inspection_bapr']                             = 'BAPR';
 $lang['inspection_general_data']                             = 'General data'; 
 $lang['inspection_technical_data']                             = 'Technical data';
 $lang['inspection_operation_test']                             = 'Operation';
+$lang['inspection_grounding_test']                             = 'Grounding';
 $lang['inspection_safety_test']                             = 'Safety device';
 $lang['inspection_infrared_test']                             = 'Thermal Infrared';
 $lang['inspection_penetrant_test']                             = 'Penetrant';

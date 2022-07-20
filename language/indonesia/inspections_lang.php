@@ -147,6 +147,7 @@ $lang['inspection_bapr']                             = 'BAPR';
 $lang['inspection_general_data']                             = 'Data umum'; 
 $lang['inspection_technical_data']                             = 'Data teknik';
 $lang['inspection_operation_test']                             = 'Operasional';
+$lang['inspection_grounding_test']                             = 'Grounding';
 $lang['inspection_safety_test']                             = 'Pengaman';
 $lang['inspection_infrared_test']                             = 'Infra merah';
 $lang['inspection_penetrant_test']                             = 'Penetrant';
