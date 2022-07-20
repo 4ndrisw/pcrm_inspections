@@ -16,7 +16,7 @@ $aColumns = [
     'status',
     db_prefix() . 'inspections.date',
     'acceptance_firstname',
-    db_prefix() . 'inspections.acceptance_date',
+    'inspections.acceptance_date',
 ];
 
 $sIndexColumn = 'id';
