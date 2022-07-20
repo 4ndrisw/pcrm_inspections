@@ -4,11 +4,8 @@
 if (!$CI->db->table_exists(db_prefix() . 'equipment_category')) {
     $CI->db->query('CREATE TABLE `' . db_prefix() . "equipment_category` (
       `id` int(11) NOT NULL,
-      `inspection_id` int(11) DEFAULT NULL,
-      `project_id` int(11) NOT NULL,
-      `task_id` int(11) NOT NULL,
-      `equipment_name` varchar(60) DEFAULT NULL,
-      `flag` tinyint(1) DEFAULT NULL
+      `code` varchar(4) DEFAULT NULL,
+      `title` varchar(30) DEFAULT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
 
 
