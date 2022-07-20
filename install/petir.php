@@ -16,7 +16,6 @@ if (!$CI->db->table_exists(db_prefix() . 'petir')) {
       `instalatir` varchar(60) DEFAULT NULL,
       `kapasitas` decimal(10,0) DEFAULT NULL,
       `satuan_kapasitas` varchar(10) DEFAULT NULL,
-      `satuan_kapasitas` varchar(10) DEFAULT NULL,
       `pemeriksaan_dokumen` tinyint(1) DEFAULT NULL,
       `pemeriksaan_visual` tinyint(1) DEFAULT NULL,
       `pemeriksaan_pengaman` tinyint(1) DEFAULT NULL,
