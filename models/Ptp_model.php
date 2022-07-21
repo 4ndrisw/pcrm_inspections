@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Wheel_loader_model extends App_Model
+class Ptp_model extends App_Model
 {
     public function __construct()
     {
@@ -11,8 +11,8 @@ class Wheel_loader_model extends App_Model
      }
 
     /**
-     * Get wheel_loader/s
-     * @param mixed $id wheel_loader id
+     * Get ptp/s
+     * @param mixed $id ptp id
      * @param array $where perform where
      * @return mixed
      */
@@ -20,12 +20,12 @@ class Wheel_loader_model extends App_Model
     {
         if (is_numeric($id)) {
             $this->db->where('staffid', $id);
-            $category = $this->db->get(db_prefix() . 'wheel_loader')->row();
+            $category = $this->db->get(db_prefix() . 'ptp')->row();
 
             return $category;
         }
-        $this->db->select('*,' . db_prefix() . 'wheel_loader.id');
-        $this->db->from(db_prefix() . 'wheel_loader');
+        $this->db->select('*,' . db_prefix() . 'ptp.id');
+        $this->db->from(db_prefix() . 'ptp');
         $this->db->where($where);
         $results = $this->db->get()->result_array();
         return $results;
@@ -34,10 +34,10 @@ class Wheel_loader_model extends App_Model
 
     public function create($data){
         $data['regulasi'] = get_option('predefined_regulation_of_paa');
-        $this->db->insert(db_prefix().'wheel_loader', $data);
+        $this->db->insert(db_prefix().'ptp', $data);
         $equipment_id = $this->db->insert_id();
 
-        hooks()->do_action('after_wheel_loader_added', $equipment_id);
+        hooks()->do_action('after_ptp_added', $equipment_id);
         return $equipment_id;
     }
 
@@ -66,7 +66,7 @@ class Wheel_loader_model extends App_Model
         $this->db->select('id');
         $this->db->where('rel_id', $rel_id);
         $this->db->where('task_id', $task_id);
-        $this->db->update(db_prefix() . 'wheel_loader', $data);
+        $this->db->update(db_prefix() . 'ptp', $data);
     }
 
     public function update_pengujian_data($data){
