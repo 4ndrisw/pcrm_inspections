@@ -232,8 +232,17 @@ class Inspections_model extends App_Model
         $_inspection                       = $this->get($id);
         $new_inspection_data               = [];
         $new_inspection_data['clientid']   = $_inspection->clientid;
-        $new_inspection_data['inspection_id'] = $_inspection->inspection_id;
+        $new_inspection_data['project_id'] = $_inspection->project_id;
         $new_inspection_data['number']     = get_option('next_inspection_number');
+        
+        $number = get_option('next_inspection_number');
+        $format = get_option('inspection_number_format');
+        $prefix = get_option('inspection_prefix');
+        $date = date('Y-m-d');
+                
+        $new_inspection_data['formatted_number'] = inspection_number_format($number, $format, $prefix, $date);
+
+
         $new_inspection_data['date']       = _d(date('Y-m-d'));
         $new_inspection_data['expirydate'] = null;
 
@@ -287,7 +296,7 @@ class Inspections_model extends App_Model
             $tags = get_tags_in($_inspection->id, 'inspection');
             handle_tags_save($tags, $id, 'inspection');
 
-            log_inspection_activity('Copied Inspection ' . format_inspection_number($_inspection->id));
+            $this->log_inspection_activity('Copied Inspection ' . format_inspection_number($_inspection->id));
 
             return $id;
         }
@@ -862,6 +871,9 @@ class Inspections_model extends App_Model
             $this->db->where('rel_id', $id);
             $this->db->delete(db_prefix() . $equipment_type);
             */
+
+            $this->db->where('inspection_id', $id);
+            $this->db->delete(db_prefix() . 'inspection_items');
 
             $this->db->where('rel_type', 'inspection');
             $this->db->where('rel_id', $id);

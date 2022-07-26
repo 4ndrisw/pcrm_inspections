@@ -174,7 +174,7 @@ function inspections_module_init_menu_items()
                 'name'     => _l('inspections'),
                 'icon'     => 'fa fa-calendar',
                 'href'     => admin_url('inspections'),
-                'position' => 12,
+                'position' => 10,
         ]);
     }
 }
