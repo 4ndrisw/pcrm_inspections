@@ -82,9 +82,6 @@ class Mesin_produksi_model extends App_Model
         unset($data['rel_id']);
         unset($data['task_id']);
 
-        log_activity($data);
-        log_activity($jenis_pesawat);
-
         $this->db->update(db_prefix() . $jenis_pesawat, $data);
     }
 }
