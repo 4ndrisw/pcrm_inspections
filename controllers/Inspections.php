@@ -546,18 +546,23 @@ class Inspections extends AdminController
 
 
     public function update_inspection_data(){
-        $jenis_pesawat = $this->input->post('jenis_pesawat');
-        $task_id = $this->input->post('task_id');
-        $rel_id = $this->input->post('rel_id');
-        log_activity(json_encode($this->input->post()));
+        if ($this->input->post() && $this->input->is_ajax_request()) {
 
-        $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $jenis_pesawat)));
-        $equipment_model = $equipment_type .'_model';
-        //$model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
+            $jenis_pesawat = $this->input->post('jenis_pesawat');
+            $task_id = $this->input->post('task_id');
+            $rel_id = $this->input->post('rel_id');
 
-        //include_once($model_path);
-        $this->load->model($equipment_model);
-        $this->{$equipment_model}->update($this->input->post(), $rel_id, $task_id);
+            $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $jenis_pesawat)));
+            $equipment_model = $equipment_type .'_model';
+            $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
+            log_activity(json_encode($model_path));
+            //log_activity(json_encode($this->input->post()));
+
+            include_once($model_path);
+            $this->load->model($equipment_model);
+            $this->{$equipment_model}->update($this->input->post(), $rel_id, $task_id);
+
+        }
     }
 
     public function change_inspection_status(){
@@ -597,10 +602,15 @@ class Inspections extends AdminController
         $jenis_pesawat = $this->input->post('jenis_pesawat');
         $task_id = $this->input->post('task_id');
         $rel_id = $this->input->post('rel_id');
-        log_activity(json_encode($this->input->post()));
 
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $jenis_pesawat)));
         $equipment_model = $equipment_type .'_model';
+        $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
+
+        include_once($model_path);
+        log_activity($model_path);
+        log_activity($equipment_model);
+        
         $this->load->model($equipment_model);
 
         if ($this->input->post() && $this->input->is_ajax_request()) {

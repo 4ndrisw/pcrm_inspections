@@ -75,7 +75,6 @@ class Tangki_model extends App_Model
         unset($data['value']);
         unset($data['pengujian']);
         unset($data['jenis_pesawat']);
-
         $this->db->update(db_prefix() . 'tangki', $data);
     }
 }

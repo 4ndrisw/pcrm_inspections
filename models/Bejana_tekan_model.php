@@ -67,7 +67,7 @@ class Bejana_tekan_model extends App_Model
         unset($data['jenis_pesawat']);
         unset($data['field']);
         unset($data['text']);
-
+        
         $this->db->update(db_prefix() . 'bejana_tekan', $data);
     }
 
@@ -90,6 +90,6 @@ class Bejana_tekan_model extends App_Model
         unset($data['pengujian']);
         unset($data['jenis_pesawat']);
 
-        $this->db->update(db_prefix() . 'wheel_loader', $data);
+        $this->db->update(db_prefix() . 'bejana_tekan', $data);
     }
 }

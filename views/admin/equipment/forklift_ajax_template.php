@@ -33,21 +33,13 @@
       <div class="tab-content">
          <div role="tabpanel" class="tab-pane active" id="inspection_bapr">
             <h4 class="bold">
-               <?php
-                  echo _l('inspection_bapr') .' - '. $task->name;
-                  $class="inputable";
-                  $status_info = '<p>Ubah status inspection ke Sent untuk input data</p>';
-                  if($inspection->status == '2'){
-                     $class="editable";
-                     $status_info = '';
-                  }
-                  echo $status_info;
-               ?>
+               <?php echo _l('inspection_bapr') .' - '. $task->name; ?>
             </h4>
             <hr />
             <div class="komponen_pemeriksaan">
                <div class="panel_s">
                   <div class="panel-body">
+
                      <div class ="table-responsive">
                        <table id="<?= 'inspection-'.$inspection->id ?>" class="table inspection table-bordered">
                           <tbody>
@@ -64,32 +56,32 @@
                              <tr>
                                 <td style="width:20%">Nama Pesawat</td>
                                 <td style="width:2%">:</td>
-                                <td class="<?= $class ?>" data-field="nama_pesawat" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['nama_pesawat']) ? $equipment['nama_pesawat'] : '' ?></td>      
+                                <td class="editable" data-field="nama_pesawat" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['nama_pesawat']) ? $equipment['nama_pesawat'] : '' ?></td>      
                              </tr>
                              <tr>
                                 <td style="width:20%">Nomor Seri</td>
                                 <td style="width:2%">:</td>
-                                <td class="<?= $class ?>" data-field="nomor_seri" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['nomor_seri']) ? $equipment['nomor_seri'] : '' ?></td>      
+                                <td class="editable" data-field="nomor_seri" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['nomor_seri']) ? $equipment['nomor_seri'] : '' ?></td>      
                              </tr>
                              <tr>
                                 <td style="width:20%">Nomor Unit</td>
                                 <td style="width:2%">:</td>
-                                <td class="<?= $class ?>" data-field="nomor_unit" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['nomor_unit']) ? $equipment['nomor_unit'] : '' ?></td>
+                                <td class="editable" data-field="nomor_unit" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['nomor_unit']) ? $equipment['nomor_unit'] : '' ?></td>
                              </tr>
                              <tr>
                                 <td style="width:20%">Type / Model</td>
                                 <td style="width:2%">:</td>
-                                <td class="<?= $class ?>" data-field="type_model" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['type_model']) ? $equipment['type_model'] : '' ?></td>
+                                <td class="editable" data-field="type_model" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['type_model']) ? $equipment['type_model'] : '' ?></td>
                              </tr>
                              <tr>
                                 <td style="width:20%">Kapasitas</td>
                                 <td style="width:2%">:</td>
-                                <td class="<?= $class ?>" data-field="kapasitas" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['kapasitas']) ? $equipment['kapasitas'] : '' ?></td>
+                                <td class="editable" data-field="kapasitas" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['kapasitas']) ? $equipment['kapasitas'] : '' ?></td>
                              </tr>
                              <tr>
                                 <td style="width:20%">Satuan</td>
                                 <td style="width:2%">:</td>
-                                <td class="<?= $class ?>" data-field="satuan_kapasitas" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['satuan_kapasitas']) ? $equipment['satuan_kapasitas'] : '' ?></td>
+                                <td class="editable" data-field="satuan_kapasitas" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['satuan_kapasitas']) ? $equipment['satuan_kapasitas'] : '' ?></td>
                              </tr>
                           
                           </tbody>
@@ -203,33 +195,6 @@
                                     <div class="col-xs-12 col-sm-4 no-padding">
                                        <input type="radio" class="btn-check" id="pengujian_penetrant_n" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_penetrant', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_penetrant]" value="0" <?php if(isset($equipment['pengujian_penetrant']) && $equipment['pengujian_penetrant'] == 0){echo 'checked';}; ?>>
                                        <label class="btn btn-secondary" for="pengujian_penetrant_n"><?php echo _l('tidak_ada'); ?></label>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-
-                           <div class="row vertical-align-middle pengujian_thickness text-center">
-                              <div class="col-xs-12 col-sm-3">
-                                 <label class="btn-secondary"><?= _l('pengujian_thickness') ?> </label>
-                                 <?php $equipment_pengujian_thickness = isset($equipment_pengujian_thickness) ? $equipment_pengujian_thickness : ''; ?>
-                                 <?= $equipment_pengujian_thickness ?>
-                              </div>
-                              <div class="col-sm-1  no-padding hidden-xs text-center">
-                                 :
-                              </div>
-                              <div class="col-xs-12 col-sm-8">
-                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-4 no-padding">
-                                       <input type="radio" class="btn-check" id="pengujian_thickness_t"   name="equipment[pengujian_thickness]" value="1" <?php if(isset($equipment['pengujian_thickness']) && $equipment['pengujian_thickness'] == 1){echo ' checked';}; ?>>
-                                       <label class="btn btn-secondary" for="pengujian_thickness_t"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="<?php echo _l('baik'); ?>" ></i> <?php echo _l('baik'); ?></label>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-4 no-padding">
-                                       <input type="radio" class="btn-check" id="pengujian_thickness_f" name="equipment[pengujian_thickness]" value="2" <?php if(isset($equipment['pengujian_thickness']) && $equipment['pengujian_thickness'] == 2){echo 'checked';}; ?>>
-                                       <label class="btn btn-secondary" for="pengujian_thickness_f"><?php echo _l('tidak_baik'); ?></label>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-4 no-padding">
-                                       <input type="radio" class="btn-check" id="pengujian_thickness_n" name="equipment[pengujian_thickness]" value="0" <?php if(isset($equipment['pengujian_thickness']) && $equipment['pengujian_thickness'] == 3){echo 'checked';}; ?>>
-                                       <label class="btn btn-secondary" for="pengujian_thickness_n"><?php echo _l('tidak_ada'); ?></label>
                                     </div>
                                  </div>
                               </div>
