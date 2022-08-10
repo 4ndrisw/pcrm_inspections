@@ -57,11 +57,13 @@ class Forklift_model extends App_Model
     }
 
     public function update($data, $rel_id, $task_id){
-        $field_nama_pesawat = $data['field'];
+        $field = $data['field'];
         unset($data['field']);
-        $data_nama_pesawat = htmlspecialchars($data['text'], ENT_QUOTES);
+        //$data_text = htmlspecialchars($data['text'], ENT_QUOTES);
+        $data_text = strip_tags($data['text'], '<div><p><br>');
+        //$data_text = $data['text'];
         unset($data['text']);
-        $data[$field_nama_pesawat] = $data_nama_pesawat;
+        $data[$field] = $data_text;
 
         $this->db->select('id');
         $this->db->where('rel_id', $rel_id);

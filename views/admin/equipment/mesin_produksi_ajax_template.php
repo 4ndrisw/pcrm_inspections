@@ -39,7 +39,6 @@
             <div class="komponen_pemeriksaan">
                <div class="panel_s">
                   <div class="panel-body">
-
                      <div class ="table-responsive">
                        <table id="<?= 'inspection-'.$inspection->id ?>" class="table inspection table-bordered">
                           <tbody>
@@ -54,9 +53,29 @@
                                 <td><?= get_inspection_company_address($inspection->id) ?></td>      
                              </tr>
                              <tr>
+                                <td style="width:20%">Lokasi</td>
+                                <td style="width:2%">:</td>
+                                <td class="editable" data-field="lokasi" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['lokasi']) ? $equipment['lokasi'] : '' ?></td>      
+                             </tr>
+                             <tr>
                                 <td style="width:20%">Nama Pesawat</td>
                                 <td style="width:2%">:</td>
                                 <td class="editable" data-field="nama_pesawat" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['nama_pesawat']) ? $equipment['nama_pesawat'] : '' ?></td>      
+                             </tr>
+                             <tr>
+                                <td style="width:20%">Pabrik Pembuat</td>
+                                <td style="width:2%">:</td>
+                                <td class="editable" data-field="pabrik_pembuat" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['pabrik_pembuat']) ? $equipment['pabrik_pembuat'] : '' ?></td>      
+                             </tr>
+                             <tr>
+                                <td style="width:20%">Tahun Pembuatan</td>
+                                <td style="width:2%">:</td>
+                                <td id="tahun_pembuatan" class="editable" data-field="tahun_pembuatan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['tahun_pembuatan']) ? $equipment['tahun_pembuatan'] : '' ?></td>      
+                             </tr>
+                             <tr>
+                                <td style="width:20%">Merk</td>
+                                <td style="width:2%">:</td>
+                                <td class="editable" data-field="merk" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['merk']) ? $equipment['merk'] : '' ?></td>      
                              </tr>
                              <tr>
                                 <td style="width:20%">Nomor Seri</td>
@@ -74,14 +93,19 @@
                                 <td class="editable" data-field="type_model" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['type_model']) ? $equipment['type_model'] : '' ?></td>
                              </tr>
                              <tr>
+                                <td style="width:20%">Daya</td>
+                                <td style="width:2%">:</td>
+                                <td class="editable" data-field="daya" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['daya']) ? $equipment['daya'] : '' ?></td>
+                             </tr>
+                             <tr>
                                 <td style="width:20%">Kapasitas</td>
                                 <td style="width:2%">:</td>
                                 <td class="editable" data-field="kapasitas" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['kapasitas']) ? $equipment['kapasitas'] : '' ?></td>
                              </tr>
                              <tr>
-                                <td style="width:20%">Satuan</td>
+                                <td style="width:20%">Jenis pemeriksaan</td>
                                 <td style="width:2%">:</td>
-                                <td class="editable" data-field="satuan_kapasitas" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['satuan_kapasitas']) ? $equipment['satuan_kapasitas'] : '' ?></td>
+                                <td class="editable" data-field="jenis_pemeriksaan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['jenis_pemeriksaan']) ? $equipment['jenis_pemeriksaan'] : '' ?></td>
                              </tr>
                           
                           </tbody>
@@ -228,17 +252,28 @@
                            </div>
                         </div>
 
-                     <div class="col-md-12">
-                        <?php $value = (!empty($equipment['regulasi']) ? $equipment['regulasi'] : get_option('predefined_regulation_of_paa')); ?>
-                        <?php echo render_textarea('equipment[regulasi]','equipment_regulasi',$value); ?>
-                        <?php $value = (!empty($equipment['temuan']) ? $equipment['temuan'] : ''); ?>
-                        <?php echo render_textarea('equipment[temuan]','equipment_temuan',$value); ?>
-                        <?php $value = (!empty($equipment['kesimpulan']) ? $equipment['kesimpulan'] : ''); ?>
-                        <?php echo render_textarea('equipment[kesimpulan]','equipment_kesimpulan',$value); ?>
+                     <div class="col-md-12 table-responsive">
+                       <table id="<?= 'resume-inspection-'.$inspection->id ?>" class="table inspection table-bordered">
+                           <tr class="data-label">
+                              <td>Regulasi</td>
+                           </tr>
+                           <tr>
+                              <td class="editableText pbot15" data-field="regulasi" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['regulasi']) ? $equipment['regulasi'] : get_option('predefined_regulation_of_ptp') ?></td>
+                           </tr>
+                           <tr class="data-label">
+                              <td>Temuan</td>
+                           </tr>
+                           <tr>
+                              <td class="editableText pbot15" data-field="temuan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['temuan']) ? $equipment['temuan'] : '' ?></td>                              
+                           </tr>
+                           <tr class="data-label">
+                              <td>Kesimpulan</td>
+                           </tr>
+                           <tr>
+                              <td class="editableText pbot15" data-field="kesimpulan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['kesimpulan']) ? $equipment['kesimpulan'] : '' ?></td>                              
+                           </tr>
+                        </table>
                      </div>
-
-
-
 
                   </div>
 

@@ -25,6 +25,7 @@
 
 <script>
    init_btn_with_tooltips();
+   //validateTahunPembuatan();
    init_datepicker();
    init_selectpicker();
    init_form_reminder();
@@ -104,6 +105,7 @@ Editable(".editable", {
       jenis_pesawat: this.dataset.jenis_pesawat,
       task_id: this.dataset.task_id,
       text: this.textContent, // or you can also use UI.text
+      //text: this.innerHTML, // or you can also use UI.text
     }
     console.log(data); // Submit your data to server
     inspection_update_inspection_data(data);
@@ -111,9 +113,23 @@ Editable(".editable", {
   }
 });
 
+// Use like:
+Editable(".editableText", {
+  onEnd(ev, UI) { // ev=Event UI=Editable this=HTMLElement
+    if (!UI.isModified) return; // No change in content. Abort here.
+    const data = {
+      rel_id: this.dataset.inspection_id,
+      field: this.dataset.field,
+      jenis_pesawat: this.dataset.jenis_pesawat,
+      task_id: this.dataset.task_id,
+      //text: this.textContent, // or you can also use UI.text
+      text: this.innerHTML, // or you can also use UI.text
+    }
+    console.log(data); // Submit your data to server
+    inspection_update_inspection_data(data);
 
+  }
+});
 </script>
-
-
 </body>
 </html>

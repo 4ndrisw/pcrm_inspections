@@ -55,6 +55,16 @@ function validate_inspection_form(selector) {
 
 }
 
+function validateTahunPembuatan(){
+
+  var z = document.getElementById("tahun_pembuatan").value;
+
+  if(!/^[0-9]+$/.test(z)){
+    alert("Please only enter numeric characters only for tahun pembuatan! (Allowed input:0-9)")
+  }
+
+}
+
 function validateNumber(){
 
   var z = document.forms["myForm"]["num"].value;

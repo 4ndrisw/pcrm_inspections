@@ -514,8 +514,8 @@ class Inspections_model extends App_Model
                 $affectedRows++;
             }
         }
-        $equipment_data = $data['equipment'];
-        unset($data['equipment']);
+        //$equipment_data = $data['equipment'];
+        //unset($data['equipment']);
 
         $data['billing_street'] = trim($data['billing_street']);
         $data['billing_street'] = nl2br($data['billing_street']);
@@ -527,13 +527,11 @@ class Inspections_model extends App_Model
 
         $hook = hooks()->apply_filters('before_inspection_updated', [
             'data'             => $data,
-            'equipment'            => $equipment,
             'inspection_members' => $inspection_members,
             'removed_items'    => isset($data['removed_items']) ? $data['removed_items'] : [],
         ], $id);
 
         $data                  = $hook['data'];
-        $equipment                 = $hook['equipment'];
         $inspection_members      = $hook['inspection_members'];
         $data['removed_items'] = $hook['removed_items'];
 
@@ -584,19 +582,7 @@ class Inspections_model extends App_Model
             $affectedRows++;
         }
 
-        $tags = get_tags_in($id, 'inspection');
-        //$tags = empty($data[tags]) ? [] : explode(',', $data['tags']);
-        $tag = $tags[0];
-        $equipment = ucfirst(strtolower(str_replace(' ', '_', $tag)));
-        $equipment_model = $equipment .'_model';
-        include_once(__DIR__ . '/' . $equipment_model .'.php');
-        $this->load->model($equipment_model);
-
-        $equipment_data['rel_id'] = $id;
-        $equipment_data['jenis_pesawat'] = $tag;
-
-        $this->{$equipment_model}->update($equipment_data, $id);
-
+        
         if ($save_and_send === true) {
             $this->send_inspection_to_client($id, '', true, '', true);
         }

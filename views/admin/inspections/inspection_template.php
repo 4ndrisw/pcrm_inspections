@@ -288,6 +288,7 @@
       <div class="col-md-12">
          <div class="panel-body equiptment-data mbot10">
             <?php 
+            /*
             if(isset($inspection)){
                $tag = get_tags_in($inspection->id,'inspection')[0];
                $equiptment = str_replace(' ', '_', trim(strtolower($tag)));
@@ -301,6 +302,7 @@
                   echo '</div>';
                }
             }
+            */
             ?>
          </div>
       </div>      

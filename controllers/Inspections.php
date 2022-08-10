@@ -283,7 +283,7 @@ class Inspections extends AdminController
             }
 
             $data['inspection'] = $inspection;
-
+            /*
             $tags = get_tags_in($inspection->id, 'inspection');
 
             $data['jenis_pesawat'] = $tags[0];
@@ -296,8 +296,8 @@ class Inspections extends AdminController
             include_once($model_path);
             $this->load->model($equipment_model);
             $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
-            
-            $data['equipment'] = $equipment[0];
+            */
+            //$data['equipment'] = $equipment[0];
 
             $data['edit']     = true;
             $title            = _l('edit', _l('inspection_lowercase'));
@@ -555,8 +555,8 @@ class Inspections extends AdminController
             $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $jenis_pesawat)));
             $equipment_model = $equipment_type .'_model';
             $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
-            log_activity(json_encode($model_path));
-            //log_activity(json_encode($this->input->post()));
+            //log_activity(json_encode($model_path));
+            log_activity(json_encode($this->input->post()));
 
             include_once($model_path);
             $this->load->model($equipment_model);
@@ -569,7 +569,7 @@ class Inspections extends AdminController
 
         //if ($this->input->post() && $this->input->is_ajax_request()) {
             $input = $this->input->post();
-            log_activity(json_encode($input));
+            //log_activity(json_encode($input));
 
             //$this->inspections_model->inspection_remove_inspection_item($this->input->post());
         //}
@@ -608,9 +608,6 @@ class Inspections extends AdminController
         $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
 
         include_once($model_path);
-        log_activity($model_path);
-        log_activity($equipment_model);
-        
         $this->load->model($equipment_model);
 
         if ($this->input->post() && $this->input->is_ajax_request()) {

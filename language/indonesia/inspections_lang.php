@@ -194,6 +194,7 @@ $lang['inspection_send_to_client_preview_template'] 					= 'Tinjau Template Emai
 $lang['attach_file']                 						= 'File';
 $lang['customer_permission_inspection'] = 'Inspections';
 $lang['not_inspection_remove_inspection_item'] = 'Hapus item ini';
+$lang['komponen_pemeriksan']                 						= 'Komponen pemeriksan';
 
 
 

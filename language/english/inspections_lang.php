@@ -201,6 +201,7 @@ $lang['inspection_send_to_client_preview_template'] = 'Preview Email Template';
 $lang['attach_file']                 						= 'File';
 $lang['customer_permission_inspection'] = 'Inspections';
 $lang['not_inspection_remove_inspection_item'] = 'Remove inspection item';
+$lang['komponen_pemeriksan']                 						= "Inspection's Component";
 
 
 
