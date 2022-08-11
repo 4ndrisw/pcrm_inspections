@@ -51,14 +51,40 @@ class Listrik_model extends App_Model
             $this->db->where('task_id', $task_id);
             $this->db->update(db_prefix() . $equipment_type, $data);
         }else{
+            $data['rel_id'] = $rel_id;
             $this->db->insert(db_prefix(). $equipment_type, $data);
         }
     }
 
-    public function update($data, $rel_id){
+    public function update($data, $rel_id, $task_id){
+        $field = $data['field'];
+        unset($data['field']);
+        //$data_text = htmlspecialchars($data['text'], ENT_QUOTES);
+        $data_text = strip_tags($data['text'], '<div><p><br>');
+        //$data_text = $data['text'];
+        unset($data['text']);
+        $data[$field] = $data_text;
+
         $this->db->select('id');
         $this->db->where('rel_id', $rel_id);
+        $this->db->where('task_id', $task_id);
         $this->db->update(db_prefix() . 'listrik', $data);
     }
 
+    public function update_pengujian_data($data){
+        $rel_id = $data['rel_id'];
+        $task_id = $data['task_id'];
+        $jenis_pesawat = strtolower($data['jenis_pesawat']);
+        $this->db->where('rel_id', $rel_id);
+        $this->db->where('task_id', $task_id);
+        $this->db->set($data['pengujian'], $data['value']);
+
+        unset($data['value']);
+        unset($data['pengujian']);
+        unset($data['jenis_pesawat']);
+        unset($data['rel_id']);
+        unset($data['task_id']);
+        
+        $this->db->update(db_prefix() . $jenis_pesawat, $data);
+    }
 }
