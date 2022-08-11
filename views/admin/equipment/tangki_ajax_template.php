@@ -93,7 +93,7 @@
                                 <td class="editable" data-field="type_model" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['type_model']) ? $equipment['type_model'] : '' ?></td>
                              </tr>
                              <tr>
-                                <td style="width:20%">Daya</td>
+                                <td style="width:20%">Isi Cairan</td>
                                 <td style="width:2%">:</td>
                                 <td class="editable" data-field="isi_cairan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['isi_cairan']) ? $equipment['isi_cairan'] : '' ?></td>
                              </tr>
