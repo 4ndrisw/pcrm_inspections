@@ -142,7 +142,14 @@ class Inspections extends AdminController
         $data['members']           = $this->staff_model->get('', ['active' => 1]);
         $data['inspection_statuses'] = $this->inspections_model->get_statuses();
         $data['totalNotes']        = total_rows(db_prefix() . 'notes', ['rel_id' => $id, 'rel_type' => 'inspection']);
+        
+        $data['editable_class']          = 'not_editable';
+        $data['editableText_class']          = 'noteditableText';
+        if($inspection->status == 2 ){
+            $data['editable_class']          = 'editable';
+            $data['editableText_class']          = 'editableText';
 
+        }
         $tags = get_tags_in($task_id, 'task');
         
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
