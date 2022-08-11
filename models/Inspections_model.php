@@ -1532,7 +1532,6 @@ class Inspections_model extends App_Model
         return $this->db->get(db_prefix() . 'tasks')->result_array();
     }
 
-
     public function get_inspection_items($inspection_id, $project_id){
         $this->db->select([db_prefix() . 'tasks.id AS task_id',db_prefix() . 'tasks.name', db_prefix() . 'tasks.rel_id', db_prefix() . 'tasks.dateadded', db_prefix() . 'tags.name AS tag_name']);
         $this->db->where(db_prefix() . 'tasks.rel_id =' . $project_id);
@@ -1550,7 +1549,29 @@ class Inspections_model extends App_Model
 
     }
 
-    
+
+    public function update_equipment_name($data, $rel_id, $task_id){
+        $field = $data['field'];
+        unset($data['field']);
+        //$data_text = htmlspecialchars($data['text'], ENT_QUOTES);
+        $data_text = strip_tags($data['text'], '<div><p><br>');
+        //$data_text = $data['text'];
+        unset($data['text']);
+        $data[$field] = $data_text;
+        $rel_id = $data['rel_id'];
+        unset($data['rel_id']);
+        
+        $jenis_pesawat = $data['jenis_pesawat'];
+        unset($data['jenis_pesawat']);
+
+        $data['equipment_name'] = $data['nama_pesawat'];
+        unset($data['nama_pesawat']);
+
+        $this->db->where('inspection_id', $rel_id);
+        $this->db->where('task_id', $task_id);
+        $this->db->update(db_prefix() . 'inspection_items', $data);
+    }
+
     public function inspection_add_inspection_item($data){
         
         $this->db->insert(db_prefix() . 'inspection_items', [
@@ -1558,8 +1579,6 @@ class Inspections_model extends App_Model
                 'project_id' => $data['project_id'],
                 'task_id'              => $data['task_id']]);
     }
-
-
 
     public function inspection_remove_inspection_item($data)
     {

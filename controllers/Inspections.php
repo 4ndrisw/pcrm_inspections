@@ -551,17 +551,19 @@ class Inspections extends AdminController
             $jenis_pesawat = $this->input->post('jenis_pesawat');
             $task_id = $this->input->post('task_id');
             $rel_id = $this->input->post('rel_id');
+            $field = $this->input->post('field');
 
             $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $jenis_pesawat)));
             $equipment_model = $equipment_type .'_model';
             $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
-            //log_activity(json_encode($model_path));
-            log_activity(json_encode($this->input->post()));
-
+            
             include_once($model_path);
             $this->load->model($equipment_model);
             $this->{$equipment_model}->update($this->input->post(), $rel_id, $task_id);
-
+            if($field == 'nama_pesawat'){
+                $this->load->model($inspections_model);
+                $this->inspections_model->update_equipment_name($this->input->post(), $rel_id, $task_id);
+            }
         }
     }
 
