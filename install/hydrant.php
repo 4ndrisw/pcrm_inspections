@@ -1,6 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-
 if (!$CI->db->table_exists(db_prefix() . 'hydrant')) {
     $CI->db->query('CREATE TABLE `' . db_prefix() . "hydrant` (
       `id` int(11) NOT NULL,
@@ -13,14 +12,13 @@ if (!$CI->db->table_exists(db_prefix() . 'hydrant')) {
       `nama_pesawat` varchar(50) DEFAULT NULL,
       `pabrik_pembuat` varchar(50) DEFAULT NULL,
       `tahun_pembuatan` smallint(4) DEFAULT NULL,
-      `merk` varchar(30) DEFAULT NULL,
       `jumlah_kotak_hydrant` varchar(20) DEFAULT NULL,
       `jumlah_selang_hydrant` varchar(20) DEFAULT NULL,
       `jumlah_nozzle` varchar(30) DEFAULT NULL,
       `tekanan_pompa` varchar(50) DEFAULT NULL,
       `tekanan_kerja` varchar(30) DEFAULT NULL,
       `tekanan_uji` varchar(30) DEFAULT NULL,
-      `kapasitas` varchar(20) DEFAULT NULL,
+      `kapasitas_air` varchar(20) DEFAULT NULL,
       `bentuk` varchar(30) DEFAULT NULL,
       `pemeriksaan_dokumen` tinyint(1) DEFAULT NULL,
       `pemeriksaan_visual` tinyint(1) DEFAULT NULL,
