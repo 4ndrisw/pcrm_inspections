@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Ptp_model extends App_Model
+class Pesawat_tenaga_model extends App_Model
 {
     public function __construct()
     {
@@ -11,8 +11,8 @@ class Ptp_model extends App_Model
      }
 
     /**
-     * Get ptp/s
-     * @param mixed $id ptp id
+     * Get pesawat_tenaga/s
+     * @param mixed $id pesawat_tenaga id
      * @param array $where perform where
      * @return mixed
      */
@@ -20,12 +20,12 @@ class Ptp_model extends App_Model
     {
         if (is_numeric($id)) {
             $this->db->where('staffid', $id);
-            $category = $this->db->get(db_prefix() . 'ptp')->row();
+            $category = $this->db->get(db_prefix() . 'pesawat_tenaga')->row();
 
             return $category;
         }
-        $this->db->select('*,' . db_prefix() . 'ptp.id');
-        $this->db->from(db_prefix() . 'ptp');
+        $this->db->select('*,' . db_prefix() . 'pesawat_tenaga.id');
+        $this->db->from(db_prefix() . 'pesawat_tenaga');
         $this->db->where($where);
         $results = $this->db->get()->result_array();
         return $results;
@@ -34,10 +34,10 @@ class Ptp_model extends App_Model
 
     public function create($data){
         $data['regulasi'] = get_option('predefined_regulation_of_paa');
-        $this->db->insert(db_prefix().'ptp', $data);
+        $this->db->insert(db_prefix().'pesawat_tenaga', $data);
         $equipment_id = $this->db->insert_id();
 
-        hooks()->do_action('after_ptp_added', $equipment_id);
+        hooks()->do_action('after_pesawat_tenaga_added', $equipment_id);
         return $equipment_id;
     }
 
@@ -57,16 +57,18 @@ class Ptp_model extends App_Model
     }
 
     public function update($data, $rel_id, $task_id){
-        $field_nama_pesawat = $data['field'];
+        $field = $data['field'];
         unset($data['field']);
-        $data_nama_pesawat = htmlspecialchars($data['text'], ENT_QUOTES);
+        //$data_text = htmlspecialchars($data['text'], ENT_QUOTES);
+        $data_text = strip_tags($data['text'], '<div><p><br>');
+        //$data_text = $data['text'];
         unset($data['text']);
-        $data[$field_nama_pesawat] = $data_nama_pesawat;
+        $data[$field] = $data_text;
 
         $this->db->select('id');
         $this->db->where('rel_id', $rel_id);
         $this->db->where('task_id', $task_id);
-        $this->db->update(db_prefix() . 'ptp', $data);
+        $this->db->update(db_prefix() . 'pesawat_tenaga', $data);
     }
 
     public function update_pengujian_data($data){

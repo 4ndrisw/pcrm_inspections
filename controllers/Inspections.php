@@ -568,7 +568,6 @@ class Inspections extends AdminController
             $this->load->model($equipment_model);
             $this->{$equipment_model}->update($this->input->post(), $rel_id, $task_id);
             if($field == 'nama_pesawat'){
-                $this->load->model($inspections_model);
                 $this->inspections_model->update_equipment_name($this->input->post(), $rel_id, $task_id);
             }
         }
