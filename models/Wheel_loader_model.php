@@ -57,11 +57,13 @@ class Wheel_loader_model extends App_Model
     }
 
     public function update($data, $rel_id, $task_id){
-        $field_nama_pesawat = $data['field'];
+        $field = $data['field'];
         unset($data['field']);
-        $data_nama_pesawat = htmlspecialchars($data['text'], ENT_QUOTES);
+        //$data_text = htmlspecialchars($data['text'], ENT_QUOTES);
+        $data_text = strip_tags($data['text'], '<div><p><br>');
+        //$data_text = $data['text'];
         unset($data['text']);
-        $data[$field_nama_pesawat] = $data_nama_pesawat;
+        $data[$field] = $data_text;
 
         $this->db->select('id');
         $this->db->where('rel_id', $rel_id);
@@ -76,15 +78,13 @@ class Wheel_loader_model extends App_Model
         $this->db->where('rel_id', $rel_id);
         $this->db->where('task_id', $task_id);
         $this->db->set($data['pengujian'], $data['value']);
+
         unset($data['value']);
         unset($data['pengujian']);
         unset($data['jenis_pesawat']);
         unset($data['rel_id']);
         unset($data['task_id']);
-
-        log_activity($data);
-        log_activity($jenis_pesawat);
-
+        
         $this->db->update(db_prefix() . $jenis_pesawat, $data);
     }
 }
