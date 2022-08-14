@@ -7,31 +7,43 @@ require_once('install/inspection_activity.php');
 require_once('install/inspection_items.php');
 require_once('install/equipment_category.php');
 
-
-require_once('install/bejana_tekan.php');
-require_once('install/forklift.php');
-require_once('install/overhead_crane.php');
-require_once('install/listrik.php');
-require_once('install/petir.php');
-require_once('install/compressor.php');
-require_once('install/hydrant.php');
-require_once('install/motor_diesel.php');
-require_once('install/wheel_loader.php');
-require_once('install/conveyor.php');
-require_once('install/tangki.php');
-require_once('install/bejana_uap.php');
-require_once('install/bpv.php');
-require_once('install/boiler.php');
-require_once('install/hoist_crane.php');
-require_once('install/trucktor.php');
-require_once('install/towing.php');
-require_once('install/excavator.php');
-require_once('install/gantry.php');
-require_once('install/tanur.php');
-require_once('install/jib_crane.php');
 require_once('install/alarm_kebakaran.php');
+require_once('install/backhoe_loader.php');
+require_once('install/bejana_tekan.php');
+require_once('install/bejana_uap.php');
+require_once('install/boiler.php');
+require_once('install/bpv.php');
+require_once('install/chain_hoist.php');
+require_once('install/compressor.php');
+require_once('install/conveyor.php');
+require_once('install/elevator.php');
+require_once('install/excavator.php');
+require_once('install/forklift.php');
+require_once('install/gantry.php');
+require_once('install/hoist_crane.php');
+require_once('install/hydrant.php');
+require_once('install/inspection_activity.php');
+require_once('install/inspection_items.php');
+require_once('install/inspection_members.php');
+require_once('install/inspections.php');
+require_once('install/jib_crane.php');
+require_once('install/lift_barang.php');
+require_once('install/listrik.php');
+require_once('install/mesin_bubut.php');
+require_once('install/mesin_produksi.php');
 require_once('install/mobil_crane.php');
+require_once('install/motor_diesel.php');
+require_once('install/overhead_crane.php');
+require_once('install/pesawat_tenaga.php');
+require_once('install/petir.php');
 require_once('install/sterilizer.php');
+require_once('install/tangki.php');
+require_once('install/tanur.php');
+require_once('install/towing.php');
+require_once('install/trucktor.php');
+require_once('install/wheel_loader.php');
+
+
 
 
 
@@ -92,31 +104,43 @@ DROP TABLE if EXISTS `tblinspections`;
 DROP TABLE if EXISTS `tblinspection_activity`, `tblinspection_members`;
 
 DROP TABLE if EXISTS `tblinspection_items`;
-DROP TABLE if EXISTS `tblbejana_tekan`;
 
-DROP TABLE if EXISTS `tblforklift`;
-DROP TABLE if EXISTS `tblpetir`;
-DROP TABLE if EXISTS `tbllistrik`;
 
-DROP TABLE if EXISTS `tblcompressor`;
-DROP TABLE if EXISTS `tblhydrant`;
-DROP TABLE if EXISTS `tbllistrik`;
-DROP TABLE if EXISTS `tblmotor_diesel`;
-DROP TABLE if EXISTS `tblwheel_loader`;
-DROP TABLE if EXISTS `tblconveyor`;
-DROP TABLE if EXISTS `tbltangki`;
-DROP TABLE if EXISTS `tblbejana_uap`;
-DROP TABLE if EXISTS `tblbpv`;
-DROP TABLE if EXISTS `tblsterilizer`;
-
-DROP TABLE if EXISTS `tblboiler`;
-DROP TABLE if EXISTS `tblhoist_crane`;
-DROP TABLE if EXISTS `tbltrucktor`;
-DROP TABLE if EXISTS `tbltowing`;
-DROP TABLE if EXISTS `tblexcavator`;
-DROP TABLE if EXISTS `tblgantry`;
 DROP TABLE if EXISTS `tblalarm_kebakaran`;
+DROP TABLE if EXISTS `tblbackhoe_loader`;
+DROP TABLE if EXISTS `tblbejana_tekan`;
+DROP TABLE if EXISTS `tblbejana_uap`;
+DROP TABLE if EXISTS `tblboiler`;
+DROP TABLE if EXISTS `tblbpv`;
+DROP TABLE if EXISTS `tblchain_hoist`;
+DROP TABLE if EXISTS `tblcompressor`;
+DROP TABLE if EXISTS `tblconveyor`;
+DROP TABLE if EXISTS `tblelevator`;
+DROP TABLE if EXISTS `tblexcavator`;
+DROP TABLE if EXISTS `tblforklift`;
+DROP TABLE if EXISTS `tblgantry`;
+DROP TABLE if EXISTS `tblhoist_crane`;
+DROP TABLE if EXISTS `tblhydrant`;
+DROP TABLE if EXISTS `tblinspection_activity`;
+DROP TABLE if EXISTS `tblinspection_items`;
+DROP TABLE if EXISTS `tblinspection_members`;
+DROP TABLE if EXISTS `tblinspections`;
+DROP TABLE if EXISTS `tbljib_crane`;
+DROP TABLE if EXISTS `tbllift_barang`;
+DROP TABLE if EXISTS `tbllistrik`;
+DROP TABLE if EXISTS `tblmesin_bubut`;
+DROP TABLE if EXISTS `tblmesin_produksi`;
 DROP TABLE if EXISTS `tblmobil_crane`;
+DROP TABLE if EXISTS `tblmotor_diesel`;
+DROP TABLE if EXISTS `tbloverhead_crane`;
+DROP TABLE if EXISTS `tblpesawat_tenaga`;
+DROP TABLE if EXISTS `tblpetir`;
+DROP TABLE if EXISTS `tblsterilizer`;
+DROP TABLE if EXISTS `tbltangki`;
+DROP TABLE if EXISTS `tbltanur`;
+DROP TABLE if EXISTS `tbltowing`;
+DROP TABLE if EXISTS `tbltrucktor`;
+DROP TABLE if EXISTS `tblwheel_loader`;
 
 
 delete FROM `tbloptions` WHERE `name` LIKE '%inspection%';

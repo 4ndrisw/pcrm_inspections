@@ -1,8 +1,8 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
 
-if (!$CI->db->table_exists(db_prefix() . 'motor_diesel')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "motor_diesel` (
+if (!$CI->db->table_exists(db_prefix() . 'pesawat_tenaga')) {
+    $CI->db->query('CREATE TABLE `' . db_prefix() . "pesawat_tenaga` (
       `id` int(11) NOT NULL,
       `rel_id` int(11) DEFAULT NULL,
       `task_id` int(11) DEFAULT NULL,
@@ -31,7 +31,7 @@ if (!$CI->db->table_exists(db_prefix() . 'motor_diesel')) {
       `jenis_pemeriksaan` varchar(30) DEFAULT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
 
-    $CI->db->query('ALTER TABLE `' . db_prefix() . 'motor_diesel`
+    $CI->db->query('ALTER TABLE `' . db_prefix() . 'pesawat_tenaga`
       ADD PRIMARY KEY (`id`),
       ADD UNIQUE KEY `rel_id_task_id` (`rel_id`,`task_id`) USING BTREE,
       ADD KEY `rel_id` (`rel_id`),
@@ -39,7 +39,7 @@ if (!$CI->db->table_exists(db_prefix() . 'motor_diesel')) {
       ADD KEY `jenis_pesawat` (`jenis_pesawat`),
         ADD KEY `task_id` (`task_id`);');
 
-    $CI->db->query('ALTER TABLE `' . db_prefix() . 'motor_diesel`
+    $CI->db->query('ALTER TABLE `' . db_prefix() . 'pesawat_tenaga`
       MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1');
 }
 
