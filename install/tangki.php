@@ -17,6 +17,7 @@ if (!$CI->db->table_exists(db_prefix() . 'tangki')) {
       `nomor_seri` varchar(20) DEFAULT NULL,
       `nomor_unit` varchar(20) DEFAULT NULL,
       `type_model` varchar(30) DEFAULT NULL,
+      `isi_cairan` varchar(20) DEFAULT NULL,
       `kapasitas` varchar(20) DEFAULT NULL,
       `digunakan_untuk` varchar(60) DEFAULT NULL,
       `pemeriksaan_dokumen` tinyint(1) DEFAULT NULL,
