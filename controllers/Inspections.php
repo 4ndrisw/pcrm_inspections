@@ -111,7 +111,7 @@ class Inspections extends AdminController
         if (!$inspection || !user_can_view_inspection($id)) {
             blank_page(_l('inspection_not_found'));
         }
-
+        $inspection->task_id       = $task_id;
         $data['inspection'] = $inspection;
         $data['edit']     = false;
         $title            = _l('preview_inspection');
@@ -137,7 +137,7 @@ class Inspections extends AdminController
         $data['inspection_members'] = $this->inspections_model->get_inspection_members($id,true);
 
         $data['activity']          = $this->inspections_model->get_inspection_activity($id);
-        $data['task']          = $task;
+        $data['task']              = $task;
 
         $data['members']           = $this->staff_model->get('', ['active' => 1]);
         $data['inspection_statuses'] = $this->inspections_model->get_statuses();

@@ -245,6 +245,28 @@ function format_inspection_number($id)
     ]);
 }
 
+/**
+ * Format inspection number based on description
+ * @param  mixed $id
+ * @return string
+ */
+function format_inspection_item_number($id, $task_id)
+{
+    $CI = &get_instance();
+    $CI->db->select('date,number,prefix,number_format')->from(db_prefix() . 'inspections')->where('id', $id);
+    $inspection = $CI->db->get()->row();
+
+    if (!$inspection) {
+        return '';
+    }
+
+    $number = inspection_number_format($inspection->number, $inspection->number_format, $inspection->prefix, $inspection->date);
+
+    return hooks()->apply_filters('format_inspection_number', $number .' - '. $task_id, [
+        'id'       => $id,
+        'inspection' => $inspection,
+    ]);
+}
 
 function inspection_number_format($number, $format, $applied_prefix, $date)
 {

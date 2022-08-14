@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');?>
 
+<?php $equipment = $this_equipment[0];?>
 
 <div class ="table-responsive">
   <table id="<?= 'inspection-'.$inspection->id ?>" class="table inspection table-bordered">
@@ -14,36 +15,124 @@
            <td style="width:2%">:</td>
            <td><?= get_inspection_company_address($inspection->id) ?></td>      
         </tr>
-        <tr>
-           <td style="width:20%">Nama Pesawat</td>
-           <td style="width:2%">:</td>
-           <td class="editable" data-field="nama_pesawat" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment[0]['nama_pesawat']) ? $equipment[0]['nama_pesawat'] : '' ?></td>      
-        </tr>
-        <tr>
-           <td style="width:20%">Nomor Seri</td>
-           <td style="width:2%">:</td>
-           <td class="editable" data-field="nomor_seri" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment[0]['nomor_seri']) ? $equipment[0]['nomor_seri'] : '' ?></td>      
-        </tr>
-        <tr>
-           <td style="width:20%">Nomor Unit</td>
-           <td style="width:2%">:</td>
-           <td class="editable" data-field="nomor_unit" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment[0]['nomor_unit']) ? $equipment[0]['nomor_unit'] : '' ?></td>
-        </tr>
-        <tr>
-           <td style="width:20%">Type / Model</td>
-           <td style="width:2%">:</td>
-           <td class="editable" data-field="type_model" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment[0]['type_model']) ? $equipment[0]['type_model'] : '' ?></td>
-        </tr>
-        <tr>
-           <td style="width:20%">Kapasitas</td>
-           <td style="width:2%">:</td>
-           <td class="editable" data-field="kapasitas" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment[0]['kapasitas']) ? $equipment[0]['kapasitas'] : '' ?></td>
-        </tr>
-        <tr>
-           <td style="width:20%">Satuan</td>
-           <td style="width:2%">:</td>
-           <td class="editable" data-field="satuan_kapasitas" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment[0]['satuan_kapasitas']) ? $equipment[0]['satuan_kapasitas'] : '' ?></td>
-        </tr>
+        <?php ?>
+        <?php if(isset($equipment['nama_pesawat'])) { ?>
+           <tr>
+              <td style="width:20%">Nama Pesawat</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['nama_pesawat'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['pabrik_pembuat'])) { ?>
+           <tr>
+              <td style="width:20%">Pabrik Pembuat</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['pabrik_pembuat'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['tempat_pembuatan'])) { ?>
+           <tr>
+              <td style="width:20%">Tempat Pembuatan</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['tempat_pembuatan'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['tahun_pembuatan'])) { ?>
+           <tr>
+              <td style="width:20%">Tahun Pembuatan</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['tahun_pembuatan'] ?></td>
+           </tr>
+        <?php } ?>
+
+        <?php if(isset($equipment['merk'])) { ?>
+           <tr>
+              <td style="width:20%">Merk</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['merk'] ?></td>
+           </tr>
+        <?php } ?>
+
+        <?php if(isset($equipment['nomor_seri'])) { ?>
+           <tr>
+              <td style="width:20%">Nomor Seri</td>
+              <td style="width:2%">:</td>
+              <td class="editable" data-field="nomor_seri" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= $equipment['nomor_seri'] ?></td>      
+           </tr>
+        <?php } ?>
+
+        <?php if(isset($equipment['nomor_unit'])) { ?>
+           <tr>
+              <td style="width:20%">Nomor Unit</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['nomor_unit'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['type_model'])) { ?>
+           <tr>
+              <td style="width:20%">Type / Model</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['type_model'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['kapasitas'])) { ?>
+           <tr>
+              <td style="width:20%">Kapasitas</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['kapasitas'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['daya'])) { ?>
+           <tr>
+              <td style="width:20%">Daya</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['daya'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['tekanan_design'])) { ?>
+           <tr>
+              <td style="width:20%">Tekanan Design</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['tekanan_design'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['tekanan_kerja'])) { ?>
+           <tr>
+              <td style="width:20%">Tekanan Kerja</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['tekanan_kerja'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['tekanan_uji'])) { ?>
+           <tr>
+              <td style="width:20%">Tekanan Uji</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['tekanan_uji'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['bentuk'])) { ?>
+           <tr>
+              <td style="width:20%">Bentuk</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['bentuk'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['jenis_pemeriksaan'])) { ?>
+           <tr>
+              <td style="width:20%">Jenis Pemeriksaan</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['jenis_pemeriksaan'] ?></td>
+           </tr>
+        <?php } ?>
+
+        <?php if(isset($equipment['digunakan_untuk'])) { ?>
+           <tr>
+              <td style="width:20%">Digunakan Untuk</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['digunakan_untuk'] ?></td>
+           </tr>
+        <?php } ?>
+
      
      </tbody>
   </table>
@@ -201,35 +290,7 @@
            <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_operasional_f ?> </span> Tidak baik</td>
            <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_operasional_n ?> </span> Tidak ada</td>
         </tr>
-        <tr>
-           <td width="32%">Pengujian Operasional</td>
-           <td width="1%">:</td>
-           <!-- <td width="22%"><span style='font-size:2.5rem;'><?//= $pengujian_operasional_t ?> </span> Baik</td> -->
-           <td class="slider" width="22%">
-           <input type="checkbox" data-switch-url= "<?=admin_url() ?>inspections/inspection_status_change" name="pengujian_operasional_t" class="slider-checkbox" id="pengujian_operasional_t" data-id="<?= $inspection->id ?>-<?= $task->id ?>-<?= $inspection->equipment_type ?>-pengujian_operasional_t" data-pengujian ="pengujian_operasional_t"/>
-           <label class="slider-label" for="pengujian_operasional_t">
-              
-               <span class="slider-inner"></span>
-               <span class="slider-circle"></span>
-           </label>
-           </td>
-           <td width="22%" class="slider">
-             <input type="checkbox" name="pengujian_operasional_f" value="None" class="slider-checkbox" id="pengujian_operasional_f" onclick="inspection_item_pengujian_operasional(<?= $inspection->id ?>, <?= $task->id ?>, 'pengujian_operasional_f')" class="slider-checkbox" <?php if(isset($pengujian_operasional_f)) echo 'checked = checked'; ?>/>
-             <label class="slider-label" for="pengujian_operasional_f">
-               <span class="slider-inner"></span>
-               <span class="slider-circle"></span>
-             </label>
-           </td>
-
-           <td width="22%" class="slider">
-             <input type="checkbox" name="pengujian_data" class="slider-checkbox" id="pengujian_operasional_n" data-switch-url= "<?=admin_url() ?>inspections/inspection_status_change" data-id="98" data-pengujian ="pengujian_operasional_n" class="onoffswitch-checkbox" <?php if(isset($pengujian_operasional_n)) echo 'checked = checked'; ?>/>
-             <label class="slider-label" for="pengujian_operasional_n">
-               <span class="slider-inner"></span>
-               <span class="slider-circle"></span>
-             </label>
-           </td>
-
-        </tr>
+        
 
      </tbody>
   </table>

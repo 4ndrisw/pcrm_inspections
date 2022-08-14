@@ -17,7 +17,7 @@
                <div class="col-md-3">
                   <h3 class="bold no-mtop inspection-html-number no-mbot">
                      <span class="sticky-visible hide">
-                     <?php echo format_inspection_number($inspection->id); ?>
+                     <?php echo format_inspection_item_number($inspection->id, $inspection->task_id); ?>
                      </span>
                   </h3>
                   <h4 class="inspection-html-status mtop7">
@@ -82,7 +82,7 @@
       <div class="col-md-10 col-md-offset-1">
          <div class="row mtop20">
             <div class="col-md-6 col-sm-6 transaction-html-info-col-left">
-               <h4 class="bold inspection-html-number"><?php echo format_inspection_number($inspection->id); ?></h4>
+               <h4 class="bold inspection-html-number"><?php echo format_inspection_item_number($inspection->id, $inspection->task_id); ?></h4>
                <address class="inspection-html-company-info">
                   <?php echo format_organization_info(); ?>
                </address>

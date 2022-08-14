@@ -12,3 +12,5 @@ $route['inspections/sticker/(:num)/(:any)'] = 'myinspection/sticker/$1/$2';
 $route['inspections/sticker/pdf/(:num)'] = 'myinspection/sticker_data/$1';
 $route['inspections/bapp/(:num)/(:any)'] = 'myinspection/bapp/$1/$2';
 $route['inspections/bapp/pdf/(:num)'] = 'myinspection/pdf/$1';
+
+$route['inspections/bapr/(:num)/task/(:num)/(:any)'] = 'myinspection/bapr/$1/$2/$3';

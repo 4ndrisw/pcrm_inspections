@@ -238,6 +238,7 @@
                            )); ?></h4>
                      </div>
                      <?php } ?>
+
                      <div class="col-md-6 col-sm-6">
                         <h4 class="bold">
                               <?php $tags = get_tags_in($inspection->id,'inspection'); ?>
@@ -248,9 +249,9 @@
                                 echo '<i class="fa fa-tag" aria-hidden="true" data-toggle="tooltip" data-title="'.html_escape(implode(', ',$tags)).'"></i>';
                               }
                               ?>
-                              <a href="<?php echo site_url('inspections/sticker/'.$inspection->id.'/'.$inspection->hash); ?>">
+                              <a href="<?php echo site_url('inspections/sticker/'.$inspection->id.'/'.$inspection->task_id.'/'.$inspection->hash); ?>">
                                  <span id="inspection-number">
-                                 <?php echo format_inspection_number($inspection->id); ?>
+                                    <?php echo format_inspection_item_number($inspection->id, $inspection->task_id); ?>
                                  </span>
                               </a>
                            </div>
@@ -262,9 +263,9 @@
                                 echo '<i class="fa fa-tag" aria-hidden="true" data-toggle="tooltip" data-title="'.html_escape(implode(', ',$tags)).'"></i>';
                               }
                               ?>
-                              <a href="<?php echo site_url('inspections/bapp/'.$inspection->id.'/'.$inspection->hash); ?>">
+                              <a href="<?php echo site_url('inspections/bapr/'.$inspection->id.'/task/'.$inspection->task_id.'/'.$inspection->hash); ?>">
                                  <span id="inspection-number">
-                                 <?php echo format_inspection_number($inspection->id); ?>
+                                    <?php echo format_inspection_item_number($inspection->id, $inspection->task_id); ?>
                                  </span>
                               </a>
                            </div>
@@ -273,6 +274,7 @@
                            <?php echo format_organization_info(); ?>
                         </address>
                      </div>
+
                      <div class="col-sm-6 text-right">
                         <span class="bold"><?php echo _l('inspection_to'); ?>:</span>
                         <address>

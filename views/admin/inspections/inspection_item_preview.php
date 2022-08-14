@@ -107,7 +107,7 @@ Editable(".editable", {
       text: this.textContent, // or you can also use UI.text
       //text: this.innerHTML, // or you can also use UI.text
     }
-    console.log(data); // Submit your data to server
+    //console.log(data); // Submit your data to server
     inspection_update_inspection_data(data);
 
   }
@@ -125,7 +125,7 @@ Editable(".editableText", {
       //text: this.textContent, // or you can also use UI.text
       text: this.innerHTML, // or you can also use UI.text
     }
-    console.log(data); // Submit your data to server
+    //console.log(data); // Submit your data to server
     inspection_update_inspection_data(data);
 
   }
