@@ -14,7 +14,7 @@ if (!$CI->db->table_exists(db_prefix() . 'listrik')) {
       `daya_penerangan` varchar(30) DEFAULT NULL,
       `daya_produksi` varchar(30) DEFAULT NULL,
       `daya_tenaga` varchar(30) DEFAULT NULL,
-      `daya_total` varchar(30) DEFAULT NULL,
+      `daya_terpasang` varchar(30) DEFAULT NULL,
       `sumber_tenaga` varchar(30) DEFAULT NULL,
       `jenis_arus` varchar(30) DEFAULT NULL,
       `pemeriksaan_dokumen` tinyint(1) DEFAULT NULL,
