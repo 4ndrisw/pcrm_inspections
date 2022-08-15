@@ -61,8 +61,26 @@ $lang['inspection_nama_pesawat']                             = 'Equipment';
 $lang['inspection_equipment_category']                             = 'Category';
 $lang['inspection_type_model']                             = 'Type/model';
 
-$lang['inspection_daya_terpasang']                             = 'Installed Power';
+$lang['inspection_pabrik_pembuat']                             = 'Manufacturer';
+$lang['inspection_nomor_seri']                             = 'Serial Number';
+$lang['inspection_nomor_unit']                             = 'Unit Number';
+$lang['inspection_type_model']                             = 'Type/Model';
+$lang['inspection_kapasitas']                             = 'Capacity';
 
+
+
+$lang['inspection_daya_terpasang']                             = 'Installed Power';
+$lang['inspection_sumber_tenaga']                             = 'Energy Source';
+$lang['inspection_jenis_arus']                             = 'Current Type';
+$lang['inspection_instalatir']                             = 'Instalatir';
+$lang['inspection_jumlah_mca']                             = 'Tumlah MCA';
+
+
+
+$lang['inspection_jumlah_mca']                             = 'MCA';
+$lang['inspection_jumlah_smoke_detector']                             = 'Smoke Detector';
+$lang['inspection_jumlah_alarm_bell']                             = 'Alarm Bell';
+$lang['inspection_jumlah_alarm_lamp']                             = 'Alarm Lamp';
 
 $lang['inspection_select_customer']                 = 'Customer';
 $lang['inspection_add_edit_number']                 = 'Inspection Number';

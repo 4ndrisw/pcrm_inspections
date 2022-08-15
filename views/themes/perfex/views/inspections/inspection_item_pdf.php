@@ -74,9 +74,6 @@ $nomor_seri = isset($inspection->equipment['nomor_seri']) ? $inspection->equipme
 $nomor_unit = isset($inspection->equipment['nomor_unit']) ? $inspection->equipment['nomor_unit'] : '';
 $type_model = isset($inspection->equipment['type_model']) ? $inspection->equipment['type_model'] : '';
 
-$daya_terpasang = isset($inspection->equipment['daya_terpasang']) ? $inspection->equipment['daya_terpasang'] :'';
-
-
 $kapasitas = isset($inspection->equipment['kapasitas']) ? $inspection->equipment['kapasitas'] : '';
 $satuan_kapasitas = isset($inspection->equipment['satuan_kapasitas']) ? ' ' . $inspection->equipment['satuan_kapasitas'] : '';
 $kapasitas = $kapasitas .' '. $satuan_kapasitas;
@@ -97,7 +94,55 @@ $_tblhtml .= '
     <td width ="170" class="tg-oe17">' .$nama_pesawat. '</td>
   </tr>';
 
-if(isset($daya_terpasang)){
+
+$pabrik_pembuat = isset($inspection->equipment['pabrik_pembuat']) ? $inspection->equipment['pabrik_pembuat'] : FALSE;
+if($pabrik_pembuat){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_pabrik_pembuat') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$pabrik_pembuat. '</td>
+      </tr>';
+}
+$nomor_seri = isset($inspection->equipment['nomor_seri']) ? $inspection->equipment['nomor_seri'] : FALSE;
+if($nomor_seri){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_nomor_seri') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$nomor_seri. '</td>
+      </tr>';
+}
+$nomor_unit = isset($inspection->equipment['nomor_unit']) ? $inspection->equipment['nomor_unit'] : FALSE;
+if($nomor_unit){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_nomor_unit') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$nomor_unit. '</td>
+      </tr>';
+}
+$type_model = isset($inspection->equipment['type_model']) ? $inspection->equipment['type_model'] : FALSE;
+if($type_model){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_type_model') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$type_model. '</td>
+      </tr>';
+}
+$kapasitas = isset($inspection->equipment['kapasitas']) ? $inspection->equipment['kapasitas'] : FALSE;
+if($kapasitas){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_kapasitas') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$kapasitas. '</td>
+      </tr>';
+}
+
+$daya_terpasang = isset($inspection->equipment['daya_terpasang']) ? $inspection->equipment['daya_terpasang'] : FALSE;
+if($daya_terpasang){
     $_tblhtml .= '
       <tr class="tg-1e15">
         <td width ="130" class="tg-oe15">' . _l('inspection_daya_terpasang') . '</td>
@@ -105,7 +150,69 @@ if(isset($daya_terpasang)){
         <td width ="170" class="tg-oe17">' .$daya_terpasang. '</td>
       </tr>';
 }
-
+$sumber_tenaga = isset($inspection->equipment['sumber_tenaga']) ? $inspection->equipment['sumber_tenaga'] : FALSE;
+if($sumber_tenaga){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_sumber_tenaga') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$sumber_tenaga. '</td>
+      </tr>';
+}
+$jenis_arus = isset($inspection->equipment['jenis_arus']) ? $inspection->equipment['jenis_arus'] : FALSE;
+if($jenis_arus){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_jenis_arus') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$jenis_arus. '</td>
+      </tr>';
+}
+$instalatir = isset($inspection->equipment['instalatir']) ? $inspection->equipment['instalatir'] : FALSE;
+if($instalatir){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_instalatir') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$instalatir. '</td>
+      </tr>';
+}
+$jumlah_mca = isset($inspection->equipment['jumlah_mca']) ? $inspection->equipment['jumlah_mca'] : FALSE;
+if($jumlah_mca){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_jumlah_mca') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$jumlah_mca. '</td>
+      </tr>';
+}
+$jumlah_smoke_detector = isset($inspection->equipment['jumlah_smoke_detector']) ? $inspection->equipment['jumlah_smoke_detector'] : FALSE;
+if($jumlah_smoke_detector){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_jumlah_smoke_detector') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$jumlah_smoke_detector. '</td>
+      </tr>';
+}
+$jumlah_alarm_bell = isset($inspection->equipment['jumlah_alarm_bell']) ? $inspection->equipment['jumlah_alarm_bell'] : FALSE;
+if($jumlah_alarm_bell){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_jumlah_alarm_bell') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$jumlah_alarm_bell. '</td>
+      </tr>';
+}
+$jumlah_alarm_lamp = isset($inspection->equipment['jumlah_alarm_lamp']) ? $inspection->equipment['jumlah_alarm_lamp'] : FALSE;
+if($jumlah_alarm_lamp){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_jumlah_alarm_lamp') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$jumlah_alarm_lamp. '</td>
+      </tr>';
+}
 
 $tblhtml = <<<EOD
 <style type="text/css">
@@ -118,28 +225,6 @@ label.field-label{display:inline-block; width:20%;}
 <table class="tg">
 <tbody>
   $_tblhtml
-
-  <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_serial_number</td>
-    <td width ="10" class="tg-oe16">:</td>
-    <td width ="170" class="tg-oe17">$nomor_seri</td>
-  </tr>
-  <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_unit_number</td>
-    <td width ="10" class="tg-oe16">:</td>
-    <td width ="170" class="tg-oe17">$nomor_unit</td>
-  </tr>
-  <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_type_model</td>
-    <td width ="10" class="tg-oe16">:</td>
-    <td width ="170" class="tg-oe17">$type_model</td>
-  </tr>
-  <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_capacity</td>
-    <td width ="10" class="tg-oe16">:</td>
-    <td width ="170" class="tg-oe17">$kapasitas</td>
-  </tr>
-
 </tbody>
 </table>
 EOD;
