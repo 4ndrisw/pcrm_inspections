@@ -262,7 +262,7 @@ function format_inspection_item_number($id, $task_id)
 
     $number = inspection_number_format($inspection->number, $inspection->number_format, $inspection->prefix, $inspection->date);
 
-    return hooks()->apply_filters('format_inspection_number', $number .' - '. $task_id, [
+    return hooks()->apply_filters('format_inspection_number', $number .'-'. $task_id, [
         'id'       => $id,
         'inspection' => $inspection,
     ]);
@@ -443,6 +443,19 @@ function inspection_pdf($inspection, $tag = '')
     return app_pdf('inspection',  module_libs_path(INSPECTIONS_MODULE_NAME) . 'pdf/Inspection_pdf', $inspection, $tag);
 }
 
+
+
+/**
+ * Prepare general inspection pdf
+ * @since  Version 1.0.2
+ * @param  object $inspection inspection as object with all necessary fields
+ * @param  string $tag tag for bulk pdf exporter
+ * @return mixed object
+ */
+function inspection_item_pdf($inspection, $tag = '')
+{
+    return app_pdf('inspection',  module_libs_path(INSPECTIONS_MODULE_NAME) . 'pdf/Inspection_item_pdf', $inspection, $tag);
+}
 
 /**
  * Add new item do database, used for proposals,estimates,credit notes,invoices

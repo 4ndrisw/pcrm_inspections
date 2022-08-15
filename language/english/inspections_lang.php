@@ -61,6 +61,9 @@ $lang['inspection_nama_pesawat']                             = 'Equipment';
 $lang['inspection_equipment_category']                             = 'Category';
 $lang['inspection_type_model']                             = 'Type/model';
 
+$lang['inspection_daya_terpasang']                             = 'Installed Power';
+
+
 $lang['inspection_select_customer']                 = 'Customer';
 $lang['inspection_add_edit_number']                 = 'Inspection Number';
 $lang['inspection_add_edit_date']                   = 'Inspection Date';
@@ -143,9 +146,13 @@ $lang['pengujian_penetrant']                             = 'Penetrant testing';
 $lang['pengujian_thickness']                             = 'Ultrasonographic testing';
 $lang['pengujian_operasional']                             = 'Operation testing';
 $lang['pengujian_thickness']                             = 'Thickness testing';
-$lang['pengujian_infrared']                             = 'Thermal infrafed testing';
-
+$lang['pengujian_hydrotest']                             = 'Hydrotest testing';
+$lang['pengujian_grounding']                             = 'Grounding testing';
+$lang['pengujian_thermal_infrared']                             = 'Thermal infrafed testing';
+$lang['pengujian_kapasitas_hantar']                             = 'Current Conducting Capacity Testing';
 $lang['equipment_regulasi']                             = 'Regulation';
+
+
 
 $lang['lengkap']                             = 'Complete';
 $lang['tidak_lengkap']                             = 'Not complete';

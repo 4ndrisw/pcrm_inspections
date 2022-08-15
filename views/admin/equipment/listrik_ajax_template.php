@@ -81,9 +81,9 @@
                                 <td class="<?= $editable_class ?>" data-field="daya_tenaga" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['daya_tenaga']) ? $equipment['daya_tenaga'] : '' ?></td>      
                              </tr>
                              <tr>
-                                <td style="width:20%">Daya Total</td>
+                                <td style="width:20%">Daya Terpasang</td>
                                 <td style="width:2%">:</td>
-                                <td class="<?= $editable_class ?>" data-field="daya_total" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['daya_total']) ? $equipment['daya_total'] : '' ?></td>      
+                                <td class="<?= $editable_class ?>" data-field="daya_terpasang" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['daya_terpasang']) ? $equipment['daya_terpasang'] : '' ?></td>      
                              </tr>
                              <tr>
                                 <td style="width:20%">Sumber Tenaga</td>
@@ -217,6 +217,33 @@
                               </div>
                            </div>
 
+                           <div class="row vertical-align-middle pengujian_thermal_infrared text-center">
+                              <div class="col-xs-12 col-sm-3">
+                                 <label class="btn-secondary"><?= _l('pengujian_thermal_infrared') ?> </label>
+                                 <?php $equipment_pengujian_thermal_infrared = isset($equipment_pengujian_thermal_infrared) ? $equipment_pengujian_thermal_infrared : ''; ?>
+                                 <?= $equipment_pengujian_thermal_infrared ?>
+                              </div>
+                              <div class="col-sm-1  no-padding hidden-xs text-center">
+                                 :
+                              </div>
+                              <div class="col-xs-12 col-sm-8">
+                                 <div class="row">
+                                    <div class="col-xs-12 col-sm-4 no-padding">
+                                       <input type="radio" class="btn-check" id="pengujian_thermal_infrared_t" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_thermal_infrared', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_thermal_infrared]" value="1" <?php if(isset($equipment['pengujian_thermal_infrared']) && $equipment['pengujian_thermal_infrared'] == 1){echo 'checked';}; ?>>
+                                       <label class="btn btn-secondary" for="pengujian_thermal_infrared_t"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="<?php echo _l('baik'); ?>" ></i> <?php echo _l('baik'); ?></label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4 no-padding">
+                                       <input type="radio" class="btn-check" id="pengujian_thermal_infrared_f" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_thermal_infrared', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_thermal_infrared]" value="2" <?php if(isset($equipment['pengujian_thermal_infrared']) && $equipment['pengujian_thermal_infrared'] == 2){echo 'checked';}; ?>>
+                                       <label class="btn btn-secondary" for="pengujian_thermal_infrared_f"><?php echo _l('tidak_baik'); ?></label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4 no-padding">
+                                       <input type="radio" class="btn-check" id="pengujian_thermal_infrared_n" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_thermal_infrared', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_thermal_infrared]" value="0" <?php if(isset($equipment['pengujian_thermal_infrared']) && $equipment['pengujian_thermal_infrared'] == 0){echo 'checked';}; ?>>
+                                       <label class="btn btn-secondary" for="pengujian_thermal_infrared_n"><?php echo _l('tidak_ada'); ?></label>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           
                            <div class="row vertical-align-middle pengujian_kapasitas_hantar text-center">
                               <div class="col-xs-12 col-sm-3">
                                  <label class="btn-secondary"><?= _l('pengujian_kapasitas_hantar') ?> </label>

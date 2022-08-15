@@ -16,28 +16,28 @@
            <td><?= get_inspection_company_address($inspection->id) ?></td>      
         </tr>
         <?php ?>
-        <?php if(isset($equipment['nama_pesawat'])) { ?>
+        <?php if(isset($equipment['nama_pesawat']) && $equipment['nama_pesawat'] !='') { ?>
            <tr>
               <td style="width:20%">Nama Pesawat</td>
               <td style="width:2%">:</td>
               <td><?= $equipment['nama_pesawat'] ?></td>
            </tr>
         <?php } ?>
-        <?php if(isset($equipment['pabrik_pembuat'])) { ?>
+        <?php if(isset($equipment['pabrik_pembuat']) && $equipment['pabrik_pembuat'] !='') { ?>
            <tr>
               <td style="width:20%">Pabrik Pembuat</td>
               <td style="width:2%">:</td>
               <td><?= $equipment['pabrik_pembuat'] ?></td>
            </tr>
         <?php } ?>
-        <?php if(isset($equipment['tempat_pembuatan'])) { ?>
+        <?php if(isset($equipment['tempat_pembuatan']) && $equipment['tempat_pembuatan'] !='') { ?>
            <tr>
               <td style="width:20%">Tempat Pembuatan</td>
               <td style="width:2%">:</td>
               <td><?= $equipment['tempat_pembuatan'] ?></td>
            </tr>
         <?php } ?>
-        <?php if(isset($equipment['tahun_pembuatan'])) { ?>
+        <?php if(isset($equipment['tahun_pembuatan']) && $equipment['tahun_pembuatan'] !='') { ?>
            <tr>
               <td style="width:20%">Tahun Pembuatan</td>
               <td style="width:2%">:</td>
@@ -45,7 +45,7 @@
            </tr>
         <?php } ?>
 
-        <?php if(isset($equipment['merk'])) { ?>
+        <?php if(isset($equipment['merk']) && $equipment['merk'] !='') { ?>
            <tr>
               <td style="width:20%">Merk</td>
               <td style="width:2%">:</td>
@@ -53,7 +53,7 @@
            </tr>
         <?php } ?>
 
-        <?php if(isset($equipment['nomor_seri'])) { ?>
+        <?php if(isset($equipment['nomor_seri']) && $equipment['nomor_seri'] !='') { ?>
            <tr>
               <td style="width:20%">Nomor Seri</td>
               <td style="width:2%">:</td>
@@ -61,34 +61,78 @@
            </tr>
         <?php } ?>
 
-        <?php if(isset($equipment['nomor_unit'])) { ?>
+        <?php if(isset($equipment['nomor_unit']) && $equipment['nomor_unit'] !='') { ?>
            <tr>
               <td style="width:20%">Nomor Unit</td>
               <td style="width:2%">:</td>
               <td><?= $equipment['nomor_unit'] ?></td>
            </tr>
         <?php } ?>
-        <?php if(isset($equipment['type_model'])) { ?>
+        <?php if(isset($equipment['type_model']) && $equipment['type_model'] !='') { ?>
            <tr>
               <td style="width:20%">Type / Model</td>
               <td style="width:2%">:</td>
               <td><?= $equipment['type_model'] ?></td>
            </tr>
         <?php } ?>
-        <?php if(isset($equipment['kapasitas'])) { ?>
+        <?php if(isset($equipment['kapasitas']) && $equipment['kapasitas'] !='') { ?>
            <tr>
               <td style="width:20%">Kapasitas</td>
               <td style="width:2%">:</td>
               <td><?= $equipment['kapasitas'] ?></td>
            </tr>
         <?php } ?>
-        <?php if(isset($equipment['daya'])) { ?>
+        <?php if(isset($equipment['daya']) && $equipment['daya'] !='') { ?>
            <tr>
               <td style="width:20%">Daya</td>
               <td style="width:2%">:</td>
               <td><?= $equipment['daya'] ?></td>
            </tr>
         <?php } ?>
+        <?php if(isset($equipment['daya_penerangan']) && $equipment['daya_penerangan'] !='') { ?>
+           <tr>
+              <td style="width:20%">Daya Penerangan</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['daya_penerangan'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['daya_produksi']) && $equipment['daya_produksi'] !='') { ?>
+           <tr>
+              <td style="width:20%">Daya Produksi</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['daya_produksi'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['daya_tenaga']) && $equipment['daya_tenaga'] !='') { ?>
+           <tr>
+              <td style="width:20%">Daya Tenaga</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['daya_tenaga'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['daya_terpasang']) && $equipment['daya_terpasang'] !='') { ?>
+           <tr>
+              <td style="width:20%">Daya Terpasang</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['daya_terpasang'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['sumber_tenaga']) && $equipment['sumber_tenaga'] !='') { ?>
+           <tr>
+              <td style="width:20%">Sumber Tenaga</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['sumber_tenaga'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['jenis_arus']) && $equipment['jenis_arus'] !='') { ?>
+           <tr>
+              <td style="width:20%">Jenis Arus</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['jenis_arus'] ?></td>
+           </tr>
+        <?php } ?>
+
+
         <?php if(isset($equipment['tekanan_design'])) { ?>
            <tr>
               <td style="width:20%">Tekanan Design</td>
@@ -117,6 +161,20 @@
               <td><?= $equipment['bentuk'] ?></td>
            </tr>
         <?php } ?>
+        <?php if(isset($equipment['isi_cairan'])) { ?>
+           <tr>
+              <td style="width:20%">Isi Cairan</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['isi_cairan'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['digunakan_untuk'])) { ?>
+           <tr>
+              <td style="width:20%">Digunakan Untuk</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['digunakan_untuk'] ?></td>
+           </tr>
+        <?php } ?>
         <?php if(isset($equipment['jenis_pemeriksaan'])) { ?>
            <tr>
               <td style="width:20%">Jenis Pemeriksaan</td>
@@ -125,13 +183,6 @@
            </tr>
         <?php } ?>
 
-        <?php if(isset($equipment['digunakan_untuk'])) { ?>
-           <tr>
-              <td style="width:20%">Digunakan Untuk</td>
-              <td style="width:2%">:</td>
-              <td><?= $equipment['digunakan_untuk'] ?></td>
-           </tr>
-        <?php } ?>
 
      
      </tbody>
@@ -204,17 +255,43 @@
         $pengujian_thickness_n = '&#9745;';
      }
 
-     $pengujian_infrared_t = '&#9744;';
-     if(isset($equipment['pengujian_infrared']) && $equipment['pengujian_infrared'] == 1){
-        $pengujian_infrared_t = '&#9745;';
+     $pengujian_grounding_t = '&#9744;';
+     if(isset($equipment['pengujian_grounding']) && $equipment['pengujian_grounding'] == 1){
+        $pengujian_grounding_t = '&#9745;';
      }
-     $pengujian_infrared_f = '&#9744;';
-     if(isset($equipment['pengujian_infrared']) && $equipment['pengujian_infrared'] == 2){
-        $pengujian_infrared_f = '&#9745;';
+     $pengujian_grounding_f = '&#9744;';
+     if(isset($equipment['pengujian_grounding']) && $equipment['pengujian_grounding'] == 2){
+        $pengujian_grounding_f = '&#9745;';
      }
-     $pengujian_infrared_n = '&#9744;';
-     if(isset($equipment['pengujian_infrared']) && $equipment['pengujian_infrared'] == 3){
-        $pengujian_infrared_n = '&#9745;';
+     $pengujian_grounding_n = '&#9744;';
+     if(isset($equipment['pengujian_grounding']) && $equipment['pengujian_grounding'] == 3){
+        $pengujian_grounding_n = '&#9745;';
+     }
+
+     $pengujian_thermal_infrared_t = '&#9744;';
+     if(isset($equipment['pengujian_thermal_infrared']) && $equipment['pengujian_thermal_infrared'] == 1){
+        $pengujian_thermal_infrared_t = '&#9745;';
+     }
+     $pengujian_thermal_infrared_f = '&#9744;';
+     if(isset($equipment['pengujian_thermal_infrared']) && $equipment['pengujian_thermal_infrared'] == 2){
+        $pengujian_thermal_infrared_f = '&#9745;';
+     }
+     $pengujian_thermal_infrared_n = '&#9744;';
+     if(isset($equipment['pengujian_thermal_infrared']) && $equipment['pengujian_thermal_infrared'] == 3){
+        $pengujian_thermal_infrared_n = '&#9745;';
+     }
+
+     $pengujian_kapasitas_hantar_t = '&#9744;';
+     if(isset($equipment['pengujian_kapasitas_hantar']) && $equipment['pengujian_kapasitas_hantar'] == 1){
+        $pengujian_kapasitas_hantar_t = '&#9745;';
+     }
+     $pengujian_kapasitas_hantar_f = '&#9744;';
+     if(isset($equipment['pengujian_kapasitas_hantar']) && $equipment['pengujian_kapasitas_hantar'] == 2){
+        $pengujian_kapasitas_hantar_f = '&#9745;';
+     }
+     $pengujian_kapasitas_hantar_n = '&#9744;';
+     if(isset($equipment['pengujian_kapasitas_hantar']) && $equipment['pengujian_kapasitas_hantar'] == 3){
+        $pengujian_kapasitas_hantar_n = '&#9745;';
      }
 
      $pengujian_operasional_t = '&#9744;';
@@ -232,29 +309,34 @@
   ?>
   <table class="table table-bordered">
      <tbody>
-        <tr class="pemeriksaan_dokumen">
-           <td width="32%">Pemeriksan Dokumen</td>
-           <td width="1%">:</td>
-           <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_dokumen_t ?></span> Lengkap</td>
-           <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_dokumen_f ?></span> Tidak lengkap</td>
-           <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_dokumen_n ?></span> Tidak ada</td>
-        </tr>
-        <tr class="pemeriksaan_visual">
-           <td width="32%">Pemeriksan Visual</td>
-           <td width="1%">:</td>
-           <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_visual_t ?></span> Baik</td>
-           <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_visual_f ?></span> Tidak baik</td>
-           <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_visual_n ?></span> Tidak ada</td>
-        </tr>
-        <tr class="pemeriksaan_pengaman">
-           <td width="32%">Pemeriksan Perlengkapan Pengaman</td>
-           <td width="1%">:</td>
-           <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_pengaman_t ?> </span> Baik</td>
-           <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_pengaman_f ?> </span> Tidak baik</td>
-           <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_pengaman_n ?> </span> Tidak ada</td>
-        </tr>
-
-        <?php if(isset($inspection->equipment_category) && ($inspection->equipment_category == 'paa' || $inspection->equipment_category == 'pubt')){ ?>
+         <?php if(isset($equipment['pemeriksaan_dokumen'])){ ?>
+           <tr class="pemeriksaan_dokumen">
+              <td width="32%">Pemeriksan Dokumen</td>
+              <td width="1%">:</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_dokumen_t ?></span> Lengkap</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_dokumen_f ?></span> Tidak lengkap</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_dokumen_n ?></span> Tidak ada</td>
+           </tr>
+         <?php } ?>
+         <?php if(isset($equipment['pemeriksaan_visual'])){ ?>
+           <tr class="pemeriksaan_visual">
+              <td width="32%">Pemeriksan Visual</td>
+              <td width="1%">:</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_visual_t ?></span> Baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_visual_f ?></span> Tidak baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_visual_n ?></span> Tidak ada</td>
+           </tr>
+         <?php } ?>
+         <?php if(isset($equipment['pemeriksaan_pengaman'])){ ?>
+           <tr class="pemeriksaan_pengaman">
+              <td width="32%">Pemeriksan Perlengkapan Pengaman</td>
+              <td width="1%">:</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_pengaman_t ?> </span> Baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_pengaman_f ?> </span> Tidak baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_pengaman_n ?> </span> Tidak ada</td>
+           </tr>
+         <?php } ?>
+         <?php if(isset($equipment['pengujian_penetrant'])){ ?>
            <tr class="pengujian_penetrant">
               <td width="32%">Pengujian NDT (Penetrant)</td>
               <td width="1%">:</td>
@@ -262,8 +344,8 @@
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_penetrant_f ?> </span> Tidak baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_penetrant_n ?> </span> Tidak ada</td>
            </tr>         
-        <?php } ?>
-        <?php if(isset($inspection->equipment_category) && ($inspection->equipment_category == 'pubt')){ ?>
+         <?php } ?>
+         <?php if(isset($equipment['pengujian_thickness'])){ ?>
            <tr class="pengujian_thickness">
               <td width="32%">Pengujian NDT (thickness)</td>
               <td width="1%">:</td>
@@ -271,26 +353,44 @@
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thickness_f ?> </span> Tidak baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thickness_n ?> </span> Tidak ada</td>
            </tr>         
-        <?php } ?>
-
-        <?php if(isset($inspection->equipment_category) && ($inspection->equipment_category == 'iil')){ ?>
-           <tr class="pengujian_infrared">
+         <?php } ?>
+         <?php if(isset($equipment['pengujian_grounding'])){ ?>
+           <tr class="pengujian_grounding">
+              <td width="32%">Pengujian Grounding</td>
+              <td width="1%">:</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_grounding_t ?> </span> Baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_grounding_f ?> </span> Tidak baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_grounding_n ?> </span> Tidak ada</td>
+           </tr>
+         <?php } ?>
+         <?php if(isset($equipment['pengujian_thermal_infrared'])){ ?>
+           <tr class="pengujian_thermal_infrared">
               <td width="32%">Pengujian Termal Infrared</td>
               <td width="1%">:</td>
-              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_infrared_t ?> </span> Baik</td>
-              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_infrared_f ?> </span> Tidak baik</td>
-              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_infrared_n ?> </span> Tidak ada</td>
-           </tr>         
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thermal_infrared_t ?> </span> Baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thermal_infrared_f ?> </span> Tidak baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thermal_infrared_n ?> </span> Tidak ada</td>
+           </tr>
+         <?php } ?>
+         <?php if(isset($equipment['pengujian_kapasitas_hantar'])){ ?>
+           <tr class="pengujian_kapasitas_hantar">
+              <td width="32%">Pengujian Kapasitas Hantar</td>
+              <td width="1%">:</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_kapasitas_hantar_t ?> </span> Baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_kapasitas_hantar_f ?> </span> Tidak baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_kapasitas_hantar_n ?> </span> Tidak ada</td>
+           </tr>
+         <?php } ?>
+         <?php if(isset($equipment['pengujian_operasional'])){ ?>
+           <tr class="pengujian_operasional">
+              <td width="32%">Pengujian Operasional</td>
+              <td width="1%">:</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_operasional_t ?> </span> Baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_operasional_f ?> </span> Tidak baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_operasional_n ?> </span> Tidak ada</td>
+           </tr>
         <?php } ?>
 
-        <tr class="pengujian_operasional">
-           <td width="32%">Pengujian Operasional</td>
-           <td width="1%">:</td>
-           <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_operasional_t ?> </span> Baik</td>
-           <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_operasional_f ?> </span> Tidak baik</td>
-           <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_operasional_n ?> </span> Tidak ada</td>
-        </tr>
-        
 
      </tbody>
   </table>
