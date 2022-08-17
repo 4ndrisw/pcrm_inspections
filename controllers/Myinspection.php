@@ -461,7 +461,8 @@ class Myinspection extends ClientsController
         $this->load->model($equipment_model);
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
         $inspection->equipment = $equipment[0];
-
+        log_activity($equipment[0]);
+        
         try {
             $pdf = inspection_raw_pdf($inspection);
         } catch (Exception $e) {
