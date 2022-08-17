@@ -457,6 +457,20 @@ function inspection_item_pdf($inspection, $tag = '')
     return app_pdf('inspection',  module_libs_path(INSPECTIONS_MODULE_NAME) . 'pdf/Inspection_item_pdf', $inspection, $tag);
 }
 
+
+/**
+ * Prepare general inspection pdf
+ * @since  Version 1.0.2
+ * @param  object $inspection inspection as object with all necessary fields
+ * @param  string $tag tag for bulk pdf exporter
+ * @return mixed object
+ */
+function inspection_raw_pdf($inspection, $tag = '')
+{
+    return app_pdf('inspection',  module_libs_path(INSPECTIONS_MODULE_NAME) . 'pdf/Inspection_raw_pdf', $inspection, $tag);
+}
+
+
 /**
  * Add new item do database, used for proposals,estimates,credit notes,invoices
  * This is repetitive action, that's why this function exists

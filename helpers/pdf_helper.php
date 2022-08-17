@@ -50,7 +50,7 @@ function pdf_logo_url()
     $logoUrl                   = '';
 
     if ($width == '') {
-        $width = 120;
+        $width = 160;
     }
 
     if ($custom_pdf_logo_image_url != '') {

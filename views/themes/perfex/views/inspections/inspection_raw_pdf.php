@@ -214,42 +214,6 @@ if($jumlah_alarm_lamp){
       </tr>';
 }
 
-$jumlah_kotak_hydrant = isset($inspection->equipment['jumlah_kotak_hydrant']) ? $inspection->equipment['jumlah_kotak_hydrant'] : FALSE;
-if($jumlah_kotak_hydrant){
-    $_tblhtml .= '
-      <tr class="tg-1e15">
-        <td width ="130" class="tg-oe15">' . _l('inspection_jumlah_kotak_hydrant') . '</td>
-        <td width ="10" class="tg-oe16">:</td>
-        <td width ="170" class="tg-oe17">' .$jumlah_kotak_hydrant. '</td>
-      </tr>';
-}
-$jumlah_selang_hydrant = isset($inspection->equipment['jumlah_selang_hydrant']) ? $inspection->equipment['jumlah_selang_hydrant'] : FALSE;
-if($jumlah_selang_hydrant){
-    $_tblhtml .= '
-      <tr class="tg-1e15">
-        <td width ="130" class="tg-oe15">' . _l('inspection_jumlah_selang_hydrant') . '</td>
-        <td width ="10" class="tg-oe16">:</td>
-        <td width ="170" class="tg-oe17">' .$jumlah_selang_hydrant. '</td>
-      </tr>';
-}
-$jumlah_nozzle = isset($inspection->equipment['jumlah_nozzle']) ? $inspection->equipment['jumlah_nozzle'] : FALSE;
-if($jumlah_nozzle){
-    $_tblhtml .= '
-      <tr class="tg-1e15">
-        <td width ="130" class="tg-oe15">' . _l('inspection_jumlah_nozzle') . '</td>
-        <td width ="10" class="tg-oe16">:</td>
-        <td width ="170" class="tg-oe17">' .$jumlah_nozzle. '</td>
-      </tr>';
-}
-$kapasitas_air = isset($inspection->equipment['kapasitas_air']) ? $inspection->equipment['kapasitas_air'] : FALSE;
-if($kapasitas_air){
-    $_tblhtml .= '
-      <tr class="tg-1e15">
-        <td width ="130" class="tg-oe15">' . _l('inspection_kapasitas_air') . '</td>
-        <td width ="10" class="tg-oe16">:</td>
-        <td width ="170" class="tg-oe17">' .$kapasitas_air. '</td>
-      </tr>';
-}
 $tblhtml = <<<EOD
 <style type="text/css">
 .tg-oe14{width:20%; display:inline-block;background-color:#ddd;}
@@ -355,29 +319,6 @@ if(isset($inspection->equipment["pemeriksaan_pengaman"])){
            <td width="20%"><span style="font-size:12.5rem;">'. $pemeriksaan_pengaman_t .'</span>'. $lengkap .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pemeriksaan_pengaman_f .'</span>'. $tidak_lengkap .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pemeriksaan_pengaman_n .'</span>'. $tidak_ada .'</td>
-        </tr>';
-}
-
-$pengujian_beban_t = '&#9744;';
-$pengujian_beban_f = '&#9744;';
-$pengujian_beban_n = '&#9744;';
-if(isset($inspection->equipment["pengujian_beban"])){
-    if($inspection->equipment["pengujian_beban"] == 1){
-        $pengujian_beban_t = "&#9745;";
-    }
-    if($inspection->equipment["pengujian_beban"] == 2){
-        $pengujian_beban_f = "&#9745;";
-    }
-    if($inspection->equipment["pengujian_beban"] == 0){
-        $pengujian_beban_n = "&#9745;";
-    }
-
-    $_tblhtml .= '<tr class="tg pengujian_beban">
-           <td width="36%">'._l('pengujian_beban').'</td>
-           <td width="1%">:</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_beban_t .'</span>'. $lengkap .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_beban_f .'</span>'. $tidak_lengkap .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_beban_n .'</span>'. $tidak_ada .'</td>
         </tr>';
 }
 
@@ -516,75 +457,6 @@ if(isset($inspection->equipment["pengujian_kapasitas_hantar"])){
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_kapasitas_hantar_t .'</span>'. _l('lengkap') .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_kapasitas_hantar_f .'</span>'. _l('tidak_lengkap') .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_kapasitas_hantar_n .'</span>'. _l('tidak_ada') .'</td>
-        </tr>';
-}
-
-$pengujian_pompa_t = '&#9744;';
-$pengujian_pompa_f = '&#9744;';
-$pengujian_pompa_n = '&#9744;';
-if(isset($inspection->equipment["pengujian_pompa"])){
-    if($inspection->equipment["pengujian_pompa"] == 1){
-        $pengujian_pompa_t = "&#9745;";
-    }
-    if($inspection->equipment["pengujian_pompa"] == 2){
-        $pengujian_pompa_f = "&#9745;";
-    }
-    if($inspection->equipment["pengujian_pompa"] == 0){
-        $pengujian_pompa_n = "&#9745;";
-    }
-
-    $_tblhtml .= '<tr class="tg pengujian_pompa">
-           <td width="36%">'. _l('pengujian_pompa').'</td>
-           <td width="1%">:</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_pompa_t .'</span>'. _l('lengkap') .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_pompa_f .'</span>'. _l('tidak_lengkap') .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_pompa_n .'</span>'. _l('tidak_ada') .'</td>
-        </tr>';
-}
-
-$pengujian_tekanan_t = '&#9744;';
-$pengujian_tekanan_f = '&#9744;';
-$pengujian_tekanan_n = '&#9744;';
-if(isset($inspection->equipment["pengujian_tekanan"])){
-    if($inspection->equipment["pengujian_tekanan"] == 1){
-        $pengujian_tekanan_t = "&#9745;";
-    }
-    if($inspection->equipment["pengujian_tekanan"] == 2){
-        $pengujian_tekanan_f = "&#9745;";
-    }
-    if($inspection->equipment["pengujian_tekanan"] == 0){
-        $pengujian_tekanan_n = "&#9745;";
-    }
-
-    $_tblhtml .= '<tr class="tg pengujian_tekanan">
-           <td width="36%">'. _l('pengujian_tekanan').'</td>
-           <td width="1%">:</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_tekanan_t .'</span>'. _l('lengkap') .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_tekanan_f .'</span>'. _l('tidak_lengkap') .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_tekanan_n .'</span>'. _l('tidak_ada') .'</td>
-        </tr>';
-}
-
-$pengujian_daya_pancar_t = '&#9744;';
-$pengujian_daya_pancar_f = '&#9744;';
-$pengujian_daya_pancar_n = '&#9744;';
-if(isset($inspection->equipment["pengujian_daya_pancar"])){
-    if($inspection->equipment["pengujian_daya_pancar"] == 1){
-        $pengujian_daya_pancar_t = "&#9745;";
-    }
-    if($inspection->equipment["pengujian_daya_pancar"] == 2){
-        $pengujian_daya_pancar_f = "&#9745;";
-    }
-    if($inspection->equipment["pengujian_daya_pancar"] == 0){
-        $pengujian_daya_pancar_n = "&#9745;";
-    }
-
-    $_tblhtml .= '<tr class="tg pengujian_daya_pancar">
-           <td width="36%">'. _l('pengujian_daya_pancar').'</td>
-           <td width="1%">:</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_daya_pancar_t .'</span>'. _l('lengkap') .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_daya_pancar_f .'</span>'. _l('tidak_lengkap') .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_daya_pancar_n .'</span>'. _l('tidak_ada') .'</td>
         </tr>';
 }
 

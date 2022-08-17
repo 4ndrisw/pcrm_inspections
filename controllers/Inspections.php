@@ -154,7 +154,8 @@ class Inspections extends AdminController
         
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
         $inspection->equipment_type = $equipment_type;
-            
+        $inspection->tag_id = get_tag_by_name($tags[0])->id;
+
         $equipment_model = $equipment_type .'_model';
         $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
 

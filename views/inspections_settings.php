@@ -107,7 +107,27 @@
       <?php echo render_textarea('settings[predefined_regulation_of_ipk]','regulation_of_ipk',get_option('predefined_regulation_of_ipk'),array('rows'=>3)); ?>
       <?php echo render_textarea('settings[predefined_regulation_of_ptp]','regulation_of_ptp',get_option('predefined_regulation_of_ptp'),array('rows'=>3)); ?>
 
+      <?php 
 
+          $inspections_model = 'inspections_model';
+          $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $inspections_model .'.php';
+
+          include_once($model_path);
+          $this->load->model($inspections_model);
+          
+          $CI = &get_instance();
+
+          $CI->load->model('inspections_model');   
+          $taggables = $CI->inspections_model->get_available_tags();
+
+         if(is_array($taggables)){
+            foreach ($taggables as $tag) {
+               echo render_input('settings[tag_id_'.$tag['tag_id'].']','Category untuk Tag ID '.$tag['tag_id'].' '.$tag['tag_name'] ,get_option('tag_id_'.$tag['tag_id'])); 
+            }
+         }else{
+            echo $taggables;
+         }
+      ?>
    </div>
  <?php hooks()->do_action('after_inspections_tabs_content'); ?>
 </div>

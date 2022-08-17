@@ -96,6 +96,8 @@
                            <?php echo _l('print'); ?>
                            </a>
                         </li>
+                        <li class="hidden-xs"><a href="<?php echo site_url('inspections/bapr/'.$inspection->id .'/template_pdf/'.$inspection->task_id.'?output_type=I'); ?>" target="_blank"><?php echo _l('view_pdf_template_in_new_window'); ?></a></li>
+
                      </ul>
                   </div>
                   <?php
@@ -326,9 +328,9 @@
                      </div>
                   </div>
                   <?php 
-//                  echo '<pre>';
-//                  var_dump($inspection->equipment_type);
-//                  echo '</pre>';
+                  //echo '<pre>';
+                  //var_dump($inspection->tag_id);
+                  //echo '</pre>';
                   ?>
 
 

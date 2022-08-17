@@ -175,6 +175,35 @@
               <td><?= $equipment['digunakan_untuk'] ?></td>
            </tr>
         <?php } ?>
+
+        <?php if(isset($equipment['jumlah_kotak_hydrant'])) { ?>
+           <tr>
+              <td style="width:20%">Jumlah Kotak Hydrant</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['jumlah_kotak_hydrant'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['jumlah_selang_hydrant'])) { ?>
+           <tr>
+              <td style="width:20%">Jumlah Nozzle</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['jumlah_selang_hydrant'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['jumlah_nozzle'])) { ?>
+           <tr>
+              <td style="width:20%">Jenis Pemeriksaan</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['jumlah_nozzle'] ?></td>
+           </tr>
+        <?php } ?>
+        <?php if(isset($equipment['kapasitas_air'])) { ?>
+           <tr>
+              <td style="width:20%">Kapasitas air</td>
+              <td style="width:2%">:</td>
+              <td><?= $equipment['kapasitas_air'] ?></td>
+           </tr>
+        <?php } ?>
         <?php if(isset($equipment['jenis_pemeriksaan'])) { ?>
            <tr>
               <td style="width:20%">Jenis Pemeriksaan</td>
@@ -227,6 +256,19 @@
      $pemeriksaan_pengaman_n = '&#9744;';
      if(isset($equipment['pemeriksaan_pengaman']) && $equipment['pemeriksaan_pengaman'] == 3){
         $pemeriksaan_pengaman_n = '&#9745;';
+     }
+
+     $pengujian_beban_t = '&#9744;';
+     if(isset($equipment['pengujian_beban']) && $equipment['pengujian_beban'] == 1){
+        $pengujian_beban_t = '&#9745;';
+     }
+     $pengujian_beban_f = '&#9744;';
+     if(isset($equipment['pengujian_beban']) && $equipment['pengujian_beban'] == 2){
+        $pengujian_beban_f = '&#9745;';
+     }
+     $pengujian_beban_n = '&#9744;';
+     if(isset($equipment['pengujian_beban']) && $equipment['pengujian_beban'] == 3){
+        $pengujian_beban_n = '&#9745;';
      }
 
      $pengujian_penetrant_t = '&#9744;';
@@ -294,6 +336,46 @@
         $pengujian_kapasitas_hantar_n = '&#9745;';
      }
 
+
+     $pengujian_pompa_t = '&#9744;';
+     if(isset($equipment['pengujian_pompa']) && $equipment['pengujian_pompa'] == 1){
+        $pengujian_pompa_t = '&#9745;';
+     }
+     $pengujian_pompa_f = '&#9744;';
+     if(isset($equipment['pengujian_pompa']) && $equipment['pengujian_pompa'] == 2){
+        $pengujian_pompa_f = '&#9745;';
+     }
+     $pengujian_pompa_n = '&#9744;';
+     if(isset($equipment['pengujian_pompa']) && $equipment['pengujian_pompa'] == 3){
+        $pengujian_pompa_n = '&#9745;';
+     }
+
+     $pengujian_tekanan_t = '&#9744;';
+     if(isset($equipment['pengujian_tekanan']) && $equipment['pengujian_tekanan'] == 1){
+        $pengujian_tekanan_t = '&#9745;';
+     }
+     $pengujian_tekanan_f = '&#9744;';
+     if(isset($equipment['pengujian_tekanan']) && $equipment['pengujian_tekanan'] == 2){
+        $pengujian_tekanan_f = '&#9745;';
+     }
+     $pengujian_tekanan_n = '&#9744;';
+     if(isset($equipment['pengujian_tekanan']) && $equipment['pengujian_tekanan'] == 3){
+        $pengujian_tekanan_n = '&#9745;';
+     }
+
+     $pengujian_daya_pancar_t = '&#9744;';
+     if(isset($equipment['pengujian_daya_pancar']) && $equipment['pengujian_daya_pancar'] == 1){
+        $pengujian_daya_pancar_t = '&#9745;';
+     }
+     $pengujian_daya_pancar_f = '&#9744;';
+     if(isset($equipment['pengujian_daya_pancar']) && $equipment['pengujian_daya_pancar'] == 2){
+        $pengujian_daya_pancar_f = '&#9745;';
+     }
+     $pengujian_daya_pancar_n = '&#9744;';
+     if(isset($equipment['pengujian_daya_pancar']) && $equipment['pengujian_daya_pancar'] == 3){
+        $pengujian_daya_pancar_n = '&#9745;';
+     }
+
      $pengujian_operasional_t = '&#9744;';
      if(isset($equipment['pengujian_operasional']) && $equipment['pengujian_operasional'] == 1){
         $pengujian_operasional_t = '&#9745;';
@@ -334,6 +416,15 @@
               <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_pengaman_t ?> </span> Baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_pengaman_f ?> </span> Tidak baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_pengaman_n ?> </span> Tidak ada</td>
+           </tr>
+         <?php } ?>
+         <?php if(isset($equipment['pengujian_beban'])){ ?>
+           <tr class="pengujian_beban">
+              <td width="32%">Pengujian Beban</td>
+              <td width="1%">:</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_beban_t ?> </span> Baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_beban_f ?> </span> Tidak baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_beban_n ?> </span> Tidak ada</td>
            </tr>
          <?php } ?>
          <?php if(isset($equipment['pengujian_penetrant'])){ ?>
@@ -379,6 +470,33 @@
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_kapasitas_hantar_t ?> </span> Baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_kapasitas_hantar_f ?> </span> Tidak baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_kapasitas_hantar_n ?> </span> Tidak ada</td>
+           </tr>
+         <?php } ?>
+         <?php if(isset($equipment['pengujian_pompa'])){ ?>
+           <tr class="pengujian_pompa">
+              <td width="32%">Pengujian Pompa</td>
+              <td width="1%">:</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_pompa_t ?> </span> Baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_pompa_f ?> </span> Tidak baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_pompa_n ?> </span> Tidak ada</td>
+           </tr>
+         <?php } ?>
+         <?php if(isset($equipment['pengujian_tekanan'])){ ?>
+           <tr class="pengujian_tekanan">
+              <td width="32%">Pengujian Tekanan</td>
+              <td width="1%">:</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_tekanan_t ?> </span> Baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_tekanan_f ?> </span> Tidak baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_tekanan_n ?> </span> Tidak ada</td>
+           </tr>
+         <?php } ?>         
+         <?php if(isset($equipment['pengujian_daya_pancar'])){ ?>
+           <tr class="pengujian_daya_pancar">
+              <td width="32%">Pengujian Daya Pancar</td>
+              <td width="1%">:</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_daya_pancar_t ?> </span> Baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_daya_pancar_f ?> </span> Tidak baik</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_daya_pancar_n ?> </span> Tidak ada</td>
            </tr>
          <?php } ?>
          <?php if(isset($equipment['pengujian_operasional'])){ ?>

@@ -57,9 +57,9 @@ $getYear = getYear($date);
 
 $inspection_result = _l('inspection_result');
 $txt = <<<EOD
-$inspection_declare $getDayName $getDay $getMonth $getYear, $inspection_result
+$inspection_declare $getDayName $getDay $getMonth $getYear, $inspection_result.
 EOD;
-
+$pdf->Ln(2);
 // print a block of text using Write()
 $pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
 
@@ -70,21 +70,17 @@ $pdf->Ln(hooks()->apply_filters('pdf_info_and_table_separator', 2));
 $company = get_inspection_company_by_clientid($inspection->clientid);
 $address = get_inspection_company_address($inspection->id);
 $nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
-$nomor_seri = isset($inspection->equipment['nomor_seri']) ? $inspection->equipment['nomor_seri'] : '';
-$nomor_unit = isset($inspection->equipment['nomor_unit']) ? $inspection->equipment['nomor_unit'] : '';
-$type_model = isset($inspection->equipment['type_model']) ? $inspection->equipment['type_model'] : '';
 
-$kapasitas = isset($inspection->equipment['kapasitas']) ? $inspection->equipment['kapasitas'] : '';
-$satuan_kapasitas = isset($inspection->equipment['satuan_kapasitas']) ? ' ' . $inspection->equipment['satuan_kapasitas'] : '';
-$kapasitas = $kapasitas .' '. $satuan_kapasitas;
 $inspection_company = _l('inspection_company_name');
 $inspection_address = _l('inspection_address');
 $inspection_jenis_pesawat = _l('inspection_jenis_pesawat');
 $inspection_nama_pesawat = _l('inspection_nama_pesawat');
-$inspection_unit_number = _l('inspection_unit_number');
-$inspection_type_model = _l('inspection_type_model');
-$inspection_serial_number = _l('inspection_serial_number');
-$inspection_capacity = _l('inspection_capacity');
+
+$instalatir = _l('inspection_instalatir');
+$inspection_jumlah_mca = _l('inspection_jumlah_mca');
+$inspection_jumlah_smoke_detector = _l('inspection_jumlah_smoke_detector');
+$inspection_jumlah_alarm_bell = _l('inspection_jumlah_alarm_bell');
+$inspection_jumlah_alarm_lamp = _l('inspection_jumlah_alarm_lamp');
 
 $tblhtml = <<<EOD
 <style type="text/css">
@@ -102,24 +98,29 @@ label.field-label{display:inline-block; width:20%;}
     <td width ="250" class="tg-oe17"></td>
   </tr>
   <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_serial_number</td>
+    <td width ="130" class="tg-oe15">$instalatir</td>
     <td width ="10" class="tg-oe16">:</td>
     <td width ="250" class="tg-oe17"></td>
   </tr>
   <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_unit_number</td>
+    <td width ="130" class="tg-oe15">$inspection_jumlah_mca</td>
     <td width ="10" class="tg-oe16">:</td>
     <td width ="250" class="tg-oe17"></td>
   </tr>
   <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_type_model</td>
+    <td width ="130" class="tg-oe15">$inspection_jumlah_smoke_detector</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17">$type_model</td>
+    <td width ="250" class="tg-oe17"></td>
   </tr>
   <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_capacity</td>
+    <td width ="130" class="tg-oe15">$inspection_jumlah_alarm_bell</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17">$kapasitas</td>
+    <td width ="250" class="tg-oe17"></td>
+  </tr>
+  <tr class="tg-1e15">
+    <td width ="130" class="tg-oe15">$inspection_jumlah_alarm_lamp</td>
+    <td width ="10" class="tg-oe16">:</td>
+    <td width ="250" class="tg-oe17"></td>
   </tr>
 </tbody>
 </table>
@@ -146,7 +147,6 @@ $pemeriksaan_dokumen_t = '&#9744;';
 $pemeriksaan_dokumen_f = '&#9744;';
 $pemeriksaan_dokumen_n = '&#9744;';
 
-
 $pemeriksaan_visual_t = '&#9744;';
 $pemeriksaan_visual_f = '&#9744;';
 $pemeriksaan_visual_n = '&#9744;';
@@ -155,9 +155,17 @@ $pemeriksaan_pengaman_t = '&#9744;';
 $pemeriksaan_pengaman_f = '&#9744;';
 $pemeriksaan_pengaman_n = '&#9744;';
 
-$pengujian_penetrant_t = '&#9744;';
-$pengujian_penetrant_f = '&#9744;';
-$pengujian_penetrant_n = '&#9744;';
+$pengujian_pompa_t = '&#9744;';
+$pengujian_pompa_f = '&#9744;';
+$pengujian_pompa_n = '&#9744;';
+
+$pengujian_tekanan_t = '&#9744;';
+$pengujian_tekanan_f = '&#9744;';
+$pengujian_tekanan_n = '&#9744;';
+
+$pengujian_daya_pancar_t = '&#9744;';
+$pengujian_daya_pancar_f = '&#9744;';
+$pengujian_daya_pancar_n = '&#9744;';
 
 $pengujian_operasional_t = '&#9744;';
 $pengujian_operasional_f = '&#9744;';
@@ -166,7 +174,9 @@ $pengujian_operasional_n = '&#9744;';
 $pemeriksaan_dokumen = _l('pemeriksaan_dokumen');
 $pemeriksaan_visual = _l('pemeriksaan_visual');
 $pemeriksaan_pengaman = _l('pemeriksaan_pengaman');
-$pengujian_penetrant = _l('pengujian_penetrant');
+$pengujian_pompa = _l('pengujian_pompa');
+$pengujian_tekanan = _l('pengujian_tekanan');
+$pengujian_daya_pancar = _l('pengujian_daya_pancar');
 $pengujian_operasional = _l('pengujian_operasional');
 
 $lengkap = _l('lengkap');
@@ -207,12 +217,26 @@ table tr{ line-height: 2;}
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_f</span> $tidak_baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_ada</td>
         </tr>
-        <tr class="tg pengujian_penetrant">
-           <td width="36%">$pengujian_penetrant</td>
+        <tr class="tg pengujian_pompa">
+           <td width="36%">$pengujian_pompa</td>
            <td width="1%">:</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_t</span> $baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_n</span> $tidak_ada</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_pompa_t</span> $baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_pompa_f</span> $tidak_baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_pompa_n</span> $tidak_ada</td>
+        </tr>
+        <tr class="tg pengujian_tekanan">
+           <td width="36%">$pengujian_tekanan</td>
+           <td width="1%">:</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_tekanan_t</span> $baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_tekanan_f</span> $tidak_baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_tekanan_n</span> $tidak_ada</td>
+        </tr>
+        <tr class="tg pengujian_daya_pancar">
+           <td width="36%">$pengujian_daya_pancar</td>
+           <td width="1%">:</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_daya_pancar_t</span> $baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_daya_pancar_f</span> $tidak_baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_daya_pancar_n</span> $tidak_ada</td>
         </tr>
         <tr class="tg pengujian_operasional">
            <td width="36%">$pengujian_operasional</td>
@@ -238,7 +262,7 @@ $pdf->setFontSubsetting(true);
 $pdf->SetFont('dejavusans');
 
 $pdf->writeHTML($tblhtml, true, false, false, false, '');
-log_activity($inspection->assigned_path);
+
 $assigned_path = '<br /><br /><br /><br /><br />';
 if($inspection->status != 1){
     $assigned_path = <<<EOF

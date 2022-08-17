@@ -195,14 +195,15 @@ class Myinspection extends ClientsController
         }
         // Handle Inspection PDF generator
 
-        $inspection_number = format_inspection_number($inspection->id);
+        //$inspection_number = format_inspection_number($inspection->id);
+        $inspection_item_number = format_inspection_item_number($id, $task_id);
 
 
-        $data['title'] = $inspection_number;
+        $data['title'] = $inspection_item_number;
         $this->disableNavigation();
         $this->disableSubMenu();
 
-        $data['inspection_number']              = $inspection_number;
+        $data['inspection_number']              = $inspection_item_number;
         $data['hash']                          = $hash;
         $data['can_be_accepted']               = false;
 /*
@@ -212,9 +213,8 @@ class Myinspection extends ClientsController
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
         $inspection->equipment_type = $equipment_type;
 */
-        //$tags = get_tags_in($inspection->id, 'inspection');
-        $tags = get_tags_in($task_id, 'task');
-
+        
+        $tags = get_tags_in($inspection->task_id,'task');
         $data['jenis_pesawat'] = $tags[0];
 
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
@@ -244,7 +244,7 @@ class Myinspection extends ClientsController
         $data['inspection_members']  = $this->inspections_model->get_inspection_members($inspection->id,true);
 
         $qrcode_data  = '';
-        $qrcode_data .= _l('inspection_number') . ' : ' . $inspection_number ."\r\n";
+        $qrcode_data .= _l('inspection_number') . ' : ' . $inspection_item_number ."\r\n";
         $qrcode_data .= _l('inspection_date') . ' : ' . $inspection->date ."\r\n";
         $qrcode_data .= _l('inspection_datesend') . ' : ' . $inspection->datesend ."\r\n";
         $qrcode_data .= _l('inspection_assigned_string') . ' : ' . get_staff_full_name($inspection->assigned) ."\r\n";
@@ -266,11 +266,11 @@ class Myinspection extends ClientsController
         $params['setResizeToWidth'] = 60;
 
         $params['crateLabel'] = false;
-        $params['label'] = $inspection_number;
+        $params['label'] = $inspection_item_number;
         $params['setTextColor'] = ['r'=>255,'g'=>0,'b'=>0];
         $params['ErrorCorrectionLevel'] = 'hight';
 
-        $params['saveToFile'] = FCPATH.'uploads/inspections/'.$inspection_path .'assigned-'.$inspection_number.'.'.$params['writer'];
+        $params['saveToFile'] = FCPATH.'uploads/inspections/'.$inspection_path .'assigned-'.$inspection_item_number.'.'.$params['writer'];
 
         $this->load->library('endroid_qrcode');
         $this->endroid_qrcode->generate($params);
@@ -393,6 +393,77 @@ class Myinspection extends ClientsController
 
         try {
             $pdf = inspection_item_pdf($inspection);
+        } catch (Exception $e) {
+            $message = $e->getMessage();
+            echo $message;
+            if (strpos($message, 'Unable to get the size of the image') !== false) {
+                show_pdf_unable_to_get_image_size_error();
+            }
+            die;
+        }
+
+        $type = 'D';
+
+        if ($this->input->get('output_type')) {
+            $type = $this->input->get('output_type');
+        }
+
+        if ($this->input->get('print')) {
+            $type = 'I';
+        }
+
+        $fileNameHookData = hooks()->apply_filters('inspection_file_name_admin_area', [
+                            'file_name' => mb_strtoupper(slug_it($inspection_item_number)) . '.pdf',
+                            'inspection'  => $inspection,
+                        ]);
+
+        $pdf->Output($fileNameHookData['file_name'], $type);
+    }
+
+    public function raw_pdf($id, $task_id)
+    {
+        $canView = user_can_view_inspection($id);
+        if (!$canView) {
+            access_denied('Inspections');
+        } else {
+            if (!has_permission('inspections', '', 'view') && !has_permission('inspections', '', 'view_own') && $canView == false) {
+                access_denied('Inspections');
+            }
+        }
+        if (!$id) {
+            redirect(admin_url('inspections'));
+        }
+        $inspection        = $this->inspections_model->get($id);
+        $inspection_item_number = format_inspection_item_number($id, $task_id);
+
+        $inspection->task_id = $task_id;
+        $task = $this->tasks_model->get($task_id);
+
+        $inspection->assigned_path = FCPATH . get_inspection_upload_path('inspection').$inspection->id.'/assigned-'.$inspection_item_number.'.png';
+        $inspection->acceptance_path = FCPATH . get_inspection_upload_path('inspection').$inspection->id .'/'.$inspection->signature;
+        
+        $inspection->client_company = $this->clients_model->get($inspection->clientid)->company;
+        $inspection->acceptance_date_string = _dt($inspection->acceptance_date);
+
+        $tags = get_tags_in($task_id, 'task');
+
+        $data['jenis_pesawat'] = $tags[0];
+        $inspection->tag = $tags[0];
+
+        $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
+        $inspection->equipment_type = $equipment_type;
+        $inspection->tag_id = get_tag_by_name($tags[0])->id;
+       
+        $equipment_model = $equipment_type .'_model';
+        $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
+        
+        include_once($model_path);
+        $this->load->model($equipment_model);
+        $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
+        $inspection->equipment = $equipment[0];
+
+        try {
+            $pdf = inspection_raw_pdf($inspection);
         } catch (Exception $e) {
             $message = $e->getMessage();
             echo $message;

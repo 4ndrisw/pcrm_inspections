@@ -67,7 +67,12 @@ $lang['inspection_nomor_unit']                             = 'Unit Number';
 $lang['inspection_type_model']                             = 'Type/Model';
 $lang['inspection_kapasitas']                             = 'Capacity';
 
+$lang['inspection_instalatir']                             = 'Instalatir';
 
+$lang['inspection_jumlah_kotak_hydrant']                             = 'Hydrant Boxes';
+$lang['inspection_jumlah_selang_hydrant']                             = 'Hydrant Hoses';
+$lang['inspection_jumlah_nozzle']                             = 'Nozzle';
+$lang['inspection_kapasitas_air']                             = 'Water Capacity';
 
 $lang['inspection_daya_terpasang']                             = 'Installed Power';
 $lang['inspection_sumber_tenaga']                             = 'Energy Source';
@@ -75,12 +80,11 @@ $lang['inspection_jenis_arus']                             = 'Current Type';
 $lang['inspection_instalatir']                             = 'Instalatir';
 $lang['inspection_jumlah_mca']                             = 'Tumlah MCA';
 
-
-
 $lang['inspection_jumlah_mca']                             = 'MCA';
 $lang['inspection_jumlah_smoke_detector']                             = 'Smoke Detector';
 $lang['inspection_jumlah_alarm_bell']                             = 'Alarm Bell';
 $lang['inspection_jumlah_alarm_lamp']                             = 'Alarm Lamp';
+$lang['view_pdf_template_in_new_window']                             = 'PDF Template';
 
 $lang['inspection_select_customer']                 = 'Customer';
 $lang['inspection_add_edit_number']                 = 'Inspection Number';
@@ -162,12 +166,19 @@ $lang['pemeriksaan_visual']                             = 'Visual inspection';
 $lang['pemeriksaan_pengaman']                             = 'Safety device inspection';
 $lang['pengujian_penetrant']                             = 'Penetrant testing';
 $lang['pengujian_thickness']                             = 'Ultrasonographic testing';
+$lang['pengujian_beban']                             = 'Load testing';
 $lang['pengujian_operasional']                             = 'Operation testing';
 $lang['pengujian_thickness']                             = 'Thickness testing';
 $lang['pengujian_hydrotest']                             = 'Hydrotest testing';
 $lang['pengujian_grounding']                             = 'Grounding testing';
 $lang['pengujian_thermal_infrared']                             = 'Thermal infrafed testing';
 $lang['pengujian_kapasitas_hantar']                             = 'Current Conducting Capacity Testing';
+
+$lang['pengujian_pompa']                             = 'Pump Testing';
+$lang['pengujian_tekanan']                             = 'Preassure Testing';
+$lang['pengujian_daya_pancar']                             = 'Transmittance Testing';
+
+
 $lang['equipment_regulasi']                             = 'Regulation';
 
 

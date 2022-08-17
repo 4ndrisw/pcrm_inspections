@@ -155,19 +155,14 @@ $pemeriksaan_pengaman_t = '&#9744;';
 $pemeriksaan_pengaman_f = '&#9744;';
 $pemeriksaan_pengaman_n = '&#9744;';
 
-$pengujian_penetrant_t = '&#9744;';
-$pengujian_penetrant_f = '&#9744;';
-$pengujian_penetrant_n = '&#9744;';
-
-$pengujian_operasional_t = '&#9744;';
-$pengujian_operasional_f = '&#9744;';
-$pengujian_operasional_n = '&#9744;';
+$pengujian_grounding_t = '&#9744;';
+$pengujian_grounding_f = '&#9744;';
+$pengujian_grounding_n = '&#9744;';
 
 $pemeriksaan_dokumen = _l('pemeriksaan_dokumen');
 $pemeriksaan_visual = _l('pemeriksaan_visual');
 $pemeriksaan_pengaman = _l('pemeriksaan_pengaman');
-$pengujian_penetrant = _l('pengujian_penetrant');
-$pengujian_operasional = _l('pengujian_operasional');
+$pengujian_grounding = _l('pengujian_grounding');
 
 $lengkap = _l('lengkap');
 $tidak_lengkap = _l('tidak_lengkap');
@@ -207,19 +202,12 @@ table tr{ line-height: 2;}
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_f</span> $tidak_baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_ada</td>
         </tr>
-        <tr class="tg pengujian_penetrant">
-           <td width="36%">$pengujian_penetrant</td>
+        <tr class="tg pengujian_grounding">
+           <td width="36%">$pengujian_grounding</td>
            <td width="1%">:</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_t</span> $baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_n</span> $tidak_ada</td>
-        </tr>
-        <tr class="tg pengujian_operasional">
-           <td width="36%">$pengujian_operasional</td>
-           <td width="1%">:</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_t</span> $baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_n</span> $tidak_ada</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_grounding_t</span> $baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_grounding_f</span> $tidak_baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_grounding_n</span> $tidak_ada</td>
         </tr>
         <tr class="tg">
            <td width="36%"></td>

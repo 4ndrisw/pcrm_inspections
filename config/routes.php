@@ -15,3 +15,4 @@ $route['inspections/sticker/pdf/(:num)'] = 'myinspection/sticker_data/$1';
 
 $route['inspections/bapr/(:num)/html/(:num)/(:any)'] = 'myinspection/bapr/$1/$2/$3';
 $route['inspections/bapr/(:num)/pdf/(:num)'] = 'myinspection/item_pdf/$1/$2';
+$route['inspections/bapr/(:num)/template_pdf/(:num)'] = 'myinspection/raw_pdf/$1/$2';
