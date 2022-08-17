@@ -69,14 +69,7 @@ $pdf->Ln(hooks()->apply_filters('pdf_info_and_table_separator', 2));
 
 $company = get_inspection_company_by_clientid($inspection->clientid);
 $address = get_inspection_company_address($inspection->id);
-$nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
-$nomor_seri = isset($inspection->equipment['nomor_seri']) ? $inspection->equipment['nomor_seri'] : '';
-$nomor_unit = isset($inspection->equipment['nomor_unit']) ? $inspection->equipment['nomor_unit'] : '';
-$type_model = isset($inspection->equipment['type_model']) ? $inspection->equipment['type_model'] : '';
 
-$kapasitas = isset($inspection->equipment['kapasitas']) ? $inspection->equipment['kapasitas'] : '';
-$satuan_kapasitas = isset($inspection->equipment['satuan_kapasitas']) ? ' ' . $inspection->equipment['satuan_kapasitas'] : '';
-$kapasitas = $kapasitas .' '. $satuan_kapasitas;
 $inspection_company = _l('inspection_company_name');
 $inspection_address = _l('inspection_address');
 $inspection_jenis_pesawat = _l('inspection_jenis_pesawat');
@@ -114,12 +107,12 @@ label.field-label{display:inline-block; width:20%;}
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_type_model</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17">$type_model</td>
+    <td width ="250" class="tg-oe17"></td>
   </tr>
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_capacity</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17">$kapasitas</td>
+    <td width ="250" class="tg-oe17"></td>
   </tr>
 </tbody>
 </table>

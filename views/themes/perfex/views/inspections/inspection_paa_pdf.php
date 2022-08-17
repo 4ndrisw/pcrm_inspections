@@ -60,6 +60,8 @@ $txt = <<<EOD
 $inspection_declare $getDayName $getDay $getMonth $getYear, $inspection_result
 EOD;
 
+$pdf->ln(2);
+
 // print a block of text using Write()
 $pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
 
@@ -69,14 +71,8 @@ $pdf->Ln(hooks()->apply_filters('pdf_info_and_table_separator', 2));
 
 $company = get_inspection_company_by_clientid($inspection->clientid);
 $address = get_inspection_company_address($inspection->id);
-$nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
-$nomor_seri = isset($inspection->equipment['nomor_seri']) ? $inspection->equipment['nomor_seri'] : '';
-$nomor_unit = isset($inspection->equipment['nomor_unit']) ? $inspection->equipment['nomor_unit'] : '';
-$type_model = isset($inspection->equipment['type_model']) ? $inspection->equipment['type_model'] : '';
 
-$kapasitas = isset($inspection->equipment['kapasitas']) ? $inspection->equipment['kapasitas'] : '';
-$satuan_kapasitas = isset($inspection->equipment['satuan_kapasitas']) ? ' ' . $inspection->equipment['satuan_kapasitas'] : '';
-$kapasitas = $kapasitas .' '. $satuan_kapasitas;
+
 $inspection_company = _l('inspection_company_name');
 $inspection_address = _l('inspection_address');
 $inspection_jenis_pesawat = _l('inspection_jenis_pesawat');
@@ -114,12 +110,12 @@ label.field-label{display:inline-block; width:20%;}
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_type_model</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17">$type_model</td>
+    <td width ="250" class="tg-oe17"></td>
   </tr>
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_capacity</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17">$kapasitas</td>
+    <td width ="250" class="tg-oe17"></td>
   </tr>
 </tbody>
 </table>
@@ -159,6 +155,10 @@ $pengujian_penetrant_t = '&#9744;';
 $pengujian_penetrant_f = '&#9744;';
 $pengujian_penetrant_n = '&#9744;';
 
+$pengujian_beban_t = '&#9744;';
+$pengujian_beban_f = '&#9744;';
+$pengujian_beban_n = '&#9744;';
+
 $pengujian_operasional_t = '&#9744;';
 $pengujian_operasional_f = '&#9744;';
 $pengujian_operasional_n = '&#9744;';
@@ -167,6 +167,7 @@ $pemeriksaan_dokumen = _l('pemeriksaan_dokumen');
 $pemeriksaan_visual = _l('pemeriksaan_visual');
 $pemeriksaan_pengaman = _l('pemeriksaan_pengaman');
 $pengujian_penetrant = _l('pengujian_penetrant');
+$pengujian_beban = _l('pengujian_beban');
 $pengujian_operasional = _l('pengujian_operasional');
 
 $lengkap = _l('lengkap');
@@ -206,6 +207,13 @@ table tr{ line-height: 2;}
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_f</span> $tidak_baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_ada</td>
+        </tr>
+        <tr class="tg pengujian_beban">
+           <td width="36%">$pengujian_beban</td>
+           <td width="1%">:</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_beban_t</span> $baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_beban_f</span> $tidak_baik</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_beban_n</span> $tidak_ada</td>
         </tr>
         <tr class="tg pengujian_penetrant">
            <td width="36%">$pengujian_penetrant</td>
