@@ -360,9 +360,7 @@ class Myinspection extends ClientsController
                 access_denied('Inspections');
             }
         }
-        if (!$id) {
-            redirect(admin_url('inspections'));
-        }
+
         $inspection        = $this->inspections_model->get($id);
         $inspection_item_number = format_inspection_item_number($id, $task_id);
 
@@ -389,6 +387,13 @@ class Myinspection extends ClientsController
         include_once($model_path);
         $this->load->model($equipment_model);
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
+        
+        if (!$equipment) {
+            set_alert('danger', _l('record not found ;', $equipment_model));
+            log_activity('Record '. $equipment . ' id ' . ' task_id ' . $task_id);
+            redirect(admin_url('inspections/inspection_item/'.$id.'/'.$task_id));
+        }
+
         $inspection->equipment = $equipment[0];
 
         try {
@@ -460,8 +465,14 @@ class Myinspection extends ClientsController
         include_once($model_path);
         $this->load->model($equipment_model);
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
+        
+        if (!$equipment) {
+            set_alert('danger', _l('record not found ;', $equipment_model));
+            log_activity('Record '. $equipment . ' id ' . ' task_id ' . $task_id);
+            redirect(admin_url('inspections/inspection_item/'.$id.'/'.$task_id));
+        }
+        
         $inspection->equipment = $equipment[0];
-        log_activity(json_encode($equipment));
 
         try {
             $pdf = inspection_raw_pdf($inspection);

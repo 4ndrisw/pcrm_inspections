@@ -159,6 +159,12 @@ class Inspections extends AdminController
         $equipment_model = $equipment_type .'_model';
         $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
 
+        if (!file_exists($model_path)) {
+            set_alert('danger', _l('file_not_found ;', $equipment_model));
+            log_activity('File '. $equipment_model . 'not_found');
+            redirect(admin_url('inspections/inspection/'.$id));
+        }
+        
         include_once($model_path);
         $this->load->model($equipment_model);
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id, 'task_id' =>$task_id]);
