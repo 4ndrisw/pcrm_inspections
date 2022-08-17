@@ -161,7 +161,7 @@ class Inspections extends AdminController
 
         if (!file_exists($model_path)) {
             set_alert('danger', _l('file_not_found ;', $equipment_model));
-            log_activity('File '. $equipment_model . 'not_found');
+            log_activity('File '. $equipment_model . ' not_found');
             redirect(admin_url('inspections/inspection/'.$id));
         }
         
