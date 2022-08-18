@@ -20,6 +20,7 @@
     </div>
 	</div>
 </div>
+
 <?php init_tail(); ?>
 <script type="text/javascript" id="licence-js" src="<?= base_url() ?>modules/inspections/assets/js/inspections.js?"></script>
 
@@ -130,6 +131,25 @@ Editable(".editableText", {
 
   }
 });
+
+
+   inspectionDocumentationDropzone = new Dropzone("#inspection-documentation", appCreateDropzoneOptions({
+      uploadMultiple: true,
+      parallelUploads: 20,
+      maxFiles: 20,
+      paramName: 'file',
+      sending: function (file, xhr, formData) {
+         formData.append("taskid", '<?php echo $inspection->task_id; ?>');
+      },
+      success: function (files, response) {
+         response = JSON.parse(response);
+         if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+            _task_append_html(response.taskHtml);
+                this.removeAllFiles();
+         }
+      }
+   }));
+
 </script>
 </body>
 </html>

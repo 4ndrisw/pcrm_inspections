@@ -29,6 +29,9 @@
                <li role="presentation">
                   <a href="#inspection_conclusion" aria-controls="inspection_conclusion" role="tab" data-toggle="tab"><?php echo _l('inspection_conclusion'); ?></a>
                </li>
+               <li role="presentation">
+                  <a href="#inspection_documentation" aria-controls="inspection_documentation" role="tab" data-toggle="tab"><?php echo _l('inspection_documentation'); ?></a>
+               </li>
             </ul>
          </div>
       </div>
@@ -390,4 +393,21 @@
 
             </div>
          </div>
+         <div role="tabpanel" class="tab-pane" id="inspection_documentation">
+            <h4 class="bold">
+               <?php echo _l('inspection_documentation'); ?>
+            </h4>
+            <p class="text-muted">
+               <p><?php echo _l('inspection_documentation'); ?></p>
+            </p>
+            <hr />
+            <div class="row">
+               <?php echo form_open_multipart('inspections/inspection_item/'. $inspection->id.'/'. $inspection->task_id.'/upload_file',array('id'=>'inspection-documentation','class'=>'dropzone')); ?>
+               <?php echo form_close(); ?>
+
+
+
+            </div>
+         </div>
+
       </div>
