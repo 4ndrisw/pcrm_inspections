@@ -89,8 +89,7 @@ $nomor_seri = isset($inspection->equipment['nomor_seri']) ? $inspection->equipme
 $nomor_unit = isset($inspection->equipment['nomor_unit']) ? $inspection->equipment['nomor_unit'] : '';
 $nomor_seri = $nomor_seri . ' / ' . $nomor_unit;
 $kapasitas = isset($inspection->equipment['kapasitas']) ? $inspection->equipment['kapasitas'] : '';
-$satuan_kapasitas = isset($inspection->equipment['satuan_kapasitas']) ? $inspection->equipment['satuan_kapasitas'] : '';
-$kapasitas = $kapasitas .' / ' . $satuan_kapasitas;
+
 $inspection_company = _l('inspection_company_name');
 $inspection_address = _l('inspection_address');
 $inspection_jenis_pesawat = _l('inspection_jenis_pesawat');

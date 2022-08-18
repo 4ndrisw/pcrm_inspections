@@ -61,6 +61,7 @@ $lang['inspection_nama_pesawat']                             = 'Equipment';
 $lang['inspection_equipment_category']                             = 'Category';
 $lang['inspection_type_model']                             = 'Type/model';
 
+$lang['inspection_tempat_pembuatan']                             = 'Place of Manufacture';
 $lang['inspection_pabrik_pembuat']                             = 'Manufacturer';
 $lang['inspection_nomor_seri']                             = 'Serial Number';
 $lang['inspection_nomor_unit']                             = 'Unit Number';
@@ -188,6 +189,7 @@ $lang['tidak_lengkap']                             = 'Not complete';
 $lang['tidak_ada']                             = 'Not available';
 $lang['baik']                             = 'Good';
 $lang['tidak_baik']                             = 'Not good';
+$lang['tidak_dilaksanakan']                             = 'Not Executed';
 $lang['inspection_declare']                             = 'Hereby declare that inspection and testing have been carried out on the date';
 $lang['inspection_result'] 	='with the following results';
 

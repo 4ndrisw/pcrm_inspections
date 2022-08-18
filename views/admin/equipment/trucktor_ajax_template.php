@@ -225,6 +225,32 @@
                               </div>
                            </div>
 
+                           <div class="row vertical-align-middle pengujian_beban text-center">
+                              <div class="col-xs-12 col-sm-3">
+                                 <label class="btn-secondary"><?= _l('pengujian_beban') ?> </label>
+                                 <?php $equipment_pengujian_beban = isset($equipment_pengujian_beban) ? $equipment_pengujian_beban : ''; ?>
+                                 <?= $equipment_pengujian_beban ?>
+                              </div>
+                              <div class="col-sm-1  no-padding hidden-xs text-center">
+                                 :
+                              </div>
+                              <div class="col-xs-12 col-sm-8">
+                                 <div class="row">
+                                    <div class="col-xs-12 col-sm-4 no-padding">
+                                       <input type="radio" class="btn-check" id="pengujian_beban_t" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_beban', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_beban]" value="1" <?php if(isset($equipment['pengujian_beban']) && $equipment['pengujian_beban'] == 1){echo 'checked';}; ?>>
+                                       <label class="btn btn-secondary" for="pengujian_beban_t"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="<?php echo _l('baik'); ?>" ></i> <?php echo _l('baik'); ?></label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4 no-padding">
+                                       <input type="radio" class="btn-check" id="pengujian_beban_f" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_beban', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_beban]" value="2" <?php if(isset($equipment['pengujian_beban']) && $equipment['pengujian_beban'] == 2){echo 'checked';}; ?>>
+                                       <label class="btn btn-secondary" for="pengujian_beban_f"><?php echo _l('tidak_baik'); ?></label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4 no-padding">
+                                       <input type="radio" class="btn-check" id="pengujian_beban_n" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_beban', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_beban]" value="0" <?php if(isset($equipment['pengujian_beban']) && $equipment['pengujian_beban'] == 0){echo 'checked';}; ?>>
+                                       <label class="btn btn-secondary" for="pengujian_beban_n"><?php echo _l('tidak_ada'); ?></label>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
                            <div class="row vertical-align-middle pengujian_operasional text-center">
                               <div class="col-xs-12 col-sm-3">
                                  <label class="btn-secondary"><?= _l('pengujian_operasional') ?> </label>

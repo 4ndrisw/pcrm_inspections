@@ -23,6 +23,7 @@ if (!$CI->db->table_exists(db_prefix() . 'lift_barang')) {
       `pemeriksaan_visual` tinyint(1) DEFAULT NULL,
       `pemeriksaan_pengaman` tinyint(1) DEFAULT NULL,
       `pengujian_penetrant` tinyint(1) DEFAULT NULL,
+      `pengujian_beban` tinyint(1) DEFAULT NULL,
       `pengujian_operasional` tinyint(1) DEFAULT NULL,
       `kesimpulan` text DEFAULT NULL,
       `temuan` text DEFAULT NULL,

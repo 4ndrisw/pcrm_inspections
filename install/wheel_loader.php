@@ -12,6 +12,7 @@ if (!$CI->db->table_exists(db_prefix() . 'wheel_loader')) {
       `jenis_pesawat` varchar(30) NOT NULL,
       `nama_pesawat` varchar(50) DEFAULT NULL,
       `pabrik_pembuat` varchar(50) DEFAULT NULL,
+      `tempat_pembuatan` varchar(30) DEFAULT NULL,
       `tahun_pembuatan` smallint(4) DEFAULT NULL,
       `merk` varchar(30) DEFAULT NULL,
       `nomor_seri` varchar(20) DEFAULT NULL,

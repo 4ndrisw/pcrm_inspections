@@ -69,7 +69,6 @@ $pdf->Ln(hooks()->apply_filters('pdf_info_and_table_separator', 2));
 
 $company = get_inspection_company_by_clientid($inspection->clientid);
 $address = get_inspection_company_address($inspection->id);
-$nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
 
 $inspection_company = _l('inspection_company_name');
 $inspection_address = _l('inspection_address');
