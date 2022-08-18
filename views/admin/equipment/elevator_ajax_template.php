@@ -72,6 +72,11 @@
                                 <td class="<?= $editable_class ?>" data-field="pabrik_pembuat" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['pabrik_pembuat']) ? $equipment['pabrik_pembuat'] : '' ?></td>      
                              </tr>
                              <tr>
+                                <td style="width:20%">Tempat Pembuatan</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editable_class ?>" data-field="tempat_pembuatan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['tempat_pembuatan']) ? $equipment['tempat_pembuatan'] : '' ?></td>      
+                             </tr>
+                             <tr>
                                 <td style="width:20%">Tahun Pembuatan</td>
                                 <td style="width:2%">:</td>
                                 <td id="tahun_pembuatan" class="<?= $editable_class ?>" data-field="tahun_pembuatan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['tahun_pembuatan']) ? $equipment['tahun_pembuatan'] : '' ?></td>      
