@@ -18,7 +18,7 @@
                   <a href="#inspection_operation_test" aria-controls="inspection_operation_test" role="tab" data-toggle="tab"><?php echo _l('inspection_operation_test'); ?></a>
                </li>
                <li role="presentation">
-                  <a href="#inspection_penetrant_test" aria-controls="inspection_penetrant_test" role="tab" data-toggle="tab"><?php echo _l('inspection_penetrant_test'); ?></a>
+                  <a href="#inspection_grounding_test" aria-controls="inspection_grounding_test" role="tab" data-toggle="tab"><?php echo _l('inspection_grounding_test'); ?></a>
                </li>
                <li role="presentation">
                   <a href="#inspection_safety_test" aria-controls="inspection_safety_test" role="tab" data-toggle="tab"><?php echo _l('inspection_safety_test'); ?></a>
@@ -197,11 +197,11 @@
                               </div>
                            </div>
 
-                           <div class="row vertical-align-middle pengujian_penetrant text-center">
+                           <div class="row vertical-align-middle pengujian_grounding text-center">
                               <div class="col-xs-12 col-sm-3">
-                                 <label class="btn-secondary"><?= _l('pengujian_penetrant') ?> </label>
-                                 <?php $equipment_pengujian_penetrant = isset($equipment_pengujian_penetrant) ? $equipment_pengujian_penetrant : ''; ?>
-                                 <?= $equipment_pengujian_penetrant ?>
+                                 <label class="btn-secondary"><?= _l('pengujian_grounding') ?> </label>
+                                 <?php $equipment_pengujian_grounding = isset($equipment_pengujian_grounding) ? $equipment_pengujian_grounding : ''; ?>
+                                 <?= $equipment_pengujian_grounding ?>
                               </div>
                               <div class="col-sm-1  no-padding hidden-xs text-center">
                                  :
@@ -209,16 +209,16 @@
                               <div class="col-xs-12 col-sm-8">
                                  <div class="row">
                                     <div class="col-xs-12 col-sm-4 no-padding">
-                                       <input type="radio" class="btn-check" id="pengujian_penetrant_t" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_penetrant', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_penetrant]" value="1" <?php if(isset($equipment['pengujian_penetrant']) && $equipment['pengujian_penetrant'] == 1){echo 'checked';}; ?>>
-                                       <label class="btn btn-secondary" for="pengujian_penetrant_t"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="<?php echo _l('baik'); ?>" ></i> <?php echo _l('baik'); ?></label>
+                                       <input type="radio" class="btn-check" id="pengujian_grounding_t" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_grounding', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_grounding]" value="1" <?php if(isset($equipment['pengujian_grounding']) && $equipment['pengujian_grounding'] == 1){echo 'checked';}; ?>>
+                                       <label class="btn btn-secondary" for="pengujian_grounding_t"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="<?php echo _l('baik'); ?>" ></i> <?php echo _l('baik'); ?></label>
                                     </div>
                                     <div class="col-xs-12 col-sm-4 no-padding">
-                                       <input type="radio" class="btn-check" id="pengujian_penetrant_f" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_penetrant', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_penetrant]" value="2" <?php if(isset($equipment['pengujian_penetrant']) && $equipment['pengujian_penetrant'] == 2){echo 'checked';}; ?>>
-                                       <label class="btn btn-secondary" for="pengujian_penetrant_f"><?php echo _l('tidak_baik'); ?></label>
+                                       <input type="radio" class="btn-check" id="pengujian_grounding_f" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_grounding', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_grounding]" value="2" <?php if(isset($equipment['pengujian_grounding']) && $equipment['pengujian_grounding'] == 2){echo 'checked';}; ?>>
+                                       <label class="btn btn-secondary" for="pengujian_grounding_f"><?php echo _l('tidak_baik'); ?></label>
                                     </div>
                                     <div class="col-xs-12 col-sm-4 no-padding">
-                                       <input type="radio" class="btn-check" id="pengujian_penetrant_n" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_penetrant', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_penetrant]" value="0" <?php if(isset($equipment['pengujian_penetrant']) && $equipment['pengujian_penetrant'] == 0){echo 'checked';}; ?>>
-                                       <label class="btn btn-secondary" for="pengujian_penetrant_n"><?php echo _l('tidak_ada'); ?></label>
+                                       <input type="radio" class="btn-check" id="pengujian_grounding_n" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_grounding', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_grounding]" value="0" <?php if(isset($equipment['pengujian_grounding']) && $equipment['pengujian_grounding'] == 0){echo 'checked';}; ?>>
+                                       <label class="btn btn-secondary" for="pengujian_grounding_n"><?php echo _l('tidak_ada'); ?></label>
                                     </div>
                                  </div>
                               </div>
@@ -318,12 +318,12 @@
 
             </div>
          </div>
-         <div role="tabpanel" class="tab-pane" id="inspection_penetrant_test">
+         <div role="tabpanel" class="tab-pane" id="inspection_grounding_test">
             <h4 class="bold">
-               <?php echo _l('inspection_penetrant_test'); ?>
+               <?php echo _l('inspection_grounding_test'); ?>
             </h4>
             <p class="text-muted">
-               <p><?php echo _l('inspection_penetrant_test'); ?></p>
+               <p><?php echo _l('inspection_grounding_test'); ?></p>
             </p>
             <hr />
             <div class="row">
