@@ -104,6 +104,11 @@
                                 <td class="<?= $editableText_class ?>" data-field="penerima" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['penerima']) ? $equipment['penerima'] : '' ?></td>
                              </tr>
                              <tr>
+                                <td style="width:20%">Tinggi Tiang Penerima</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editableText_class ?>" data-field="tinggi_tiang_penerima" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['tinggi_tiang_penerima']) ? $equipment['tinggi_tiang_penerima'] : '' ?></td>
+                             </tr>
+                             <tr>
                                 <td style="width:20%">Penghantar</td>
                                 <td style="width:2%">:</td>
                                 <td class="<?= $editableText_class ?>" data-field="penghantar" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['penghantar']) ? $equipment['penghantar'] : '' ?></td>
