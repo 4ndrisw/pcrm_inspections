@@ -104,6 +104,16 @@
                                 <td class="<?= $editableText_class ?>" data-field="penerima" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['penerima']) ? $equipment['penerima'] : '' ?></td>
                              </tr>
                              <tr>
+                                <td style="width:20%">Pembumian</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editableText_class ?>" data-field="pembumian" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['pembumian']) ? $equipment['pembumian'] : '' ?></td>
+                             </tr>
+                             <tr>
+                                <td style="width:20%">Box Control</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editableText_class ?>" data-field="box_control" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['box_control']) ? $equipment['box_control'] : '' ?></td>
+                             </tr>
+                             <tr>
                                 <td style="width:20%">Tinggi Tiang Penerima</td>
                                 <td style="width:2%">:</td>
                                 <td class="<?= $editableText_class ?>" data-field="tinggi_tiang_penerima" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['tinggi_tiang_penerima']) ? $equipment['tinggi_tiang_penerima'] : '' ?></td>
