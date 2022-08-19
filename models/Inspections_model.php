@@ -1641,5 +1641,97 @@ class Inspections_model extends App_Model
 
     }
 
+    public function add_files_to_database($rel_id, $task_id, $attachment, $external = false)
+    {
+        $data['dateadded'] = date('Y-m-d H:i:s');
+        $data['rel_id']    = $rel_id;
+        $data['task_id']    = $task_id;
+        if (!isset($attachment[0]['staffid'])) {
+            $data['staffid'] = get_staff_user_id();
+        } else {
+            $data['staffid'] = $attachment[0]['staffid'];
+        }
 
+        if (isset($attachment[0]['task_comment_id'])) {
+            $data['task_comment_id'] = $attachment[0]['task_comment_id'];
+        }
+
+        //$data['rel_type'] = $rel_type;
+
+        if (isset($attachment[0]['contact_id'])) {
+            $data['contact_id']          = $attachment[0]['contact_id'];
+            $data['visible_to_customer'] = 1;
+            if (isset($data['staffid'])) {
+                unset($data['staffid']);
+            }
+        }
+
+        $data['attachment_key'] = app_generate_hash();
+
+        if ($external == false) {
+            $data['file_name'] = $attachment[0]['file_name'];
+            $data['filetype']  = $attachment[0]['filetype'];
+        } else {
+            $path_parts            = pathinfo($attachment[0]['name']);
+            $data['file_name']     = $attachment[0]['name'];
+            $data['external_link'] = $attachment[0]['link'];
+            $data['filetype']      = !isset($attachment[0]['mime']) ? get_mime_by_extension('.' . $path_parts['extension']) : $attachment[0]['mime'];
+            $data['external']      = $external;
+            if (isset($attachment[0]['thumbnailLink'])) {
+                $data['thumbnail_link'] = $attachment[0]['thumbnailLink'];
+            }
+        }
+
+        $this->db->insert(db_prefix() . 'inspection_files', $data);
+        $insert_id = $this->db->insert_id();
+
+        return $insert_id;
+    }
+
+
+    /**
+     * Add uploaded attachments to database
+     * @since  Version 1.0.1
+     * @param mixed $taskid     task id
+     * @param array $attachment attachment data
+     */
+    public function add_attachment_to_database($rel_id, $task_id, $attachment, $external = false, $notification = true)
+    {
+        $file_id = $this->add_files_to_database($rel_id, $task_id, $attachment, $external);
+        if ($file_id) {
+            /*
+            $this->db->select('rel_type,rel_id,name,visible_to_client');
+            $this->db->where('id', $rel_id);
+            $task = $this->db->get(db_prefix() . 'tasks')->row();
+
+            if ($task->rel_type == 'project') {
+                $this->projects_model->log_activity($task->rel_id, 'project_activity_new_task_attachment', $task->name, $task->visible_to_client);
+            }
+
+            if ($notification == true) {
+                $description = 'not_task_new_attachment';
+                $this->_send_task_responsible_users_notification($description, $rel_id, false, 'task_new_attachment_to_staff');
+                $this->_send_customer_contacts_notification($rel_id, 'task_new_attachment_to_customer');
+            }
+
+            $task_attachment_as_comment = hooks()->apply_filters('add_task_attachment_as_comment', 'true');
+
+            if ($task_attachment_as_comment == 'true') {
+                $file = $this->misc_model->get_file($file_id);
+                $this->db->insert(db_prefix() . 'task_comments', [
+                    'content'    => '[task_attachment]',
+                    'taskid'     => $rel_id,
+                    'staffid'    => $file->staffid,
+                    'contact_id' => $file->contact_id,
+                    'file_id'    => $file_id,
+                    'dateadded'  => date('Y-m-d H:i:s'),
+                ]);
+            }
+            */
+
+            return true;
+        }
+
+        return false;
+    }
 }

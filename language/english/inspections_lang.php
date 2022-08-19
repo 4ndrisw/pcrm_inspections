@@ -242,6 +242,7 @@ $lang['customer_permission_inspection'] = 'Inspections';
 $lang['not_inspection_remove_inspection_item'] = 'Remove inspection item';
 $lang['komponen_pemeriksan']                 						= "Inspection's Component";
 
+$lang['inspection_documentation']                 						= "Documentation";
 
 
 /*

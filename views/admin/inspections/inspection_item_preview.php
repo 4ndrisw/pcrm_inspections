@@ -132,19 +132,22 @@ Editable(".editableText", {
   }
 });
 
-
+   Dropzone.autoDiscover = false;
    inspectionDocumentationDropzone = new Dropzone("#inspection-documentation", appCreateDropzoneOptions({
+      url: "<?php echo admin_url('inspections/upload_file') ?>",
       uploadMultiple: true,
       parallelUploads: 20,
       maxFiles: 20,
       paramName: 'file',
+      addRemoveLinks:true,
       sending: function (file, xhr, formData) {
-         formData.append("taskid", '<?php echo $inspection->task_id; ?>');
+         formData.append("rel_id", '<?php echo $inspection->id; ?>');
+         formData.append("task_id", '<?php echo $inspection->task_id; ?>');
       },
       success: function (files, response) {
          response = JSON.parse(response);
          if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-            _task_append_html(response.taskHtml);
+            //_task_append_html(response.taskHtml);
                 this.removeAllFiles();
          }
       }

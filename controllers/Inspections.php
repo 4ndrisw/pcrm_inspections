@@ -181,9 +181,11 @@ class Inspections extends AdminController
         $this->session->set_userdata('inspection_id', $id);
         $this->session->set_userdata('project_id', $inspection->project_id);
 
+        /*
         if ($this->input->is_ajax_request()) {
             $this->app->get_table_data(module_views_path('inspections', 'admin/tables/small_table'));
         }
+        */
 
         $this->load->view('admin/inspections/inspection_item_preview', $data);
     }
@@ -627,6 +629,37 @@ class Inspections extends AdminController
 
         if ($this->input->post() && $this->input->is_ajax_request()) {
             $this->{$equipment_model}->update_pengujian_data($this->input->post());
+        }
+    }
+
+    /**
+     * Upload task attachment
+     * @since  Version 1.0.1
+     */
+    public function upload_file()
+    {
+        if ($this->input->post()) {
+            $task_id  = $this->input->post('task_id');
+            $rel_id  = $this->input->post('rel_id');
+            
+            log_activity(json_encode($task_id .' ' . $rel_id));
+
+            $files   = handle_inspection_attachments_array($rel_id, 'file');
+            $success = false;
+
+            if ($files) {
+                $i   = 0;
+                $len = count($files);
+                foreach ($files as $file) {
+                    $success = $this->inspections_model->add_attachment_to_database($rel_id, $task_id, [$file], false, ($i == $len - 1 ? true : false));
+                    $i++;
+                }
+            }
+
+            echo json_encode([
+                'success'  => $success,
+                //'taskHtml' => $this->get_task_data($task_id, true),
+            ]);
         }
     }
 }

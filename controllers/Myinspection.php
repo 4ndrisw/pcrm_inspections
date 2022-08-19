@@ -114,7 +114,7 @@ class Myinspection extends ClientsController
         _maybe_create_upload_path('uploads/inspections');
         _maybe_create_upload_path('uploads/inspections/'.$inspection_path);
         
-        log_activity($qrcode_data);
+        //log_activity($qrcode_data);
 
         $params['data'] = $qrcode_data;
         $params['writer'] = 'png';
