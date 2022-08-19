@@ -109,6 +109,11 @@
                                 <td class="<?= $editableText_class ?>" data-field="penghantar" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['penghantar']) ? $equipment['penghantar'] : '' ?></td>
                              </tr>
                              <tr>
+                                <td style="width:20%">Jenis Penyalur</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editableText_class ?>" data-field="jenis_penyalur" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['jenis_penyalur']) ? $equipment['jenis_penyalur'] : '' ?></td>
+                             </tr>
+                             <tr>
                                 <td style="width:20%">Jenis pemeriksaan</td>
                                 <td style="width:2%">:</td>
                                 <td class="<?= $editableText_class ?>" data-field="jenis_pemeriksaan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['jenis_pemeriksaan']) ? $equipment['jenis_pemeriksaan'] : '' ?></td>
@@ -230,32 +235,6 @@
                               </div>
                            </div>
 
-                           <div class="row vertical-align-middle pengujian_operasional text-center">
-                              <div class="col-xs-12 col-sm-3">
-                                 <label class="btn-secondary"><?= _l('pengujian_operasional') ?> </label>
-                                 <?php $equipment_pengujian_operasional = isset($equipment_pengujian_operasional) ? $equipment_pengujian_operasional : ''; ?>
-                                 <?= $equipment_pengujian_operasional ?>
-                              </div>
-                              <div class="col-sm-1  no-padding hidden-xs text-center">
-                                 :
-                              </div>
-                              <div class="col-xs-12 col-sm-8">
-                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-4 no-padding">
-                                       <input type="radio" class="btn-check" id="pengujian_operasional_t" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_operasional', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_operasional]" value="1" <?php if(isset($equipment['pengujian_operasional']) && $equipment['pengujian_operasional'] == 1){echo 'checked';}; ?>>
-                                       <label class="btn btn-secondary" for="pengujian_operasional_t"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="<?php echo _l('baik'); ?>" ></i> <?php echo _l('baik'); ?></label>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-4 no-padding">
-                                       <input type="radio" class="btn-check" id="pengujian_operasional_f" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_operasional', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_operasional]" value="2" <?php if(isset($equipment['pengujian_operasional']) && $equipment['pengujian_operasional'] == 2){echo 'checked';}; ?>>
-                                       <label class="btn btn-secondary" for="pengujian_operasional_f"><?php echo _l('tidak_baik'); ?></label>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-4 no-padding">
-                                       <input type="radio" class="btn-check" id="pengujian_operasional_n" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'pengujian_operasional', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[pengujian_operasional]" value="0" <?php if(isset($equipment['pengujian_operasional']) && $equipment['pengujian_operasional'] == 0){echo 'checked';}; ?>>
-                                       <label class="btn btn-secondary" for="pengujian_operasional_n"><?php echo _l('tidak_ada'); ?></label>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
                         </div>
 
                      <div class="col-md-12 table-responsive">
