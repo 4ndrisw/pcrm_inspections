@@ -428,7 +428,9 @@
                               // Store all url related data here
                               //$comments_attachments = array();
                               //$attachments_data = array();
+                              
                               $show_more_link_task_attachments = hooks()->apply_filters('show_more_link_task_attachments', 4);
+                             
                               foreach($inspection->documentations as $attachment){ ?>
                            <?php ob_start(); ?>
                            <div data-num="<?php echo $i; ?>" data-task-attachment-id="<?php echo $attachment['id']; ?>" class="task-attachment-col col-md-6<?php if($i > $show_more_link_task_attachments){echo ' hide task-attachment-col-more';} ?>">

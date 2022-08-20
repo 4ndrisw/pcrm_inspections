@@ -149,6 +149,7 @@ Editable(".editableText", {
          if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
             //_task_append_html(response.taskHtml);
                 this.removeAllFiles();
+                reloadInspectionsAttachments();
          }
       }
    }));

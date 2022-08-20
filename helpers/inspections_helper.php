@@ -856,11 +856,9 @@ function add_inspection_related($insert_id){
 function handle_inspection_attachments_array($rel_id, $index_name = 'attachments')
 {
     $uploaded_files = [];
-    $path           = FCPATH.'uploads/inspections/' . get_upload_path_by_type('inspections') . $rel_id . '/';
+    $path           = INSPECTION_ATTACHMENTS_FOLDER . get_upload_path_by_type('inspections') . $rel_id . '/';
     $CI             = &get_instance();
     
-    log_activity('path ' . $path);
-
     if (isset($_FILES[$index_name]['name'])
         && ($_FILES[$index_name]['name'] != '' || is_array($_FILES[$index_name]['name']) && count($_FILES[$index_name]['name']) > 0)) {
         if (!is_array($_FILES[$index_name]['name'])) {
@@ -886,8 +884,6 @@ function handle_inspection_attachments_array($rel_id, $index_name = 'attachments
                 _maybe_create_upload_path($path);
                 $filename    = unique_filename($path, $_FILES[$index_name]['name'][$i]);
                 $newFilePath = $path . $filename;
-                //FCPATH
-                log_activity($newFilePath);
 
                 // Upload the file into the temp dir
                 if (move_uploaded_file($tmpFilePath, $newFilePath)) {
