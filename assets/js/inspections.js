@@ -336,6 +336,7 @@ function remove_inspection_attachment(link, id, task_id) {
             if (response.comment_removed) {
                 $('#comment_' + response.comment_removed).remove();
             }
+            reloadInspectionsAttachments();
         });
     }
 }
