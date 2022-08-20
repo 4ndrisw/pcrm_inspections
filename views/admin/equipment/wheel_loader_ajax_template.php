@@ -414,10 +414,11 @@
                //return;
                ?>
 
+               <div class="clearfix">  &nbsp; </div>
 
                <div class="col-md-12 inspection-documentations">
                   <?php if(count($inspection->documentations) > 0){ ?>
-                  <div class="row task_attachments_wrapper">
+                  <div class="inspections_attachments_wrapper">
                      <div class="col-md-12" id="attachments">
                         <hr />
                         <h4 class="th font-medium mbot15"><?php echo _l('task_view_attachments'); ?></h4>
@@ -425,15 +426,15 @@
                            <?php
                               $i = 1;
                               // Store all url related data here
-                              $comments_attachments = array();
-                              $attachments_data = array();
-                              $show_more_link_task_attachments = hooks()->apply_filters('show_more_link_task_attachments', 2);
+                              //$comments_attachments = array();
+                              //$attachments_data = array();
+                              $show_more_link_task_attachments = hooks()->apply_filters('show_more_link_task_attachments', 4);
                               foreach($inspection->documentations as $attachment){ ?>
                            <?php ob_start(); ?>
                            <div data-num="<?php echo $i; ?>" data-task-attachment-id="<?php echo $attachment['id']; ?>" class="task-attachment-col col-md-6<?php if($i > $show_more_link_task_attachments){echo ' hide task-attachment-col-more';} ?>">
                               <ul class="list-unstyled task-attachment-wrapper" data-placement="right" data-toggle="tooltip" data-title="<?php echo $attachment['file_name']; ?>" >
                                  <li class="mbot10 task-attachment<?php if(strtotime($attachment['dateadded']) >= strtotime('-16 hours')){echo ' highlight-bg'; } ?>">
-                                    <div class="mbot10 pull-right task-attachment-user">
+                                    <div class="mbot10 pull-right inspection-attachment-user">
                                        <?php if($attachment['staffid'] == get_staff_user_id() || is_admin()){ ?>
                                        <a href="#" class="pull-right" onclick="remove_task_attachment(this,<?php echo $attachment['id']; ?>); return false;">
                                        <i class="fa fa fa-times"></i>
@@ -487,9 +488,7 @@
                                           <i class="<?php echo get_mime_class($attachment['filetype']); ?>"></i>
                                           <?php echo $attachment['file_name']; ?>
                                           <?php } ?>
-                                          <?php if(!$isHtml5Video){ ?>
                                        </a>
-                                       <?php } ?>
                                     </div>
                                     <div class="clearfix"></div>
                                  </li>

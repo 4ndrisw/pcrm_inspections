@@ -276,3 +276,15 @@ li.text-item {
     color: #0b0b0c;
     font-weight: 700;
 }
+
+.inspections_attachments_wrapper {
+    background: #31313e;
+}
+.inspection-attachment-user {
+    background: #2d2c2c;
+    padding: 10px 5px 5px;
+    display: inline-block;
+    width: 100%;
+    margin-left: 0;
+    border-bottom: 1px solid #f0f0f0
+}
