@@ -393,7 +393,7 @@
 
             </div>
          </div>
-         <div role="tabpanel" class="tab-pane" id="inspection_documentation">
+         <div data-role="page" role="tabpanel" class="tab-pane" id="inspection_documentation">
             <h4 class="bold">
                <?php echo _l('inspection_documentation'); ?>
             </h4>
