@@ -1734,4 +1734,29 @@ class Inspections_model extends App_Model
 
         return false;
     }
+
+
+    /**
+     * Get all inspection attachments
+     * @param  mixed $inspection_id inspection_id
+     * @return array
+     */
+    public function get_inspection_documentation($inspection_id, $task_id, $where = [])
+    {
+        //$this->db->select(implode(', ', prefixed_table_fields_array(db_prefix() . 'files')) . ', ' . db_prefix() . 'inspection_comments.id as comment_file_id');
+        $this->db->select(db_prefix() . 'inspection_files.*');
+        $this->db->where(db_prefix() . 'inspection_files.rel_id', $inspection_id);
+        $this->db->where(db_prefix() . 'inspection_files.task_id', $task_id);
+
+        if ((is_array($where) && count($where) > 0) || (is_string($where) && $where != '')) {
+            $this->db->where($where);
+        }
+
+        $this->db->join(db_prefix() . 'inspections', db_prefix() . 'inspections.id = ' . db_prefix() . 'inspection_files.rel_id');
+        $this->db->order_by(db_prefix() . 'inspection_files.dateadded', 'desc');
+
+        return $this->db->get(db_prefix() . 'inspection_files')->result_array();
+    }
+
+
 }

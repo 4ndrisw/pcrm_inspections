@@ -112,6 +112,8 @@ class Inspections extends AdminController
             blank_page(_l('inspection_not_found'));
         }
         $inspection->task_id       = $task_id;
+        $inspection->documentations = $this->inspections_model->get_inspection_documentation($id,$task_id);
+
         $data['inspection'] = $inspection;
         $data['edit']     = false;
         $title            = _l('preview_inspection');

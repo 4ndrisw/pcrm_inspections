@@ -10,7 +10,7 @@ Requires at least: 2.3.*
 */
 
 define('INSPECTIONS_MODULE_NAME', 'inspections');
-define('INSPECTION_ATTACHMENTS_FOLDER', 'uploads/inspections/');
+define('INSPECTION_ATTACHMENTS_FOLDER', FCPATH . 'uploads/inspections/');
 
 hooks()->add_filter('before_inspection_updated', '_format_data_inspection_feature');
 hooks()->add_filter('before_inspection_added', '_format_data_inspection_feature');
