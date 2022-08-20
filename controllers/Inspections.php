@@ -644,8 +644,6 @@ class Inspections extends AdminController
             $task_id  = $this->input->post('task_id');
             $rel_id  = $this->input->post('rel_id');
             
-            log_activity(json_encode($task_id .' ' . $rel_id));
-
             $files   = handle_inspection_attachments_array($rel_id, 'file');
             $success = false;
 
@@ -680,5 +678,5 @@ class Inspections extends AdminController
     
     
 
-    
+
 }
