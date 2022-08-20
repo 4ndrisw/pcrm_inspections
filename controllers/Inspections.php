@@ -676,7 +676,36 @@ class Inspections extends AdminController
         }
     }
     
-    
+
+    public function download_files($inspection_id, $task_id, $comment_id = null)
+    {
+        $inspectionWhere = 'external IS NULL';
+
+        if ($comment_id) {
+            $inspectionWhere .= ' AND inspection_comment_id=' . $this->db->escape_str($comment_id);
+        }
+
+        if (!has_permission('inspections', '', 'view')) {
+            $inspectionWhere .= ' AND ' . get_inspections_where_string(false);
+        }
+
+        $files = $this->inspections_model->get_inspection_documentation($inspection_id, $task_id, $inspectionWhere);
+
+        if (count($files) == 0) {
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+
+        $path = INSPECTION_ATTACHMENTS_FOLDER . get_upload_path_by_type('inspection') . $inspection_id;
+
+        $this->load->library('zip');
+
+        foreach ($files as $file) {
+            $this->zip->read_file($path . '/' . $file['file_name']);
+        }
+
+        $this->zip->download('inspection-'. $inspection_id .'-'.$task_id .'.zip');
+        $this->zip->clear_data();
+    }    
 
 
 }

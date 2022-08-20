@@ -314,7 +314,7 @@ function reloadInspectionsAttachments()
     $("#inspection-documentations").load(location.href+" #inspection-documentations>*","");
 }
 
-function reload_inspections_tables() {
+function reload_inspections_attachments() {
     var inspection_documentations = ['#inspection-documentations'];
     //var av_inspections_tables = ['.inspection-items-proposed'];
     $.each(inspection_documentations, function (i, selector) {

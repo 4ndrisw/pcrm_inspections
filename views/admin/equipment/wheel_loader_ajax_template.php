@@ -514,7 +514,7 @@
                         <?php } ?>
                         <div class="col-md-12 text-center">
                            <hr />
-                           <a href="<?php echo admin_url('tasks/download_files/'.$inspection->id); ?>" class="bold">
+                           <a href="<?php echo admin_url('inspections/download_files/'.$inspection->id .'/'. $inspection->task_id); ?>" class="bold">
                            <?php echo _l('download_all'); ?> (.zip)
                            </a>
                         </div>
