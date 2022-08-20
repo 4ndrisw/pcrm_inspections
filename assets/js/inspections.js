@@ -311,5 +311,10 @@ function inspection_item_pengujian_data(param, jenis_pesawat, pengujian, rel_id,
 
 function reloadInspectionsAttachments()
 { 
-    $( "#inspections_attachments_wrapper" ).load(window.location.href + " #inspections_attachments_wrapper" );
+    $( "#inspection-documentations" ).load(window.location.href + " #inspection-documentations" );
+}
+
+function reloadDIV()
+{   console.log('aa');
+    $( "#inspection-documentations" ).load(window.location.href + " #inspection-documentations" );
 }

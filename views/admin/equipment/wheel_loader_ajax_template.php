@@ -414,9 +414,11 @@
                //return;
                ?>
 
-               <div class="clearfix">  &nbsp; </div>
+               <div class="clearfix">
+                  <a class="btn btn-success reload-div" onclick='reloadDIV();'>Reload</a>
+               </div>
 
-               <div class="col-md-12 inspection-documentations">
+               <div id="inspection-documentations" class="col-md-12">
                   <?php if(count($inspection->documentations) > 0){ ?>
                   <div class="inspections_attachments_wrapper">
                      <div class="col-md-12" id="attachments">
