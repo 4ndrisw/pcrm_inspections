@@ -429,13 +429,13 @@
                                 
                                  foreach($inspection->documentations as $attachment){ ?>
                               <?php ob_start(); ?>
-                              <div data-num="<?php echo $i; ?>" data-task-attachment-id="<?php echo $attachment['id']; ?>" class="task-attachment-col col-md-6<?php if($i > $show_more_link_task_attachments){echo ' hide task-attachment-col-more';} ?>">
+                              <div data-num="<?php echo $i; ?>" data-inspection-attachment-id="<?php echo $attachment['id']; ?>" class="task-attachment-col col-md-6<?php if($i > $show_more_link_task_attachments){echo ' hide task-attachment-col-more';} ?>">
                                  <ul class="list-unstyled task-attachment-wrapper" data-placement="right" data-toggle="tooltip" data-title="<?php echo $attachment['file_name']; ?>" >
                                     <li class="mbot10 task-attachment<?php if(strtotime($attachment['dateadded']) >= strtotime('-16 hours')){echo ' highlight-bg'; } ?>">
                                        <div class="mbot10 pull-right inspection-attachment-user">
                                           <?php if($attachment['staffid'] == get_staff_user_id() || is_admin()){ ?>
-                                          <a href="#" class="pull-right" onclick="remove_task_attachment(this,<?php echo $attachment['id']; ?>); return false;">
-                                          <i class="fa fa fa-times"></i>
+                                          <a href="#" class="pull-right" onclick="remove_inspection_attachment(this,<?php echo $attachment['id']; ?>); return false;">
+                                             <i class="fa fa fa-times"></i>
                                           </a>
                                           <?php }
                                              $externalPreview = false;

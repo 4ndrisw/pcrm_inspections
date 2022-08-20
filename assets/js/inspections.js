@@ -323,3 +323,19 @@ function reload_inspections_tables() {
         
     });
 }
+
+
+// Removes inspection single attachment
+function remove_inspection_attachment(link, id, task_id) {
+    if (confirm_delete()) {
+        requestGetJSON('inspections/remove_inspection_attachment/' + id +task_id).done(function (response) {
+            if (response.success === true || response.success == 'true') {
+                $('[data-inspection-attachment-id="' + id + '"]').remove();
+            }
+            _inspection_attachments_more_and_less_checks();
+            if (response.comment_removed) {
+                $('#comment_' + response.comment_removed).remove();
+            }
+        });
+    }
+}

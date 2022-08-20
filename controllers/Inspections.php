@@ -664,4 +664,21 @@ class Inspections extends AdminController
             ]);
         }
     }
+
+    /**
+     * Remove inspection attachment
+     * @since  Version 1.0.1
+     * @param  mixed $id attachment it
+     * @return json
+     */
+    public function remove_inspection_attachment($id)
+    {
+        if ($this->input->is_ajax_request()) {
+            echo json_encode($this->inspections_model->remove_inspection_attachment($id));
+        }
+    }
+    
+    
+
+    
 }

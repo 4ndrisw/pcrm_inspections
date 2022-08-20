@@ -1759,4 +1759,51 @@ class Inspections_model extends App_Model
     }
 
 
+    /**
+     * Remove inspection attachment from server and database
+     * @param  mixed $id attachmentid
+     * @return boolean
+     */
+    public function remove_inspection_attachment($id)
+    {
+        $comment_removed = false;
+        $deleted         = false;
+        // Get the attachment
+        $this->db->where('id', $id);
+        $attachment = $this->db->get(db_prefix() . 'inspection_files')->row();
+
+        if ($attachment) {
+            if (empty($attachment->external)) {
+                $relPath  = get_upload_path_by_type('inspection') . $attachment->rel_id . '/';
+                $fullPath = $relPath . $attachment->file_name;
+                unlink($fullPath);
+                $fname     = pathinfo($fullPath, PATHINFO_FILENAME);
+                $fext      = pathinfo($fullPath, PATHINFO_EXTENSION);
+                $thumbPath = $relPath . $fname . '_thumb.' . $fext;
+                if (file_exists($thumbPath)) {
+                    unlink($thumbPath);
+                }
+            }
+
+            $this->db->where('id', $attachment->id);
+            $this->db->delete(db_prefix() . 'inspection_files');
+            if ($this->db->affected_rows() > 0) {
+                $deleted = true;
+                log_activity('inspection Attachment Deleted [inspectionID: ' . $attachment->rel_id . ']');
+            }
+
+            if (is_dir(get_upload_path_by_type('inspection') . $attachment->rel_id)) {
+                // Check if no attachments left, so we can delete the folder also
+                $other_attachments = list_files(get_upload_path_by_type('inspection') . $attachment->rel_id);
+                if (count($other_attachments) == 0) {
+                    // okey only index.html so we can delete the folder also
+                    delete_dir(get_upload_path_by_type('inspection') . $attachment->rel_id);
+                }
+            }
+        }
+
+        return ['success' => $deleted];
+    }
+
+
 }
