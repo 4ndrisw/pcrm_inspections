@@ -407,7 +407,7 @@
                   <?php echo form_close(); ?>
                </div>
 
-               <div class="clearfix">
+               <div class="col-md-12 clearfix">
                   <a class="btn btn-success reload-div" onclick='reloadInspectionsAttachments();'>Reload</a>
                </div>
 
