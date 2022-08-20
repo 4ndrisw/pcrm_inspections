@@ -407,20 +407,13 @@
                   <?php echo form_close(); ?>
                </div>
 
-               <?php 
-               //echo '<pre>';
-               //var_dump($inspection->documentations);
-               //echo '<pre>';
-               //return;
-               ?>
-
                <div class="clearfix">
-                  <a class="btn btn-success reload-div" onclick='reloadDIV();'>Reload</a>
+                  <a class="btn btn-success reload-div" onclick='reloadInspectionsAttachments();'>Reload</a>
                </div>
 
-               <div id="inspection-documentations" class="col-md-12">
+               <div id="inspection-documentations">
                   <?php if(count($inspection->documentations) > 0){ ?>
-                  <div class="inspections_attachments_wrapper">
+                  <div class="inspections_attachments_wrapper col-md-12">
                      <div class="col-md-12" id="attachments">
                         <hr />
                         <h4 class="th font-medium mbot15"><?php echo _l('task_view_attachments'); ?></h4>

@@ -311,10 +311,15 @@ function inspection_item_pengujian_data(param, jenis_pesawat, pengujian, rel_id,
 
 function reloadInspectionsAttachments()
 { 
-    $( "#inspection-documentations" ).load(window.location.href + " #inspection-documentations" );
+    $("#inspection-documentations").load(location.href+" #inspection-documentations>*","");
 }
 
-function reloadDIV()
-{   console.log('aa');
-    $( "#inspection-documentations" ).load(window.location.href + " #inspection-documentations" );
+function reload_inspections_tables() {
+    var inspection_documentations = ['#inspection-documentations'];
+    //var av_inspections_tables = ['.inspection-items-proposed'];
+    $.each(inspection_documentations, function (i, selector) {
+        
+            $(selector).reload(null, false);
+        
+    });
 }
