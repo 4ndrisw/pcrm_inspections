@@ -250,7 +250,7 @@ $pdf->setFontSubsetting(true);
 $pdf->SetFont('dejavusans');
 
 $pdf->writeHTML($tblhtml, true, false, false, false, '');
-log_activity($inspection->assigned_path);
+
 $assigned_path = '<br /><br /><br /><br /><br />';
 if($inspection->status != 1){
     $assigned_path = <<<EOF
