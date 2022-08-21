@@ -1250,7 +1250,7 @@ class Inspections_model extends App_Model
                         if ($this->db->affected_rows() > 0) {
                             $this->db->where('staff_id', $inspection_member['staff_id']);
                             $this->db->where('inspection_id', $id);
-                            $this->db->delete(db_prefix() . 'pinned_inspections');
+                            //$this->db->delete(db_prefix() . 'pinned_inspections');
 
                             $this->log_inspection_activity($id, 'inspection_activity_removed_team_member', get_staff_full_name($inspection_member['staff_id']));
                             $affectedRows++;

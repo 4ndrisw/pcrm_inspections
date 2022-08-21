@@ -114,8 +114,6 @@ class Myinspection extends ClientsController
         _maybe_create_upload_path('uploads/inspections');
         _maybe_create_upload_path('uploads/inspections/'.$inspection_path);
         
-        //log_activity($qrcode_data);
-
         $params['data'] = $qrcode_data;
         $params['writer'] = 'png';
         $params['setSize'] = isset($setSize) ? $setSize : 160;
@@ -366,6 +364,7 @@ class Myinspection extends ClientsController
 
         $inspection->task_id = $task_id;
         $task = $this->tasks_model->get($task_id);
+        $inspection->task = $task;
 
         $inspection->assigned_path = FCPATH . get_inspection_upload_path('inspection').$inspection->id.'/assigned-'.$inspection_item_number.'.png';
         $inspection->acceptance_path = FCPATH . get_inspection_upload_path('inspection').$inspection->id .'/'.$inspection->signature;
@@ -390,7 +389,6 @@ class Myinspection extends ClientsController
         
         if (!$equipment) {
             set_alert('danger', _l('record not found ;', $equipment_model));
-            log_activity('Record '. $equipment . ' id ' . ' task_id ' . $task_id);
             redirect(admin_url('inspections/inspection_item/'.$id.'/'.$task_id));
         }
         $inspection->equipment = $equipment[0];
@@ -441,6 +439,7 @@ class Myinspection extends ClientsController
 
         $inspection->task_id = $task_id;
         $task = $this->tasks_model->get($task_id);
+        $inspection->task = $task;
 
         $inspection->assigned_path = FCPATH . get_inspection_upload_path('inspection').$inspection->id.'/assigned-'.$inspection_item_number.'.png';
         $inspection->acceptance_path = FCPATH . get_inspection_upload_path('inspection').$inspection->id .'/'.$inspection->signature;
@@ -466,7 +465,7 @@ class Myinspection extends ClientsController
         
         if (!$equipment) {
             set_alert('danger', _l('record not found ;', $equipment_model));
-            log_activity('Record '. $equipment . ' id ' . ' task_id ' . $task_id);
+            
             redirect(admin_url('inspections/inspection_item/'.$id.'/'.$task_id));
         }
         

@@ -237,7 +237,14 @@ foreach($inspection_members as $member){
 $tag = $inspection->tag;
 $equipment_type = isset($tag) ? $tag : '';
 $left_info .= '<div><strong>'. _l('equipment_type') . '</strong></div>';
+$left_info .= '<div><strong>'. _l('equipment_type') . '</strong></div>';
 $left_info .= $equipment_type;
+$left_info .= $equipment_type;
+
+$task_name = isset($inspection->task_id) ? $inspection->task_id : 'kosong';
+$left_info .= '<div><strong>'. _l('task_name') . '</strong></div>';
+$left_info .= $task_name;
+
 
 $pdf->SetFont('dejavusans');
 pdf_multi_row($left_info, $tblhtml, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm'], true);
