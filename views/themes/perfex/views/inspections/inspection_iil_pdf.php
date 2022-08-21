@@ -71,7 +71,6 @@ $company = get_inspection_company_by_clientid($inspection->clientid);
 $address = get_inspection_company_address($inspection->id);
 $nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
 
-$kapasitas = $kapasitas .' '. $satuan_kapasitas;
 $inspection_company = _l('inspection_company_name');
 $inspection_address = _l('inspection_address');
 $inspection_jenis_pesawat = _l('inspection_jenis_pesawat');
@@ -132,6 +131,10 @@ log_activity(json_encode($tags));
 $equipment_type = isset($tags) ? $tags[0] : '';
 $left_info .= '<div><strong>'. _l('equipment_type') . '</strong></div>';
 $left_info .= $equipment_type;
+
+$task_name = isset($inspection->task->name) ? $inspection->task->name : '';
+$left_info .= '<div><strong>'. _l('task') . '</strong></div>';
+$left_info .= $task_name;
 
 $pdf->SetFont('dejavusans');
 pdf_multi_row($left_info, $tblhtml, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm'], true);
