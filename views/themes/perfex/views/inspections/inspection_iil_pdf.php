@@ -127,7 +127,7 @@ foreach($inspection_members as $member){
 }
 
 $tags = get_tags_in($inspection->task_id,'task');
-log_activity(json_encode($tags));
+
 $equipment_type = isset($tags) ? $tags[0] : '';
 $left_info .= '<div><strong>'. _l('equipment_type') . '</strong></div>';
 $left_info .= $equipment_type;
