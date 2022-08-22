@@ -223,27 +223,6 @@ table tr{ line-height: 2;}
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_f</span> $tidak_baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_dilaksanakan</td>
         </tr>
-        <tr class="tg pengujian_pompa">
-           <td width="36%">$pengujian_pompa</td>
-           <td width="1%">:</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_pompa_t</span> $baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_pompa_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_pompa_n</span> $tidak_dilaksanakan</td>
-        </tr>
-        <tr class="tg pengujian_tekanan">
-           <td width="36%">$pengujian_tekanan</td>
-           <td width="1%">:</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_tekanan_t</span> $baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_tekanan_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_tekanan_n</span> $tidak_dilaksanakan</td>
-        </tr>
-        <tr class="tg pengujian_daya_pancar">
-           <td width="36%">$pengujian_daya_pancar</td>
-           <td width="1%">:</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_daya_pancar_t</span> $baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_daya_pancar_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_daya_pancar_n</span> $tidak_dilaksanakan</td>
-        </tr>
         <tr class="tg pengujian_operasional">
            <td width="36%">$pengujian_operasional</td>
            <td width="1%">:</td>
