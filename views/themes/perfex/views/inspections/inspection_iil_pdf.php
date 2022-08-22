@@ -172,6 +172,8 @@ $tidak_lengkap = _l('tidak_lengkap');
 $tidak_ada = _l('tidak_ada');
 $baik = _l('baik');
 $tidak_baik = _l('tidak_baik');
+$tidak_dilaksanakan = _l('tidak_dilaksanakan');
+
 
 
 
@@ -196,35 +198,35 @@ table tr{ line-height: 2;}
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_n</span> $tidak_ada</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_n</span> $tidak_dilaksanakan</td>
         </tr>
         <tr class="tg pemeriksaan_pengaman">
            <td width="36%">$pemeriksaan_pengaman</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_ada</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_dilaksanakan</td>
         </tr>
         <tr class="tg pengujian_grounding">
            <td width="36%">$pengujian_grounding</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_grounding_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_grounding_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_grounding_n</span> $tidak_ada</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_grounding_n</span> $tidak_dilaksanakan</td>
         </tr>
         <tr class="tg pengujian_thermal_infrared">
            <td width="36%">$pengujian_thermal_infrared</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_thermal_infrared_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_thermal_infrared_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_thermal_infrared_n</span> $tidak_ada</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_thermal_infrared_n</span> $tidak_dilaksanakan</td>
         </tr>
         <tr class="tg pengujian_operasional">
            <td width="36%">$pengujian_operasional</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_n</span> $tidak_ada</td>
+           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_n</span> $tidak_dilaksanakan</td>
         </tr>
         <tr class="tg">
            <td width="36%"></td>
