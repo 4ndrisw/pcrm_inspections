@@ -75,8 +75,7 @@ $nomor_unit = isset($inspection->equipment['nomor_unit']) ? $inspection->equipme
 $type_model = isset($inspection->equipment['type_model']) ? $inspection->equipment['type_model'] : '';
 
 $kapasitas = isset($inspection->equipment['kapasitas']) ? $inspection->equipment['kapasitas'] : '';
-$satuan_kapasitas = isset($inspection->equipment['satuan_kapasitas']) ? ' ' . $inspection->equipment['satuan_kapasitas'] : '';
-$kapasitas = $kapasitas .' '. $satuan_kapasitas;
+
 $inspection_company = _l('inspection_company_name');
 $inspection_address = _l('inspection_address');
 $inspection_jenis_pesawat = _l('inspection_jenis_pesawat');
@@ -184,6 +183,42 @@ if($instalatir){
         <td width ="130" class="tg-oe15">' . _l('inspection_instalatir') . '</td>
         <td width ="10" class="tg-oe16">:</td>
         <td width ="170" class="tg-oe17">' .$instalatir. '</td>
+      </tr>';
+}
+$pembumian = isset($inspection->equipment['pembumian']) ? $inspection->equipment['pembumian'] : FALSE;
+if($pembumian){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_pembumian') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$pembumian. '</td>
+      </tr>';
+}
+$penerima = isset($inspection->equipment['penerima']) ? $inspection->equipment['penerima'] : FALSE;
+if($penerima){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_penerima') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$penerima. '</td>
+      </tr>';
+}
+$tinggi_tiang_penerima = isset($inspection->equipment['tinggi_tiang_penerima']) ? $inspection->equipment['tinggi_tiang_penerima'] : FALSE;
+if($tinggi_tiang_penerima){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_tinggi_tiang_penerima') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$tinggi_tiang_penerima. '</td>
+      </tr>';
+}
+$tinggi_bangunan = isset($inspection->equipment['tinggi_bangunan']) ? $inspection->equipment['tinggi_bangunan'] : FALSE;
+if($tinggi_bangunan){
+    $_tblhtml .= '
+      <tr class="tg-1e15">
+        <td width ="130" class="tg-oe15">' . _l('inspection_tinggi_bangunan') . '</td>
+        <td width ="10" class="tg-oe16">:</td>
+        <td width ="170" class="tg-oe17">' .$tinggi_bangunan. '</td>
       </tr>';
 }
 $jumlah_mca = isset($inspection->equipment['jumlah_mca']) ? $inspection->equipment['jumlah_mca'] : FALSE;

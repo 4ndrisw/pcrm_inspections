@@ -69,6 +69,10 @@ $lang['inspection_type_model']                             = 'Type/Model';
 $lang['inspection_kapasitas']                             = 'Capacity';
 
 $lang['inspection_instalatir']                             = 'Instalatir';
+$lang['inspection_pembumian']                             = 'Pembumian';
+$lang['inspection_penerima']                             = 'Penerima';
+$lang['inspection_tinggi_tiang_penerima']                             = 'Tinggi Tiang Penerima';
+$lang['inspection_tinggi_bangunan']                             = 'Tinggi Bangunan';
 
 $lang['inspection_jumlah_kotak_hydrant']                             = 'Hydrant Boxes';
 $lang['inspection_jumlah_selang_hydrant']                             = 'Hydrant Hoses';

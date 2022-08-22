@@ -76,9 +76,12 @@ $inspection_address = _l('inspection_address');
 $inspection_jenis_pesawat = _l('inspection_jenis_pesawat');
 $inspection_nama_pesawat = _l('inspection_nama_pesawat');
 $inspection_unit_number = _l('inspection_unit_number');
-$inspection_type_model = _l('inspection_type_model');
-$inspection_serial_number = _l('inspection_serial_number');
-$inspection_capacity = _l('inspection_capacity');
+$inspection_pabrik_pembuat = _l('inspection_pabrik_pembuat');
+$inspection_instalatir = _l('inspection_instalatir');
+$inspection_penerima = _l('inspection_penerima');
+$inspection_tinggi_tiang_penerima = _l('inspection_tinggi_tiang_penerima');
+$inspection_tinggi_bangunan = _l('inspection_tinggi_bangunan');
+  
 
 $tblhtml = <<<EOD
 <style type="text/css">
@@ -96,25 +99,27 @@ label.field-label{display:inline-block; width:20%;}
     <td width ="250" class="tg-oe17"></td>
   </tr>
   <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_serial_number</td>
+    <td width ="130" class="tg-oe15">$inspection_instalatir</td>
     <td width ="10" class="tg-oe16">:</td>
     <td width ="250" class="tg-oe17"></td>
   </tr>
   <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_unit_number</td>
+    <td width ="130" class="tg-oe15">$inspection_penerima</td>
     <td width ="10" class="tg-oe16">:</td>
     <td width ="250" class="tg-oe17"></td>
   </tr>
   <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_type_model</td>
+    <td width ="130" class="tg-oe15">$inspection_tinggi_tiang_penerima</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17">$type_model</td>
+    <td width ="250" class="tg-oe17"></td>
   </tr>
   <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_capacity</td>
+    <td width ="130" class="tg-oe15">$inspection_tinggi_bangunan</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17">$kapasitas</td>
+    <td width ="250" class="tg-oe17"></td>
   </tr>
+
+
 </tbody>
 </table>
 EOD;
@@ -127,10 +132,14 @@ foreach($inspection_members as $member){
 }
 
 $tags = get_tags_in($inspection->task_id,'task');
-log_activity(json_encode($tags));
+
 $equipment_type = isset($tags) ? $tags[0] : '';
 $left_info .= '<div><strong>'. _l('equipment_type') . '</strong></div>';
 $left_info .= $equipment_type;
+
+$task_name = isset($inspection->task->name) ? $inspection->task->name : '';
+$left_info .= '<div><strong>'. _l('task') . '</strong></div>';
+$left_info .= $task_name;
 
 $pdf->SetFont('dejavusans');
 pdf_multi_row($left_info, $tblhtml, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm'], true);
@@ -220,7 +229,7 @@ $pdf->setFontSubsetting(true);
 $pdf->SetFont('dejavusans');
 
 $pdf->writeHTML($tblhtml, true, false, false, false, '');
-log_activity($inspection->assigned_path);
+
 $assigned_path = '<br /><br /><br /><br /><br />';
 if($inspection->status != 1){
     $assigned_path = <<<EOF
