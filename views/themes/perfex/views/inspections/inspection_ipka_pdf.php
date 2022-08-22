@@ -188,6 +188,8 @@ $tidak_lengkap = _l('tidak_lengkap');
 $tidak_ada = _l('tidak_ada');
 $baik = _l('baik');
 $tidak_baik = _l('tidak_baik');
+$tidak_dilaksanakan = _l('tidak_dilaksanakan');
+
 
 
 
