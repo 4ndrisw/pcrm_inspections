@@ -76,9 +76,9 @@ $inspection_address = _l('inspection_address');
 $inspection_jenis_pesawat = _l('inspection_jenis_pesawat');
 $inspection_nama_pesawat = _l('inspection_nama_pesawat');
 $inspection_unit_number = _l('inspection_unit_number');
-$inspection_type_model = _l('inspection_type_model');
-$inspection_serial_number = _l('inspection_serial_number');
-$inspection_capacity = _l('inspection_capacity');
+$inspection_sumber_tenaga = _l('inspection_sumber_tenaga');
+$inspection_daya_terpasang = _l('inspection_daya_terpasang');
+$inspection_jenis_arus = _l('inspection_jenis_arus');
 
 $tblhtml = <<<EOD
 <style type="text/css">
@@ -96,22 +96,17 @@ label.field-label{display:inline-block; width:20%;}
     <td width ="250" class="tg-oe17"></td>
   </tr>
   <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_serial_number</td>
+    <td width ="130" class="tg-oe15">$inspection_daya_terpasang</td>
     <td width ="10" class="tg-oe16">:</td>
     <td width ="250" class="tg-oe17"></td>
   </tr>
   <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_unit_number</td>
+    <td width ="130" class="tg-oe15">$inspection_sumber_tenaga</td>
     <td width ="10" class="tg-oe16">:</td>
     <td width ="250" class="tg-oe17"></td>
   </tr>
   <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_type_model</td>
-    <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17"></td>
-  </tr>
-  <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_capacity</td>
+    <td width ="130" class="tg-oe15">$inspection_jenis_arus</td>
     <td width ="10" class="tg-oe16">:</td>
     <td width ="250" class="tg-oe17"></td>
   </tr>
