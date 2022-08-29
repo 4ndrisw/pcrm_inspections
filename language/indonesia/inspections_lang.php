@@ -59,6 +59,11 @@ $lang['inspection_capacity']                             = 'Kapasitas';
 $lang['sticker']                              = 'Sticker';
 $lang['inspection_report']                              = 'Berita Acara Pelaksanaan Riksa Uji';
 
+$lang['inspection_jumlah_kotak_hydrant']                             = 'Kotak Hydrant';
+$lang['inspection_jumlah_selang_hydrant']                             = 'Selang Hydrant';
+$lang['inspection_jumlah_nozzle']                             = 'Jumlah Nozzle';
+$lang['inspection_kapasitas_air']                             = 'Kapasitas air';
+
 $lang['inspection_start_date']                              = 'Tanggal';
 $lang['inspection_select_customer']                 = 'Customer';
 $lang['inspection_add_edit_number']                 = 'Nomor BAPR';
