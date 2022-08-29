@@ -120,14 +120,7 @@ label.field-label{display:inline-block; width:20%;}
 </tbody>
 </table>
 EOD;
-
-$i=1;
-$left_info = '<div><strong>'. _l('inspection_members') . '</strong></div>';
-foreach($inspection_members as $member){
-  $left_info .=  $i.'. ' .$member['firstname'] .' '. $member['lastname']. '<br />';
-  $i++;
-}
-
+$left_info ='';
 $tags = get_tags_in($inspection->task_id,'task');
 
 $equipment_type = isset($tags) ? $tags[0] : '';

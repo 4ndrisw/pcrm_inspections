@@ -309,16 +309,15 @@ label.field-label{display:inline-block; width:20%;}
 </table>
 EOD;
 
-$i=1;
-$left_info = '<div><strong>'. _l('inspection_members') . '</strong></div>';
-foreach($inspection_members as $member){
-  $left_info .=  $i.'. ' .$member['firstname'] .' '. $member['lastname']. '<br />';
-  $i++;
-}
+$left_info ='';
 $tag = $inspection->tag;
 $equipment_type = isset($tag) ? $tag : '';
 $left_info .= '<div><strong>'. _l('equipment_type') . '</strong></div>';
 $left_info .= $equipment_type;
+
+$task_name = isset($inspection->task->name) ? $inspection->task->name : '';
+$left_info .= '<div><strong>'. _l('task') . '</strong></div>';
+$left_info .= $task_name;
 
 $pdf->SetFont('dejavusans');
 pdf_multi_row($left_info, $tblhtml, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm'], true);

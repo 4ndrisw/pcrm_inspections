@@ -139,7 +139,7 @@ $lang['pemeriksaan_visual']                             = 'Pemeriksaan visual';
 $lang['pemeriksaan_pengaman']                             = 'Pemeriksaan peralatan pengaman';
 $lang['pengujian_penetrant']                             = 'Pengujian penetrant';
 $lang['pengujian_thickness']                             = 'Pengujian thickness';
-$lang['pengujian_operasional']                             = 'Pengujian operation';
+$lang['pengujian_operasional']                             = 'Pengujian operasional';
 $lang['pengujian_thickness']                             = 'Pengujian thickness';
 $lang['pengujian_infrared']                             = 'Pengujian panas inframerah';
 
@@ -172,29 +172,51 @@ $lang['nama_pesawat']                             = 'Nama pesawat';
 $lang['kapasitas']                             = 'Kapacitas'; 
 $lang['satuan_kapasitas']                             = 'Satuan kapasitas'; 
 $lang['inspection_type_model']                             = 'Tipe/model';
-
 $lang['inspection_send_to_customer_already_sent_2']              = 'BAPR telah dikirim ke pelanggan'; 
-
 $lang['inspection_status_change']                   = 'Impor lampiran dari Email';
 $lang['inspection_status_updated']                  = 'Status BAPP Diperbarui: Dari: %s menjadi %s';
 $lang['inspection_customer_accepted']                           	= 'Selamat! Klien menerima BAPP dengan nomor %s';
 $lang['inspection_customer_declined']                           	= 'Klien menolak BAPP dengan nomor %s';
 $lang['inspection_activity_converted']                              	= 'BAPP ini dikonversi menjadi invoice.<br /> %s';
-$lang['inspection_activity_created']                                	= 'BAPP Dibuat';
+$lang['pengujian_thermal_infrared']                             = 'Pengujian Thermal infrafed';
+$lang['pengujian_kapasitas_hantar']                             = 'Pengujian Kapasitas daya hantar';
 
+$lang['inspection_activity_created']                                	= 'BAPP Dibuat';
 $lang['inspection_activity_added_team_member']                = 'Menambahkan team member ke Inspeksi';
 $lang['inspection_activity_equipment_type_changed']                = 'Equiptment type changed';
-
 $lang['inspections_list_all']                 						= 'Semua';
 $lang['inspection_already_send_to_client_tooltip'] 					= 'Inspeksi ini telah dikirim kepada klien %s';
 $lang['inspection_send_to_client_modal_heading']    					= 'Kirim Inspeksi ke Klien';
 $lang['inspection_send_to_client_attach_pdf']       					= 'Lampirkan Inspeksi dalam format PDF';
 $lang['inspection_send_to_client_preview_template'] 					= 'Tinjau Template Email';
-
 $lang['attach_file']                 						= 'File';
 $lang['customer_permission_inspection'] = 'Inspections';
 $lang['not_inspection_remove_inspection_item'] = 'Hapus item ini';
 $lang['komponen_pemeriksan']                 						= 'Komponen pemeriksan';
+$lang['no_inspection_this_week']                 						= "Tidak ada inspection minggu ini";
+$lang['not_staff_added_as_inspection_member']                 						= "Tidak ada staff ditambahkan sebagai petugas inspection";
+$lang['inspections_tracking']                 						= "Daftar Inspeksi";
+$lang['inspection_company']                 						= "Perusahan";
+$lang['inspection_task']                 						= "Task";
+$lang['inspection_tag']                 						= "Tag";
+$lang['view_pdf_template_in_new_window']                 						= "View PDF template";
+
+$lang['inspection_load_test']                 						= "Load test";
+$lang['inspection_documentation']                 						= "Documentation";
+$lang['baik']                 						= "Good";
+$lang['tidak_baik']                 						= "Not good";
+$lang['tidak_ada']                 						= "Not available";
+
+$lang['pengujian_beban']                 						= "Pengujian beban";
+$lang['pengujian_grounding']                 						= "Pengujian Pembumian";
+$lang['tidak_dilaksanakan']                 						= "Tidak dilaksanakan";
+$lang['inspection_kapasitas_hantar_test']                 						= "Kapasitas hantar";
+
+$lang['pengujian_pompa']                             = 'Pengujian pompa';
+$lang['inspection_pompa_test']                             = 'Pengujian pompa';
+$lang['pengujian_tekanan']                             = 'Pengujian tekanan';
+$lang['pengujian_daya_pancar']                             = 'Pengujian daya pancar';
+$lang['inspection_flag']                 						= "Flag";
 
 
 

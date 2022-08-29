@@ -60,6 +60,7 @@ $txt = <<<EOD
 $inspection_declare $getDayName $getDay $getMonth $getYear, $inspection_result
 EOD;
 
+$pdf->ln(2);
 // print a block of text using Write()
 $pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
 
@@ -118,15 +119,9 @@ label.field-label{display:inline-block; width:20%;}
 </table>
 EOD;
 
-$i=1;
-$left_info = '<div><strong>'. _l('inspection_members') . '</strong></div>';
-foreach($inspection_members as $member){
-  $left_info .=  $i.'. ' .$member['firstname'] .' '. $member['lastname']. '<br />';
-  $i++;
-}
-
+$left_info ='';
 $tags = get_tags_in($inspection->task_id,'task');
-log_activity(json_encode($tags));
+
 $equipment_type = isset($tags) ? $tags[0] : '';
 $left_info .= '<div><strong>'. _l('equipment_type') . '</strong></div>';
 $left_info .= $equipment_type;

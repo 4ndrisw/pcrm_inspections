@@ -406,7 +406,7 @@
               <td width="1%">:</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_visual_t ?></span> Baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_visual_f ?></span> Tidak baik</td>
-              <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_visual_n ?></span> Tidak ada</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_visual_n ?></span> Tidak dilaksanakan</td>
            </tr>
          <?php } ?>
          <?php if(isset($equipment['pemeriksaan_pengaman'])){ ?>
@@ -415,7 +415,7 @@
               <td width="1%">:</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_pengaman_t ?> </span> Baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_pengaman_f ?> </span> Tidak baik</td>
-              <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_pengaman_n ?> </span> Tidak ada</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pemeriksaan_pengaman_n ?> </span> Tidak dilaksanakan</td>
            </tr>
          <?php } ?>
          <?php if(isset($equipment['pengujian_beban'])){ ?>
@@ -424,7 +424,7 @@
               <td width="1%">:</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_beban_t ?> </span> Baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_beban_f ?> </span> Tidak baik</td>
-              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_beban_n ?> </span> Tidak ada</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_beban_n ?> </span> Tidak dilaksanakan</td>
            </tr>
          <?php } ?>
          <?php if(isset($equipment['pengujian_penetrant'])){ ?>
@@ -433,7 +433,7 @@
               <td width="1%">:</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_penetrant_t ?> </span> Baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_penetrant_f ?> </span> Tidak baik</td>
-              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_penetrant_n ?> </span> Tidak ada</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_penetrant_n ?> </span> Tidak dilaksanakan</td>
            </tr>         
          <?php } ?>
          <?php if(isset($equipment['pengujian_thickness'])){ ?>
@@ -442,7 +442,7 @@
               <td width="1%">:</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thickness_t ?> </span> Baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thickness_f ?> </span> Tidak baik</td>
-              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thickness_n ?> </span> Tidak ada</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thickness_n ?> </span> Tidak dilaksanakan</td>
            </tr>         
          <?php } ?>
          <?php if(isset($equipment['pengujian_grounding'])){ ?>
@@ -451,7 +451,7 @@
               <td width="1%">:</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_grounding_t ?> </span> Baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_grounding_f ?> </span> Tidak baik</td>
-              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_grounding_n ?> </span> Tidak ada</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_grounding_n ?> </span> Tidak dilaksanakan</td>
            </tr>
          <?php } ?>
          <?php if(isset($equipment['pengujian_thermal_infrared'])){ ?>
@@ -460,7 +460,7 @@
               <td width="1%">:</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thermal_infrared_t ?> </span> Baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thermal_infrared_f ?> </span> Tidak baik</td>
-              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thermal_infrared_n ?> </span> Tidak ada</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_thermal_infrared_n ?> </span> Tidak dilaksanakan</td>
            </tr>
          <?php } ?>
          <?php if(isset($equipment['pengujian_kapasitas_hantar'])){ ?>
@@ -469,7 +469,7 @@
               <td width="1%">:</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_kapasitas_hantar_t ?> </span> Baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_kapasitas_hantar_f ?> </span> Tidak baik</td>
-              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_kapasitas_hantar_n ?> </span> Tidak ada</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_kapasitas_hantar_n ?> </span> Tidak dilaksanakan</td>
            </tr>
          <?php } ?>
          <?php if(isset($equipment['pengujian_pompa'])){ ?>
@@ -478,7 +478,7 @@
               <td width="1%">:</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_pompa_t ?> </span> Baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_pompa_f ?> </span> Tidak baik</td>
-              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_pompa_n ?> </span> Tidak ada</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_pompa_n ?> </span> Tidak dilaksanakan</td>
            </tr>
          <?php } ?>
          <?php if(isset($equipment['pengujian_tekanan'])){ ?>
@@ -487,7 +487,7 @@
               <td width="1%">:</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_tekanan_t ?> </span> Baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_tekanan_f ?> </span> Tidak baik</td>
-              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_tekanan_n ?> </span> Tidak ada</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_tekanan_n ?> </span> Tidak dilaksanakan</td>
            </tr>
          <?php } ?>         
          <?php if(isset($equipment['pengujian_daya_pancar'])){ ?>
@@ -496,7 +496,7 @@
               <td width="1%">:</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_daya_pancar_t ?> </span> Baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_daya_pancar_f ?> </span> Tidak baik</td>
-              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_daya_pancar_n ?> </span> Tidak ada</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_daya_pancar_n ?> </span> Tidak dilaksanakan</td>
            </tr>
          <?php } ?>
          <?php if(isset($equipment['pengujian_operasional'])){ ?>
@@ -505,7 +505,7 @@
               <td width="1%">:</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_operasional_t ?> </span> Baik</td>
               <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_operasional_f ?> </span> Tidak baik</td>
-              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_operasional_n ?> </span> Tidak ada</td>
+              <td width="22%"><span style='font-size:2.5rem;'><?= $pengujian_operasional_n ?> </span> Tidak dilaksanakan</td>
            </tr>
         <?php } ?>
 

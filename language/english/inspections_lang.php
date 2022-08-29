@@ -179,6 +179,7 @@ $lang['pengujian_grounding']                             = 'Grounding testing';
 $lang['pengujian_thermal_infrared']                             = 'Thermal infrafed testing';
 $lang['pengujian_kapasitas_hantar']                             = 'Current Conducting Capacity Testing';
 
+$lang['inspection_pompa_test']                             = 'Pump Testing';
 $lang['pengujian_pompa']                             = 'Pump Testing';
 $lang['pengujian_tekanan']                             = 'Preassure Testing';
 $lang['pengujian_daya_pancar']                             = 'Transmittance Testing';
@@ -245,8 +246,24 @@ $lang['attach_file']                 						= 'File';
 $lang['customer_permission_inspection'] = 'Inspections';
 $lang['not_inspection_remove_inspection_item'] = 'Remove inspection item';
 $lang['komponen_pemeriksan']                 						= "Inspection's Component";
-
 $lang['inspection_documentation']                 						= "Documentation";
+$lang['no_inspection_this_week']                 						= "No inspection this week";
+$lang['not_staff_added_as_inspection_member']                 						= "No staff added as inspection member";
+$lang['inspections_tracking']                 						= "Inspections tracking";
+$lang['inspection_company']                 						= "Company";
+$lang['inspection_task']                 						= "Task";
+$lang['inspection_tag']                 						= "Tag";
+$lang['inspection_flag']                 						= "Flag";
+$lang['view_pdf_template_in_new_window']                 						= "View PDF template";
+
+$lang['inspection_load_test']                 						= "Load test";
+$lang['inspection_documentation']                 						= "Documentation";
+$lang['baik']                 						= "Good";
+$lang['tidak_baik']                 						= "Not good";
+$lang['tidak_ada']                 						= "Not available";
+$lang['pengujian_beban']                 						= "Load test";
+$lang['pengujian_grounding']                 						= "Grounding test";
+$lang['inspection_kapasitas_hantar_test']                 						= "Current Conducting Capacity";
 
 
 /*

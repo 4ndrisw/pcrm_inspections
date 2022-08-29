@@ -239,7 +239,6 @@ $equipment_type = isset($tag) ? $tag : '';
 $left_info .= '<div><strong>'. _l('equipment_type') . '</strong></div>';
 $left_info .= '<div><strong>'. _l('equipment_type') . '</strong></div>';
 $left_info .= $equipment_type;
-$left_info .= $equipment_type;
 
 $task_name = isset($inspection->task_id) ? $inspection->task_id : 'kosong';
 $left_info .= '<div><strong>'. _l('task_name') . '</strong></div>';
