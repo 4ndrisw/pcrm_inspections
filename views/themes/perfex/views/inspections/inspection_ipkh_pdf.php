@@ -192,56 +192,56 @@ table tr{ line-height: 2;}
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_t</span> $lengkap</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_f</span> $tidak_lengkap</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_n</span> $tidak_ada</td>
+           <td width="22%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_n</span> $tidak_ada</td>
         </tr>
         <tr class="tg pemeriksaan_visual">
            <td width="34%">$pemeriksaan_visual</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_n</span> $tidak_dilaksanakan</td>
+           <td width="22%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_n</span> $tidak_dilaksanakan</td>
         </tr>
         <tr class="tg pemeriksaan_pengaman">
            <td width="34%">$pemeriksaan_pengaman</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_dilaksanakan</td>
+           <td width="22%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_dilaksanakan</td>
         </tr>
         <tr class="tg pengujian_pompa">
            <td width="34%">$pengujian_pompa</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_pompa_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_pompa_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_pompa_n</span> $tidak_dilaksanakan</td>
+           <td width="22%"><span style='font-size:2.5rem;'>$pengujian_pompa_n</span> $tidak_dilaksanakan</td>
         </tr>
         <tr class="tg pengujian_tekanan">
            <td width="34%">$pengujian_tekanan</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_tekanan_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_tekanan_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_tekanan_n</span> $tidak_dilaksanakan</td>
+           <td width="22%"><span style='font-size:2.5rem;'>$pengujian_tekanan_n</span> $tidak_dilaksanakan</td>
         </tr>
         <tr class="tg pengujian_daya_pancar">
            <td width="34%">$pengujian_daya_pancar</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_daya_pancar_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_daya_pancar_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_daya_pancar_n</span> $tidak_dilaksanakan</td>
+           <td width="22%"><span style='font-size:2.5rem;'>$pengujian_daya_pancar_n</span> $tidak_dilaksanakan</td>
         </tr>
         <tr class="tg pengujian_operasional">
            <td width="34%">$pengujian_operasional</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_n</span> $tidak_dilaksanakan</td>
+           <td width="22%"><span style='font-size:2.5rem;'>$pengujian_operasional_n</span> $tidak_dilaksanakan</td>
         </tr>
         <tr class="tg">
            <td width="34%"></td>
            <td width="1%"></td>
            <td width="20%"></td>
            <td width="20%"></td>
-           <td width="20%"></td>
+           <td width="22%"></td>
         </tr>
      </tbody>
   </table>
