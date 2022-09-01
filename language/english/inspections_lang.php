@@ -264,6 +264,7 @@ $lang['tidak_ada']                 						= "Not available";
 $lang['pengujian_beban']                 						= "Load test";
 $lang['pengujian_grounding']                 						= "Grounding test";
 $lang['inspection_kapasitas_hantar_test']                 						= "Current Conducting Capacity";
+$lang['project_not_inspected']                 						= "Project not inspected";
 
 
 /*

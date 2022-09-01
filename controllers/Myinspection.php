@@ -29,7 +29,7 @@ class Myinspection extends ClientsController
         $this->layout();
     }
 
-    public function sticker($id, $hash)
+    public function sticker($id, $task_id, $hash)
     {
         check_inspection_restrictions($id, $hash);
         $inspection = $this->inspections_model->get($id);
@@ -72,7 +72,7 @@ class Myinspection extends ClientsController
         // Handle Inspection PDF generator
 
         $inspection_number = format_inspection_number($inspection->id);
-      
+      /*
         $tags = get_tags_in($inspection->id, 'inspection');
 
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
@@ -84,9 +84,33 @@ class Myinspection extends ClientsController
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
         $data['equipment'] = $equipment[0];
         $equipment_name = isset($equipment[0]['nama_pesawat']) ? $equipment[0]['nama_pesawat'] : '';
-        
-        $data['title'] = $inspection_number;
+        */
 
+        $tags = get_tags_in($task_id, 'task');
+        
+        $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
+        $inspection->equipment_type = $equipment_type;
+        $inspection->tag_id = get_tag_by_name($tags[0])->id;
+
+        $equipment_model = $equipment_type .'_model';
+        $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
+
+        if (!file_exists($model_path)) {
+            set_alert('danger', _l('file_not_found ;', $equipment_model));
+            log_activity('File '. $equipment_model . ' not_found');
+            redirect(admin_url('inspections/inspection/'.$id));
+        }
+        
+        include_once($model_path);
+        $this->load->model($equipment_model);
+        $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id, 'task_id' =>$task_id]);
+        $inspection->equipment = $equipment;
+        
+
+        $data['inspection']          = $inspection;
+        $data['equipment']          = reset($equipment);
+        $data['equipment_name']          = $data['equipment']['nama_pesawat'];
+        $data['title'] = $inspection_number;
         $data['inspection_number']              = $inspection_number;
         $data['hash']                          = $hash;
         $data['can_be_accepted']               = false;
@@ -94,7 +118,7 @@ class Myinspection extends ClientsController
         $data['bodyclass']                     = 'viewinspection';
         $data['client_company']                = $this->clients_model->get($inspection->clientid)->company;
         
-        $data['equipment_name']                          = $equipment_name;
+        //$data['equipment_name']                          = $equipment_name;
         $setSize = get_option('inspection_qrcode_size');
 
         $data['identity_confirmation_enabled'] = $identity_confirmation_enabled;
@@ -105,7 +129,7 @@ class Myinspection extends ClientsController
         $qrcode_data  = '';
         $qrcode_data .= _l('inspection_number') . ' : ' . $inspection_number ."\r\n";
         $qrcode_data .= _l('inspection_date') . ' : ' . $inspection->date ."\r\n";
-        $qrcode_data .= _l('inspection_equipment_nama_pesawat') . ' : ' . $equipment_name ."\r\n";
+        $qrcode_data .= _l('inspection_equipment_nama_pesawat') . ' : ' . $data['equipment']['nama_pesawat'] ."\r\n";
         $qrcode_data .= _l('inspection_assigned_string') . ' : ' . get_staff_full_name($inspection->assigned) ."\r\n";
         //$qrcode_data .= _l('inspection_company') . ' : ' . get_option('invoice_company_name') ."\r\n";
         
@@ -502,7 +526,7 @@ class Myinspection extends ClientsController
 
 
 
-    public function sticker_data($id)
+    public function sticker_data($id, $task_id)
     {
         $canView = user_can_view_inspection($id);
         if (!$canView) {
@@ -516,7 +540,7 @@ class Myinspection extends ClientsController
             redirect(admin_url('inspections'));
         }
 
-        app_pdf('sticker-data', module_libs_path(INSPECTIONS_MODULE_NAME) . 'pdf/Sticker_data_pdf', $id);
+        app_pdf('sticker-data', module_libs_path(INSPECTIONS_MODULE_NAME) . 'pdf/Sticker_data_pdf', $id, $task_id);
     }
     
 }

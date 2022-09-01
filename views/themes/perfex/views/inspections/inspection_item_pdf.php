@@ -348,7 +348,7 @@ if(isset($inspection->equipment["pemeriksaan_dokumen"])){
     }
 
     $_tblhtml .= '<tr class="tg pemeriksaan_dokumen">
-           <td width="36%">'._l('pemeriksaan_dokumen').'</td>
+           <td width="34%">'._l('pemeriksaan_dokumen').'</td>
            <td width="1%">:</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pemeriksaan_dokumen_t .'</span>'. $lengkap .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pemeriksaan_dokumen_f .'</span>'. $tidak_lengkap .'</td>
@@ -371,11 +371,11 @@ if(isset($inspection->equipment["pemeriksaan_visual"])){
     }
 
     $_tblhtml .= '<tr class="tg pemeriksaan_visual">
-           <td width="36%">'._l('pemeriksaan_visual').'</td>
+           <td width="34%">'._l('pemeriksaan_visual').'</td>
            <td width="1%">:</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pemeriksaan_visual_t .'</span>'. $baik .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pemeriksaan_visual_f .'</span>'. $tidak_baik .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pemeriksaan_visual_n .'</span>'. $tidak_dilaksanakan .'</td>
+           <td width="22%"><span style="font-size:12.5rem;">'. $pemeriksaan_visual_n .'</span>'. $tidak_dilaksanakan .'</td>
         </tr>';
 }
 
@@ -394,11 +394,11 @@ if(isset($inspection->equipment["pemeriksaan_pengaman"])){
     }
 
     $_tblhtml .= '<tr class="tg pemeriksaan_pengaman">
-           <td width="36%">'._l('pemeriksaan_pengaman').'</td>
+           <td width="34%">'._l('pemeriksaan_pengaman').'</td>
            <td width="1%">:</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pemeriksaan_pengaman_t .'</span>'. $baik .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pemeriksaan_pengaman_f .'</span>'. $tidak_baik .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pemeriksaan_pengaman_n .'</span>'. $tidak_dilaksanakan .'</td>
+           <td width="22%"><span style="font-size:12.5rem;">'. $pemeriksaan_pengaman_n .'</span>'. $tidak_dilaksanakan .'</td>
         </tr>';
 }
 
@@ -417,11 +417,11 @@ if(isset($inspection->equipment["pengujian_beban"])){
     }
 
     $_tblhtml .= '<tr class="tg pengujian_beban">
-           <td width="36%">'._l('pengujian_beban').'</td>
+           <td width="34%">'._l('pengujian_beban').'</td>
            <td width="1%">:</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_beban_t .'</span>'. $baik .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_beban_f .'</span>'. $tidak_baik .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_beban_n .'</span>'. $tidak_dilaksanakan .'</td>
+           <td width="22%"><span style="font-size:12.5rem;">'. $pengujian_beban_n .'</span>'. $tidak_dilaksanakan .'</td>
         </tr>';
 }
 
@@ -440,11 +440,11 @@ if(isset($inspection->equipment["pengujian_penetrant"])){
     }
 
     $_tblhtml .= '<tr class="tg pengujian_penetrant">
-           <td width="36%">'. _l('pengujian_penetrant').'</td>
+           <td width="34%">'. _l('pengujian_penetrant').'</td>
            <td width="1%">:</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_penetrant_t .'</span>'. _l('baik') .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_penetrant_f .'</span>'. _l('tidak_baik') .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_penetrant_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
+           <td width="22%"><span style="font-size:12.5rem;">'. $pengujian_penetrant_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
         </tr>';
 }
 
@@ -463,11 +463,11 @@ if(isset($inspection->equipment["pengujian_thickness"])){
     }
 
     $_tblhtml .= '<tr class="tg pengujian_thickness">
-           <td width="36%">'. _l('pengujian_thickness').'</td>
+           <td width="34%">'. _l('pengujian_thickness').'</td>
            <td width="1%">:</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_thickness_t .'</span>'. _l('baik') .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_thickness_f .'</span>'. _l('tidak_baik') .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_thickness_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
+           <td width="22%"><span style="font-size:12.5rem;">'. $pengujian_thickness_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
         </tr>';
 }
 
@@ -486,11 +486,11 @@ if(isset($inspection->equipment["pengujian_hydrotest"])){
     }
 
     $_tblhtml .= '<tr class="tg pengujian_hydrotest">
-           <td width="36%">'. _l('pengujian_hydrotest').'</td>
+           <td width="34%">'. _l('pengujian_hydrotest').'</td>
            <td width="1%">:</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_hydrotest_t .'</span>'. $baik .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_hydrotest_f .'</span>'. $tidak_baik .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_hydrotest_n .'</span>'. $tidak_dilaksanakan .'</td>
+           <td width="22%"><span style="font-size:12.5rem;">'. $pengujian_hydrotest_n .'</span>'. $tidak_dilaksanakan .'</td>
         </tr>';
 }
 
@@ -509,11 +509,11 @@ if(isset($inspection->equipment["pengujian_grounding"])){
     }
 
     $_tblhtml .= '<tr class="tg pengujian_grounding">
-           <td width="36%">'. _l('pengujian_grounding').'</td>
+           <td width="34%">'. _l('pengujian_grounding').'</td>
            <td width="1%">:</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_grounding_t .'</span>'. _l('baik') .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_grounding_f .'</span>'. _l('tidak_baik') .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_grounding_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
+           <td width="22%"><span style="font-size:12.5rem;">'. $pengujian_grounding_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
         </tr>';
 }
 
@@ -532,11 +532,11 @@ if(isset($inspection->equipment["pengujian_thermal_infrared"])){
     }
 
     $_tblhtml .= '<tr class="tg pengujian_thermal_infrared">
-           <td width="36%">'. _l('pengujian_thermal_infrared').'</td>
+           <td width="34%">'. _l('pengujian_thermal_infrared').'</td>
            <td width="1%">:</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_thermal_infrared_t .'</span>'. _l('baik') .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_thermal_infrared_f .'</span>'. _l('tidak_baik') .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_thermal_infrared_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
+           <td width="22%"><span style="font-size:12.5rem;">'. $pengujian_thermal_infrared_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
         </tr>';
 }
 
@@ -555,11 +555,11 @@ if(isset($inspection->equipment["pengujian_kapasitas_hantar"])){
     }
 
     $_tblhtml .= '<tr class="tg pengujian_kapasitas_hantar">
-           <td width="36%">'. _l('pengujian_kapasitas_hantar').'</td>
+           <td width="34%">'. _l('pengujian_kapasitas_hantar').'</td>
            <td width="1%">:</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_kapasitas_hantar_t .'</span>'. _l('baik') .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_kapasitas_hantar_f .'</span>'. _l('tidak_baik') .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_kapasitas_hantar_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
+           <td width="22%"><span style="font-size:12.5rem;">'. $pengujian_kapasitas_hantar_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
         </tr>';
 }
 
@@ -578,11 +578,11 @@ if(isset($inspection->equipment["pengujian_pompa"])){
     }
 
     $_tblhtml .= '<tr class="tg pengujian_pompa">
-           <td width="36%">'. _l('pengujian_pompa').'</td>
+           <td width="34%">'. _l('pengujian_pompa').'</td>
            <td width="1%">:</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_pompa_t .'</span>'. _l('baik') .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_pompa_f .'</span>'. _l('tidak_baik') .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_pompa_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
+           <td width="22%"><span style="font-size:12.5rem;">'. $pengujian_pompa_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
         </tr>';
 }
 
@@ -601,11 +601,11 @@ if(isset($inspection->equipment["pengujian_tekanan"])){
     }
 
     $_tblhtml .= '<tr class="tg pengujian_tekanan">
-           <td width="36%">'. _l('pengujian_tekanan').'</td>
+           <td width="34%">'. _l('pengujian_tekanan').'</td>
            <td width="1%">:</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_tekanan_t .'</span>'. _l('baik') .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_tekanan_f .'</span>'. _l('tidak_baik') .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_tekanan_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
+           <td width="22%"><span style="font-size:12.5rem;">'. $pengujian_tekanan_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
         </tr>';
 }
 
@@ -624,11 +624,11 @@ if(isset($inspection->equipment["pengujian_daya_pancar"])){
     }
 
     $_tblhtml .= '<tr class="tg pengujian_daya_pancar">
-           <td width="36%">'. _l('pengujian_daya_pancar').'</td>
+           <td width="34%">'. _l('pengujian_daya_pancar').'</td>
            <td width="1%">:</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_daya_pancar_t .'</span>'. _l('baik') .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_daya_pancar_f .'</span>'. _l('tidak_baik') .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_daya_pancar_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
+           <td width="22%"><span style="font-size:12.5rem;">'. $pengujian_daya_pancar_n .'</span>'. _l('tidak_dilaksanakan') .'</td>
         </tr>';
 }
 
@@ -647,11 +647,11 @@ if(isset($inspection->equipment["pengujian_operasional"])){
     }
 
     $_tblhtml .= '<tr class="tg pengujian_operasional">
-           <td width="36%">'._l('pengujian_operasional').'</td>
+           <td width="34%">'._l('pengujian_operasional').'</td>
            <td width="1%">:</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_operasional_t .'</span>'. $baik .'</td>
            <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_operasional_f .'</span>'. $tidak_baik .'</td>
-           <td width="20%"><span style="font-size:12.5rem;">'. $pengujian_operasional_n .'</span>'. $tidak_dilaksanakan .'</td>
+           <td width="22%"><span style="font-size:12.5rem;">'. $pengujian_operasional_n .'</span>'. $tidak_dilaksanakan .'</td>
         </tr>';
 }
 
@@ -670,11 +670,11 @@ table tr{ line-height: 2;}
         $_tblhtml
         
         <tr class="tg">
-           <td width="36%"></td>
+           <td width="34%"></td>
            <td width="1%"></td>
            <td width="20%"></td>
            <td width="20%"></td>
-           <td width="20%"></td>
+           <td width="22%"></td>
         </tr>
      </tbody>
   </table>

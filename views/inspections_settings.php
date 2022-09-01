@@ -10,6 +10,15 @@
       <i class="fa fa-question-circle pull-left" data-toggle="tooltip" data-title="<?php echo _l('next_inspection_number_tooltip'); ?>"></i>
       <?php echo render_input('settings[next_inspection_number]','next_inspection_number',get_option('next_inspection_number'), 'number', ['min'=>1]); ?>
       <hr />
+      <i class="fa fa-question-circle pull-left" data-toggle="tooltip" data-title="<?php echo _l('inspection_number_of_date_tooltip'); ?>"></i>
+      <?php echo render_input('settings[inspection_number_of_date]','inspection_number_of_date',get_option('inspection_number_of_date'), 'number', ['min'=>0]); ?>
+      <hr />
+      <i class="fa fa-question-circle pull-left" data-toggle="tooltip" data-title="<?php echo _l('inspection_start_date_label'); ?>"></i>
+        <?php $start_date = get_option('inspection_start_date'); ?>
+        <?php $value = $start_date ? $start_date : date('Y-m-d'); ?>
+        <?php echo render_date_input('settings[inspection_start_date]','inspection_start_date',$value); ?>
+
+      <hr />
       <i class="fa fa-question-circle pull-left" data-toggle="tooltip" data-title="<?php echo _l('due_after_help'); ?>"></i>
       <?php echo render_input('settings[inspection_qrcode_size]', 'inspection_qrcode_size', get_option('inspection_qrcode_size')); ?>
       <hr />

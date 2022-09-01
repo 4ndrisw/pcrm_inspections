@@ -41,6 +41,10 @@ function inspections_add_dashboard_widget($widgets)
         'path'      => 'inspections/widgets/inspection_this_week',
         'container' => 'left-8',
     ];
+    $widgets[] = [
+        'path'      => 'inspections/widgets/project_not_inspected',
+        'container' => 'left-8',
+    ];
 
     return $widgets;
 }

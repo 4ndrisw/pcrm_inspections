@@ -185,8 +185,6 @@ $tidak_baik = _l('tidak_baik');
 $tidak_dilaksanakan = _l('tidak_dilaksanakan');
 
 
-
-
 $tblhtml = <<<EOD
 <style>
 .tg  {border-collapse:collapse;border-spacing:0;}
@@ -197,39 +195,39 @@ table tr{ line-height: 2;}
 <table class="table table-bordered">
      <tbody>
         <tr class="tg pemeriksaan_dokumen">
-           <td width="36%">$pemeriksaan_dokumen</td>
+           <td width="34%">$pemeriksaan_dokumen</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_t</span> $lengkap</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_f</span> $tidak_lengkap</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_n</span> $tidak_ada</td>
+           <td width="22%"><span style='font-size:2.5rem;'>$pemeriksaan_dokumen_n</span> $tidak_ada</td>
         </tr>
         <tr class="tg pemeriksaan_visual">
-           <td width="36%">$pemeriksaan_visual</td>
+           <td width="34%">$pemeriksaan_visual</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_n</span> $tidak_dilaksanakan</td>
+           <td width="22%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_n</span> $tidak_dilaksanakan</td>
         </tr>
         <tr class="tg pemeriksaan_pengaman">
-           <td width="36%">$pemeriksaan_pengaman</td>
+           <td width="34%">$pemeriksaan_pengaman</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_dilaksanakan</td>
+           <td width="22%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_dilaksanakan</td>
         </tr>
         <tr class="tg pengujian_operasional">
-           <td width="36%">$pengujian_operasional</td>
+           <td width="34%">$pengujian_operasional</td>
            <td width="1%">:</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_f</span> $tidak_baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_operasional_n</span> $tidak_dilaksanakan</td>
+           <td width="22%"><span style='font-size:2.5rem;'>$pengujian_operasional_n</span> $tidak_dilaksanakan</td>
         </tr>
         <tr class="tg">
-           <td width="36%"></td>
+           <td width="34%"></td>
            <td width="1%"></td>
            <td width="20%"></td>
            <td width="20%"></td>
-           <td width="20%"></td>
+           <td width="22%"></td>
         </tr>
      </tbody>
   </table>
