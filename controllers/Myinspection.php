@@ -390,8 +390,8 @@ class Myinspection extends ClientsController
         $task = $this->tasks_model->get($task_id);
         $inspection->task = $task;
 
-        $inspection->assigned_path = FCPATH . get_inspection_upload_path('inspection').$inspection->id.'/assigned-'.$inspection_item_number.'.png';
-        $inspection->acceptance_path = FCPATH . get_inspection_upload_path('inspection').$inspection->id .'/'.$inspection->signature;
+        $inspection->assigned_path = get_inspection_upload_path('inspection').$inspection->id.'/assigned-'.$inspection_item_number.'.png';
+        $inspection->acceptance_path = get_inspection_upload_path('inspection').$inspection->id .'/'.$inspection->signature;
         
         $inspection->client_company = $this->clients_model->get($inspection->clientid)->company;
         $inspection->acceptance_date_string = _dt($inspection->acceptance_date);
@@ -465,8 +465,8 @@ class Myinspection extends ClientsController
         $task = $this->tasks_model->get($task_id);
         $inspection->task = $task;
 
-        $inspection->assigned_path = FCPATH . get_inspection_upload_path('inspection').$inspection->id.'/assigned-'.$inspection_item_number.'.png';
-        $inspection->acceptance_path = FCPATH . get_inspection_upload_path('inspection').$inspection->id .'/'.$inspection->signature;
+        $inspection->assigned_path = get_inspection_upload_path('inspection').$inspection->id.'/assigned-'.$inspection_item_number.'.png';
+        $inspection->acceptance_path = get_inspection_upload_path('inspection').$inspection->id .'/'.$inspection->signature;
         
         $inspection->client_company = $this->clients_model->get($inspection->clientid)->company;
         $inspection->acceptance_date_string = _dt($inspection->acceptance_date);
@@ -494,7 +494,7 @@ class Myinspection extends ClientsController
         }
         
         $inspection->equipment = $equipment[0];
-
+        
         try {
             $pdf = inspection_raw_pdf($inspection);
         } catch (Exception $e) {
