@@ -59,6 +59,13 @@ $lang['inspection_capacity']                             = 'Kapasitas';
 $lang['sticker']                              = 'Sticker';
 $lang['inspection_report']                              = 'Berita Acara Pelaksanaan Riksa Uji';
 
+$lang['inspection_tempat_pembuatan']                             = 'Tempat pembuatan';
+$lang['inspection_pabrik_pembuat']                             = 'Pabrik pembuat';
+$lang['inspection_nomor_seri']                             = 'Nomor seri';
+$lang['inspection_nomor_unit']                             = 'Nomor unit';
+$lang['inspection_type_model']                             = 'Type / model';
+$lang['inspection_kapasitas']                             = 'Kapasitas';
+
 $lang['inspection_jumlah_kotak_hydrant']                             = 'Kotak Hydrant';
 $lang['inspection_jumlah_selang_hydrant']                             = 'Selang Hydrant';
 $lang['inspection_jumlah_nozzle']                             = 'Jumlah Nozzle';
