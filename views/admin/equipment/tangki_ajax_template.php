@@ -26,6 +26,9 @@
                <li role="presentation">
                   <a href="#inspection_conclusion" aria-controls="inspection_conclusion" role="tab" data-toggle="tab"><?php echo _l('inspection_conclusion'); ?></a>
                </li>
+               <li role="presentation">
+                  <a href="#inspection_documentation" aria-controls="inspection_documentation" role="tab" data-toggle="tab"><?php echo _l('inspection_documentation'); ?></a>
+               </li>
             </ul>
          </div>
       </div>
@@ -71,6 +74,11 @@
                                 <td style="width:20%">Tahun Pembuatan</td>
                                 <td style="width:2%">:</td>
                                 <td id="tahun_pembuatan" class="<?= $editable_class ?>" data-field="tahun_pembuatan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['tahun_pembuatan']) ? $equipment['tahun_pembuatan'] : '' ?></td>      
+                             </tr>
+                             <tr>
+                                <td style="width:20%">Jenis - bejana</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editable_class ?>" data-field="jenis_bejana" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['jenis_bejana']) ? $equipment['jenis_bejana'] : '' ?></td>      
                              </tr>
                              <tr>
                                 <td style="width:20%">Merk</td>
@@ -386,6 +394,140 @@
 
             </div>
         
+         </div>
+         <div data-role="page" role="tabpanel" class="tab-pane" id="inspection_documentation">
+            <h4 class="bold">
+               <?php echo _l('inspection_documentation'); ?>
+            </h4>
+            <p class="text-muted">
+               <p><?php echo _l('inspection_documentation'); ?></p>
+            </p>
+            <hr />
+            <div class="row">
+               <div class="col-md-12 documentation-form">
+                  <?php echo form_open_multipart('inspections/inspection_item/'. $inspection->id.'/'. $inspection->task_id.'/upload_file',array('id'=>'inspection-documentation','class'=>'dropzone')); ?>
+                  <?php echo form_close(); ?>
+               </div>
+
+               <div class="col-md-12 clearfix">
+                  <a class="btn btn-success reload-div" onclick="reloadInspectionsAttachments();">Reload</a>
+               </div>
+
+               <div id="inspection-documentations">
+                  <?php if(count($inspection->documentations) > 0){ ?>
+                  <div class="col-md-12">
+                     <div class="inspections_attachments_wrapper">
+                        <div class="col-md-12" id="attachments">
+                           <hr />
+                           <h4 class="th font-medium mbot15"><?php echo _l('task_view_attachments'); ?></h4>
+                           <div class="row">
+                              <?php
+                                 $i = 1;
+                                 // Store all url related data here
+                                 //$comments_attachments = array();
+                                 //$attachments_data = array();
+                                 
+                                 $show_more_link_task_attachments = hooks()->apply_filters('show_more_link_task_attachments', 4);
+                                
+                                 foreach($inspection->documentations as $attachment){ ?>
+                              <?php ob_start(); ?>
+                              <div data-num="<?php echo $i; ?>" data-inspection-attachment-id="<?php echo $attachment['id']; ?>" class="task-attachment-col col-md-6<?php if($i > $show_more_link_task_attachments){echo ' hide task-attachment-col-more';} ?>">
+                                 <ul class="list-unstyled task-attachment-wrapper" data-placement="right" data-toggle="tooltip" data-title="<?php echo $attachment['file_name']; ?>" >
+                                    <li class="mbot10 task-attachment<?php if(strtotime($attachment['dateadded']) >= strtotime('-16 hours')){echo ' highlight-bg'; } ?>">
+                                       <div class="mbot10 pull-right inspection-attachment-user">
+                                          <?php if($attachment['staffid'] == get_staff_user_id() || is_admin()){ ?>
+                                          <a href="#" class="pull-right" onclick="remove_inspection_attachment(this,<?php echo $attachment['id']; ?>); return false;">
+                                             <i class="fa fa fa-times"></i>
+                                          </a>
+                                          <?php }
+                                             $externalPreview = false;
+                                             $is_image = false;
+                                             $path = INSPECTION_ATTACHMENTS_FOLDER . get_upload_path_by_type('inspections') . $inspection->id . '/'. $attachment['file_name'];
+
+                                             $href_url = site_url('download/file/taskattachment/'. $attachment['attachment_key']);
+                                             $isHtml5Video = is_html5_video($path);
+                                             if(empty($attachment['external'])){
+                                              $is_image = is_image($path);
+                                              $img_url = site_url('download/preview_image?path='.protected_file_url_by_path($path,true).'&type='.$attachment['filetype']);
+                                             } else if((!empty($attachment['thumbnail_link']) || !empty($attachment['external']))
+                                             && !empty($attachment['thumbnail_link'])){
+                                             $is_image = true;
+                                             $img_url = optimize_dropbox_thumbnail($attachment['thumbnail_link']);
+                                             $externalPreview = $img_url;
+                                             $href_url = $attachment['external_link'];
+                                             } else if(!empty($attachment['external']) && empty($attachment['thumbnail_link'])) {
+                                             $href_url = $attachment['external_link'];
+                                             }
+                                             if(!empty($attachment['external']) && $attachment['external'] == 'dropbox' && $is_image){ ?>
+                                          <a href="<?php echo $href_url; ?>" target="_blank" class="" data-toggle="tooltip" data-title="<?php echo _l('open_in_dropbox'); ?>"><i class="fa fa-dropbox" aria-hidden="true"></i></a>
+                                          <?php } else if(!empty($attachment['external']) && $attachment['external'] == 'gdrive'){ ?>
+                                          <a href="<?php echo $href_url; ?>" target="_blank" class="" data-toggle="tooltip" data-title="<?php echo _l('open_in_google'); ?>"><i class="fa fa-google" aria-hidden="true"></i></a>
+                                          <?php }
+                                             if($attachment['staffid'] != 0){
+                                               echo '<a href="'.admin_url('profile/'.$attachment['staffid']).'" target="_blank">'.get_staff_full_name($attachment['staffid']) .'</a> - ';
+                                             } else if($attachment['contact_id'] != 0) {
+                                               echo '<a href="'.admin_url('clients/client/'.get_user_id_by_contact_id($attachment['contact_id']).'?contactid='.$attachment['contact_id']).'" target="_blank">'.get_contact_full_name($attachment['contact_id']) .'</a> - ';
+                                             }
+                                             echo '<span class="text-has-action" data-toggle="tooltip" data-title="'._dt($attachment['dateadded']).'">'.time_ago($attachment['dateadded']).'</span>';
+                                             ?>
+                                       </div>
+                                       <div class="clearfix"></div>
+                                       <div class="<?php if($is_image){echo 'preview-image';}else if(!$isHtml5Video){echo 'task-attachment-no-preview';} ?>">
+                                          <?php
+                                             // Not link on video previews because on click on the video is opening new tab
+                                             if(!$isHtml5Video){ ?>
+                                          <a href="<?php echo (!$externalPreview ? $href_url : $externalPreview); ?>" target="_blank"<?php if($is_image){ ?> data-lightbox="task-attachment"<?php } ?> class="<?php if($isHtml5Video){echo 'video-preview';} ?>">
+                                             <?php } ?>
+                                             <?php if($is_image){ ?>
+                                             <img src="<?php echo $img_url; ?>" class="img img-responsive">
+                                             <?php } else if($isHtml5Video) { ?>
+                                             <video width="100%" height="100%" src="<?php echo site_url('download/preview_video?path='.protected_file_url_by_path($path).'&type='.$attachment['filetype']); ?>" controls>
+                                                Your browser does not support the video tag.
+                                             </video>
+                                             <?php } else { ?>
+                                             <i class="<?php echo get_mime_class($attachment['filetype']); ?>"></i>
+                                             <?php echo $attachment['file_name']; ?>
+                                             <?php } ?>
+                                          </a>
+                                       </div>
+                                       <div class="clearfix"></div>
+                                    </li>
+                                 </ul>
+                              </div>
+                              <?php
+                                 $attachments_data[$attachment['id']] = ob_get_contents();
+                                 if($attachment['task_comment_id'] != 0) {
+                                  $comments_attachments[$attachment['task_comment_id']][$attachment['id']] = $attachments_data[$attachment['id']];
+                                 }
+                                 ob_end_clean();
+                                 echo $attachments_data[$attachment['id']];
+                                 ?>
+                              <?php
+                                 $i++;
+                                 } ?>
+                           </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <?php if(($i - 1) > $show_more_link_task_attachments){ ?>
+                        <div class="col-md-12" id="show-more-less-inspections-attachments-col">
+                           <a href="#" class="inspections-attachments-more" onclick="slideToggle('.inspections_attachments_wrapper .task-attachment-col-more', task_attachments_toggle); return false;"><?php echo _l('show_more'); ?></a>
+                           <a href="#" class="inspections-attachments-less hide" onclick="slideToggle('.inspections_attachments_wrapper .task-attachment-col-more', task_attachments_toggle); return false;"><?php echo _l('show_less'); ?></a>
+                        </div>
+                        <?php } ?>
+                        <div class="col-md-12 text-center">
+                           <hr />
+                           <a href="<?php echo admin_url('inspections/download_files/'.$inspection->id .'/'. $inspection->task_id); ?>" class="bold">
+                           <?php echo _l('download_all'); ?> (.zip)
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+                  <?php } ?>
+               </div>
+
+
+
+            </div>
          </div>
 
       </div>
