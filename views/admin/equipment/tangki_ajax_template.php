@@ -76,7 +76,7 @@
                                 <td id="tahun_pembuatan" class="<?= $editable_class ?>" data-field="tahun_pembuatan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['tahun_pembuatan']) ? $equipment['tahun_pembuatan'] : '' ?></td>      
                              </tr>
                              <tr>
-                                <td style="width:20%">Jenis - bejana</td>
+                                <td style="width:20%">Jenis bejana</td>
                                 <td style="width:2%">:</td>
                                 <td class="<?= $editable_class ?>" data-field="jenis_bejana" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['jenis_bejana']) ? $equipment['jenis_bejana'] : '' ?></td>      
                              </tr>
