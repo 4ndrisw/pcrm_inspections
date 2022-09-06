@@ -22,7 +22,7 @@ hooks()->add_action('clients_init', 'inspections_clients_area_menu_items');
 
 hooks()->add_action('staff_member_deleted', 'inspections_staff_member_deleted');
 
-hooks()->add_action('after_inspection_updated', 'inspection_create_assigned_qrcode');
+//hooks()->add_action('after_inspection_updated', 'inspection_create_assigned_qrcode');
 
 hooks()->add_filter('migration_tables_to_replace_old_links', 'inspections_migration_tables_to_replace_old_links');
 hooks()->add_filter('global_search_result_query', 'inspections_global_search_result_query', 10, 3);
