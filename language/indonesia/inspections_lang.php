@@ -229,6 +229,7 @@ $lang['inspection_pompa_test']                             = 'Pengujian pompa';
 $lang['pengujian_tekanan']                             = 'Pengujian tekanan';
 $lang['pengujian_daya_pancar']                             = 'Pengujian daya pancar';
 $lang['inspection_flag']                 						= "Flag";
+$lang['project_not_inspected']                 						= "Project belum diinspeksi";
 
 
 
