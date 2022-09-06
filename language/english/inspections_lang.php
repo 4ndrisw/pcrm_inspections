@@ -50,6 +50,7 @@ $lang['inspection_serial_number']                             = 'Serial number';
 $lang['inspection_unit_number']                             = 'Unit number';
 $lang['inspection_capacity']                             = 'Capacity';
 
+$lang['inspection_equipment']                              = 'Equipment';
 $lang['sticker']                              = 'Sticker';
 $lang['inspection_report']                              = 'Inspection report';
 $lang['inspection_number']                              = 'Number';

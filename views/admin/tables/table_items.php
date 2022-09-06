@@ -8,6 +8,7 @@ $inspection_id = $CI->session->userdata('inspection_id');
 
 $aColumns = [
     db_prefix() . 'tasks.name',
+    db_prefix() . 'inspection_items.equipment_name',
     db_prefix() . 'tags.name',
     'flag',
 ];

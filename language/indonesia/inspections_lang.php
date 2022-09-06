@@ -46,6 +46,7 @@ $lang['inspection_data_date']              = 'Tanggal';
 $lang['inspection_pdf_heading']            = 'SURAT PERJALANAN DINAS';
 $lang['inspection_table_item_heading']     = 'Item';
 $lang['inspection_table_quantity_heading'] = 'Qty';
+$lang['inspection_equipment']                              = 'Nama alat';
 
 $lang['inspection_number']                              = 'Nomor';
 $lang['inspection_company_name']                              = 'Perusahaan';
