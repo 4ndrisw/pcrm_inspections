@@ -9,7 +9,7 @@ if (!$CI->db->table_exists(db_prefix() . 'tangki')) {
       `nama_perusahaan` varchar(60) DEFAULT NULL,
       `alamat_perusahaan` varchar(60) DEFAULT NULL,
       `lokasi` varchar(50) DEFAULT NULL,
-      `jenis_pesawat` varchar(30) DEFAULT NULL,
+      `jenis_pesawat` varchar(30) NOT NULL,
       `nama_pesawat` varchar(50) DEFAULT NULL,
       `pabrik_pembuat` varchar(50) DEFAULT NULL,
       `tahun_pembuatan` smallint(4) DEFAULT NULL,
