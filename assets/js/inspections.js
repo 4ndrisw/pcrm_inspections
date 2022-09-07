@@ -202,7 +202,7 @@ function inspection_remove_inspection_item(inspection_id, task_id) {
 
 
 function reload_inspections_tables() {
-    var av_inspections_tables = ['.table-inspections', '.table-rel-inspections', '.table-inspection-items', '.table-inspection-related'];
+    var av_inspections_tables = ['.table-inspections', '.table-rel-inspections', '.table-inspection-items', '.table-inspection-items-submitted','.table-inspection-related'];
     //var av_inspections_tables = ['.inspection-items-proposed'];
     $.each(av_inspections_tables, function (i, selector) {
         if ($.fn.DataTable.isDataTable(selector)) {
@@ -257,7 +257,7 @@ $("body").on('change', '.slider input', function (event, state, pengujian) {
 });
 */
 /*
-$(".pengujian_operasional").on('change', function(pengujian){ 
+$(".pengujian_operasional").on('change', function(pengujian){
     var data = {};
 
     //data.inspection_id = inspection_id;
@@ -301,7 +301,7 @@ function inspection_item_pengujian_data(param, jenis_pesawat, pengujian, rel_id,
   data.jenis_pesawat = jenis_pesawat;
   data.pengujian = pengujian;
   data.rel_id = rel_id;
-  data.task_id = task_id;  
+  data.task_id = task_id;
   console.log(data);
 
   $.post(admin_url + 'inspections/item_pengujian_data', data).done(function (response) {
@@ -310,7 +310,7 @@ function inspection_item_pengujian_data(param, jenis_pesawat, pengujian, rel_id,
 }
 
 function reloadInspectionsAttachments()
-{ 
+{
     $("#inspection-documentations").load(location.href+" #inspection-documentations>*","");
 }
 
@@ -318,9 +318,9 @@ function reload_inspections_attachments() {
     var inspection_documentations = ['#inspection-documentations'];
     //var av_inspections_tables = ['.inspection-items-proposed'];
     $.each(inspection_documentations, function (i, selector) {
-        
+
             $(selector).reload(null, false);
-        
+
     });
 }
 
