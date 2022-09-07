@@ -37,7 +37,7 @@ $pdf->write2DBarcode($url_data, 'QRCODE,L', 65, 2, 20, 20, $style, 'N');
 $pdf->SetFont('helvetica', '', 11);
 $html = '<p style="text-align:center;">';
 // Like heading inspection name
-$html .= '<strong>' . $inspection->formatted_number .'-'. $inspection->task_id '</strong><br />';
+$html .= '<strong>' . $inspection->formatted_number .'-'. $inspection->task_id .'</strong><br />';
 $html .= ucwords($client_company);
 $html .='</p>';
 
