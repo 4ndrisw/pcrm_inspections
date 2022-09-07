@@ -45,7 +45,7 @@ class Inspections extends AdminController
         $data['inspection'] = $inspection;
         $data['edit']     = false;
         $title            = _l('preview_inspection');
-    
+
 
         if ($this->input->get('customer_id')) {
             $data['customer_id'] = $this->input->get('customer_id');
@@ -55,8 +55,8 @@ class Inspections extends AdminController
         $data['inspection_statuses'] = $this->inspections_model->get_statuses();
         $data['title']             = $title;
 
-        $inspection->date       = _d($inspection->date);        
-        
+        $inspection->date       = _d($inspection->date);
+
         if ($inspection->project_id !== null) {
             $this->load->model('projects_model');
             $inspection->project_data = $this->projects_model->get($inspection->project_id);
@@ -74,7 +74,7 @@ class Inspections extends AdminController
         $data['totalNotes']        = total_rows(db_prefix() . 'notes', ['rel_id' => $id, 'rel_type' => 'inspection']);
         /*
         $tags = get_tags_in($inspection->id, 'inspection');
-        
+
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
         $equipment_model = $equipment_type .'_model';
         $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
@@ -84,7 +84,7 @@ class Inspections extends AdminController
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id]);
         $data['equipment'] = $equipment[0];
         */
-        
+
         $data['send_later'] = false;
         if ($this->session->has_userdata('send_later')) {
             $data['send_later'] = true;
@@ -117,7 +117,7 @@ class Inspections extends AdminController
         $data['inspection'] = $inspection;
         $data['edit']     = false;
         $title            = _l('preview_inspection');
-    
+
 
         if ($this->input->get('customer_id')) {
             $data['customer_id'] = $this->input->get('customer_id');
@@ -127,8 +127,8 @@ class Inspections extends AdminController
         $data['inspection_statuses'] = $this->inspections_model->get_statuses();
         $data['title']             = $title;
 
-        $inspection->date       = _d($inspection->date);        
-        
+        $inspection->date       = _d($inspection->date);
+
         if ($inspection->project_id !== null) {
             $this->load->model('projects_model');
             $inspection->project_data = $this->projects_model->get($inspection->project_id);
@@ -144,7 +144,7 @@ class Inspections extends AdminController
         $data['members']           = $this->staff_model->get('', ['active' => 1]);
         $data['inspection_statuses'] = $this->inspections_model->get_statuses();
         $data['totalNotes']        = total_rows(db_prefix() . 'notes', ['rel_id' => $id, 'rel_type' => 'inspection']);
-        
+
         $data['editable_class']          = 'not_editable';
         $data['editableText_class']          = 'noteditableText';
         if($inspection->status == 2 ){
@@ -153,7 +153,7 @@ class Inspections extends AdminController
 
         }
         $tags = get_tags_in($task_id, 'task');
-        
+
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
         $inspection->equipment_type = $equipment_type;
         $inspection->tag_id = get_tag_by_name($tags[0])->id;
@@ -166,15 +166,15 @@ class Inspections extends AdminController
             log_activity('File '. $equipment_model . ' not_found');
             redirect(admin_url('inspections/inspection/'.$id));
         }
-        
+
         include_once($model_path);
         $this->load->model($equipment_model);
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id, 'task_id' =>$task_id]);
         $inspection->equipment = $equipment;
-        
+
         $data['inspection']          = $inspection;
         $data['equipment']          = reset($equipment);
-        
+
         $data['send_later'] = false;
         if ($this->session->has_userdata('send_later')) {
             $data['send_later'] = true;
@@ -212,13 +212,13 @@ class Inspections extends AdminController
             $next_inspection_number = get_option('next_inspection_number');
             $_format = get_option('inspection_number_format');
             $_prefix = get_option('inspection_prefix');
-            
+
             $prefix  = isset($inspection->prefix) ? $inspection->prefix : $_prefix;
             $format  = isset($inspection->number_format) ? $inspection->number_format : $_format;
             $number  = isset($inspection->number) ? $inspection->number : $next_inspection_number;
 
             $date = date('Y-m-d');
-            
+
             $inspection_data['formatted_number'] = inspection_number_format($number, $format, $prefix, $date);
 
             $id = $this->inspections_model->add($inspection_data);
@@ -267,26 +267,26 @@ class Inspections extends AdminController
             if (!has_permission('inspections', '', 'edit')) {
                 access_denied('inspections');
             }
-            
+
             $next_inspection_number = get_option('next_inspection_number');
             $format = get_option('inspection_number_format');
             $_prefix = get_option('inspection_prefix');
-            
+
             $number_settings = $this->get_number_settings($id);
 
             $prefix = isset($number_settings->prefix) ? $number_settings->prefix : $_prefix;
-            
+
             $number  = isset($inspection_data['number']) ? $inspection_data['number'] : $next_inspection_number;
 
             $date = date('Y-m-d');
-            
+
             $inspection_data['formatted_number'] = inspection_number_format($number, $format, $prefix, $date);
 
             $success = $this->inspections_model->update($inspection_data, $id);
             if ($success) {
                 set_alert('success', _l('updated_successfully', _l('inspection')));
             }
-            
+
             if ($this->set_inspection_pipeline_autoload($id)) {
                 redirect(admin_url('inspections/'));
             } else {
@@ -319,7 +319,7 @@ class Inspections extends AdminController
 
             $data['edit']     = true;
             $title            = _l('edit', _l('inspection_lowercase'));
-       
+
 
         if ($this->input->get('customer_id')) {
             $data['customer_id'] = $this->input->get('customer_id');
@@ -327,7 +327,7 @@ class Inspections extends AdminController
 
 
         $data['inspection_members']  = $this->inspections_model->get_inspection_members($id);
-        
+
         $data['staff']             = $this->staff_model->get('', ['active' => 1]);
         $data['categories']        = $this->equipment_category_model->get();
         $data['inspection_statuses'] = $this->inspections_model->get_statuses();
@@ -469,7 +469,7 @@ class Inspections extends AdminController
             }
         }
     }
-    
+
     public function copy($id)
     {
         if (!has_permission('inspections', '', 'create')) {
@@ -514,7 +514,7 @@ class Inspections extends AdminController
         }
         redirect(admin_url('inspections'));
     }
-    
+
     /* Used in kanban when dragging and mark as */
     public function update_inspection_status()
     {
@@ -542,7 +542,7 @@ class Inspections extends AdminController
         $this->app->get_table_data(module_views_path('inspections', 'admin/tables/table_items_submitted'));
     }
 
-    public function table_related($licence_id='')
+    public function table_related($inspection_id='')
     {
         $this->app->get_table_data(module_views_path('inspections', 'admin/tables/table_related'));
     }
@@ -570,13 +570,13 @@ class Inspections extends AdminController
             $task_id = $this->input->post('task_id');
             $rel_id = $this->input->post('rel_id');
             $field = $this->input->post('field');
-            
+
             log_activity(json_encode($this->input->post()));
 
             $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $jenis_pesawat)));
             $equipment_model = $equipment_type .'_model';
             $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
-            
+
             include_once($model_path);
             $this->load->model($equipment_model);
             $this->{$equipment_model}->update($this->input->post(), $rel_id, $task_id);
@@ -604,13 +604,13 @@ class Inspections extends AdminController
         list($data['rel_id'], $data['task_id'], $data['jenis_pesawat'], $data['pengujian']) = explode("-",$params);
 
         //log_activity(json_encode($params));
-            
+
         $equipment_model = $data['jenis_pesawat'] .'_model';
         $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
 
         include_once($model_path);
         $this->load->model($equipment_model);
-        
+
         //log_activity($status);
 
         //if ($this->input->is_ajax_request()) {
@@ -645,7 +645,7 @@ class Inspections extends AdminController
         if ($this->input->post()) {
             $task_id  = $this->input->post('task_id');
             $rel_id  = $this->input->post('rel_id');
-            
+
             $files   = handle_inspection_attachments_array($rel_id, 'file');
             $success = false;
 
@@ -677,7 +677,7 @@ class Inspections extends AdminController
             echo json_encode($this->inspections_model->remove_inspection_attachment($id));
         }
     }
-    
+
 
     public function download_files($inspection_id, $task_id, $comment_id = null)
     {
@@ -707,7 +707,7 @@ class Inspections extends AdminController
 
         $this->zip->download('inspection-'. $inspection_id .'-'.$task_id .'.zip');
         $this->zip->clear_data();
-    }    
+    }
 
 
 }

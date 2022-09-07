@@ -7,8 +7,8 @@
 				<?php $this->load->view('admin/inspections/inspection_table_related'); ?>
 
 				<div class="clearfix"></div>
-				<?php 
-					$this->load->view('admin/inspections/inspection_small_table'); 
+				<?php
+					$this->load->view('admin/inspections/inspection_small_table');
 				?>
 			</div>
 			<div class="col-md-6 no-padding inspection-preview">
@@ -18,7 +18,7 @@
 	</div>
 </div>
 <?php init_tail(); ?>
-<script type="text/javascript" id="licence-js" src="<?= base_url() ?>modules/inspections/assets/js/inspections.js?"></script>
+<script type="text/javascript" id="inspection-js" src="<?= base_url() ?>modules/inspections/assets/js/inspections.js?"></script>
 
 <script>
    init_btn_with_tooltips();

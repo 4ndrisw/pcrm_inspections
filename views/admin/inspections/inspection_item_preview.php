@@ -12,9 +12,9 @@
 		</div>
     <div class="row">
       <div class="col-md-12 no-padding equipment-template">
-        <?php 
+        <?php
             $template = strtolower($inspection->equipment_type) . '_ajax_template';
-            $this->load->view('admin/equipment/' . $template); 
+            $this->load->view('admin/equipment/' . $template);
         ?>
       </div>
     </div>
@@ -22,7 +22,7 @@
 </div>
 
 <?php init_tail(); ?>
-<script type="text/javascript" id="licence-js" src="<?= base_url() ?>modules/inspections/assets/js/inspections.js?"></script>
+<script type="text/javascript" id="inspection-js" src="<?= base_url() ?>modules/inspections/assets/js/inspections.js?"></script>
 
 <script>
    init_btn_with_tooltips();
@@ -48,8 +48,8 @@
 <script type="text/javascript">
 	// Editable
 function Editable(sel, options) {
-  if (!(this instanceof Editable)) return new Editable(...arguments); 
-  
+  if (!(this instanceof Editable)) return new Editable(...arguments);
+
   const attr = (EL, obj) => Object.entries(obj).forEach(([prop, val]) => EL.setAttribute(prop, val));
 
   Object.assign(this, {
@@ -72,7 +72,7 @@ function Editable(sel, options) {
     this.html_before = ev.currentTarget.innerHTML;
     this.onStart.call(this.element, ev, this);
   };
-  
+
   const input = (ev) => {
     this.text = this.element.textContent;
     this.html = this.element.innerHTML;
