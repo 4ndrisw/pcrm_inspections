@@ -37,7 +37,8 @@ $pdf->write2DBarcode($url_data, 'QRCODE,L', 65, 2, 20, 20, $style, 'N');
 $pdf->SetFont('helvetica', '', 11);
 $html = '<p style="text-align:center;">';
 // Like heading inspection name
-$html .= '<strong>' . $inspection->formatted_number . '</strong>';
+$html .= '<strong>' . $inspection->formatted_number . '</strong><br />';
+$html .= ucwords($client_company);
 $html .='</p>';
 
 $pdf->writeHTML($html, true, false, false, false, '');
@@ -53,10 +54,9 @@ if ($inspection->assigned != 0 && get_option('show_assigned_on_inspections') == 
 }
 $left_info .= '</div>';
 
-$pdf->SetFont('helvetica', '', 10);
+$pdf->SetFont('helvetica', '', 9);
 // inspection overview heading
 $right_info = '';
-$right_info .= ucwords($client_company) . '<br />';
 /*
 $right_info .= _l('project') .' : '. get_project_name_by_id($inspection->project_id) . '<br />';
 $right_info .= '<span class="bold">'. _l('inspection_data_date') .' : </span>'. _d($inspection->date) . '<br />';
@@ -68,7 +68,7 @@ $right_info .= get_project_name_by_id($inspection->project_id) . '<br />';
 $right_info .= _l('inspection_data_date') . '<br />';
 $right_info .= _d($inspection->date) . '<br />';
 $right_info .= _l('inspection_equipment_nama_pesawat') . '<br />';
-$right_info .= $equipment_name . '<br />';
+$right_info .= $inspection->equipment_name . '<br />';
 
 pdf_multi_row($left_info, $right_info,  $pdf, ($dimensions['wk'] / 2) - $dimensions['lm']);
 
@@ -81,4 +81,4 @@ $pdf->SetCreator(get_option('invoice_company_name'));
 $pdf->SetAuthor(get_option('invoice_company_name'));
 
 // Output PDF to user
-$pdf->output('#' . $inspection->id . '_' . $inspection->formatted_number . '_' . _d(date('Y-m-d')) . '.pdf', 'I');
+$pdf->output('#' . $inspection->formatted_number . '-'.$inspection->task_id.'_' . _d(date('Y-m-d')) . '.pdf', 'I');

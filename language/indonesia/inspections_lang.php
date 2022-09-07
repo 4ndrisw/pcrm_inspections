@@ -59,6 +59,7 @@ $lang['inspection_unit_number']                             = 'Nomor unit';
 $lang['inspection_capacity']                             = 'Kapasitas';
 $lang['sticker']                              = 'Sticker';
 $lang['inspection_report']                              = 'Berita Acara Pelaksanaan Riksa Uji';
+$lang['inspection_equipment_nama_pesawat']                             = 'Nama Pesawat';
 
 $lang['inspection_tempat_pembuatan']                             = 'Tempat pembuatan';
 $lang['inspection_pabrik_pembuat']                             = 'Pabrik pembuat';

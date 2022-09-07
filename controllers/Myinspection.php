@@ -105,7 +105,7 @@ class Myinspection extends ClientsController
         $this->load->model($equipment_model);
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id, 'task_id' =>$task_id]);
         $inspection->equipment = $equipment;
-        
+        $inspection->task_id = $task_id;
 
         $data['inspection']          = $inspection;
         $data['equipment']          = reset($equipment);

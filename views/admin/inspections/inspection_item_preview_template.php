@@ -251,7 +251,7 @@
                                 echo '<i class="fa fa-tag" aria-hidden="true" data-toggle="tooltip" data-title="'.html_escape(implode(', ',$tags)).'"></i>';
                               }
                               ?>
-                              <a href="<?php echo site_url('inspections/sticker/'.$inspection->id.'/'.$inspection->task_id.'/'.$inspection->hash); ?>">
+                              <a href="<?php echo site_url('inspections/sticker/'.$inspection->id.'/html/'.$inspection->task_id.'/'.$inspection->hash); ?>">
                                  <span id="inspection-number">
                                     <?php echo format_inspection_item_number($inspection->id, $inspection->task_id); ?>
                                  </span>

@@ -62,6 +62,7 @@ $lang['inspection_nama_pesawat']                             = 'Equipment';
 $lang['inspection_equipment_category']                             = 'Category';
 $lang['inspection_type_model']                             = 'Type/model';
 
+$lang['inspection_equipment_nama_pesawat']                             = 'Equipment';
 $lang['inspection_tempat_pembuatan']                             = 'Place of Manufacture';
 $lang['inspection_pabrik_pembuat']                             = 'Manufacturer';
 $lang['inspection_nomor_seri']                             = 'Serial Number';
