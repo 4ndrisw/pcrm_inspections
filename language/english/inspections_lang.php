@@ -49,6 +49,7 @@ $lang['inspection_table_quantity_heading'] = 'Qty';
 $lang['inspection_serial_number']                             = 'Serial number';
 $lang['inspection_unit_number']                             = 'Unit number';
 $lang['inspection_capacity']                             = 'Capacity';
+$lang['view_sticker_pdf']                                = 'View sticker PDF';
 
 $lang['inspection_equipment']                              = 'Equipment';
 $lang['sticker']                              = 'Sticker';

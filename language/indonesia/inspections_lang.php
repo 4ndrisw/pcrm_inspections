@@ -47,6 +47,7 @@ $lang['inspection_pdf_heading']            = 'SURAT PERJALANAN DINAS';
 $lang['inspection_table_item_heading']     = 'Item';
 $lang['inspection_table_quantity_heading'] = 'Qty';
 $lang['inspection_equipment']                              = 'Nama alat';
+$lang['view_sticker_pdf']                                = 'Lihat sticker PDF';
 
 $lang['inspection_number']                              = 'Nomor';
 $lang['inspection_company_name']                              = 'Perusahaan';
