@@ -57,7 +57,7 @@ class Sticker_data_pdf extends App_pdf
         $data['total_members'] = count($members);
         $data['members'] = $members;
 
-        $url_data = site_url('inspections/sticker/'. $inspection->id .'/html/'.$this->task_id.'/'.$inspection->hash) ."\r\n";
+        $url_data = site_url('inspections/bapr/'. $inspection->id .'/html/'.$this->task_id.'/'.$inspection->hash) ."\r\n";
         $data['url_data'] = $url_data;
                            
         $this->set_view_vars($data);
