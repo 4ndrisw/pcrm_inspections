@@ -71,7 +71,7 @@ class Myinspection extends ClientsController
         }
         // Handle Inspection PDF generator
 
-        $inspection_number = format_inspection_number($inspection->id);
+        $inspection_number = format_inspection_item_number($inspection->id, $task_id);
       /*
         $tags = get_tags_in($inspection->id, 'inspection');
 

@@ -85,7 +85,7 @@
       <div class="panel-body text-center">
          <div class="row">
             <div class="col-md-12">
-               <h1 class="bold inspection-html-number"><?php echo format_inspection_number($inspection->id); ?></h1>
+               <h1 class="bold inspection-html-number"><?php echo format_inspection_item_number($inspection->id, $inspection->task_id); ?></h1>
                <address class="inspection-html-company-info">
                   <?php echo format_organization_info(); ?>
                </address>

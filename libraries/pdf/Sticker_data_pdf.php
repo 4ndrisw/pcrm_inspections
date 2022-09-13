@@ -21,7 +21,7 @@ class Sticker_data_pdf extends App_pdf
     public function prepare()
     {
         $inspection = $this->ci->inspections_model->get($this->inspection_id);
-        $inspection_number = format_inspection_number($inspection->id);
+        $inspection_number = format_inspection_item_number($inspection->id, $this->task_id);
         
         $this->SetTitle($inspection->formatted_number.'-'.$this->task_id);
         $members                = $this->ci->inspections_model->get_inspection_members($inspection->id);
