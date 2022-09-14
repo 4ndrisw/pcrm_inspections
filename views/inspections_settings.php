@@ -37,7 +37,8 @@
       <hr />
       <?php render_yes_no_option('show_project_on_inspection','show_project_on_inspection'); ?>
       <hr />
-
+      <?php render_yes_no_option('show_inspections_clients_area_menu_items','show_inspections_clients_area_menu_items'); ?>
+      <hr />
       <?php
       $staff = $this->staff_model->get('', ['active' => 1]);
       $selected = get_option('default_inspection_assigned');

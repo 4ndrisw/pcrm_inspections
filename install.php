@@ -72,6 +72,7 @@ add_option('inspection_prefix', 'IST-');
 add_option('next_inspection_number', 1);
 add_option('default_inspection_assigned', 9);
 add_option('inspection_number_decrement_on_delete', 0);
+add_option('show_inspections_clients_area_menu_items', 0);
 add_option('inspection_number_format', 4);
 add_option('inspection_year', date('Y'));
 add_option('exclude_inspection_from_client_area_with_draft_status', 1);

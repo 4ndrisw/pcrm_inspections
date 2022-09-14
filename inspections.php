@@ -193,6 +193,11 @@ function module_inspections_action_links($actions)
 function inspections_clients_area_menu_items()
 {   
     // Show menu item only if client is logged in
+    $clients_area = get_option('show_inspections_clients_area_menu_items');
+    if(!$clients_area){
+        return;
+    }
+    
     if (is_client_logged_in()) {
         add_theme_menu_item('inspections', [
                     'name'     => _l('inspections'),
