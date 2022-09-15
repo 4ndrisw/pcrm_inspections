@@ -229,8 +229,10 @@ $lang['type_model']                             = 'Type / model';
 $lang['nama_pesawat']                             = 'Name of equipment'; 
 $lang['kapasitas']                             = 'Capacity';
 $lang['inspection_instalatir']                             = 'Instalatir';
+$lang['inspection_penerima']                             = 'Receiver';
 $lang['inspection_pembumian']                             = 'Grounding';
 $lang['inspection_tinggi_tiang_penerima']                             = 'Tower height';
+$lang['inspection_tinggi_bangunan']                             = 'Building height';
 
 
 $lang['satuan_kapasitas']                             = 'Unit capacity'; 

@@ -266,12 +266,15 @@ class Myinspection extends ClientsController
             $data['bodyclass'] .= ' identity-confirmation';
         }
         $data['inspection_members']  = $this->inspections_model->get_inspection_members($inspection->id,true);
+        $tag_id = $this->inspections_model->get_available_tags($task_id);
+        $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
+        $inspection->assigned_item = get_staff_full_name(get_option('default_jobreport_assigned_'.$inspection->categories));
 
         $qrcode_data  = '';
         $qrcode_data .= _l('inspection_number') . ' : ' . $inspection_item_number ."\r\n";
         $qrcode_data .= _l('inspection_date') . ' : ' . $inspection->date ."\r\n";
         $qrcode_data .= _l('inspection_datesend') . ' : ' . $inspection->datesend ."\r\n";
-        $qrcode_data .= _l('inspection_assigned_string') . ' : ' . get_staff_full_name($inspection->assigned) ."\r\n";
+        $qrcode_data .= _l('inspection_assigned_string') . ' : ' . $inspection->assigned_item ."\r\n";
         
         $inspection_path = get_upload_path_by_type('inspections') . $inspection->id . '/';
         _maybe_create_upload_path('uploads/inspections');
