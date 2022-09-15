@@ -1625,7 +1625,7 @@ class Inspections_model extends App_Model
         return false;
     }
 
-    public function get_available_tags(){
+    public function get_available_tags($task_id=NULL){
 
         $this->db->select([db_prefix() . 'tags.id AS tag_id', db_prefix() . 'tags.name AS tag_name']);
         $this->db->select(['COUNT('.db_prefix() . 'tasks.id) AS count_task']);
@@ -1634,6 +1634,9 @@ class Inspections_model extends App_Model
         $this->db->join(db_prefix() . 'tags', db_prefix() . 'taggables.tag_id = ' . db_prefix() . 'tags.id', 'left');
         $this->db->group_by(db_prefix() . 'tags.id');
         $this->db->where(db_prefix() . 'tasks.rel_type = ' . "'project'");
+        if(is_numeric($task_id)){
+            $this->db->where(db_prefix() . 'tasks.id = ' . $task_id);
+        }
         $this->db->where(db_prefix() . 'tags.id is NOT NULL', NULL, true);
 
         //return $this->db->get_compiled_select(db_prefix() . 'tasks');

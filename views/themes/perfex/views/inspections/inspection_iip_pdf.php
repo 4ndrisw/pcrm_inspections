@@ -242,8 +242,8 @@ $assigned_info = '<div style="text-align:center;">';
     $assigned_info .= get_option('invoice_company_name') . '<br />';
     $assigned_info .= $assigned_path . '<br />';
 
-if ($inspection->assigned != 0 && get_option('show_assigned_on_inspections') == 1) {
-    $assigned_info .= get_staff_full_name($inspection->assigned);
+if ($inspection->assigned_item != '' && get_option('show_assigned_on_inspections') == 1) {
+    $assigned_info .= $inspection->assigned_item;
 }
 $assigned_info .= '</div>';
 

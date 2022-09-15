@@ -254,7 +254,9 @@ class Myinspection extends ClientsController
         
         $data['inspection']                     = hooks()->apply_filters('inspection_html_pdf_data', $inspection);
         $data['task']                           = $task;
-
+        //get_option('tag_id_'.$tag['tag_id']);
+        $tag_id = $this->inspections_model->get_available_tags($task_id);        
+        $data['_tag_id'] = get_option('tag_id_'.$tag_id['0']['tag_id']);
         $data['bodyclass']                     = 'viewinspection';
         $data['client_company']                = $this->clients_model->get($inspection->clientid)->company;
         $setSize = get_option('inspection_qrcode_size');
@@ -331,6 +333,9 @@ class Myinspection extends ClientsController
 
         $tags = get_tags_in($inspection->id, 'inspection');
 
+        $tag_id = $this->inspections_model->get_available_tags($inspection->task_id);        
+        $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
+
         $data['jenis_pesawat'] = $tags[0];
 
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
@@ -401,6 +406,9 @@ class Myinspection extends ClientsController
         $data['jenis_pesawat'] = $tags[0];
         $inspection->tag = $tags[0];
 
+        $tag_id = $this->inspections_model->get_available_tags($task_id);
+        $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
+        $inspection->assigned_item = get_staff_full_name(get_option('default_jobreport_assigned_'.$inspection->categories));
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
         $inspection->equipment_type = $equipment_type;
        
@@ -465,6 +473,10 @@ class Myinspection extends ClientsController
         $task = $this->tasks_model->get($task_id);
         $inspection->task = $task;
 
+        $tag_id = $this->inspections_model->get_available_tags($task_id);
+        $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
+        $inspection->assigned_item = get_staff_full_name(get_option('default_jobreport_assigned_'.$inspection->categories));
+        
         $inspection->assigned_path = get_inspection_upload_path('inspection').$inspection->id.'/assigned-'.$inspection_item_number.'.png';
         $inspection->acceptance_path = get_inspection_upload_path('inspection').$inspection->id .'/'.$inspection->signature;
         

@@ -110,13 +110,102 @@
       <?php echo render_textarea('settings[predefined_terms_inspection]','predefined_terms',get_option('predefined_terms_inspection'),array('rows'=>3)); ?>
 
       <?php echo render_textarea('settings[predefined_regulation_of_paa]','regulation_of_paa',get_option('predefined_regulation_of_paa'),array('rows'=>3)); ?>
+      <?php
+      $staff = $this->staff_model->get('', ['active' => 1]);
+      $selected = get_option('default_jobreport_assigned_paa');
+      foreach($staff as $member){
+       
+         if($selected == $member['staffid']) {
+           $selected = $member['staffid'];
+         
+       }
+      }
+      echo render_select('settings[default_jobreport_assigned_paa]',$staff,array('staffid',array('firstname','lastname')),'default_jobreport_assigned_paa_string',$selected);
+      ?>
+      <hr />
       <?php echo render_textarea('settings[predefined_regulation_of_pubt]','regulation_of_pubt',get_option('predefined_regulation_of_pubt'),array('rows'=>3)); ?>
+      <?php
+      $staff = $this->staff_model->get('', ['active' => 1]);
+      $selected = get_option('default_jobreport_assigned_pubt');
+      foreach($staff as $member){
+       
+         if($selected == $member['staffid']) {
+           $selected = $member['staffid'];
+         
+       }
+      }
+      echo render_select('settings[default_jobreport_assigned_pubt]',$staff,array('staffid',array('firstname','lastname')),'default_jobreport_assigned_pubt_string',$selected);
+      ?>
+      <hr />
       <?php echo render_textarea('settings[predefined_regulation_of_lie]','regulation_of_lie',get_option('predefined_regulation_of_lie'),array('rows'=>3)); ?>
+      <?php
+      $staff = $this->staff_model->get('', ['active' => 1]);
+      $selected = get_option('default_jobreport_assigned_lie');
+      foreach($staff as $member){
+       
+         if($selected == $member['staffid']) {
+           $selected = $member['staffid'];
+         
+       }
+      }
+      echo render_select('settings[default_jobreport_assigned_lie]',$staff,array('staffid',array('firstname','lastname')),'default_jobreport_assigned_lie_string',$selected);
+      ?>
+      <hr />
       <?php echo render_textarea('settings[predefined_regulation_of_ipp]','regulation_of_ipp',get_option('predefined_regulation_of_ipp'),array('rows'=>3)); ?>
+      <?php
+      $staff = $this->staff_model->get('', ['active' => 1]);
+      $selected = get_option('default_jobreport_assigned_ipp');
+      foreach($staff as $member){
+       
+         if($selected == $member['staffid']) {
+           $selected = $member['staffid'];
+         
+       }
+      }
+      echo render_select('settings[default_jobreport_assigned_ipp]',$staff,array('staffid',array('firstname','lastname')),'default_jobreport_assigned_ipp_string',$selected);
+      ?>
+      <hr />
       <?php echo render_textarea('settings[predefined_regulation_of_iil]','regulation_of_iil',get_option('predefined_regulation_of_iil'),array('rows'=>3)); ?>
-      <?php echo render_textarea('settings[predefined_regulation_of_ipk]','regulation_of_ipk',get_option('predefined_regulation_of_ipk'),array('rows'=>3)); ?>
+      <?php
+      $staff = $this->staff_model->get('', ['active' => 1]);
+      $selected = get_option('default_jobreport_assigned_iil');
+      foreach($staff as $member){
+       
+         if($selected == $member['staffid']) {
+           $selected = $member['staffid'];
+         
+       }
+      }
+      echo render_select('settings[default_jobreport_assigned_iil]',$staff,array('staffid',array('firstname','lastname')),'default_jobreport_assigned_iil_string',$selected);
+      ?>
+      <hr />
+      <?php
+      $staff = $this->staff_model->get('', ['active' => 1]);
+      $selected = get_option('default_jobreport_assigned_ipka');
+      foreach($staff as $member){
+       
+         if($selected == $member['staffid']) {
+           $selected = $member['staffid'];
+         
+       }
+      }
+      echo render_select('settings[default_jobreport_assigned_ipka]',$staff,array('staffid',array('firstname','lastname')),'default_jobreport_assigned_ipka_string',$selected);
+      ?>
+      <hr />
       <?php echo render_textarea('settings[predefined_regulation_of_ptp]','regulation_of_ptp',get_option('predefined_regulation_of_ptp'),array('rows'=>3)); ?>
-
+      <?php
+      $staff = $this->staff_model->get('', ['active' => 1]);
+      $selected = get_option('default_jobreport_assigned_ptp');
+      foreach($staff as $member){
+       
+         if($selected == $member['staffid']) {
+           $selected = $member['staffid'];
+         
+       }
+      }
+      echo render_select('settings[default_jobreport_assigned_ptp]',$staff,array('staffid',array('firstname','lastname')),'default_jobreport_assigned_ptp_string',$selected);
+      ?>
+      <hr />
       <?php 
 
           $inspections_model = 'Inspections_model';
