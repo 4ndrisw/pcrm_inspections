@@ -186,9 +186,9 @@
                      <?php echo _l('inspection_convert_to_jobreport'); ?> <span class="caret"></span>
                      </button>
                      <ul class="dropdown-menu">
-                        <li><a href="<?php echo admin_url('inspections/convert_to_jobreport/'.$inspection->id.'?save_as_draft=true'); ?>"><?php echo _l('convert_and_save_as_draft'); ?></a></li>
+                        <li><a href="#<?php //echo admin_url('inspections/convert_to_jobreport/'.$inspection->id.'?save_as_draft=true'); ?>"><?php echo _l('convert_and_save_as_draft'); ?></a></li>
                         <li class="divider">
-                        <li><a href="<?php echo admin_url('inspections/convert_to_jobreport/'.$inspection->id); ?>"><?php echo _l('convert'); ?></a></li>
+                        <li><a href="#<?php //echo admin_url('inspections/convert_to_jobreport/'.$inspection->id); ?>"><?php echo _l('convert'); ?></a></li>
                         </li>
                      </ul>
                   </div>
