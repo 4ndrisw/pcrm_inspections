@@ -227,7 +227,12 @@ $lang['nomor_unit']                             = 'Unit number';
 $lang['jenis_pesawat']                             = 'Type of equipment'; 
 $lang['type_model']                             = 'Type / model'; 
 $lang['nama_pesawat']                             = 'Name of equipment'; 
-$lang['kapasitas']                             = 'Capacity'; 
+$lang['kapasitas']                             = 'Capacity';
+$lang['inspection_instalatir']                             = 'Instalatir';
+$lang['inspection_pembumian']                             = 'Grounding';
+$lang['inspection_tinggi_tiang_penerima']                             = 'Tower height';
+
+
 $lang['satuan_kapasitas']                             = 'Unit capacity'; 
 $lang['inspection_send_to_customer_already_sent_2']              = 'Inspection already sent send to customer'; 
 $lang['inspection_status_change']                               = 'Imported attachment from email';
