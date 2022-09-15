@@ -53,7 +53,7 @@ class Inspection_raw_pdf extends App_pdf
         }
 
         $customPath = module_views_path('inspections','themes/' . active_clients_theme() . '/views/inspections/' . $filePath);
-        $actualPath = module_views_path('inspections','themes/' . active_clients_theme() . '/views/inspections/inspection__raw_pdf.php');
+        $actualPath = module_views_path('inspections','themes/' . active_clients_theme() . '/views/inspections/inspection_raw_pdf.php');
 
         if (file_exists($customPath)) {
             $actualPath = $customPath;
