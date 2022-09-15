@@ -233,6 +233,7 @@ $lang['pengujian_daya_pancar']                             = 'Pengujian daya pan
 $lang['inspection_flag']                 						= "Flag";
 $lang['project_not_inspected']                 						= "Project belum diinspeksi";
 $lang['inspection_instalatir']                             = 'Instalatir';
+$lang['inspection_penerima']                             = 'Receiver';
 $lang['inspection_pembumian']                             = 'Pembumian';
 $lang['inspection_tinggi_tiang_penerima']                             = 'Tinggi tiang';
 $lang['inspection_tinggi_bangunan']                             = 'Tinggi bangunan';
