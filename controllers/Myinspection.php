@@ -273,7 +273,6 @@ class Myinspection extends ClientsController
         $qrcode_data  = '';
         $qrcode_data .= _l('inspection_number') . ' : ' . $inspection_item_number ."\r\n";
         $qrcode_data .= _l('inspection_date') . ' : ' . $inspection->date ."\r\n";
-        $qrcode_data .= _l('inspection_datesend') . ' : ' . $inspection->datesend ."\r\n";
         $qrcode_data .= _l('inspection_assigned_string') . ' : ' . $inspection->assigned_item ."\r\n";
         
         $inspection_path = get_upload_path_by_type('inspections') . $inspection->id . '/';
