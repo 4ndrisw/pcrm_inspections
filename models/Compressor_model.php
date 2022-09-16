@@ -11,8 +11,8 @@ class Compressor_model extends App_Model
      }
 
     /**
-     * Get comporessor/s
-     * @param mixed $id comporessor id
+     * Get compressor/s
+     * @param mixed $id compressor id
      * @param array $where perform where
      * @return mixed
      */
@@ -20,12 +20,12 @@ class Compressor_model extends App_Model
     {
         if (is_numeric($id)) {
             $this->db->where('staffid', $id);
-            $category = $this->db->get(db_prefix() . 'comporessor')->row();
+            $category = $this->db->get(db_prefix() . 'compressor')->row();
 
             return $category;
         }
-        $this->db->select('*,' . db_prefix() . 'comporessor.id');
-        $this->db->from(db_prefix() . 'comporessor');
+        $this->db->select('*,' . db_prefix() . 'compressor.id');
+        $this->db->from(db_prefix() . 'compressor');
         $this->db->where($where);
         $results = $this->db->get()->result_array();
         return $results;
@@ -34,10 +34,10 @@ class Compressor_model extends App_Model
 
     public function create($data){
         $data['regulasi'] = get_option('predefined_regulation_of_paa');
-        $this->db->insert(db_prefix().'comporessor', $data);
+        $this->db->insert(db_prefix().'compressor', $data);
         $equipment_id = $this->db->insert_id();
 
-        hooks()->do_action('after_comporessor_added', $equipment_id);
+        hooks()->do_action('after_compressor_added', $equipment_id);
         return $equipment_id;
     }
 
@@ -68,7 +68,7 @@ class Compressor_model extends App_Model
         $this->db->select('id');
         $this->db->where('rel_id', $rel_id);
         $this->db->where('task_id', $task_id);
-        $this->db->update(db_prefix() . 'comporessor', $data);
+        $this->db->update(db_prefix() . 'compressor', $data);
     }
 
     public function update_pengujian_data($data){
