@@ -124,7 +124,7 @@ function init_schedule_search(type, selector, server_data, url) {
 
       //var as = document.forms[0].project_id.value;
       var pid = e.options[e.selectedIndex].value;
-      console.log(pid);
+      //console.log(pid);
 
     if (ajaxSelector.length) {
         var options = {
@@ -238,7 +238,7 @@ function inspection_item_pengujian_operasional(pengujian, inspection_id, task_id
 
 
     data.check = check;
-      console.log(data);
+      //console.log(data);
     $.post(admin_url + 'inspections/change_inspection_status', data).done(function (response) {
         reload_inspections_tables();
     });
@@ -302,7 +302,7 @@ function inspection_item_pengujian_data(param, jenis_pesawat, pengujian, rel_id,
   data.pengujian = pengujian;
   data.rel_id = rel_id;
   data.task_id = task_id;
-  console.log(data);
+  //console.log(data);
 
   $.post(admin_url + 'inspections/item_pengujian_data', data).done(function (response) {
       reload_inspections_tables();
