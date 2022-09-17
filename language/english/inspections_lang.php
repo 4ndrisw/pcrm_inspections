@@ -16,6 +16,7 @@ $lang['predefined_terms']                          = 'Predefined terms';
 $lang['view_inspection_only_logged_in']                          = 'View inspection only logged in';
 $lang['show_project_on_inspection']                          = 'Show project on inspection';
 $lang['show_assigned_on_inspections']                          = 'Show assigned on inspections';
+$lang['inspection_operation_manager']                          = 'Operation Manager';
 
 $lang['inspections_pipeline_limit']                          = 'inspections pipeline limit';
 $lang['default_inspections_pipeline_sort']                          = 'Delete';
@@ -147,7 +148,7 @@ $lang['clients_accept_inspection']                = 'Accept';
 $lang['clients_my_inspections']                   = 'Inspections';
 
 $lang['inspection_this_week']                = 'Inspections this week';
-$lang['inspection_date']                = 'Inspection date';
+$lang['inspection_date']                = 'Date';
 $lang['inspection_datesend']                = 'Inspection sent date';
 $lang['inspection_assigned_string']                = 'Inspected by';
 $lang['inspection_url']                = 'long_url';

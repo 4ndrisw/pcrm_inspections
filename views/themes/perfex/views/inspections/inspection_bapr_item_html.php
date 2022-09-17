@@ -17,7 +17,7 @@
                <div class="col-md-3">
                   <h3 class="bold no-mtop inspection-html-number no-mbot">
                      <span class="sticky-visible hide">
-                     <?php echo format_inspection_number($inspection->id); ?>
+                     <?php echo format_inspection_item_number($inspection->id, $inspection->task_id); ?>
                      </span>
                   </h3>
                   <h4 class="inspection-html-status mtop7">
@@ -58,13 +58,13 @@
                        echo form_close();
                      }
                      ?>
-                  <?php echo form_open(site_url('inspections/bapr/pdf/'.$inspection->id), array('class'=>'pull-right action-button')); ?>
+                  <?php echo form_open(site_url('inspections/bapr/'. $inspection->id .'/pdf/'. $inspection->task_id), array('class'=>'pull-right action-button')); ?>
                   <button type="submit" name="inspectionpdf" class="btn btn-default action-button download mright5 mtop7" value="inspectionpdf">
                   <i class="fa fa-file-pdf-o"></i>
                   <?php echo _l('clients_invoice_html_btn_download'); ?>
                   </button>
                   <?php echo form_close(); ?>
-                  <?php if((is_client_logged_in() && has_contact_permission('inspections'))  || is_staff_member()){ ?>
+                  <?php if(is_client_logged_in() && has_contact_permission('inspections')){ ?>
                   <a href="<?php echo site_url('clients/inspections/'); ?>" class="btn btn-default pull-right mright5 mtop7 action-button go-to-portal">
                   <?php echo _l('client_go_to_dashboard'); ?>
                   </a>
@@ -82,7 +82,7 @@
       <div class="col-md-10 col-md-offset-1">
          <div class="row mtop20">
             <div class="col-md-6 col-sm-6 transaction-html-info-col-left">
-               <h4 class="bold inspection-html-number"><?php echo format_inspection_number($inspection->id); ?></h4>
+               <h4 class="bold inspection-html-number"><?php echo format_inspection_item_number($inspection->id, $inspection->task_id); ?></h4>
                <address class="inspection-html-company-info">
                   <?php echo format_organization_info(); ?>
                </address>
@@ -154,14 +154,19 @@
          </div>
          <div class="row">
             <div class="col-md-12">
-               <div class="table-responsive">
-                  <?php
-                     $this->view('themes/'. active_clients_theme() .'/template_parts/inspections_items_table');
-                  ?>
-               </div>
+               <p>
+                  <?php echo _l('inspection_declare') .' '. getDayName($inspection->date) .' '. getDay($inspection->date) .' '. getMonth($inspection->date) .' '. getYear($inspection->date) .' '. _l('inspection_result') ;?>
+               </p>
             </div>
-
-
+         </div>
+         <div class="row">
+            <div class="col-md-12">
+               <?php
+                  $this->load->view('themes/'. active_clients_theme() .'/template_parts/inspections_report', $inspection);
+               ?>
+            </div>
+         </div>
+         <div class="row">
             <div class="row mtop25">
                <div class="col-md-12">
                   <div class="col-md-6 text-center">
@@ -199,20 +204,33 @@
                </div>
             </div>
 
-
-
-
-            <?php if(!empty($inspection->clientnote)){ ?>
-            <div class="col-md-12 inspection-html-note">
-            <hr />
-               <b><?php echo _l('inspection_order'); ?></b><br /><?php echo $inspection->clientnote; ?>
+            <div class="row">
+               <?php if(!empty($equipment['regulasi'])){ ?>
+               <div class="col-md-12 inspection-html-equipment-regulasi">
+                  <hr />
+                  <b><?php echo _l('equipment_regulasi'); ?></b><br /><?php echo format_unorderedText($equipment['regulasi']); ?>
+               </div>
+               <?php } ?>
+               <?php if(!empty($equipment['regulasi'])){ ?>
+               <div class="col-md-12 inspection-html-equipment-temuan">
+                  <hr />
+                  <b><?php echo _l('equipment_temuan'); ?></b><br /><?php echo format_unorderedText($equipment['temuan']); ?>
+               </div>
+               <?php } ?>
+               <?php if(!empty($equipment['kesimpulan'])){ ?>
+               <div class="col-md-12 inspection-html-equipment-kesimpulan">
+                  <hr />
+                  <b><?php echo _l('equipment_kesimpulan'); ?></b><br /><?php echo format_unorderedText($equipment['kesimpulan']); ?>
+               </div>
+               <?php } ?>
+               <?php if(!empty($inspection->terms)){ ?>
+               <div class="col-md-12 inspection-html-terms-and-conditions">
+                  <hr />
+                  <b><?php echo _l('terms_and_conditions'); ?>:</b><br /><?php echo format_unorderedText($inspection->terms); ?>
+               </div>
+               <?php } ?>
+               
             </div>
-            <?php } ?>
-            <?php if(!empty($inspection->terms)){ ?>
-            <div class="col-md-12 inspection-html-terms-and-conditions">
-               <b><?php echo _l('terms_and_conditions'); ?>:</b><br /><?php echo $inspection->terms; ?>
-            </div>
-            <?php } ?>
 
          </div>
       </div>

@@ -16,6 +16,7 @@ $lang['predefined_terms']                          = 'predefined terms';
 $lang['view_inspection_only_logged_in']                          = 'view inspection only logged in';
 $lang['show_project_on_inspection']                          = 'Tampilkan Nama Proyek pada BAPR';
 $lang['show_assigned_on_inspections']                          = 'Tampilkan Nama PIC pada BAPR';
+$lang['inspection_operation_manager']                          = 'Manager Operasional';
 
 $lang['inspections_pipeline_limit']                          = 'inspections pipeline limit';
 $lang['default_inspections_pipeline_sort']                          = 'Delete';
@@ -125,7 +126,7 @@ $lang['clients_my_inspections']                   = 'BAPR';
 
 
 $lang['inspection_this_week']                = 'BAPR Minggu ini';
-$lang['inspection_date']                = 'Tanggal dibuat BAPR';
+$lang['inspection_date']                = 'Tanggal';
 $lang['inspection_datesend']                = 'Tanggal dikirim BAPR';
 $lang['inspection_assigned_string']                = 'Tenaga Ahli K3';
 $lang['inspection_url']                = 'Url';

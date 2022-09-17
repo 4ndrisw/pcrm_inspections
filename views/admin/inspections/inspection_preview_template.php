@@ -81,18 +81,18 @@
                   <div class="mtop10"></div>
                </div>
                <div class="pull-right _buttons">
-                  <?php if((staff_can('edit', 'inspections') && $inspection->status != 4) || is_admin()){ ?>                     
+                  <?php if((staff_can('edit', 'inspections') && $inspection->status != 4) || is_admin()){ ?>
                      <a href="<?php echo admin_url('inspections/update/'.$inspection->id); ?>" class="btn btn-default btn-with-tooltip" data-toggle="tooltip" title="<?php echo _l('edit_inspection_tooltip'); ?>" data-placement="bottom"><i class="fa fa-pencil-square-o"></i></a>
-                  
+
                   <?php } ?>
                   <div class="btn-group">
                      <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-pdf-o"></i><?php if(is_mobile()){echo ' PDF';} ?> <span class="caret"></span></a>
                      <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="hidden-xs"><a href="<?php echo site_url('inspections/bapp/pdf/'.$inspection->id.'?output_type=I'); ?>"><?php echo _l('view_pdf'); ?></a></li>
-                        <li class="hidden-xs"><a href="<?php echo site_url('inspections/bapp/pdf/'.$inspection->id.'?output_type=I'); ?>" target="_blank"><?php echo _l('view_pdf_in_new_window'); ?></a></li>
-                        <li><a href="<?php echo site_url('inspections/bapp/pdf/'.$inspection->id); ?>"><?php echo _l('download'); ?></a></li>
+                        <li class="hidden-xs"><a href="<?php echo site_url('inspections/bapr/pdf/'.$inspection->id.'?output_type=I'); ?>"><?php echo _l('view_pdf'); ?></a></li>
+                        <li class="hidden-xs"><a href="<?php echo site_url('inspections/bapr/pdf/'.$inspection->id.'?output_type=I'); ?>" target="_blank"><?php echo _l('view_pdf_in_new_window'); ?></a></li>
+                        <li><a href="<?php echo site_url('inspections/bapr/pdf/'.$inspection->id); ?>"><?php echo _l('download'); ?></a></li>
                         <li>
-                           <a href="<?php echo site_url('inspections/bapp/pdf/'.$inspection->id.'?print=true'); ?>" target="_blank">
+                           <a href="<?php echo site_url('inspections/bapr/pdf/'.$inspection->id.'?print=true'); ?>" target="_blank">
                            <?php echo _l('print'); ?>
                            </a>
                         </li>
@@ -241,20 +241,7 @@
                      <div class="col-md-6 col-sm-6">
                         <h4 class="bold">
                               <?php $tags = get_tags_in($inspection->id,'inspection'); ?>
-                           <div class="sticker">
-                              <p><?= _l('sticker') ?></p>
-                              <?php
-                              if(count($tags) > 0){
-                                echo '<i class="fa fa-tag" aria-hidden="true" data-toggle="tooltip" data-title="'.html_escape(implode(', ',$tags)).'"></i>';
-                              }
-                              ?>
-                              <a href="<?php echo site_url('inspections/sticker/'.$inspection->id.'/'.$inspection->hash); ?>">
-                                 <span id="inspection-number">
-                                 <?php echo format_inspection_number($inspection->id); ?>
-                                 </span>
-                              </a>
-                           </div>
-                           <p></p>
+
                            <div class="inspection_report">
                               <p><?= _l('inspection_report') ?></p>
                               <?php
@@ -262,7 +249,7 @@
                                 echo '<i class="fa fa-tag" aria-hidden="true" data-toggle="tooltip" data-title="'.html_escape(implode(', ',$tags)).'"></i>';
                               }
                               ?>
-                              <a href="<?php echo site_url('inspections/bapp/'.$inspection->id.'/'.$inspection->hash); ?>">
+                              <a href="<?php echo site_url('inspections/bapr/'.$inspection->id.'/html/'.$inspection->hash); ?>">
                                  <span id="inspection-number">
                                  <?php echo format_inspection_number($inspection->id); ?>
                                  </span>
@@ -292,7 +279,7 @@
                            <?php if(!empty($inspection_members)){ ?>
                               <strong><?= _l('inspection_members') ?></strong>
                               <ul class="inspection_members">
-                              <?php 
+                              <?php
                                  foreach($inspection_members as $member){
                                    echo ('<li style="list-style:auto" class="member">' . $member['firstname'] .' '. $member['lastname'] .'</li>');
                                   }
@@ -366,14 +353,14 @@
                         <div class="bold"><?php echo _l('inspection_staff_string'); ?>:</div>
                         <?php echo get_staff_full_name($inspection->assigned); ?>
                      </div>
-                     <?php } ?>  
+                     <?php } ?>
 
                   </div>
                   <div class="inspection-items">
                         <?php
                            $this->load->view('admin/inspections/inspection_table_items');
                         ?>
-                  </div>                  
+                  </div>
 
                </div>
             </div>
@@ -426,7 +413,7 @@
                                  $additional_data = '';
                                  if(!empty($activity['additional_data'])){
                                   $additional_data = unserialize($activity['additional_data']);
-                                  
+
                                   $i = 0;
                                   foreach($additional_data as $data){
                                     if(strpos($data,'<original_status>') !== false){

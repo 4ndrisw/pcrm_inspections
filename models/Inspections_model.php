@@ -1844,4 +1844,29 @@ class Inspections_model extends App_Model
         return $this->db->get(db_prefix() . 'inspections')->result_array();
     }
 
+
+  public function get_inpections_items($inspection_id, $project_id){
+
+        $this->db->select([db_prefix() . 'tasks.id AS task_id', db_prefix() . 'tasks.name AS task_name']);
+        $this->db->select([db_prefix() . 'inspection_items.inspection_id', db_prefix() . 'projects.id AS project_id', db_prefix() . 'tags.name AS tags_name', 'COUNT('.db_prefix() . 'tasks.id) AS count']);
+
+        $this->db->join(db_prefix() . 'tasks', db_prefix() . 'tasks.id = ' . db_prefix() . 'inspection_items.task_id', 'left');
+        $this->db->join(db_prefix() . 'projects', db_prefix() . 'tasks.rel_id = ' . db_prefix() . 'projects.id', 'left');
+        $this->db->join(db_prefix() . 'taggables', db_prefix() . 'taggables.rel_id = ' . db_prefix() . 'tasks.id', 'left');
+        $this->db->join(db_prefix() . 'tags', db_prefix() . 'taggables.tag_id = ' . db_prefix() . 'tags.id', 'left');
+
+        $this->db->group_by(db_prefix() . 'inspection_items.inspection_id');
+        $this->db->group_by(db_prefix() . 'inspection_items.project_id');
+        $this->db->group_by(db_prefix() . 'inspection_items.task_id');
+        $this->db->group_by(db_prefix() . 'tasks.name');
+        $this->db->group_by(db_prefix() . 'tags.name');
+
+        $this->db->where(db_prefix() . 'tasks.rel_id =' . $project_id);
+        $this->db->where(db_prefix() . 'tasks.rel_type = ' . "'project'");
+        $this->db->where(db_prefix() . 'inspection_items.inspection_id=' . $inspection_id);
+
+        //return $this->db->get_compiled_select(db_prefix() . 'inspection_items');
+        return $this->db->get(db_prefix() . 'inspection_items')->result_array();
+    }
+
 }

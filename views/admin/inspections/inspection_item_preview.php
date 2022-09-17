@@ -11,7 +11,10 @@
 			</div>
 		</div>
     <div class="row">
-      <div class="col-md-12 no-padding equipment-template">
+      <div role="button" class="mtop10 mbot10">
+          <input class ="btn btn-sm" type="button" id="refresh" value="Refresh" />
+      </div>
+      <div id="equipment-template-wrapper" class="col-md-12 no-padding equipment-template">
         <?php
             $template = strtolower($inspection->equipment_type) . '_ajax_template';
             $this->load->view('admin/equipment/' . $template);
@@ -43,7 +46,12 @@
     });
 </script>
 
-
+<script type="text/javascript">
+  $("#refresh").click(function(){
+    //$("#equipment-template-wrapper").load(location.href+" #equipment-template-wrapper>*","");
+    console.log("to verify");
+  });
+</script>
 
 <script type="text/javascript">
 	// Editable

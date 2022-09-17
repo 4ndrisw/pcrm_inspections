@@ -21,7 +21,7 @@ class Inspection_pdf extends App_pdf
 
         $this->tag             = $tag;
         $this->inspection        = $inspection;
-        $this->equipment        = $inspection->equipment;
+        //$this->equipment        = $inspection->equipment;
         $this->inspection_number = format_inspection_number($this->inspection->id);
 
         $this->SetTitle($this->inspection_number);
@@ -34,7 +34,7 @@ class Inspection_pdf extends App_pdf
             'status'          => $this->inspection->status,
             'inspection_number' => $this->inspection_number,
             'inspection'        => $this->inspection,
-            'equipment'        => $this->equipment,
+            //'equipment'        => $this->equipment,
         ]);
 
         return $this->build();
@@ -52,7 +52,7 @@ class Inspection_pdf extends App_pdf
             $filePath = 'inspection_'. $this->inspection->equipment_category .'_pdf.php';
         }
         $customPath = module_views_path('inspections','themes/' . active_clients_theme() . '/views/inspections/' . $filePath);
-        $actualPath = module_views_path('inspections','themes/' . active_clients_theme() . '/views/inspections/inspectionpdf.php');
+        $actualPath = module_views_path('inspections','themes/' . active_clients_theme() . '/views/inspections/inspection_pdf.php');
 
         if (file_exists($customPath)) {
             $actualPath = $customPath;
