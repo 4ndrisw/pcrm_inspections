@@ -716,5 +716,22 @@ class Myinspection extends ClientsController
 
         app_pdf('sticker-data', module_libs_path(INSPECTIONS_MODULE_NAME) . 'pdf/Sticker_data_pdf', $id, $task_id);
     }
+
+    public function sticker_data_all($id)
+    {
+        $canView = user_can_view_inspection($id);
+        if (!$canView) {
+            access_denied('Inspections');
+        } else {
+            if (!has_permission('inspections', '', 'view') && !has_permission('inspections', '', 'view_own') && $canView == false) {
+                access_denied('Inspections');
+            }
+        }
+        if (!$id) {
+            redirect(admin_url('inspections'));
+        }
+
+        app_pdf('sticker-data-all', module_libs_path(INSPECTIONS_MODULE_NAME) . 'pdf/Sticker_data_pdf_all', $id);
+    }
     
 }

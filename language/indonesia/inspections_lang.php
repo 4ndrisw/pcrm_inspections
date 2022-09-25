@@ -49,7 +49,8 @@ $lang['inspection_table_item_heading']     = 'Item';
 $lang['inspection_table_quantity_heading'] = 'Qty';
 $lang['inspection_equipment']                              = 'Nama alat';
 $lang['view_sticker_pdf']                                = 'Lihat sticker PDF';
-$lang['print_all_bapr']                             = 'Cetak Semua BAPR';
+$lang['print_all_bapr']                             = 'Cetak semua BAPR';
+$lang['print_all_sticker']                             = 'Cetak semua sticker';
 
 $lang['inspection_number']                              = 'Nomor';
 $lang['inspection_company_name']                              = 'Perusahaan';

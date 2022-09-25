@@ -52,6 +52,7 @@ $lang['inspection_unit_number']                             = 'Unit number';
 $lang['inspection_capacity']                             = 'Capacity';
 $lang['view_sticker_pdf']                                = 'View sticker PDF';
 $lang['print_all_bapr']                             = 'Print all BAPR';
+$lang['print_all_sticker']                             = 'Print all sticker';
 
 $lang['inspection_equipment']                              = 'Equipment';
 $lang['sticker']                              = 'Sticker';

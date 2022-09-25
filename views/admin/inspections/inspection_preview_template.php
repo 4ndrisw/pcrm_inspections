@@ -101,6 +101,11 @@
                            <?php echo _l('print_all_bapr'); ?>
                            </a>
                         </li>
+                        <li>
+                           <a href="<?php echo site_url('inspections/sticker/pdf-all/'.$inspection->id.'?print=true'); ?>" target="_blank">
+                           <?php echo _l('print_all_sticker'); ?>
+                           </a>
+                        </li>
                      </ul>
                   </div>
                   <?php
