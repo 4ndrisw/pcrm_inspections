@@ -444,6 +444,18 @@ function inspection_pdf($inspection, $tag = '')
 }
 
 
+/**
+ * Prepare general inspection pdf
+ * @since  Version 1.0.2
+ * @param  object $inspection inspection as object with all necessary fields
+ * @param  string $tag tag for bulk pdf exporter
+ * @return mixed object
+ */
+function inspection_pdf_all($inspection, $tag = '')
+{
+    return app_pdf('inspection',  module_libs_path(INSPECTIONS_MODULE_NAME) . 'pdf/Inspection_pdf_all', $inspection, $tag);
+}
+
 
 /**
  * Prepare general inspection pdf

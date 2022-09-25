@@ -16,5 +16,6 @@ $route['inspections/bapr/(:num)/pdf/(:num)'] = 'myinspection/item_pdf/$1/$2';
 
 $route['inspections/bapr/(:num)/html/(:any)'] = 'myinspection/bapr/$1/$2';
 $route['inspections/bapr/pdf/(:num)'] = 'myinspection/pdf/$1';
+$route['inspections/bapr/pdf-all/(:num)'] = 'myinspection/pdf_all/$1';
 
 $route['inspections/bapr/(:num)/template_pdf/(:num)'] = 'myinspection/raw_pdf/$1/$2';

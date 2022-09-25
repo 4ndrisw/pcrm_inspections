@@ -96,6 +96,11 @@
                            <?php echo _l('print'); ?>
                            </a>
                         </li>
+                        <li>
+                           <a href="<?php echo site_url('inspections/bapr/pdf-all/'.$inspection->id.'?print=true'); ?>" target="_blank">
+                           <?php echo _l('print_all_bapr'); ?>
+                           </a>
+                        </li>
                      </ul>
                   </div>
                   <?php

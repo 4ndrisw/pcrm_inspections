@@ -192,6 +192,19 @@
       echo render_select('settings[default_jobreport_assigned_ipka]',$staff,array('staffid',array('firstname','lastname')),'default_jobreport_assigned_ipka_string',$selected);
       ?>
       <hr />
+      <?php
+      $staff = $this->staff_model->get('', ['active' => 1]);
+      $selected = get_option('default_jobreport_assigned_ipkh');
+      foreach($staff as $member){
+       
+         if($selected == $member['staffid']) {
+           $selected = $member['staffid'];
+         
+       }
+      }
+      echo render_select('settings[default_jobreport_assigned_ipkh]',$staff,array('staffid',array('firstname','lastname')),'default_jobreport_assigned_ipkh_string',$selected);
+      ?>
+      <hr />
       <?php echo render_textarea('settings[predefined_regulation_of_ptp]','regulation_of_ptp',get_option('predefined_regulation_of_ptp'),array('rows'=>3)); ?>
       <?php
       $staff = $this->staff_model->get('', ['active' => 1]);

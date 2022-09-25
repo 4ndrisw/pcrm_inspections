@@ -49,6 +49,7 @@ $lang['inspection_table_item_heading']     = 'Item';
 $lang['inspection_table_quantity_heading'] = 'Qty';
 $lang['inspection_equipment']                              = 'Nama alat';
 $lang['view_sticker_pdf']                                = 'Lihat sticker PDF';
+$lang['print_all_bapr']                             = 'Cetak Semua BAPR';
 
 $lang['inspection_number']                              = 'Nomor';
 $lang['inspection_company_name']                              = 'Perusahaan';
@@ -74,6 +75,11 @@ $lang['inspection_jumlah_kotak_hydrant']                             = 'Kotak Hy
 $lang['inspection_jumlah_selang_hydrant']                             = 'Selang Hydrant';
 $lang['inspection_jumlah_nozzle']                             = 'Jumlah Nozzle';
 $lang['inspection_kapasitas_air']                             = 'Kapasitas air';
+
+$lang['inspection_daya_terpasang']                             = 'Installed Power';
+$lang['inspection_sumber_tenaga']                             = 'Energy Source';
+$lang['inspection_jenis_arus']                             = 'Current Type';
+$lang['inspection_instalatir']                             = 'Instalatir';
 
 $lang['inspection_start_date']                              = 'Tanggal';
 $lang['inspection_select_customer']                 = 'Customer';

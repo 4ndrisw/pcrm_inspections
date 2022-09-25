@@ -51,6 +51,7 @@ $lang['inspection_serial_number']                             = 'Serial number';
 $lang['inspection_unit_number']                             = 'Unit number';
 $lang['inspection_capacity']                             = 'Capacity';
 $lang['view_sticker_pdf']                                = 'View sticker PDF';
+$lang['print_all_bapr']                             = 'Print all BAPR';
 
 $lang['inspection_equipment']                              = 'Equipment';
 $lang['sticker']                              = 'Sticker';
@@ -87,7 +88,6 @@ $lang['inspection_daya_terpasang']                             = 'Installed Powe
 $lang['inspection_sumber_tenaga']                             = 'Energy Source';
 $lang['inspection_jenis_arus']                             = 'Current Type';
 $lang['inspection_instalatir']                             = 'Instalatir';
-$lang['inspection_jumlah_mca']                             = 'Tumlah MCA';
 
 $lang['inspection_jumlah_mca']                             = 'MCA';
 $lang['inspection_jumlah_smoke_detector']                             = 'Smoke Detector';

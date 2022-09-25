@@ -483,6 +483,62 @@ class Myinspection extends ClientsController
         $pdf->Output($fileNameHookData['file_name'], $type);
     }
 
+
+    /* Generates inspection PDF and senting to email  */
+    public function pdf_all($id)
+    {
+        $canView = user_can_view_inspection($id);
+        if (!$canView) {
+            access_denied('Inspections');
+        } else {
+            if (!has_permission('inspections', '', 'view') && !has_permission('inspections', '', 'view_own') && $canView == false) {
+                access_denied('Inspections');
+            }
+        }
+        if (!$id) {
+            redirect(admin_url('inspections'));
+        }
+        $inspection        = $this->inspections_model->get($id);
+        $inspection_number = format_inspection_number($inspection->id);
+        
+        $inspection->assigned_path = get_inspection_upload_path('inspection').$inspection->id.'/assigned-'.$inspection_number.'.png';
+        $inspection->acceptance_path = get_inspection_upload_path('inspection').$inspection->id .'/'.$inspection->signature;
+        
+        $inspection->client_company = $this->clients_model->get($inspection->clientid)->company;
+        $inspection->acceptance_date_string = _dt($inspection->acceptance_date);
+
+        $inspection->inspection_items = $this->inspections_model->get_inspection_items($inspection->id, $inspection->project_id);
+        
+        try {
+            $pdf = inspection_pdf_all($inspection);
+        } catch (Exception $e) {
+            $message = $e->getMessage();
+            echo $message;
+            if (strpos($message, 'Unable to get the size of the image') !== false) {
+                show_pdf_unable_to_get_image_size_error();
+            }
+            die;
+        }
+
+        $type = 'D';
+
+        if ($this->input->get('output_type')) {
+            $type = $this->input->get('output_type');
+        }
+
+        if ($this->input->get('print')) {
+            $type = 'I';
+        }
+
+        $fileNameHookData = hooks()->apply_filters('inspection_file_name_admin_area', [
+                            'file_name' => mb_strtoupper(slug_it($inspection_number)) . '.pdf',
+                            'inspection'  => $inspection,
+                        ]);
+
+        $pdf->Output($fileNameHookData['file_name'], $type);
+    }
+
+
     public function item_pdf($id, $task_id)
     {
         $canView = user_can_view_inspection($id);
