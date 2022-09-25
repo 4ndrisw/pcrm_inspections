@@ -531,7 +531,7 @@ class Myinspection extends ClientsController
         }
 
         $fileNameHookData = hooks()->apply_filters('inspection_file_name_admin_area', [
-                            'file_name' => mb_strtoupper(slug_it($inspection_number)) . '.pdf',
+                            'file_name' => mb_strtoupper(slug_it($inspection_number)) . '-ALL-BAPR.pdf',
                             'inspection'  => $inspection,
                         ]);
 
