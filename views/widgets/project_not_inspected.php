@@ -14,6 +14,7 @@
             <hr class="hr-panel-heading-dashboard">
             <?php if (!empty($inspections)) { ?>
                 <div class="table-vertical-scroll">
+                    <?php echo $inspections; ?>
                     <a href="<?php echo admin_url('inspections'); ?>" class="mbot20 inline-block full-width"><?php echo _l('home_widget_view_all'); ?></a>
                     <table id="widget-<?php echo create_widget_id(); ?>" class="table dt-table" data-order-col="2" data-order-type="desc">
                         <thead>

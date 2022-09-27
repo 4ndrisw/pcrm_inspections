@@ -1829,9 +1829,11 @@ class Inspections_model extends App_Model
 
         $this->db->select(db_prefix() . 'inspections.id,' . db_prefix() . 'inspections.formatted_number,' . db_prefix() . 'clients.userid,' . db_prefix() . 'clients.company,' . db_prefix() . 'projects.id,' . db_prefix() . 'projects.name,' . db_prefix() . 'projects.start_date');
         $this->db->join(db_prefix() . 'projects', db_prefix() . 'projects.id = ' . db_prefix() . 'inspections.project_id', 'right');
+        $this->db->join(db_prefix() . 'schedules', db_prefix() . 'schedules.project_id = ' . db_prefix() . 'inspections.project_id', 'left');
         $this->db->join(db_prefix() . 'clients', db_prefix() . 'clients.userid = ' . db_prefix() . 'projects.clientid', 'left');
         
-        $this->db->where('project_id IS NULL');
+        $this->db->where(db_prefix() . 'inspections.project_id', null);
+        $this->db->where(db_prefix() . 'schedules.project_id IS NOT NULL');
         if($days !='0'){
             $this->db->where(db_prefix() . 'projects.start_date >=', $diff1);        
             $this->db->where(db_prefix() . 'projects.start_date <=', $diff2);            
