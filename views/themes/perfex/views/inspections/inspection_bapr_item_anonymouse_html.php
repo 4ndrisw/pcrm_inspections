@@ -21,9 +21,6 @@
                      <?php echo format_inspection_number($inspection->id); ?>
                      </span>
                   </h3>
-                  <h4 class="inspection-html-status mtop7">
-                     <?php echo format_inspection_status($inspection->status,'',true); ?>
-                  </h4>
                </div>
             </div>
             <div class="clearfix"></div>
