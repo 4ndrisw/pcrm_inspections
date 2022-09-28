@@ -369,7 +369,8 @@ class Myinspection extends ClientsController
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id, 'task_id' =>$task_id]);
         $inspection->equipment = $equipment;
         
-        $data['this_equipment'] = $equipment;
+        $data['equipment'] = $equipment[0];
+        $data['equipment_name']          = $data['equipment']['nama_pesawat'];
         
         $data['inspection']                     = hooks()->apply_filters('inspection_html_pdf_data', $inspection);
         $data['task']                           = $task;
@@ -388,6 +389,7 @@ class Myinspection extends ClientsController
         $tag_id = $this->inspections_model->get_available_tags($task_id);
         $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
         $inspection->assigned_item = get_staff_full_name(get_option('default_jobreport_assigned_'.$inspection->categories));
+
 
         $qrcode_data  = '';
         $qrcode_data .= _l('inspection_number') . ' : ' . $inspection_item_number ."\r\n";
@@ -422,7 +424,14 @@ class Myinspection extends ClientsController
 
         $this->data($data);
         $this->app_scripts->theme('sticky-js', 'assets/plugins/sticky/sticky.js');
-        $this->view('themes/'. active_clients_theme() .'/views/inspections/inspection_bapr_item_html');
+        
+
+        if (!is_client_logged_in() || !is_staff_logged_in()) {
+            $this->view('themes/'. active_clients_theme() .'/views/inspections/inspection_bapr_item_anonymouse_html');
+        }else{
+            $this->view('themes/'. active_clients_theme() .'/views/inspections/inspection_bapr_item_html');
+        }
+
         add_views_tracking('inspection', $id);
         hooks()->do_action('inspection_html_viewed', $id);
         no_index_customers_area();
