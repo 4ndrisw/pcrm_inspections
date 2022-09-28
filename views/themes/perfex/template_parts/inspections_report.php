@@ -1,7 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');?>
 
-<?php $equipment = $this_equipment[0];?>
-
 <div class ="table-responsive">
   <table id="<?= 'inspection-'.$inspection->id ?>" class="table inspection table-bordered">
      <tbody>
