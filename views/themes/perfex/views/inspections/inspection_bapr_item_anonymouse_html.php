@@ -26,39 +26,6 @@
                   </h4>
                </div>
                <div class="col-md-9">
-                  <?php
-                     // Is not accepted, declined and expired
-                     if ($inspection->status != 4 && $inspection->status != 3 && $inspection->status != 5) {
-                       $can_be_accepted = true;
-                       if($identity_confirmation_enabled == '0'){
-                         echo form_open($this->uri->uri_string(), array('class'=>'pull-right mtop7 action-button'));
-                         echo form_hidden('inspection_action', 4);
-                         echo '<button type="submit" data-loading-text="'._l('wait_text').'" autocomplete="off" class="btn btn-success action-button accept"><i class="fa fa-check"></i> '._l('clients_accept_inspection').'</button>';
-                         echo form_close();
-                       } else {
-                         echo '<button type="button" id="accept_action" class="btn btn-success mright5 mtop7 pull-right action-button accept"><i class="fa fa-check"></i> '._l('clients_accept_inspection').'</button>';
-                       }
-                     } else if($inspection->status == 3){
-                       if (($inspection->expirydate >= date('Y-m-d') || !$inspection->expirydate) && $inspection->status != 5) {
-                         $can_be_accepted = true;
-                         if($identity_confirmation_enabled == '0'){
-                           echo form_open($this->uri->uri_string(),array('class'=>'pull-right mtop7 action-button'));
-                           echo form_hidden('inspection_action', 4);
-                           echo '<button type="submit" data-loading-text="'._l('wait_text').'" autocomplete="off" class="btn btn-success action-button accept"><i class="fa fa-check"></i> '._l('clients_accept_inspection').'</button>';
-                           echo form_close();
-                         } else {
-                           echo '<button type="button" id="accept_action" class="btn btn-success mright5 mtop7 pull-right action-button accept"><i class="fa fa-check"></i> '._l('clients_accept_inspection').'</button>';
-                         }
-                       }
-                     }
-                     // Is not accepted, declined and expired
-                     if ($inspection->status != 4 && $inspection->status != 3 && $inspection->status != 5) {
-                       echo form_open($this->uri->uri_string(), array('class'=>'pull-right action-button mright5 mtop7'));
-                       echo form_hidden('inspection_action', 3);
-                       echo '<button type="submit" data-loading-text="'._l('wait_text').'" autocomplete="off" class="btn btn-default action-button accept"><i class="fa fa-remove"></i> '._l('clients_decline_inspection').'</button>';
-                       echo form_close();
-                     }
-                     ?>
                   <?php echo form_open(site_url('inspections/sticker/'.$inspection->id.'/pdf/'.$inspection->task_id), array('class'=>'pull-right action-button')); ?>
                   <button type="submit" name="inspectionpdf" class="btn btn-default action-button download mright5 mtop7" value="inspectionpdf">
                   <i class="fa fa-file-pdf-o"></i>
