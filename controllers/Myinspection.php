@@ -426,10 +426,10 @@ class Myinspection extends ClientsController
         $this->app_scripts->theme('sticky-js', 'assets/plugins/sticky/sticky.js');
         
 
-        if (!is_client_logged_in() || !is_staff_logged_in()) {
-            $this->view('themes/'. active_clients_theme() .'/views/inspections/inspection_bapr_item_anonymouse_html');
-        }else{
+        if (is_client_logged_in() || is_staff_logged_in() || is_admin()) {
             $this->view('themes/'. active_clients_theme() .'/views/inspections/inspection_bapr_item_html');
+        }else{
+            $this->view('themes/'. active_clients_theme() .'/views/inspections/inspection_bapr_item_anonymouse_html');
         }
 
         add_views_tracking('inspection', $id);
