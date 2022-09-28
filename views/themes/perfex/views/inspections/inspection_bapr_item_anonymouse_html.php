@@ -53,15 +53,9 @@
 
             <div class="row mtop25">
                <div class="col-md-12">
-                     <div class="qrcode text-center">
-                        <img src="<?php echo site_url('download/preview_image?path='.protected_file_url_by_path(get_inspection_upload_path('inspection').$inspection->id.'/assigned-'.$inspection_number.'.png')); ?>" class="img-responsive center-block inspection-assigned" alt="inspection-<?= $inspection->id ?>">
-                     </div>
-                     <div class="assigned">
-                     <?php if($inspection->assigned != 0 && get_option('show_assigned_on_inspections') == 1){ ?>
-                        <?php echo get_staff_full_name($inspection->assigned); ?>
-                     <?php } ?>
-
-                     </div>
+                  <div class="qrcode text-center">
+                     <img src="<?php echo site_url('download/preview_image?path='.protected_file_url_by_path(get_inspection_upload_path('inspection').$inspection->id.'/assigned-'.$inspection_number.'.png')); ?>" class="img-responsive center-block inspection-assigned" alt="inspection-<?= $inspection->id ?>">
+                  </div>
                </div>
             </div>
          </div>
