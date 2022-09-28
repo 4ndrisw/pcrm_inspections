@@ -297,7 +297,7 @@ class Myinspection extends ClientsController
 
     public function bapr_item($id, $task_id, $hash)
     {
-        check_inspection_restrictions($id, $hash);
+        //check_inspection_restrictions($id, $hash);
         $inspection = $this->inspections_model->get($id);
         $inspection->task_id = $task_id;
         $task = $this->tasks_model->get($task_id);
