@@ -87,7 +87,7 @@ $items .= '<table style="padding:5,10,5,10" border="1" class="table table-border
 $items .=    '<thead>';
 $items .=        '<tr>';
 $items .=            '<th width="50" align="center">No#</th>';
-$items .=            '<th width="210" align="center">Nomor BAPR</th>';
+$items .=            '<th width="210" align="center">Nomor BAPR Alat</th>';
 $items .=            '<th width="550" align="center">Peralatan</th>';
 $items .=        '</tr>';
 $items .=    '</thead>';
