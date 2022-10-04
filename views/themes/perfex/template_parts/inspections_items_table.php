@@ -16,7 +16,7 @@
         <?php $number = format_inspection_item_number($item['rel_id'], $item['task_id']); ?>
             <tr>
                 <td ><?php echo $i; ?></td>
-                <td><?php echo $number; ?></td>
+                <td><?php echo $item['formatted_number'] .'-'. $item['task_id']; ?></td>
                 <td><?php echo $item['name']; ?></td>
                 <td><?php echo $item['tag_name']; ?></td>
             </tr>
