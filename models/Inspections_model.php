@@ -1534,9 +1534,11 @@ class Inspections_model extends App_Model
 
     public function get_inspection_items($inspection_id, $project_id){
         $this->db->select([db_prefix() . 'tasks.id AS task_id',db_prefix() . 'tasks.name', db_prefix() . 'tasks.rel_id', db_prefix() . 'tasks.dateadded', db_prefix() . 'tags.name AS tag_name']);
+        $this->db->select([db_prefix() . 'inspections.formatted_number AS formatted_number']);
         $this->db->where(db_prefix() . 'tasks.rel_id =' . $project_id);
-        
+
         $this->db->join(db_prefix() . 'inspection_items', db_prefix() . 'inspection_items.task_id = ' . db_prefix() . 'tasks.id', 'left');
+        $this->db->join(db_prefix() . 'inspections', db_prefix() . 'inspection_items.inspection_id = ' . db_prefix() . 'inspections.id');
         $this->db->join(db_prefix() . 'taggables', db_prefix() . 'taggables.rel_id = ' . db_prefix() . 'tasks.id', 'left');
         $this->db->join(db_prefix() . 'tags', db_prefix() . 'taggables.tag_id = ' . db_prefix() . 'tags.id', 'left');
 

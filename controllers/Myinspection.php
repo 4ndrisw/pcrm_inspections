@@ -562,6 +562,7 @@ class Myinspection extends ClientsController
         $inspection        = $this->inspections_model->get($id);
         $inspection_item_number = format_inspection_item_number($id, $task_id);
 
+        $inspection->inspection_item_number = $inspection_item_number;
         $inspection->task_id = $task_id;
         $task = $this->tasks_model->get($task_id);
         $inspection->task = $task;

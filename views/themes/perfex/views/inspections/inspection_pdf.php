@@ -87,16 +87,18 @@ $items .= '<table style="padding:5,10,5,10" border="1" class="table table-border
 $items .=    '<thead>';
 $items .=        '<tr>';
 $items .=            '<th width="50" align="center">No#</th>';
-$items .=            '<th width="750" align="center">Peralatan</th>';
+$items .=            '<th width="210" align="center">Nomor BAPR</th>';
+$items .=            '<th width="550" align="center">Peralatan</th>';
 $items .=        '</tr>';
 $items .=    '</thead>';
 $items .=    '<tbody>';
         $i=1;
-        foreach($inspection->inspection_items as $item){        
-            
+        foreach($inspection->inspection_items as $item){
+            //$number = format_inspection_item_number($item['rel_id'], $item['task_id']);
 $items .=            '<tr>';
 $items .=                '<td width="50" align="right">' .$i.' </td>';
-$items .=                '<td width="750">' .$item['name']. '</td>';
+$items .=                '<td width="210">' . $item['formatted_number'].'-'. $item['task_id'] . '</td>';
+$items .=                '<td width="550">' .$item['name']. '</td>';
 $items .=            '</tr>';
             
              $i++; 

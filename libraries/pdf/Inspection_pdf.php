@@ -19,9 +19,10 @@ class Inspection_pdf extends App_pdf
 
         parent::__construct();
 
-        $this->tag             = $tag;
+        $this->tag               = $tag;
         $this->inspection        = $inspection;
-        //$this->equipment        = $inspection->equipment;
+        $this->inspection_items  = $inspection->inspection_items;
+        //$this->equipment       = $inspection->equipment;
         $this->inspection_number = format_inspection_number($this->inspection->id);
 
         $this->SetTitle($this->inspection_number);

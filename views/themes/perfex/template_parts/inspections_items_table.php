@@ -4,6 +4,7 @@
     <thead>
         <tr>
             <th><?php echo 'No'; ?> #</th>
+            <th><?php echo 'Nomor BAPR'; ?></th>
             <th><?php echo 'Nama pesawat'; ?></th>
             <th><?php echo 'Tags'; ?></th>
 
@@ -12,8 +13,10 @@
     <tbody>
         <?php $i=1;?>
         <?php foreach($inspection_items as $item){ ?>
+        <?php $number = format_inspection_item_number($item['rel_id'], $item['task_id']); ?>
             <tr>
                 <td ><?php echo $i; ?></td>
+                <td><?php echo $number; ?></td>
                 <td><?php echo $item['name']; ?></td>
                 <td><?php echo $item['tag_name']; ?></td>
             </tr>
