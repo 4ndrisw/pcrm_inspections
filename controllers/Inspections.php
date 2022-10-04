@@ -571,7 +571,7 @@ class Inspections extends AdminController
             $rel_id = $this->input->post('rel_id');
             $field = $this->input->post('field');
 
-            log_activity(json_encode($this->input->post()));
+            //log_activity(json_encode($this->input->post()));
 
             $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $jenis_pesawat)));
             $equipment_model = $equipment_type .'_model';

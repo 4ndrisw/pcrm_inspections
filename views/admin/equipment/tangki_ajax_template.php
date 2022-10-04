@@ -314,6 +314,21 @@
                         </table>
                      </div>
 
+                     <?php 
+                        echo $equipment['regulasi'];
+                        $regulasi = explode(' AND ', $equipment['regulasi']);
+                        $equipment_regulasi = '';
+                        $equipment_regulasi .= '<ol class="regulasi">'; 
+
+                        foreach($regulasi as $row){
+                            $equipment_regulasi .= '<li class="regulasi">' .$row. '</li>'; 
+                        }
+                        $equipment_regulasi .= '</ol>'; 
+                      echo($equipment_regulasi);
+
+                     ?>
+
+
                   </div>
 
                </div>

@@ -25,7 +25,7 @@ $lang['require_client_logged_in_to_view_inspection']                          = 
 $lang['inspections']                          = 'BAPR';
 $lang['inspection_view_activity_tooltip']           = 'Activity Log';
 
-         
+$lang['inspection_no']           = 'Nomor BAPR';
 $lang['inspection_status_draft']           = 'Draft';
 $lang['inspection_status_sent']            = 'Terkirim';
 $lang['inspection_status_declined']        = 'Ditolak';

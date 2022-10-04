@@ -6,6 +6,7 @@
          <hr class="hr-panel-heading" />
          <div class="table-responsive">
             <?php render_datatable(array(
+                _l('inspection_no'),
                 _l('inspection_task'),
                 _l('inspection_equipment'),
                 _l('inspection_tag'),

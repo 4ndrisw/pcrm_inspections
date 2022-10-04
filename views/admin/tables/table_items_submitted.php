@@ -7,6 +7,7 @@ $path = $CI->uri->segment(3);
 $inspection_id = $CI->session->userdata('inspection_id');
 
 $aColumns = [
+    db_prefix() . 'inspections.formatted_number',
     db_prefix() . 'tasks.name',
     db_prefix() . 'inspection_items.equipment_name',
     db_prefix() . 'tags.name',
@@ -17,6 +18,7 @@ $sTable       = db_prefix() . 'inspection_items';
 
 
 $join = [
+    'LEFT JOIN ' . db_prefix() . 'inspections ON ' . db_prefix() . 'inspections.id = ' . db_prefix() . 'inspection_items.inspection_id',
     'LEFT JOIN ' . db_prefix() . 'tasks ON ' . db_prefix() . 'tasks.id = ' . db_prefix() . 'inspection_items.task_id',
     'LEFT JOIN ' . db_prefix() . 'taggables ON ' . db_prefix() . 'taggables.rel_id = ' . db_prefix() . 'tasks.id',
     'LEFT JOIN ' . db_prefix() . 'tags ON ' . db_prefix() . 'taggables.tag_id = ' . db_prefix() . 'tags.id',
@@ -40,7 +42,10 @@ foreach ($rResult as $aRow) {
     for ($i = 0; $i < count($aColumns); $i++) {
         $_data = $aRow[$aColumns[$i]];
 
-        if ($aColumns[$i] == db_prefix() . 'tasks.name') {
+        if ($aColumns[$i] == db_prefix() . 'inspections.formatted_number') {
+            $_data = $_data .'-'. $aRow['task_id'];
+        }
+        elseif ($aColumns[$i] == db_prefix() . 'tasks.name') {
             $_data = '<a href="' . admin_url('inspections/inspection_item/'. $inspection_id . '/' . $aRow['task_id']) . '">' . $_data . '</a>';
         }
 
