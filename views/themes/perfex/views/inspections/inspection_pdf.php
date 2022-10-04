@@ -32,8 +32,6 @@ $inspection_info .= '<div style="color:#424242;">';
 $inspection_info .= format_customer_info($inspection, 'inspection', 'billing');
 $inspection_info .= '</div>';
 
-$organization_info .= '<p><strong>'. _l('inspection_members') . '</strong></p>';
-
 $CI = &get_instance();
 $CI->load->model('inspections_model');
 $inspection_members = $CI->inspections_model->get_inspection_members($inspection->id,true);
