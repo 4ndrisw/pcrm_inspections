@@ -279,7 +279,6 @@ $assigned_info .= '</div>';
 
 pdf_multi_row($assigned_info, '', $pdf, ($dimensions['wk'] / 2) - $dimensions['lm']);
 
-
 $equipment_regulasi = '';
 $rline = 4;
 $tline = 12;
