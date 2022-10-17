@@ -58,6 +58,11 @@
                                 <td class="<?= $editable_class ?>" data-field="lokasi" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['lokasi']) ? $equipment['lokasi'] : '' ?></td>      
                              </tr>
                              <tr>
+                                <td style="width:20%">Nomor Pengesahan</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editable_class ?>" data-field="nomor_pengesahan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['nomor_pengesahan']) ? $equipment['nomor_pengesahan'] : '' ?></td>      
+                             </tr>
+                             <tr>
                                 <td style="width:20%">Nama Pesawat</td>
                                 <td style="width:2%">:</td>
                                 <td class="<?= $editable_class ?>" data-field="nama_pesawat" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['nama_pesawat']) ? $equipment['nama_pesawat'] : '' ?></td>      
@@ -118,9 +123,28 @@
                                 <td class="<?= $editable_class ?>" data-field="bentuk" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['bentuk']) ? $equipment['bentuk'] : '' ?></td>
                              </tr>
                              <tr>
+                                <td style="width:20%">Orientasi Boiler</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editable_class ?>" data-field="orientasi_boiler" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['orientasi_boiler']) ? $equipment['orientasi_boiler'] : '' ?></td>
+                             </tr>
+                             <tr>
+                                <td style="width:20%">Luas Pemanasan</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editable_class ?>" data-field="luas_pemanasan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['luas_pemanasan']) ? $equipment['luas_pemanasan'] : '' ?></td>
+                             </tr>
+                             <tr>
                                 <td style="width:20%">Jenis pemeriksaan</td>
                                 <td style="width:2%">:</td>
-                                <td class="<?= $editable_class ?>" data-field="jenis_pemeriksaan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['jenis_pemeriksaan']) ? $equipment['jenis_pemeriksaan'] : '' ?></td>
+                                <td>
+                                    <div class="col-xs-12 col-sm-4 mbot5">
+                                       <input type="radio" class="btn-check" id="jenis_pemeriksaan_t" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'jenis_pemeriksaan', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[jenis_pemeriksaan]" value="Pertama" <?php if(isset($equipment['jenis_pemeriksaan']) && $equipment['jenis_pemeriksaan'] == 'Pertama'){echo 'checked';}; ?>>
+                                       <label class="btn btn-secondary" for="jenis_pemeriksaan_t"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="<?php echo _l('jenis_pemeriksaan_pertama'); ?>" ></i><?php echo _l('Pertama'); ?></label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4 mbot5">
+                                       <input type="radio" class="btn-check" id="jenis_pemeriksaan_f" onchange="inspection_item_pengujian_data(this, '<?= $inspection->equipment_type ?>', 'jenis_pemeriksaan', <?= $inspection->id ?>, <?= $task->id ?>)" name="equipment[jenis_pemeriksaan]" value="Berkala" <?php if(isset($equipment['jenis_pemeriksaan']) && $equipment['jenis_pemeriksaan'] == 'Berkala'){echo 'checked';}; ?>>
+                                       <label class="btn btn-secondary" for="jenis_pemeriksaan_f"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="<?php echo _l('jenis_pemeriksaan_berkala'); ?>" ></i><?php echo _l('Berkala'); ?></label>
+                                    </div>
+                                </td>
                              </tr>
                           
                           </tbody>
@@ -320,14 +344,13 @@
                               </div>
                            </div>
                         </div>
-
                      <div class="col-md-12 table-responsive">
                        <table id="<?= 'resume-inspection-'.$inspection->id ?>" class="table inspection table-bordered">
                            <tr class="data-label">
                               <td>Regulasi</td>
                            </tr>
                            <tr>
-                              <td class="<?= $editableText_class ?> pbot15" data-field="regulasi" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['regulasi']) ? $equipment['regulasi'] : get_option('predefined_regulation_of_ptp') ?></td>
+                              <td class="<?= $editableText_class ?> pbot15" data-field="regulasi" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['regulasi']) ? $equipment['regulasi'] : get_option('predefined_regulation_of_pubt') ?></td>
                            </tr>
                            <tr class="data-label">
                               <td>Temuan</td>
