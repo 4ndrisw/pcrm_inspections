@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <?php init_head(); ?>
-<div id="wrapper">
+<div id="wrapper" class="inspection-item-wrapper">
 	<div class="content">
 		<div class="row">
 			<div class="col-md-6 no-padding">
