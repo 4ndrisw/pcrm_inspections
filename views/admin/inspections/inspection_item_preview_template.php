@@ -242,8 +242,10 @@
                      <?php } ?>
 
                      <div class="col-md-6 col-sm-6">
+                        
                         <h4 class="bold">
-                              <?php $tags = get_tags_in($inspection->id,'inspection'); ?>
+                           <?php $tags = get_tags_in($inspection->id,'inspection'); ?>
+                           <?php echo $task->name .'<br />'; ?>
                            <div class="sticker">
                               <p><?= _l('sticker') ?></p>
                               <?php
@@ -327,12 +329,6 @@
                         </div>
                      </div>
                   </div>
-                  <?php 
-                  //echo '<pre>';
-                  //var_dump($inspection->tag_id);
-                  //echo '</pre>';
-                  ?>
-
 
                      <?php
                         //$this->load->view('themes/'. active_clients_theme() .'/template_parts/inspections_report', $inspection);
