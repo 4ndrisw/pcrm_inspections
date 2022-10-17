@@ -918,3 +918,12 @@ function handle_inspection_attachments_array($rel_id, $index_name = 'attachments
 
     return false;
 }
+
+function tanggal_pemeriksaan($date){
+    $tanggal_inspeksi_raw = isset($date) ? _d($date) : '1970-01-01';
+    $tahun = getYear($tanggal_inspeksi_raw);
+    $bulan = getMonth($tanggal_inspeksi_raw);
+    $tanggal = getDay($tanggal_inspeksi_raw);
+    $tanggal_pemeriksaan = $tanggal.' '.$bulan.' '.$tahun;
+    return $tanggal_pemeriksaan;
+}
