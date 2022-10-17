@@ -19,6 +19,7 @@ function validate_inspection_form(selector) {
             }
         },
         date: 'required',
+        project_id: 'required',
         tag: 'required',
         equipment_category: 'required',
         tags: 'required',

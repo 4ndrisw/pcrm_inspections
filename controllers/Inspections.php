@@ -152,6 +152,13 @@ class Inspections extends AdminController
             $data['editableText_class']          = 'editableText';
 
         }
+
+        $tanggal_inspeksi_raw = isset($inspection->date) ? _d($inspection->date) : '1970-01-01';
+        $tahun = getYear($tanggal_inspeksi_raw);
+        $bulan = getMonth($tanggal_inspeksi_raw);
+        $tanggal = getDay($tanggal_inspeksi_raw);
+        $data['tanggal_inspeksi'] = $tanggal.' '.$bulan.' '.$tahun;
+
         $tags = get_tags_in($task_id, 'task');
 
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));

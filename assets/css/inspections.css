@@ -175,7 +175,7 @@ li.text-item {
   position: absolute;
   right: 91px;
   top: 0;
-  transition: all 0.3s ease-in 0s; 
+  transition: all 0.3s ease-in 0s;
   width: 20px;
 }
 
@@ -185,7 +185,7 @@ li.text-item {
 
 .slider-checkbox:checked + .slider-label .slider-circle {
   background-color: #eee;
-  right: 0; 
+  right: 0;
 }
 
 
@@ -258,7 +258,7 @@ li.text-item {
   position: absolute;
   right: 91px;
   top: 0;
-  transition: all 0.3s ease-in 0s; 
+  transition: all 0.3s ease-in 0s;
   width: 20px;
 }
 
@@ -268,7 +268,7 @@ li.text-item {
 
 .inspection.onoffswitch-checkbox:checked + .inspection.onoffswitch-label .inspection.onoffswitch-circle {
   background-color: #eee;
-  right: 0; 
+  right: 0;
 }
 
 .data-label {
@@ -290,4 +290,9 @@ li.text-item {
 }
 .reload-div{
     margin: 10px;
+}
+
+body #wrapper #equipment-template-wrapper li.active a {
+    background: #ccc;
+    color: #131010 !important;
 }
