@@ -52,6 +52,11 @@ $lang['view_sticker_pdf']                                = 'Lihat sticker PDF';
 $lang['print_all_bapr']                             = 'Cetak semua BAPR';
 $lang['print_all_sticker']                             = 'Cetak semua sticker';
 
+$lang['inspection_jumlah_mca']                             = ' Jumlah MCA';
+$lang['inspection_jumlah_smoke_detector']                             = 'Jumlah Smoke Detector';
+$lang['inspection_jumlah_alarm_bell']                             = 'Jumlah Alarm Bell';
+$lang['inspection_jumlah_alarm_lamp']                             = 'Jumlah Alarm Lamp';
+
 $lang['inspection_number']                              = 'Nomor';
 $lang['inspection_company_name']                              = 'Perusahaan';
 $lang['inspection_address']                             = 'Alamat';
