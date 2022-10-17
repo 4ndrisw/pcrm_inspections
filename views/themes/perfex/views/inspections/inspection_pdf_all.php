@@ -28,7 +28,7 @@ $info_left_column .= pdf_logo_url();
 // Write top left logo and right column info/text
 pdf_multi_row($info_left_column, $info_right_column, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm']);
 
-$pdf->ln(5);
+$pdf->ln(4);
 
 $organization_info = '<div style="color:#424242;">';
     $organization_info .= format_organization_info();
@@ -70,7 +70,7 @@ $pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
 
 
 // The Table
-$pdf->Ln(hooks()->apply_filters('pdf_info_and_table_separator', 2));
+$pdf->ln(2);
 
 $company = get_inspection_company_by_clientid($inspection->clientid);
 $address = get_inspection_company_address($inspection->id);
@@ -149,11 +149,6 @@ switch ($inspection->categories) {
         <table class="tg">
         <tbody>
           <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_task_name</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17">$task_name</td>
-          </tr>
-          <tr class="tg-1e15">
             <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
             <td width ="10" class="tg-oe16">:</td>
             <td width ="250" class="tg-oe17"></td>
@@ -193,11 +188,6 @@ switch ($inspection->categories) {
         </style>
         <table class="tg">
         <tbody>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_task_name</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17">$task_name</td>
-          </tr>
           <tr class="tg-1e15">
             <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
             <td width ="10" class="tg-oe16">:</td>
@@ -239,11 +229,6 @@ switch ($inspection->categories) {
         <table class="tg">
         <tbody>
           <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_task_name</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17">$task_name</td>
-          </tr>
-          <tr class="tg-1e15">
             <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
             <td width ="10" class="tg-oe16">:</td>
             <td width ="250" class="tg-oe17"></td>
@@ -282,11 +267,6 @@ switch ($inspection->categories) {
             </style>
             <table class="tg">
                 <tbody>
-                  <tr class="tg-1e15">
-                    <td width ="130" class="tg-oe15">$inspection_task_name</td>
-                    <td width ="10" class="tg-oe16">:</td>
-                    <td width ="250" class="tg-oe17">$task_name</td>
-                  </tr>
                   <tr class="tg-1e15">
                     <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
                     <td width ="10" class="tg-oe16">:</td>
@@ -327,11 +307,6 @@ switch ($inspection->categories) {
         </style>
         <table class="tg">
         <tbody>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_task_name</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17">$task_name</td>
-          </tr>
           <tr class="tg-1e15">
             <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
             <td width ="10" class="tg-oe16">:</td>
@@ -375,11 +350,6 @@ switch ($inspection->categories) {
         <table class="tg">
         <tbody>
           <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_task_name</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17">$task_name</td>
-          </tr>
-          <tr class="tg-1e15">
             <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
             <td width ="10" class="tg-oe16">:</td>
             <td width ="250" class="tg-oe17"></td>
@@ -420,11 +390,6 @@ switch ($inspection->categories) {
         <table class="tg">
         <tbody>
           <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_task_name</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17">$task_name</td>
-          </tr>
-          <tr class="tg-1e15">
             <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
             <td width ="10" class="tg-oe16">:</td>
             <td width ="250" class="tg-oe17"></td>
@@ -464,11 +429,6 @@ switch ($inspection->categories) {
         </style>
         <table class="tg">
         <tbody>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_task_name</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17">$task_name</td>
-          </tr>
           <tr class="tg-1e15">
             <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
             <td width ="10" class="tg-oe16">:</td>
@@ -515,12 +475,15 @@ switch ($inspection->categories) {
 }
 
 
-$i=1;
-$left_info = '<div><strong>'. _l('inspection_members') . '</strong></div>';
-foreach($inspection_members as $member){
-  $left_info .=  $i.'. ' .$member['firstname'] .' '. $member['lastname']. '<br />';
-  $i++;
-}
+$left_info = '';
+$tags = get_tags_in($task_id,'task');
+
+$equipment_type = isset($tags) ? $tags[0] : '';
+$left_info .= '<div><strong>'. _l('equipment_type') . '</strong></div>';
+$left_info .= $equipment_type;
+
+$left_info .= '<div><strong>'. _l('task') . '</strong></div>';
+$left_info .= $task_name;
 
 $inspection->assigned_item = get_staff_full_name(get_option('default_inspection_assigned_'.$inspection->categories));
 
@@ -1112,12 +1075,12 @@ $assigned_info = '<div style="text-align:center;">';
 $assigned_info .= get_option('invoice_company_name');
 $assigned_info .= '</div>';
 
-$acceptance_path = <<<EOF
-    <img src="$inspection->acceptance_path">
-EOF;
 $client_info = '<div style="text-align:center;">';
 $client_info .= $inspection->client_company;
 
+$yPOS = $pdf->getY();
+
+$pdf->setY($yPOS-4);
 
 if ($inspection->signed != 0) {
     $client_info .= _l('inspection_signed_by') . ": {$inspection->acceptance_firstname} {$inspection->acceptance_lastname}" . '<br />';
@@ -1162,8 +1125,10 @@ pdf_multi_row($assigned_info, '', $pdf, ($dimensions['wk'] / 2) - $dimensions['l
 $equipment_regulasi = '';
 $rline = 4;
 $tline = 12;
-if (!empty($inspection->equipment['regulasi'])) {
-    $regulasi = explode(' -- ', $equipment['regulasi']);
+$default_regulation = get_option('predefined_regulation_of_'.$inspection->categories);
+$equipment_regulasi = !empty($inspection->equipment['regulasi']) ? $inspection->equipment['regulasi'] : $default_regulation;
+if (!empty($equipment_regulasi)) {
+    $regulasi = explode(' -- ', $equipment_regulasi);
     $equipment_regulasi = '';
     $equipment_regulasi .= '<ol class="regulasi">'; 
 
@@ -1172,7 +1137,7 @@ if (!empty($inspection->equipment['regulasi'])) {
     }
     $equipment_regulasi .= '</ol>'; 
 
-    $rline = 4;
+    $rline = 2;
     $tline = 2;
 }
     $pdf->Ln($rline);
@@ -1199,7 +1164,7 @@ $kesimpulan = '';
 $sline = 6;
 if (!empty($inspection->equipment['kesimpulan'])) {
     $kesimpulan = $inspection->equipment['kesimpulan'];
-    $kline = 4;
+    $kline = 2;
     $sline = 2;
 }
     $pdf->Ln($kline);
