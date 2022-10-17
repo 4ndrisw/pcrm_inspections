@@ -281,7 +281,6 @@ $left_info  = $swap == '1' ? $client_info : $assigned_info;
 $right_info = $swap == '1' ? $assigned_info : $client_info;
 pdf_multi_row($left_info, $right_info, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm']);
 
-
 $equipment_regulasi = '';
 $rline = 4;
 $tline = 12;
