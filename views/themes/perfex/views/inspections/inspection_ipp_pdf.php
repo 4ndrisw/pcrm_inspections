@@ -273,7 +273,7 @@ $equipment_regulasi = '';
 $rline = 4;
 $tline = 12;
 if (!empty($inspection->equipment['regulasi'])) {
-    $regulasi = explode(' -- ', $equipment['regulasi']);
+    $regulasi = explode(' -- ', $inspection->equipment['regulasi']);
     $equipment_regulasi = '';
     $equipment_regulasi .= '<ol class="regulasi">'; 
 
