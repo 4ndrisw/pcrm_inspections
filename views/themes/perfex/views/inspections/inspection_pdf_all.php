@@ -1159,12 +1159,20 @@ $assigned_info .= '</div>';
 
 pdf_multi_row($assigned_info, '', $pdf, ($dimensions['wk'] / 2) - $dimensions['lm']);
 
-$regulasi = '';
-$rline = 2;
-$tline = 8;
+$equipment_regulasi = '';
+$rline = 4;
+$tline = 12;
 if (!empty($inspection->equipment['regulasi'])) {
-    $regulasi = $inspection->equipment['regulasi'];
-    $rline = 2;
+    $regulasi = explode(' -- ', $equipment['regulasi']);
+    $equipment_regulasi = '';
+    $equipment_regulasi .= '<ol class="regulasi">'; 
+
+    foreach($regulasi as $row){
+        $equipment_regulasi .= '<li style="margin-left:70;">' .$row. '</li>'; 
+    }
+    $equipment_regulasi .= '</ol>'; 
+
+    $rline = 4;
     $tline = 2;
 }
     $pdf->Ln($rline);
@@ -1172,7 +1180,7 @@ if (!empty($inspection->equipment['regulasi'])) {
     $pdf->Cell(0, 0, _l('equipment_regulasi'), 0, 1, 'L', 0, '', 0);
     $pdf->SetFont($font_name, '', $font_size);
     //$pdf->Ln(1);
-    $pdf->writeHTMLCell('', '', '', '', format_unorderedText($regulasi), 0, 1, false, true, 'L', true);
+    $pdf->writeHTMLCell('', '', '', '', $equipment_regulasi, 0, 1, false, true, 'L', true);
 
 $temuan = '';
 $kline = 6;
