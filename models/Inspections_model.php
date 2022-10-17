@@ -143,7 +143,7 @@ class Inspections_model extends App_Model
         $new_jobreport_data['date']       = _d(date('Y-m-d'));
 
         $new_jobreport_data['show_quantity_as'] = $_inspection->show_quantity_as;
-        //$new_jobreport_data['assigned']       = get_option('default_jobreport_assigned');
+        //$new_jobreport_data['assigned']       = get_option('default_inspection_assigned');
         // Since version 1.0.6
         $new_jobreport_data['billing_street']   = clear_textarea_breaks($_inspection->billing_street);
         $new_jobreport_data['billing_city']     = $_inspection->billing_city;
@@ -198,7 +198,7 @@ class Inspections_model extends App_Model
             $this->db->where('id', $id);
             $this->db->update(db_prefix() . 'jobreports', [
                 'addedfrom'  => $_inspection->addedfrom,
-                'assigned' => get_option('default_jobreport_assigned'),
+                'assigned' => get_option('default_inspection_assigned'),
             ]);
 
             // Update inspection with the new jobreport data and set to status accepted

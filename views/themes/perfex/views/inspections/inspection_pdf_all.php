@@ -522,7 +522,7 @@ foreach($inspection_members as $member){
   $i++;
 }
 
-$inspection->assigned_item = get_staff_full_name(get_option('default_jobreport_assigned_'.$inspection->categories));
+$inspection->assigned_item = get_staff_full_name(get_option('default_inspection_assigned_'.$inspection->categories));
 
 $pdf->SetFont('dejavusans');
 pdf_multi_row($left_info, $tblhtml, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm'], true);

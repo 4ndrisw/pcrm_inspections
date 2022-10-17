@@ -388,7 +388,7 @@ class Myinspection extends ClientsController
         $data['inspection_members']  = $this->inspections_model->get_inspection_members($inspection->id,true);
         $tag_id = $this->inspections_model->get_available_tags($task_id);
         $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
-        $inspection->assigned_item = get_staff_full_name(get_option('default_jobreport_assigned_'.$inspection->categories));
+        $inspection->assigned_item = get_staff_full_name(get_option('default_inspection_assigned_'.$inspection->categories));
 
 
         $qrcode_data  = '';
@@ -580,7 +580,7 @@ class Myinspection extends ClientsController
 
         $tag_id = $this->inspections_model->get_available_tags($task_id);
         $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
-        $inspection->assigned_item = get_staff_full_name(get_option('default_jobreport_assigned_'.$inspection->categories));
+        $inspection->assigned_item = get_staff_full_name(get_option('default_inspection_assigned_'.$inspection->categories));
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
         $inspection->equipment_type = $equipment_type;
        
@@ -647,7 +647,7 @@ class Myinspection extends ClientsController
 
         $tag_id = $this->inspections_model->get_available_tags($task_id);
         $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
-        $inspection->assigned_item = get_staff_full_name(get_option('default_jobreport_assigned_'.$inspection->categories));
+        $inspection->assigned_item = get_staff_full_name(get_option('default_inspection_assigned_'.$inspection->categories));
         
         $inspection->assigned_path = get_inspection_upload_path('inspection').$inspection->id.'/assigned-'.$inspection_item_number.'.png';
         $inspection->acceptance_path = get_inspection_upload_path('inspection').$inspection->id .'/'.$inspection->signature;
