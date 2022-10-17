@@ -133,7 +133,6 @@ $pemeriksaan_dokumen_t = '&#9744;';
 $pemeriksaan_dokumen_f = '&#9744;';
 $pemeriksaan_dokumen_n = '&#9744;';
 
-
 $pemeriksaan_visual_t = '&#9744;';
 $pemeriksaan_visual_f = '&#9744;';
 $pemeriksaan_visual_n = '&#9744;';
