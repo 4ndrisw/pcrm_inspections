@@ -120,7 +120,7 @@ EOD;
 
 $left_info = '';
 $tags = get_tags_in($inspection->task_id,'task');
-log_activity(json_encode($tags));
+
 $equipment_type = isset($tags) ? $tags[0] : '';
 $left_info .= '<div><strong>'. _l('equipment_type') . '</strong></div>';
 $left_info .= $equipment_type;
@@ -175,7 +175,6 @@ $tidak_ada = _l('tidak_ada');
 $baik = _l('baik');
 $tidak_baik = _l('tidak_baik');
 $tidak_dilaksanakan = _l('tidak_dilaksanakan');
-
 
 
 $tblhtml = <<<EOD
