@@ -57,9 +57,9 @@ $getYear = getYear($date);
 
 $inspection_result = _l('inspection_result');
 $txt = <<<EOD
-$inspection_declare $getDayName $getDay $getMonth $getYear, $inspection_result
+$inspection_declare $getDayName $getDay $getMonth $getYear, $inspection_result.
 EOD;
-
+$pdf->Ln(2);
 // print a block of text using Write()
 $pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
 
@@ -69,7 +69,6 @@ $pdf->Ln(hooks()->apply_filters('pdf_info_and_table_separator', 2));
 
 $company = get_inspection_company_by_clientid($inspection->clientid);
 $address = get_inspection_company_address($inspection->id);
-$nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
 
 $inspection_company = _l('inspection_company_name');
 $inspection_address = _l('inspection_address');
@@ -81,7 +80,6 @@ $inspection_instalatir = _l('inspection_instalatir');
 $inspection_penerima = _l('inspection_penerima');
 $inspection_tinggi_tiang_penerima = _l('inspection_tinggi_tiang_penerima');
 $inspection_tinggi_bangunan = _l('inspection_tinggi_bangunan');
-  
 
 $tblhtml = <<<EOD
 <style type="text/css">
@@ -124,13 +122,7 @@ label.field-label{display:inline-block; width:20%;}
 </table>
 EOD;
 
-$i=1;
-$left_info = '<div><strong>'. _l('inspection_members') . '</strong></div>';
-foreach($inspection_members as $member){
-  $left_info .=  $i.'. ' .$member['firstname'] .' '. $member['lastname']. '<br />';
-  $i++;
-}
-
+$left_info = '';
 $tags = get_tags_in($inspection->task_id,'task');
 
 $equipment_type = isset($tags) ? $tags[0] : '';
@@ -173,8 +165,6 @@ $tidak_ada = _l('tidak_ada');
 $baik = _l('baik');
 $tidak_baik = _l('tidak_baik');
 $tidak_dilaksanakan = _l('tidak_dilaksanakan');
-
-
 
 
 $tblhtml = <<<EOD
