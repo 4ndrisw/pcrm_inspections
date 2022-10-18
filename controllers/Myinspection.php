@@ -578,7 +578,7 @@ class Myinspection extends ClientsController
         $data['jenis_pesawat'] = $tags[0];
         $inspection->tag = $tags[0];
 
-        $tag_id = $this->inspections_model->get_available_tags($task_id);
+        $tag_id = get_available_tags($task_id);
         $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
         $inspection->assigned_item = get_staff_full_name(get_option('default_inspection_assigned_'.$inspection->categories));
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
