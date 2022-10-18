@@ -290,22 +290,24 @@ $assigned_info .= '</div>';
 
 pdf_multi_row($assigned_info, '', $pdf, ($dimensions['wk'] / 2) - $dimensions['lm']);
 
-$equipment_regulasi = '';
+$default_regulation = get_option('predefined_regulation_of_'.$inspection->categories);
+$equipment_regulasi = !empty($inspection->equipment['regulasi']) ? $inspection->equipment['regulasi'] : $default_regulation;
 $rline = 4;
 $tline = 12;
-if (!empty($inspection->equipment['regulasi'])) {
-    $regulasi = explode(' -- ', $equipment['regulasi']);
+
+if (!empty($equipment_regulasi)) {
+    $regulasi = explode(' -- ', $equipment_regulasi);
     $equipment_regulasi = '';
     $equipment_regulasi .= '<ol class="regulasi">'; 
 
     foreach($regulasi as $row){
         $equipment_regulasi .= '<li style="margin-left:70;">' .$row. '</li>'; 
     }
-    $equipment_regulasi .= '</ol>'; 
-
+    $equipment_regulasi .= '</ol>';
     $rline = 4;
     $tline = 2;
 }
+
     $pdf->Ln($rline);
     $pdf->SetFont($font_name, 'B', $font_size);
     $pdf->Cell(0, 0, _l('equipment_regulasi'), 0, 1, 'L', 0, '', 0);
