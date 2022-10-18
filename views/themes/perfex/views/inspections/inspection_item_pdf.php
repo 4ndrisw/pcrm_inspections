@@ -662,14 +662,14 @@ $tblhtml = <<<EOD
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;}
 table tr{ line-height: 2;}
-
+table tr.bottom{ line-height: 0.5;}
 </style>
 <table class="table table-bordered">
      <tbody>
 
         $_tblhtml
         
-        <tr class="tg">
+        <tr class="bottom">
            <td width="34%"></td>
            <td width="1%"></td>
            <td width="20%"></td>
@@ -748,7 +748,7 @@ if (!empty($equipment_regulasi)) {
         $equipment_regulasi .= '<li style="margin-left:70;">' .$row. '</li>'; 
     }
     $equipment_regulasi .= '</ol>';
-    $rline = 4;
+    $rline = 2;
     $tline = 2;
 }
     $pdf->Ln($rline);
@@ -759,7 +759,7 @@ if (!empty($equipment_regulasi)) {
     $pdf->writeHTMLCell('', '', '', '', $equipment_regulasi, 0, 1, false, true, 'L', true);
 
 $temuan = '';
-$kline = 18;
+$kline = 14;
 if (!empty($inspection->equipment['temuan'])) {
     $temuan = $inspection->equipment['temuan'];
     $tline = 2;
@@ -772,10 +772,10 @@ if (!empty($inspection->equipment['temuan'])) {
     $pdf->writeHTMLCell('', '', '', '', format_unorderedText($temuan), 0, 1, false, true, 'L', true);
 
 $kesimpulan = '';
-$sline = 18;
+$sline = 14;
 if (!empty($inspection->equipment['kesimpulan'])) {
     $kesimpulan = $inspection->equipment['kesimpulan'];
-    $kline = 4;
+    $kline = 2;
     $sline = 2;
 }
     $pdf->Ln($kline);
