@@ -759,7 +759,7 @@ if (!empty($equipment_regulasi)) {
     $pdf->writeHTMLCell('', '', '', '', $equipment_regulasi, 0, 1, false, true, 'L', true);
 
 $temuan = '';
-$kline = 14;
+$kline = 12;
 if (!empty($inspection->equipment['temuan'])) {
     $temuan = $inspection->equipment['temuan'];
     $tline = 2;
@@ -772,7 +772,7 @@ if (!empty($inspection->equipment['temuan'])) {
     $pdf->writeHTMLCell('', '', '', '', format_unorderedText($temuan), 0, 1, false, true, 'L', true);
 
 $kesimpulan = '';
-$sline = 14;
+$sline = 12;
 if (!empty($inspection->equipment['kesimpulan'])) {
     $kesimpulan = $inspection->equipment['kesimpulan'];
     $kline = 2;
