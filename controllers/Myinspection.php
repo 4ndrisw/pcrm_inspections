@@ -645,7 +645,7 @@ class Myinspection extends ClientsController
         $task = $this->tasks_model->get($task_id);
         $inspection->task = $task;
 
-        $tag_id = $this->inspections_model->get_available_tags($task_id);
+        $tag_id = get_available_tags($task_id);
         $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
         $inspection->assigned_item = get_staff_full_name(get_option('default_inspection_assigned_'.$inspection->categories));
         
