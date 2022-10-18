@@ -240,7 +240,7 @@ class Myinspection extends ClientsController
         $data['inspection_items'] = $this->inspections_model->get_inspection_items($inspection->id, $inspection->project_id);
 
         //get_option('tag_id_'.$tag['tag_id']);
-        $tag_id = $this->inspections_model->get_available_tags($task_id);        
+        $tag_id = get_available_tags($task_id);        
         $data['_tag_id'] = get_option('tag_id_'.$tag_id['0']['tag_id']);
         $data['bodyclass']                     = 'viewinspection';
         $data['client_company']                = $this->clients_model->get($inspection->clientid)->company;
