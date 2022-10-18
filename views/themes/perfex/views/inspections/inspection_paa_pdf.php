@@ -244,27 +244,12 @@ $pdf->SetFont('dejavusans');
 
 $pdf->writeHTML($tblhtml, true, false, false, false, '');
 
-$assigned_path = '<br /><br /><br /><br /><br />';
-if($inspection->status != 1){
-    $assigned_path = <<<EOF
-            <img width="150" height="150" src="$inspection->assigned_path">
-        EOF;
-}
 $assigned_info = '<div style="text-align:center;">';
-    $assigned_info .= get_option('invoice_company_name') . '<br />';
-    $assigned_info .= $assigned_path . '<br />';
-
-if ($inspection->assigned_item != '' && get_option('show_assigned_on_inspections') == 1) {
-    $assigned_info .= $inspection->assigned_item;
-}
+$assigned_info .= get_option('invoice_company_name');
 $assigned_info .= '</div>';
 
-$acceptance_path = <<<EOF
-    <img src="$inspection->acceptance_path">
-EOF;
 $client_info = '<div style="text-align:center;">';
-    $client_info .= $inspection->client_company .'<br />';
-
+$client_info .= $inspection->client_company;
 
 if ($inspection->signed != 0) {
     $client_info .= _l('inspection_signed_by') . ": {$inspection->acceptance_firstname} {$inspection->acceptance_lastname}" . '<br />';
@@ -272,14 +257,39 @@ if ($inspection->signed != 0) {
     $client_info .= _l('inspection_signed_ip') . ": {$inspection->acceptance_ip}" . '<br />';
 
     $client_info .= $acceptance_path;
-    $client_info .= '<br />';
 }
 $client_info .= '</div>';
-
 
 $left_info  = $swap == '1' ? $client_info : $assigned_info;
 $right_info = $swap == '1' ? $assigned_info : $client_info;
 pdf_multi_row($left_info, $right_info, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm']);
+
+$data = $inspection->client_company. "\r\n";
+$data .= $inspection_number .'-'. $inspection->task_id . "\r\n";
+$data .= $task_name ."\r\n";
+
+// define barcode style// set style for barcode
+$style = array(
+    'border' => 0,
+    'vpadding' => 'auto',
+    'hpadding' => 'auto',
+    'fgcolor' => array(0,0,0),
+    'bgcolor' => false, //array(255,255,255)
+    'module_width' => 1, // width of a single module in points
+    'module_height' => 1 // height of a single module in points
+);
+
+// QRCODE,L : QR-CODE Low error correction
+$pdf->write2DBarcode($data, 'QRCODE,M', 37, $pdf->GetY(), 40, 40, $style, 'N');
+
+
+$assigned_info = '<div style="text-align:center;">';
+if ($inspection->assigned_item != '' && get_option('show_assigned_on_inspections') == 1) {
+    $assigned_info .= $inspection->assigned_item;
+}
+$assigned_info .= '</div>';
+
+pdf_multi_row($assigned_info, '', $pdf, ($dimensions['wk'] / 2) - $dimensions['lm']);
 
 $equipment_regulasi = '';
 $rline = 4;
