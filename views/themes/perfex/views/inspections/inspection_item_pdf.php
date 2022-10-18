@@ -687,6 +687,26 @@ $pdf->SetFont('dejavusans');
 
 $pdf->writeHTML($tblhtml, true, false, false, false, '');
 
+$assigned_info = '<div style="text-align:center;">';
+$assigned_info .= get_option('invoice_company_name');
+$assigned_info .= '</div>';
+
+$client_info = '<div style="text-align:center;">';
+$client_info .= $inspection->client_company;
+
+if ($inspection->signed != 0) {
+    $client_info .= _l('inspection_signed_by') . ": {$inspection->acceptance_firstname} {$inspection->acceptance_lastname}" . '<br />';
+    $client_info .= _l('inspection_signed_date') . ': ' . _dt($inspection->acceptance_date_string) . '<br />';
+    $client_info .= _l('inspection_signed_ip') . ": {$inspection->acceptance_ip}" . '<br />';
+
+    $client_info .= $acceptance_path;
+}
+$client_info .= '</div>';
+
+$left_info  = $swap == '1' ? $client_info : $assigned_info;
+$right_info = $swap == '1' ? $assigned_info : $client_info;
+pdf_multi_row($left_info, $right_info, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm']);
+
 $data = $inspection->client_company. "\r\n";
 $data .= $inspection_number .'-'. $inspection->task_id . "\r\n";
 $data .= $task_name ."\r\n";
