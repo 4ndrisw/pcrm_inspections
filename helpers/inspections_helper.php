@@ -927,3 +927,24 @@ function tanggal_pemeriksaan($date){
     $tanggal_pemeriksaan = $tanggal.' '.$bulan.' '.$tahun;
     return $tanggal_pemeriksaan;
 }
+
+
+function get_available_tags($task_id=NULL){
+        $CI = &get_instance();
+
+        $CI->db->select([db_prefix() . 'tags.id AS tag_id', db_prefix() . 'tags.name AS tag_name']);
+        $CI->db->select(['COUNT('.db_prefix() . 'tasks.id) AS count_task']);
+        
+        $CI->db->join(db_prefix() . 'taggables', db_prefix() . 'taggables.rel_id = ' . db_prefix() . 'tasks.id', 'left');
+        $CI->db->join(db_prefix() . 'tags', db_prefix() . 'taggables.tag_id = ' . db_prefix() . 'tags.id', 'left');
+        $CI->db->group_by(db_prefix() . 'tags.id');
+        $CI->db->where(db_prefix() . 'tasks.rel_type = ' . "'project'");
+        if(is_numeric($task_id)){
+            $CI->db->where(db_prefix() . 'tasks.id = ' . $task_id);
+        }
+        $CI->db->where(db_prefix() . 'tags.id is NOT NULL', NULL, true);
+
+        //return $this->db->get_compiled_select(db_prefix() . 'tasks');
+        return $CI->db->get(db_prefix() . 'tasks')->result_array();
+
+    }
