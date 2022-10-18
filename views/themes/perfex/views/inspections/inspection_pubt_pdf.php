@@ -295,6 +295,11 @@ $equipment_regulasi = !empty($inspection->equipment['regulasi']) ? $inspection->
 $rline = 4;
 $tline = 12;
 
+$default_regulation = get_option('predefined_regulation_of_'.$inspection->categories);
+$equipment_regulasi = !empty($inspection->equipment['regulasi']) ? $inspection->equipment['regulasi'] : $default_regulation;
+$rline = 4;
+$tline = 12;
+
 if (!empty($equipment_regulasi)) {
     $regulasi = explode(' -- ', $equipment_regulasi);
     $equipment_regulasi = '';
