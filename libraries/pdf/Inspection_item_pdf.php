@@ -48,9 +48,20 @@ class Inspection_item_pdf extends App_pdf
     protected function file_path()
     {
         $filePath = 'my_inspectionpdf.php';
-        if(isset($this->inspection->equipment_category)){
-            $filePath = 'inspection_'. $this->inspection->equipment_category .'_pdf.php';
+        $inspection_equipment_type = isset($this->inspection->equipment_type) ? strtolower($this->inspection->equipment_type) : FALSE;
+
+        if(isset($this->inspection->categories)){
+            $filePath = 'inspection_'. $this->inspection->categories .'_pdf.php';
         }
+        
+        if($inspection_equipment_type){
+            $equipment_type = 'inspection_'. $inspection_equipment_type .'_pdf.php';
+            $equipment_type_filePath = module_views_path('inspectionss','themes/' . active_clients_theme() . '/views/inspections/' . $equipment_type);
+            if (file_exists($equipment_type_filePath)) {
+                $filePath = $equipment_type;
+            }
+        }
+
         $customPath = module_views_path('inspections','themes/' . active_clients_theme() . '/views/inspections/' . $filePath);
         $actualPath = module_views_path('inspections','themes/' . active_clients_theme() . '/views/inspections/inspection_item_pdf.php');
 

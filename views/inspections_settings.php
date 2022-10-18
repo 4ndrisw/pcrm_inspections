@@ -193,6 +193,23 @@
       }
       echo render_select('settings[default_inspection_assigned_ipka]',$staff,array('staffid',array('firstname','lastname')),'default_inspection_assigned_ipka_string',$selected);
       ?>
+
+       <hr />
+      <?php echo render_textarea('settings[predefined_regulation_of_ipk]','regulation_of_ipk',get_option('predefined_regulation_of_ipk'),array('rows'=>3)); ?>
+      <hr />
+      <?php
+      $staff = $this->staff_model->get('', ['active' => 1]);
+      $selected = get_option('default_inspection_assigned_ipk');
+      foreach($staff as $member){
+       
+         if($selected == $member['staffid']) {
+           $selected = $member['staffid'];
+         
+       }
+      }
+      echo render_select('settings[default_inspection_assigned_ipk]',$staff,array('staffid',array('firstname','lastname')),'default_inspection_assigned_ipk_string',$selected);
+      ?>
+
       <hr />
       <?php echo render_textarea('settings[predefined_regulation_of_ipkh]','regulation_of_ipkh',get_option('predefined_regulation_of_ipkh'),array('rows'=>3)); ?>
       <hr />

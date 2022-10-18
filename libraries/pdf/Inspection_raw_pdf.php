@@ -48,8 +48,18 @@ class Inspection_raw_pdf extends App_pdf
     protected function file_path()
     {
         $filePath = 'my_inspectionpdf.php';
-        if(isset($this->inspection->tag_id)){
-            $filePath = 'inspection_'. get_option('tag_id_'.$this->inspection->tag_id) .'_pdf.php';
+        $inspection_equipment_type = isset($this->inspection->equipment_type) ? strtolower($this->inspection->equipment_type) : FALSE;
+
+        if(isset($this->inspection->categories)){
+            $filePath = 'inspection_'. $this->inspection->categories .'_pdf.php';
+        }
+        
+        if($inspection_equipment_type){
+            $equipment_type = 'inspection_'. $inspection_equipment_type .'_pdf.php';
+            $equipment_type_filePath = module_views_path('inspections','themes/' . active_clients_theme() . '/views/inspections/' . $equipment_type);
+            if (file_exists($equipment_type_filePath)) {
+                $filePath = $equipment_type;
+            }
         }
 
         $customPath = module_views_path('inspections','themes/' . active_clients_theme() . '/views/inspections/' . $filePath);
