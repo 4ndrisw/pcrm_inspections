@@ -234,7 +234,7 @@
           $CI = &get_instance();
 
           $CI->load->model('inspections_model');   
-          $taggables = $CI->inspections_model->get_available_tags();
+          $taggables = get_available_tags();
 
          if(is_array($taggables)){
             foreach ($taggables as $tag) {
