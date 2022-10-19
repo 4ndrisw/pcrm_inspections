@@ -97,6 +97,26 @@
                                 <td class="<?= $editable_class ?>" data-field="nomor_unit" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['nomor_unit']) ? $equipment['nomor_unit'] : '' ?></td>
                              </tr>
                              <tr>
+                                <td style="width:20%">Jenis Penggerak</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editable_class ?>" data-field="jenis_penggerak" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['jenis_penggerak']) ? $equipment['jenis_penggerak'] : '' ?></td>      
+                             </tr>
+                             <tr>
+                                <td style="width:20%">Kekuatan Motor Penggerak</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editable_class ?>" data-field="kekuatan_motor" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['kekuatan_motor']) ? $equipment['kekuatan_motor'] : '' ?></td>      
+                             </tr>
+                             <tr>
+                                <td style="width:200;">kecepatan Angkat</td>
+                                <td style="width:45;">:</td>
+                                <td style="width:400;">$equipment_jenis_penggerak</td>
+                             </tr>
+                             <tr>
+                                <td style="width:20%">Kecepatan</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editable_class ?>" data-field="kecepatan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['kecepatan']) ? $equipment['kecepatan'] : '' ?></td>
+                             </tr>
+                             <tr>
                                 <td style="width:20%">Type / Model</td>
                                 <td style="width:2%">:</td>
                                 <td class="<?= $editable_class ?>" data-field="type_model" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['type_model']) ? $equipment['type_model'] : '' ?></td>
