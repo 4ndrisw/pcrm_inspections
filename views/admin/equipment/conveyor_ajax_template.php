@@ -107,7 +107,7 @@
                                 <td class="<?= $editable_class ?>" data-field="kekuatan_motor" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['kekuatan_motor']) ? $equipment['kekuatan_motor'] : '' ?></td>      
                              </tr>
                              <tr>
-                                <td style="width:200;">kecepatan Angkat</td>
+                                <td style="width:200;">Kecepatan Angkat</td>
                                 <td style="width:45;">:</td>
                                 <td class="<?= $editable_class ?>" data-field="kecepatan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['kecepatan']) ? $equipment['kecepatan'] : '' ?></td>      
                              </tr>
