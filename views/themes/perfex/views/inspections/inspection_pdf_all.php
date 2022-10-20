@@ -453,6 +453,11 @@ switch ($inspection->categories) {
               <td width ="250" class="tg-oe17"></td>
             </tr>
             <tr class="tg-1e15">
+              <td width ="130" class="tg-oe15">$inspection_jumlah_heat_detector</td>
+              <td width ="10" class="tg-oe16">:</td>
+              <td width ="250" class="tg-oe17"></td>
+            </tr>
+            <tr class="tg-1e15">
               <td width ="130" class="tg-oe15">$inspection_jumlah_alarm_bell</td>
               <td width ="10" class="tg-oe16">:</td>
               <td width ="250" class="tg-oe17"></td>

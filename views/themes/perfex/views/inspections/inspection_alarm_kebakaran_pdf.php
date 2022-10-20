@@ -113,6 +113,11 @@ label.field-label{display:inline-block; width:20%;}
     <td width ="250" class="tg-oe17"></td>
   </tr>
   <tr class="tg-1e15">
+    <td width ="130" class="tg-oe15">$inspection_jumlah_heat_detector</td>
+    <td width ="10" class="tg-oe16">:</td>
+    <td width ="250" class="tg-oe17"></td>
+  </tr>
+  <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_jumlah_alarm_bell</td>
     <td width ="10" class="tg-oe16">:</td>
     <td width ="250" class="tg-oe17"></td>
@@ -148,10 +153,6 @@ $pemeriksaan_visual_t = '&#9744;';
 $pemeriksaan_visual_f = '&#9744;';
 $pemeriksaan_visual_n = '&#9744;';
 
-$pemeriksaan_pengaman_t = '&#9744;';
-$pemeriksaan_pengaman_f = '&#9744;';
-$pemeriksaan_pengaman_n = '&#9744;';
-
 $pengujian_pompa_t = '&#9744;';
 $pengujian_pompa_f = '&#9744;';
 $pengujian_pompa_n = '&#9744;';
@@ -170,7 +171,6 @@ $pengujian_operasional_n = '&#9744;';
 
 $pemeriksaan_dokumen = _l('pemeriksaan_dokumen');
 $pemeriksaan_visual = _l('pemeriksaan_visual');
-$pemeriksaan_pengaman = _l('pemeriksaan_pengaman');
 $pengujian_pompa = _l('pengujian_pompa');
 $pengujian_tekanan = _l('pengujian_tekanan');
 $pengujian_daya_pancar = _l('pengujian_daya_pancar');
@@ -206,13 +206,6 @@ table tr{ line-height: 2;}
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_f</span> $tidak_baik</td>
            <td width="22%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_n</span> $tidak_dilaksanakan</td>
-        </tr>
-        <tr class="tg pemeriksaan_pengaman">
-           <td width="34%">$pemeriksaan_pengaman</td>
-           <td width="1%">:</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_t</span> $baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_f</span> $tidak_baik</td>
-           <td width="22%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_dilaksanakan</td>
         </tr>
         <tr class="tg pengujian_operasional">
            <td width="34%">$pengujian_operasional</td>
