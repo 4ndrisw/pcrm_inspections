@@ -904,19 +904,19 @@ switch ($inspection->categories) {
                    <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_f</span> $tidak_baik</td>
                    <td width="22%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_n</span> $tidak_ada</td>
                 </tr>
+                <tr class="tg pemeriksaan_pengaman">
+                   <td width="34%">$pemeriksaan_pengaman</td>
+                   <td width="1%">:</td>
+                   <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_t</span> $baik</td>
+                   <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_f</span> $tidak_baik</td>
+                   <td width="22%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_ada</td>
+                </tr>
                 <tr class="tg pengujian_beban">
                    <td width="34%">$pengujian_beban</td>
                    <td width="1%">:</td>
                    <td width="20%"><span style='font-size:2.5rem;'>$pengujian_beban_t</span> $baik</td>
                    <td width="20%"><span style='font-size:2.5rem;'>$pengujian_beban_f</span> $tidak_baik</td>
                    <td width="22%"><span style='font-size:2.5rem;'>$pengujian_beban_n</span> $tidak_ada</td>
-                </tr>
-                <tr class="tg pengujian_penetrant">
-                   <td width="34%">$pengujian_penetrant</td>
-                   <td width="1%">:</td>
-                   <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_t</span> $baik</td>
-                   <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_f</span> $tidak_baik</td>
-                   <td width="22%"><span style='font-size:2.5rem;'>$pengujian_penetrant_n</span> $tidak_ada</td>
                 </tr>
                 <tr class="tg pengujian_operasional">
                    <td width="34%">$pengujian_operasional</td>
