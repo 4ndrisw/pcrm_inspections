@@ -79,6 +79,7 @@ $inspection_nama_pesawat = _l('inspection_nama_pesawat');
 $instalatir = _l('inspection_instalatir');
 $inspection_jumlah_mca = _l('inspection_jumlah_mca');
 $inspection_jumlah_smoke_detector = _l('inspection_jumlah_smoke_detector');
+$inspection_jumlah_heat_detector = _l('inspection_jumlah_heat_detector');
 $inspection_jumlah_alarm_bell = _l('inspection_jumlah_alarm_bell');
 $inspection_jumlah_alarm_lamp = _l('inspection_jumlah_alarm_lamp');
 
