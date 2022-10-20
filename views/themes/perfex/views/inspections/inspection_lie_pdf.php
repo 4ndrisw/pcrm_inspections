@@ -163,7 +163,6 @@ $pemeriksaan_visual = _l('pemeriksaan_visual');
 $pemeriksaan_pengaman = _l('pemeriksaan_pengaman');
 $pengujian_beban = _l('pengujian_beban');
 $pengujian_operasional = _l('pengujian_operasional');
-$pengujian_penetrant = _l('pengujian_penetrant');
 
 $lengkap = _l('lengkap');
 $tidak_lengkap = _l('tidak_lengkap');
@@ -209,13 +208,6 @@ table tr{ line-height: 2;}
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_beban_t</span> $baik</td>
            <td width="20%"><span style='font-size:2.5rem;'>$pengujian_beban_f</span> $tidak_baik</td>
            <td width="22%"><span style='font-size:2.5rem;'>$pengujian_beban_n</span> $tidak_ada</td>
-        </tr>
-        <tr class="tg pengujian_penetrant">
-           <td width="34%">$pengujian_penetrant</td>
-           <td width="1%">:</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_t</span> $baik</td>
-           <td width="20%"><span style='font-size:2.5rem;'>$pengujian_penetrant_f</span> $tidak_baik</td>
-           <td width="22%"><span style='font-size:2.5rem;'>$pengujian_penetrant_n</span> $tidak_ada</td>
         </tr>
         <tr class="tg pengujian_operasional">
            <td width="34%">$pengujian_operasional</td>
