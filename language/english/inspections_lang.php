@@ -93,6 +93,7 @@ $lang['inspection_instalatir']                             = 'Instalatir';
 
 $lang['inspection_jumlah_mca']                             = 'MCA';
 $lang['inspection_jumlah_smoke_detector']                             = 'Smoke Detector';
+$lang['inspection_jumlah_heat_detector']                             = 'Heat Detector';
 $lang['inspection_jumlah_alarm_bell']                             = 'Alarm Bell';
 $lang['inspection_jumlah_alarm_lamp']                             = 'Alarm Lamp';
 $lang['view_pdf_template_in_new_window']                             = 'PDF Template';
