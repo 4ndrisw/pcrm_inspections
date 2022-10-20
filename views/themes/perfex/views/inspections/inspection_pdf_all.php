@@ -970,13 +970,6 @@ switch ($inspection->categories) {
                        <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_f</span> $tidak_baik</td>
                        <td width="22%"><span style='font-size:2.5rem;'>$pemeriksaan_visual_n</span> $tidak_dilaksanakan</td>
                     </tr>
-                    <tr class="tg pemeriksaan_pengaman">
-                       <td width="34%">$pemeriksaan_pengaman</td>
-                       <td width="1%">:</td>
-                       <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_t</span> $baik</td>
-                       <td width="20%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_f</span> $tidak_baik</td>
-                       <td width="22%"><span style='font-size:2.5rem;'>$pemeriksaan_pengaman_n</span> $tidak_dilaksanakan</td>
-                    </tr>
                     <tr class="tg pengujian_pompa">
                        <td width="34%">$pengujian_pompa</td>
                        <td width="1%">:</td>
