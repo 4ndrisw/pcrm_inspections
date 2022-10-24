@@ -234,7 +234,7 @@ class Inspections extends AdminController
                        
         $inspection->equipment = $equipment;
         
-        $data = inspection_data($inspection);
+        $data = inspection_data($inspection, $task_id);
         /*
         echo '<pre>';
         var_dump($data);
@@ -247,7 +247,7 @@ class Inspections extends AdminController
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
 
         $template = FCPATH .'modules/'. INSPECTIONS_MODULE_NAME . '/resources/'.$equipment['jenis_pesawat'].'.docx';
-
+        
         $templateProcessor = $phpWord->loadTemplate($template);
         
         $templateProcessor->setValues($data);

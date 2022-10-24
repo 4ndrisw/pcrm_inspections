@@ -959,7 +959,7 @@ function inspection_data($inspection, $task_id){
 
     $data = isset($_data[0]) ? $_data[0] : $_data;
 
-    $licence = get_licence_id_from_spection_item($task_id);
+    //$licence = get_licence_id_from_spection_item($task_id);
 
     //$data['licence_id'] = $licence_id;
     $data['pjk3'] = get_option('invoice_company_name');
@@ -971,7 +971,7 @@ function inspection_data($inspection, $task_id){
     $data['nomor_inspeksi_alat'] = format_inspection_item_number($inspection->id, $task_id);
 
     unset($data['id'],$data['rel_id'],$data['pemeriksaan_dokumen'],$data['pemeriksaan_visual'],$data['pemeriksaan_pengaman'],
-          $data['jenis_pesawat'],$data['pengujian_beban'] ,$data['pengujian_penetrant'],$data['pengujian_operasional'], $data['pengujian_thickness'] ,$data['kesimpulan'],$data['temuan']
+          $data['pengujian_beban'] ,$data['pengujian_penetrant'],$data['pengujian_operasional'], $data['pengujian_thickness'] ,$data['kesimpulan'],$data['temuan']
     );
 
     $default_regulation = get_option('predefined_regulation_of_'.$inspection->categories);
