@@ -969,7 +969,8 @@ function inspection_data($inspection, $task_id){
     $data['kelompok_pemeriksaan'] = $inspection->categories;
     $data['nomor_inspeksi'] = $inspection->formatted_number;
     $data['nomor_inspeksi_alat'] = format_inspection_item_number($inspection->id, $task_id);
-
+    $data['jenis_pemeriksaan_uppercase'] = strtoupper($data['jenis_pemeriksaan']);
+    $data['nama_pesawat_uppercase'] = strtoupper($data['nama_pesawat']);
     unset($data['id'],$data['rel_id'],$data['pemeriksaan_dokumen'],$data['pemeriksaan_visual'],$data['pemeriksaan_pengaman'],
           $data['pengujian_beban'] ,$data['pengujian_penetrant'],$data['pengujian_operasional'], $data['pengujian_thickness'] ,$data['kesimpulan'],$data['temuan']
     );
