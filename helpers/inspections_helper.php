@@ -930,21 +930,64 @@ function tanggal_pemeriksaan($date){
 
 
 function get_available_tags($task_id=NULL){
-        $CI = &get_instance();
+    $CI = &get_instance();
 
-        $CI->db->select([db_prefix() . 'tags.id AS tag_id', db_prefix() . 'tags.name AS tag_name']);
-        $CI->db->select(['COUNT('.db_prefix() . 'tasks.id) AS count_task']);
-        
-        $CI->db->join(db_prefix() . 'taggables', db_prefix() . 'taggables.rel_id = ' . db_prefix() . 'tasks.id', 'left');
-        $CI->db->join(db_prefix() . 'tags', db_prefix() . 'taggables.tag_id = ' . db_prefix() . 'tags.id', 'left');
-        $CI->db->group_by(db_prefix() . 'tags.id');
-        $CI->db->where(db_prefix() . 'tasks.rel_type = ' . "'project'");
-        if(is_numeric($task_id)){
-            $CI->db->where(db_prefix() . 'tasks.id = ' . $task_id);
-        }
-        $CI->db->where(db_prefix() . 'tags.id is NOT NULL', NULL, true);
-
-        //return $this->db->get_compiled_select(db_prefix() . 'tasks');
-        return $CI->db->get(db_prefix() . 'tasks')->result_array();
-
+    $CI->db->select([db_prefix() . 'tags.id AS tag_id', db_prefix() . 'tags.name AS tag_name']);
+    $CI->db->select(['COUNT('.db_prefix() . 'tasks.id) AS count_task']);
+    
+    $CI->db->join(db_prefix() . 'taggables', db_prefix() . 'taggables.rel_id = ' . db_prefix() . 'tasks.id', 'left');
+    $CI->db->join(db_prefix() . 'tags', db_prefix() . 'taggables.tag_id = ' . db_prefix() . 'tags.id', 'left');
+    $CI->db->group_by(db_prefix() . 'tags.id');
+    $CI->db->where(db_prefix() . 'tasks.rel_type = ' . "'project'");
+    if(is_numeric($task_id)){
+        $CI->db->where(db_prefix() . 'tasks.id = ' . $task_id);
     }
+    $CI->db->where(db_prefix() . 'tags.id is NOT NULL', NULL, true);
+
+    //return $this->db->get_compiled_select(db_prefix() . 'tasks');
+    return $CI->db->get(db_prefix() . 'tasks')->result_array();
+
+}
+
+
+function inspection_data($inspection, $task_id){
+    $_data = [];
+
+    foreach ($inspection->equipment as $key => $value) {
+        $_data[$key] = $value;
+    }
+
+    $data = isset($_data[0]) ? $_data[0] : $_data;
+
+    $licence = get_licence_id_from_spection_item($task_id);
+
+    //$data['licence_id'] = $licence_id;
+    $data['pjk3'] = get_option('invoice_company_name');
+    $data['nama_perusahaan'] = isset($inspection->client) ? $inspection->client->company : $inspection['client']->company;
+    $data['alamat_perusahaan'] = $inspection->billing_street .' '. $inspection->billing_city .' '. $inspection->billing_state .' '. $inspection->billing_zip;
+    $data['tanggal_pemeriksaan'] = tanggal_pemeriksaan($inspection->date);
+    $data['kelompok_pemeriksaan'] = $inspection->categories;
+    $data['nomor_inspeksi'] = $inspection->formatted_number;
+    $data['nomor_inspeksi_alat'] = format_inspection_item_number($inspection->id, $task_id);
+
+    unset($data['id'],$data['rel_id'],$data['pemeriksaan_dokumen'],$data['pemeriksaan_visual'],$data['pemeriksaan_pengaman'],
+          $data['jenis_pesawat'],$data['pengujian_beban'] ,$data['pengujian_penetrant'],$data['pengujian_operasional'], $data['pengujian_thickness'] ,$data['kesimpulan'],$data['temuan']
+    );
+
+    $default_regulation = get_option('predefined_regulation_of_'.$inspection->categories);
+    $equipment_regulasi = !empty($data['regulasi']) ? $data['regulasi'] : $default_regulation;
+
+    if (!empty($equipment_regulasi)) {
+        $regulasi = explode(' -- ', $equipment_regulasi);
+        $equipment_regulasi = '';
+        $i = 1;
+        foreach($regulasi as $row){
+            $equipment_regulasi .= $i .'. ' .$row. "<br />"; 
+            $i++;
+        }
+    }
+
+    $data['regulasi'] = $equipment_regulasi;
+
+    return $data;
+}

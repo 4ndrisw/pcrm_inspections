@@ -11,11 +11,18 @@
 			</div>
 		</div>
     <div class="row">
-      <div role="button" class="mtop10 mbot10">
+      
+      <div role="button" class="col-md-3 mtop10 mbot10">
           <input class ="btn btn-sm" type="button" id="refresh" value="Refresh" />
       </div>
+      <div role="button" class="col-md-3 mtop10 mbot10">
+          <a class="btn btn-sm btn-danger" href="<?php echo admin_url() . 'inspections/inspection_report/'.$inspection->id.'/'.$inspection->task_id; ?>">
+          <?php echo _l('download'); ?></a>
+      </div>
+
       <div id="equipment-template-wrapper" class="col-md-12 no-padding equipment-template">
         <?php
+
             $template = strtolower($inspection->equipment_type) . '_ajax_template';
             $this->load->view('admin/equipment/' . $template);
         ?>

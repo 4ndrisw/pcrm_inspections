@@ -164,7 +164,8 @@ class Inspections extends AdminController
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
         $inspection->equipment_type = $equipment_type;
         $inspection->tag_id = get_tag_by_name($tags[0])->id;
-
+        $tag_id = get_available_tags($task_id);
+        $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
         $equipment_model = $equipment_type .'_model';
         $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
 
@@ -199,6 +200,76 @@ class Inspections extends AdminController
         $this->load->view('admin/inspections/inspection_item_preview', $data);
     }
 
+
+    /* Add new inspection or update existing */
+    public function inspection_report($id, $task_id)
+    {
+        $inspection = $this->inspections_model->get($id);
+        $task = $this->tasks_model->get($task_id);
+
+        if (!$inspection || !user_can_view_inspection($id)) {
+            blank_page(_l('inspection_not_found'));
+        }
+        $tags = get_tags_in($task_id, 'task');
+
+        $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
+        $inspection->equipment_type = $equipment_type;
+        $inspection->tag_id = get_tag_by_name($tags[0])->id;
+        $tag_id = get_available_tags($task_id);
+        $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
+        
+        $equipment_model = $equipment_type .'_model';
+        $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
+
+        if (!file_exists($model_path)) {
+            set_alert('danger', _l('file_not_found ;', $equipment_model));
+            log_activity('File '. $equipment_model . ' not_found');
+            redirect(admin_url('inspections/inspection/'.$id));
+        }
+
+        include_once($model_path);
+        $this->load->model($equipment_model);
+        $equipments = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id, 'task_id' =>$task_id]);
+        $equipment = reset($equipments);
+                       
+        $inspection->equipment = $equipment;
+        
+        $data = inspection_data($inspection);
+        /*
+        echo '<pre>';
+        var_dump($data);
+        echo '==================';
+        //var_dump($inspection);
+        echo '</pre>';
+        die();
+        */
+
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+
+        $template = FCPATH .'modules/'. INSPECTIONS_MODULE_NAME . '/resources/'.$equipment['jenis_pesawat'].'.docx';
+
+        $templateProcessor = $phpWord->loadTemplate($template);
+        
+        $templateProcessor->setValues($data);
+
+        $templateProcessor->setImageValue('CompanyLogo', 'path/to/company/logo.png');
+        $temp_filename = strtoupper($equipment['jenis_pesawat']) .'-'. $inspection->formatted_number . '.docx';
+        $templateProcessor->saveAs($temp_filename);
+
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename='.$temp_filename);
+        header('Content-Transfer-Encoding: binary');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($temp_filename));
+        flush();
+        readfile($temp_filename);
+        unlink($temp_filename);
+        exit; 
+
+    }
     /* Add new inspection */
     public function create()
     {

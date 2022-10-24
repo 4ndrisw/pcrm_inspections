@@ -301,6 +301,30 @@
             <hr />
             <div class="row">
                <div class="col-md-12">
+                  <h2> 1. Variable Data</h2>
+                  <div class ="table-responsive">
+                     <table class="table inspection-data table-bordered">
+                        <tbody>
+                           <?php
+                           $inspection_data = inspection_data($inspection, $inspection->task_id);
+                              
+                              foreach ($inspection_data as $key => $value) {
+                                 echo '<tr>';
+                                 echo '<td>';
+                                 echo '${' . $key .'}';
+                                 echo '</td>';
+
+                                 echo '<td>';
+                                 echo $value;
+                                 echo '</td>';
+                                 echo '</tr>';
+                              }
+                           ?>
+                        </tbody> 
+                     </table>
+                  </div>
+               </div>
+               <div class="col-md-12">
                   <h2> 2. Data Data</h2>
                      <h3>2.1 Data Umum</h3>   
                      <div class ="table-responsive">
