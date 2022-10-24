@@ -246,7 +246,7 @@ class Inspections extends AdminController
 
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         
-        $file = str_replace(' ', '_', $equipment['jenis_pesawat']);
+        $file = str_replace(' ', '_', 'laporan_' . $equipment['jenis_pesawat']);
         $file = strtolower($file);
 
         $template = FCPATH .'modules/'. INSPECTIONS_MODULE_NAME . '/assets/resources/'. $file .'.docx';
