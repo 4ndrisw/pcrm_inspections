@@ -249,13 +249,13 @@ class Inspections extends AdminController
         $file = str_replace(' ', '_', $equipment['jenis_pesawat']);
         $file = strtolower($file);
 
-        $template = FCPATH .'modules/'. INSPECTIONS_MODULE_NAME . '/resources/'. $file .'.docx';
+        $template = FCPATH .'modules/'. INSPECTIONS_MODULE_NAME . '/assets/resources/'. $file .'.docx';
         
         $templateProcessor = $phpWord->loadTemplate($template);
         
         $templateProcessor->setValues($data);
 
-        $templateProcessor->setImageValue('CompanyLogo', 'path/to/company/logo.png');
+        //$templateProcessor->setImageValue('CompanyLogo', 'path/to/company/logo.png');
         $temp_filename = strtoupper($equipment['jenis_pesawat']) .'-'. $inspection->formatted_number . '.docx';
         $templateProcessor->saveAs($temp_filename);
 
