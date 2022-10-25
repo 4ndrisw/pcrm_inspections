@@ -114,7 +114,14 @@ if (!$equipment) {
     redirect(admin_url('inspections/inspection_item/'.$id.'/'.$task_id));
 }
 
-$inspection->equipment = isset($equipment[$page]) ? $equipment[$page] : [];
+$inspection->equipment = isset($equipment) ? reset($equipment) : [];
+/*
+echo '<pre>';
+var_dump($inspection->equipment);
+echo '<br />=================<br />';
+echo '</pre>';
+echo '<br />===========================<br />';
+*/
 
 $tag_id = get_available_tags($task_id);
 
@@ -136,9 +143,14 @@ $task__name = $inspection->inspection_items[$page]['name'];
 $task_name = isset($task__name) ? $task__name : 'kosong';
 
 $_tblhtml = '';
-
 switch ($inspection->categories) {
     case 'pubt':
+        $nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
+        $nomor_seri = isset($inspection->equipment['nomor_seri']) ? $inspection->equipment['nomor_seri'] : '';
+        $nomor_unit = isset($inspection->equipment['nomor_unit']) ? $inspection->equipment['nomor_unit'] : '';
+        $type_model = isset($inspection->equipment['type_model']) ? $inspection->equipment['type_model'] : '';
+        $kapasitas = isset($inspection->equipment['kapasitas']) ? $inspection->equipment['kapasitas'] : '';
+        
         $tblhtml = <<<EOD
         <style type="text/css">
         .tg-oe14{width:20%; display:inline-block;background-color:#ddd;}
@@ -148,37 +160,43 @@ switch ($inspection->categories) {
 
         </style>
         <table class="tg">
-        <tbody>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_serial_number</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_unit_number</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_type_model</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_capacity</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-        </tbody>
+          <tbody>
+              <tr class="tg-1e15">
+                <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
+                <td width ="10" class="tg-oe16">:</td>
+                <td width ="250" class="tg-oe17">$nama_pesawat</td>
+              </tr>
+              <tr class="tg-1e15">
+                <td width ="130" class="tg-oe15">$inspection_serial_number</td>
+                <td width ="10" class="tg-oe16">:</td>
+                <td width ="250" class="tg-oe17">$nomor_seri</td>
+              </tr>
+              <tr class="tg-1e15">
+                <td width ="130" class="tg-oe15">$inspection_unit_number</td>
+                <td width ="10" class="tg-oe16">:</td>
+                <td width ="250" class="tg-oe17">$nomor_unit</td>
+              </tr>
+              <tr class="tg-1e15">
+                <td width ="130" class="tg-oe15">$inspection_type_model</td>
+                <td width ="10" class="tg-oe16">:</td>
+                <td width ="250" class="tg-oe17">$type_model</td>
+              </tr>
+              <tr class="tg-1e15">
+                <td width ="130" class="tg-oe15">$inspection_capacity</td>
+                <td width ="10" class="tg-oe16">:</td>
+                <td width ="250" class="tg-oe17">$kapasitas</td>
+              </tr>
+            </tbody>
         </table>
         EOD;
     break;
     case 'paa':
+        $nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
+        $nomor_seri = isset($inspection->equipment['nomor_seri']) ? $inspection->equipment['nomor_seri'] : '';
+        $nomor_unit = isset($inspection->equipment['nomor_unit']) ? $inspection->equipment['nomor_unit'] : '';
+        $type_model = isset($inspection->equipment['type_model']) ? $inspection->equipment['type_model'] : '';
+        $kapasitas = isset($inspection->equipment['kapasitas']) ? $inspection->equipment['kapasitas'] : '';
+
         $tblhtml = <<<EOD
         <style type="text/css">
         .tg-oe14{width:20%; display:inline-block;background-color:#ddd;}
@@ -188,37 +206,42 @@ switch ($inspection->categories) {
 
         </style>
         <table class="tg">
-        <tbody>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_serial_number</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_unit_number</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_type_model</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_capacity</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-        </tbody>
+          <tbody>
+            <tr class="tg-1e15">
+              <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
+              <td width ="10" class="tg-oe16">:</td>
+              <td width ="250" class="tg-oe17">$nama_pesawat</td>
+            </tr>
+            <tr class="tg-1e15">
+              <td width ="130" class="tg-oe15">$inspection_serial_number</td>
+              <td width ="10" class="tg-oe16">:</td>
+              <td width ="250" class="tg-oe17">$nomor_seri</td>
+            </tr>
+            <tr class="tg-1e15">
+              <td width ="130" class="tg-oe15">$inspection_unit_number</td>
+              <td width ="10" class="tg-oe16">:</td>
+              <td width ="250" class="tg-oe17">$nomor_unit</td>
+            </tr>
+            <tr class="tg-1e15">
+              <td width ="130" class="tg-oe15">$inspection_type_model</td>
+              <td width ="10" class="tg-oe16">:</td>
+              <td width ="250" class="tg-oe17">$type_model</td>
+            </tr>
+            <tr class="tg-1e15">
+              <td width ="130" class="tg-oe15">$inspection_capacity</td>
+              <td width ="10" class="tg-oe16">:</td>
+              <td width ="250" class="tg-oe17">$kapasitas</td>
+            </tr>
+          </tbody>
         </table>
         EOD;
     break;
     case 'iil':
+        $nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
+        $daya_terpasang = isset($inspection->equipment['daya_terpasang']) ? $inspection->equipment['daya_terpasang'] :'';
+        $sumber_tenaga = isset($inspection->equipment['sumber_tenaga']) ? $inspection->equipment['sumber_tenaga'] :'';
+        $jenis_arus = isset($inspection->equipment['jenis_arus']) ? $inspection->equipment['jenis_arus'] :'';
+
         $tblhtml = <<<EOD
         <style type="text/css">
         .tg-oe14{width:20%; display:inline-block;background-color:#ddd;}
@@ -228,36 +251,42 @@ switch ($inspection->categories) {
 
         </style>
         <table class="tg">
-        <tbody>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_daya_terpasang</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_sumber_tenaga</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_jenis_arus</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-        </tbody>
+          <tbody>
+            <tr class="tg-1e15">
+              <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
+              <td width ="10" class="tg-oe16">:</td>
+              <td width ="250" class="tg-oe17">$nama_pesawat</td>
+            </tr>
+            <tr class="tg-1e15">
+              <td width ="130" class="tg-oe15">$inspection_daya_terpasang</td>
+              <td width ="10" class="tg-oe16">:</td>
+              <td width ="250" class="tg-oe17">$daya_terpasang</td>
+            </tr>
+            <tr class="tg-1e15">
+              <td width ="130" class="tg-oe15">$inspection_sumber_tenaga</td>
+              <td width ="10" class="tg-oe16">:</td>
+              <td width ="250" class="tg-oe17">$sumber_tenaga</td>
+            </tr>
+            <tr class="tg-1e15">
+              <td width ="130" class="tg-oe15">$inspection_jenis_arus</td>
+              <td width ="10" class="tg-oe16">:</td>
+              <td width ="250" class="tg-oe17">$jenis_arus</td>
+            </tr>
+          </tbody>
         </table>
         EOD;
     break;
     case 'ipp':
-        $inspection_instalatir = _l('inspection_instalatir');
-        $inspection_penerima = _l('inspection_penerima');
-        $inspection_tinggi_tiang_penerima = _l('inspection_tinggi_tiang_penerima');
-        $inspection_tinggi_bangunan = _l('inspection_tinggi_bangunan');
+          $nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
+          $instalatir = isset($inspection->equipment['instalatir']) ? $inspection->equipment['instalatir'] :'';
+          $penerima = isset($inspection->equipment['penerima']) ? $inspection->equipment['penerima'] :'';
+          $tinggi_tiang_penerima = isset($inspection->equipment['tinggi_tiang_penerima']) ? $inspection->equipment['tinggi_tiang_penerima'] :'';
+          $tinggi_bangunan = isset($inspection->equipment['tinggi_bangunan']) ? $inspection->equipment['tinggi_bangunan'] :'';
+
+          $inspection_instalatir = _l('inspection_instalatir');
+          $inspection_penerima = _l('inspection_penerima');
+          $inspection_tinggi_tiang_penerima = _l('inspection_tinggi_tiang_penerima');
+          $inspection_tinggi_bangunan = _l('inspection_tinggi_bangunan');
         $tblhtml = <<<EOD
             <style type="text/css">
             .tg-oe14{width:20%; display:inline-block;background-color:#ddd;}
@@ -267,37 +296,43 @@ switch ($inspection->categories) {
 
             </style>
             <table class="tg">
-                <tbody>
-                  <tr class="tg-1e15">
-                    <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
-                    <td width ="10" class="tg-oe16">:</td>
-                    <td width ="250" class="tg-oe17"></td>
-                  </tr>
-                  <tr class="tg-1e15">
-                    <td width ="130" class="tg-oe15">$inspection_instalatir</td>
-                    <td width ="10" class="tg-oe16">:</td>
-                    <td width ="250" class="tg-oe17"></td>
-                  </tr>
-                  <tr class="tg-1e15">
-                    <td width ="130" class="tg-oe15">$inspection_penerima</td>
-                    <td width ="10" class="tg-oe16">:</td>
-                    <td width ="250" class="tg-oe17"></td>
-                  </tr>
-                  <tr class="tg-1e15">
-                    <td width ="130" class="tg-oe15">$inspection_tinggi_tiang_penerima</td>
-                    <td width ="10" class="tg-oe16">:</td>
-                    <td width ="250" class="tg-oe17"></td>
-                  </tr>
-                  <tr class="tg-1e15">
-                    <td width ="130" class="tg-oe15">$inspection_tinggi_bangunan</td>
-                    <td width ="10" class="tg-oe16">:</td>
-                    <td width ="250" class="tg-oe17"></td>
-                  </tr>
-                </tbody>
+              <tbody>
+                <tr class="tg-1e15">
+                  <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
+                  <td width ="10" class="tg-oe16">:</td>
+                  <td width ="250" class="tg-oe17">$nama_pesawat</td>
+                </tr>
+                <tr class="tg-1e15">
+                  <td width ="130" class="tg-oe15">$inspection_instalatir</td>
+                  <td width ="10" class="tg-oe16">:</td>
+                  <td width ="250" class="tg-oe17">$instalatir</td>
+                </tr>
+                <tr class="tg-1e15">
+                  <td width ="130" class="tg-oe15">$inspection_penerima</td>
+                  <td width ="10" class="tg-oe16">:</td>
+                  <td width ="250" class="tg-oe17">$penerima</td>
+                </tr>
+                <tr class="tg-1e15">
+                  <td width ="130" class="tg-oe15">$inspection_tinggi_tiang_penerima</td>
+                  <td width ="10" class="tg-oe16">:</td>
+                  <td width ="250" class="tg-oe17">$tinggi_tiang_penerima</td>
+                </tr>
+                <tr class="tg-1e15">
+                  <td width ="130" class="tg-oe15">$inspection_tinggi_bangunan</td>
+                  <td width ="10" class="tg-oe16">:</td>
+                  <td width ="250" class="tg-oe17">$tinggi_bangunan</td>
+                </tr>
+              </tbody>
             </table>
         EOD;
     break;
     case 'lie':
+        $nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
+        $nomor_seri = isset($inspection->equipment['nomor_seri']) ? $inspection->equipment['nomor_seri'] : '';
+        $nomor_unit = isset($inspection->equipment['nomor_unit']) ? $inspection->equipment['nomor_unit'] : '';
+        $type_model = isset($inspection->equipment['type_model']) ? $inspection->equipment['type_model'] : '';
+        $kapasitas = isset($inspection->equipment['kapasitas']) ? $inspection->equipment['kapasitas'] : '';
+
         $tblhtml = <<<EOD
         <style type="text/css">
         .tg-oe14{width:20%; display:inline-block;background-color:#ddd;}
@@ -305,41 +340,45 @@ switch ($inspection->categories) {
         .tg-oe16{width:2%;}
         label.field-label{display:inline-block; width:20%;}
 
-        </style>
-        <table class="tg">
-        <tbody>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_serial_number</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_unit_number</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_type_model</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_capacity</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-        </tbody>
-        </table>
+          </style>
+          <table class="tg">
+            <tbody>
+              <tr class="tg-1e15">
+                <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
+                <td width ="10" class="tg-oe16">:</td>
+                <td width ="250" class="tg-oe17">$nama_pesawat</td>
+              </tr>
+              <tr class="tg-1e15">
+                <td width ="130" class="tg-oe15">$inspection_serial_number</td>
+                <td width ="10" class="tg-oe16">:</td>
+                <td width ="250" class="tg-oe17">$nomor_seri</td>
+              </tr>
+              <tr class="tg-1e15">
+                <td width ="130" class="tg-oe15">$inspection_unit_number</td>
+                <td width ="10" class="tg-oe16">:</td>
+                <td width ="250" class="tg-oe17">$nomor_unit</td>
+              </tr>
+              <tr class="tg-1e15">
+                <td width ="130" class="tg-oe15">$inspection_type_model</td>
+                <td width ="10" class="tg-oe16">:</td>
+                <td width ="250" class="tg-oe17">$type_model</td>
+              </tr>
+              <tr class="tg-1e15">
+                <td width ="130" class="tg-oe15">$inspection_capacity</td>
+                <td width ="10" class="tg-oe16">:</td>
+                <td width ="250" class="tg-oe17">$kapasitas</td>
+              </tr>
+            </tbody>
+          </table>
         EOD;
-
-
     break;
     case 'ptp':
+        $nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
+        $nomor_seri = isset($inspection->equipment['nomor_seri']) ? $inspection->equipment['nomor_seri'] : '';
+        $nomor_unit = isset($inspection->equipment['nomor_unit']) ? $inspection->equipment['nomor_unit'] : '';
+        $type_model = isset($inspection->equipment['type_model']) ? $inspection->equipment['type_model'] : '';
+        $kapasitas = isset($inspection->equipment['kapasitas']) ? $inspection->equipment['kapasitas'] : '';
+
         $tblhtml = <<<EOD
         <style type="text/css">
         .tg-oe14{width:20%; display:inline-block;background-color:#ddd;}
@@ -349,33 +388,33 @@ switch ($inspection->categories) {
 
         </style>
         <table class="tg">
-        <tbody>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_serial_number</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_unit_number</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_type_model</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-          <tr class="tg-1e15">
-            <td width ="130" class="tg-oe15">$inspection_capacity</td>
-            <td width ="10" class="tg-oe16">:</td>
-            <td width ="250" class="tg-oe17"></td>
-          </tr>
-        </tbody>
+          <tbody>
+            <tr class="tg-1e15">
+              <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
+              <td width ="10" class="tg-oe16">:</td>
+              <td width ="250" class="tg-oe17">$nama_pesawat</td>
+            </tr>
+            <tr class="tg-1e15">
+              <td width ="130" class="tg-oe15">$inspection_serial_number</td>
+              <td width ="10" class="tg-oe16">:</td>
+              <td width ="250" class="tg-oe17">$nomor_seri</td>
+            </tr>
+            <tr class="tg-1e15">
+              <td width ="130" class="tg-oe15">$inspection_unit_number</td>
+              <td width ="10" class="tg-oe16">:</td>
+              <td width ="250" class="tg-oe17">$nomor_unit</td>
+            </tr>
+            <tr class="tg-1e15">
+              <td width ="130" class="tg-oe15">$inspection_type_model</td>
+              <td width ="10" class="tg-oe16">:</td>
+              <td width ="250" class="tg-oe17">$type_model</td>
+            </tr>
+            <tr class="tg-1e15">
+              <td width ="130" class="tg-oe15">$inspection_capacity</td>
+              <td width ="10" class="tg-oe16">:</td>
+              <td width ="250" class="tg-oe17">$kapasitas</td>
+            </tr>
+          </tbody>
         </table>
         EOD;
     break;
