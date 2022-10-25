@@ -71,6 +71,11 @@ $pdf->Ln(hooks()->apply_filters('pdf_info_and_table_separator', 2));
 
 $company = get_inspection_company_by_clientid($inspection->clientid);
 $address = get_inspection_company_address($inspection->id);
+$nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
+$nomor_seri = isset($inspection->equipment['nomor_seri']) ? $inspection->equipment['nomor_seri'] : '';
+$nomor_unit = isset($inspection->equipment['nomor_unit']) ? $inspection->equipment['nomor_unit'] : '';
+$type_model = isset($inspection->equipment['type_model']) ? $inspection->equipment['type_model'] : '';
+$kapasitas = isset($inspection->equipment['kapasitas']) ? $inspection->equipment['kapasitas'] : '';
 
 
 $inspection_company = _l('inspection_company_name');
@@ -95,27 +100,27 @@ label.field-label{display:inline-block; width:20%;}
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17"></td>
+    <td width ="250" class="tg-oe17">$nama_pesawat</td>
   </tr>
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_serial_number</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17"></td>
+    <td width ="250" class="tg-oe17">$nomor_seri</td>
   </tr>
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_unit_number</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17"></td>
+    <td width ="250" class="tg-oe17">$nomor_unit</td>
   </tr>
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_type_model</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17"></td>
+    <td width ="250" class="tg-oe17">$type_model</td>
   </tr>
   <tr class="tg-1e15">
     <td width ="130" class="tg-oe15">$inspection_capacity</td>
     <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17"></td>
+    <td width ="250" class="tg-oe17">$kapasitas</td>
   </tr>
 </tbody>
 </table>
