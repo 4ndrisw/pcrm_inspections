@@ -208,6 +208,7 @@
               <td style="width:2%">:</td>
               <td><?= $equipment['jenis_pemeriksaan'] ?></td>
            </tr>
+
         <?php } ?>
 
 
