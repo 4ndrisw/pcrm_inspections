@@ -87,6 +87,7 @@ $lang['inspection_daya_terpasang']                             = 'Installed Powe
 $lang['inspection_sumber_tenaga']                             = 'Energy Source';
 $lang['inspection_jenis_arus']                             = 'Current Type';
 $lang['inspection_instalatir']                             = 'Instalatir';
+$lang['inspection_mcfa']                             = 'MCFA';
 
 $lang['inspection_start_date']                              = 'Tanggal';
 $lang['inspection_select_customer']                 = 'Customer';

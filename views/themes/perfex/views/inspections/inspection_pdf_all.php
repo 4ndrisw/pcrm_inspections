@@ -89,10 +89,6 @@ $inspection_unit_number = _l('inspection_unit_number');
 $inspection_type_model = _l('inspection_type_model');
 $inspection_serial_number = _l('inspection_serial_number');
 $inspection_capacity = _l('inspection_capacity');
-$inspection_jumlah_kotak_hydrant = _l('inspection_jumlah_kotak_hydrant');
-$inspection_jumlah_selang_hydrant = _l('inspection_jumlah_selang_hydrant');
-$inspection_jumlah_nozzle = _l('inspection_jumlah_nozzle');
-$inspection_kapasitas_air = _l('inspection_kapasitas_air');
 
 $tag = $inspection->inspection_items[$page]['tag_name'];
 
@@ -113,16 +109,7 @@ if (!$equipment) {
     
     redirect(admin_url('inspections/inspection_item/'.$id.'/'.$task_id));
 }
-
 $inspection->equipment = isset($equipment) ? reset($equipment) : [];
-/*
-echo '<pre>';
-var_dump($inspection->equipment);
-echo '<br />=================<br />';
-echo '</pre>';
-echo '<br />===========================<br />';
-*/
-
 $tag_id = get_available_tags($task_id);
 
 $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
@@ -132,11 +119,6 @@ $inspection_daya_terpasang = _l('inspection_daya_terpasang');
 $inspection_jenis_arus = _l('inspection_jenis_arus');
 
 $instalatir = _l('inspection_instalatir');
-$inspection_jumlah_mca = _l('inspection_jumlah_mca');
-$inspection_jumlah_smoke_detector = _l('inspection_jumlah_smoke_detector');
-$inspection_jumlah_heat_detector = _l('inspection_jumlah_heat_detector');
-$inspection_jumlah_alarm_bell = _l('inspection_jumlah_alarm_bell');
-$inspection_jumlah_alarm_lamp = _l('inspection_jumlah_alarm_lamp');
 $inspection_task_name = 'Tugas Inspeksi';
 
 $task__name = $inspection->inspection_items[$page]['name'];
@@ -421,6 +403,17 @@ switch ($inspection->categories) {
     case 'ipk':
       switch ($inspection->inspection_items[$page]['tag_name']) {
         case 'Hydrant':
+          $nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
+          $jumlah_nozzle = isset($inspection->equipment['jumlah_nozzle']) ? $inspection->equipment['jumlah_nozzle'] :'';
+          $jumlah_kotak_hydrant = isset($inspection->equipment['jumlah_kotak_hydrant']) ? $inspection->equipment['jumlah_kotak_hydrant'] :'';
+          $jumlah_selang_hydrant = isset($inspection->equipment['jumlah_selang_hydrant']) ? $inspection->equipment['jumlah_selang_hydrant'] :'';
+          $kapasitas_air = isset($inspection->equipment['kapasitas_air']) ? $inspection->equipment['kapasitas_air'] :'';
+          
+          $inspection_jumlah_kotak_hydrant = _l('inspection_jumlah_kotak_hydrant');
+          $inspection_jumlah_selang_hydrant = _l('inspection_jumlah_selang_hydrant');
+          $inspection_jumlah_nozzle = _l('inspection_jumlah_nozzle');
+          $inspection_kapasitas_air = _l('inspection_kapasitas_air');
+
           $tblhtml = <<<EOD
           <style type="text/css">
           .tg-oe14{width:20%; display:inline-block;background-color:#ddd;}
@@ -434,27 +427,27 @@ switch ($inspection->categories) {
             <tr class="tg-1e15">
               <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
               <td width ="10" class="tg-oe16">:</td>
-              <td width ="250" class="tg-oe17"></td>
+              <td width ="250" class="tg-oe17">$nama_pesawat</td>
             </tr>
             <tr class="tg-1e15">
               <td width ="130" class="tg-oe15">$inspection_jumlah_nozzle</td>
               <td width ="10" class="tg-oe16">:</td>
-              <td width ="250" class="tg-oe17"></td>
+              <td width ="250" class="tg-oe17">$jumlah_nozzle</td>
             </tr>
             <tr class="tg-1e15">
               <td width ="130" class="tg-oe15">$inspection_jumlah_kotak_hydrant</td>
               <td width ="10" class="tg-oe16">:</td>
-              <td width ="250" class="tg-oe17"></td>
+              <td width ="250" class="tg-oe17">$jumlah_kotak_hydrant</td>
             </tr>
             <tr class="tg-1e15">
               <td width ="130" class="tg-oe15">$inspection_jumlah_selang_hydrant</td>
               <td width ="10" class="tg-oe16">:</td>
-              <td width ="250" class="tg-oe17"></td>
+              <td width ="250" class="tg-oe17">$jumlah_selang_hydrant</td>
             </tr>
             <tr class="tg-1e15">
               <td width ="130" class="tg-oe15">$inspection_kapasitas_air</td>
               <td width ="10" class="tg-oe16">:</td>
-              <td width ="250" class="tg-oe17"></td>
+              <td width ="250" class="tg-oe17">$kapasitas_air</td>
             </tr>
           </tbody>
           </table>
@@ -462,6 +455,20 @@ switch ($inspection->categories) {
           break;
         
         default:
+          $nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
+          $instalatir = isset($inspection->equipment['instalatir']) ? $inspection->equipment['instalatir'] :'';
+          $mcfa = isset($inspection->equipment['mcfa']) ? $inspection->equipment['mcfa'] :'';
+          $jumlah_smoke_detector = isset($inspection->equipment['jumlah_smoke_detector']) ? $inspection->equipment['jumlah_smoke_detector'] :'';
+          $jumlah_alarm_bell = isset($inspection->equipment['jumlah_alarm_bell']) ? $inspection->equipment['jumlah_alarm_bell'] :'';
+          $jumlah_alarm_lamp = isset($inspection->equipment['jumlah_alarm_lamp']) ? $inspection->equipment['jumlah_alarm_lamp'] :'';
+          
+          $inspection_mcfa = _l('inspection_mcfa');
+          $inspection_instalatir = _l('inspection_instalatir');
+          $inspection_jumlah_smoke_detector = _l('inspection_jumlah_smoke_detector');
+          $inspection_jumlah_heat_detector = _l('inspection_jumlah_heat_detector');
+          $inspection_jumlah_alarm_bell = _l('inspection_jumlah_alarm_bell');
+          $inspection_jumlah_alarm_lamp = _l('inspection_jumlah_alarm_lamp');
+
           $tblhtml = <<<EOD
           <style type="text/css">
           .tg-oe14{width:20%; display:inline-block;background-color:#ddd;}
@@ -475,17 +482,17 @@ switch ($inspection->categories) {
             <tr class="tg-1e15">
               <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
               <td width ="10" class="tg-oe16">:</td>
-              <td width ="250" class="tg-oe17"></td>
+              <td width ="250" class="tg-oe17">$nama_pesawat</td>
             </tr>
             <tr class="tg-1e15">
-              <td width ="130" class="tg-oe15">$instalatir</td>
+              <td width ="130" class="tg-oe15">$inspection_instalatir</td>
               <td width ="10" class="tg-oe16">:</td>
-              <td width ="250" class="tg-oe17"></td>
+              <td width ="250" class="tg-oe17">$instalatir</td>
             </tr>
             <tr class="tg-1e15">
-              <td width ="130" class="tg-oe15">$inspection_jumlah_mca</td>
+              <td width ="130" class="tg-oe15">$inspection_mcfa</td>
               <td width ="10" class="tg-oe16">:</td>
-              <td width ="250" class="tg-oe17"></td>
+              <td width ="250" class="tg-oe17">$mcfa</td>
             </tr>
             <tr class="tg-1e15">
               <td width ="130" class="tg-oe15">$inspection_jumlah_smoke_detector</td>
@@ -495,17 +502,17 @@ switch ($inspection->categories) {
             <tr class="tg-1e15">
               <td width ="130" class="tg-oe15">$inspection_jumlah_heat_detector</td>
               <td width ="10" class="tg-oe16">:</td>
-              <td width ="250" class="tg-oe17"></td>
+              <td width ="250" class="tg-oe17">$jumlah_smoke_detector</td>
             </tr>
             <tr class="tg-1e15">
               <td width ="130" class="tg-oe15">$inspection_jumlah_alarm_bell</td>
               <td width ="10" class="tg-oe16">:</td>
-              <td width ="250" class="tg-oe17"></td>
+              <td width ="250" class="tg-oe17">$jumlah_alarm_bell</td>
             </tr>
             <tr class="tg-1e15">
               <td width ="130" class="tg-oe15">$inspection_jumlah_alarm_lamp</td>
               <td width ="10" class="tg-oe16">:</td>
-              <td width ="250" class="tg-oe17"></td>
+              <td width ="250" class="tg-oe17">$jumlah_alarm_lamp</td>
             </tr>
           </tbody>
           </table>
