@@ -71,6 +71,10 @@ $company = get_inspection_company_by_clientid($inspection->clientid);
 $address = get_inspection_company_address($inspection->id);
 $nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
 
+$daya_terpasang = isset($inspection->equipment['daya_terpasang']) ? $inspection->equipment['daya_terpasang'] :'';
+$sumber_tenaga = isset($inspection->equipment['sumber_tenaga']) ? $inspection->equipment['sumber_tenaga'] :'';
+$jenis_arus = isset($inspection->equipment['jenis_arus']) ? $inspection->equipment['jenis_arus'] :'';
+
 $inspection_company = _l('inspection_company_name');
 $inspection_address = _l('inspection_address');
 $inspection_jenis_pesawat = _l('inspection_jenis_pesawat');
@@ -88,30 +92,30 @@ $tblhtml = <<<EOD
 label.field-label{display:inline-block; width:20%;}
 
 </style>
-<table class="tg">
-<tbody>
-  <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
-    <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17"></td>
-  </tr>
-  <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_daya_terpasang</td>
-    <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17"></td>
-  </tr>
-  <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_sumber_tenaga</td>
-    <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17"></td>
-  </tr>
-  <tr class="tg-1e15">
-    <td width ="130" class="tg-oe15">$inspection_jenis_arus</td>
-    <td width ="10" class="tg-oe16">:</td>
-    <td width ="250" class="tg-oe17"></td>
-  </tr>
-</tbody>
-</table>
+    <table class="tg">
+        <tbody>
+          <tr class="tg-1e15">
+            <td width ="130" class="tg-oe15">$inspection_nama_pesawat</td>
+            <td width ="10" class="tg-oe16">:</td>
+            <td width ="250" class="tg-oe17">$nama_pesawat</td>
+          </tr>
+          <tr class="tg-1e15">
+            <td width ="130" class="tg-oe15">$inspection_daya_terpasang</td>
+            <td width ="10" class="tg-oe16">:</td>
+            <td width ="250" class="tg-oe17">$daya_terpasang</td>
+          </tr>
+          <tr class="tg-1e15">
+            <td width ="130" class="tg-oe15">$inspection_sumber_tenaga</td>
+            <td width ="10" class="tg-oe16">:</td>
+            <td width ="250" class="tg-oe17">$sumber_tenaga</td>
+          </tr>
+          <tr class="tg-1e15">
+            <td width ="130" class="tg-oe15">$inspection_jenis_arus</td>
+            <td width ="10" class="tg-oe16">:</td>
+            <td width ="250" class="tg-oe17">$jenis_arus</td>
+          </tr>
+        </tbody>
+    </table>
 EOD;
 
 $left_info ='';
