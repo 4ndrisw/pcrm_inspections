@@ -251,7 +251,7 @@ class Myinspection extends ClientsController
             $data['bodyclass'] .= ' identity-confirmation';
         }
         $data['inspection_members']  = $this->inspections_model->get_inspection_members($inspection->id,true);
-        $tag_id = $this->inspections_model->get_available_tags($task_id);
+        $tag_id = get_available_tags($task_id);
         $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
         $inspection->assigned_name = get_staff_full_name($inspection->assigned);
 
@@ -375,7 +375,7 @@ class Myinspection extends ClientsController
         $data['inspection']                     = hooks()->apply_filters('inspection_html_pdf_data', $inspection);
         $data['task']                           = $task;
         //get_option('tag_id_'.$tag['tag_id']);
-        $tag_id = $this->inspections_model->get_available_tags($task_id);        
+        $tag_id = get_available_tags($task_id);        
         $data['_tag_id'] = get_option('tag_id_'.$tag_id['0']['tag_id']);
         $data['bodyclass']                     = 'viewinspection';
         $data['client_company']                = $this->clients_model->get($inspection->clientid)->company;
@@ -386,7 +386,7 @@ class Myinspection extends ClientsController
             $data['bodyclass'] .= ' identity-confirmation';
         }
         $data['inspection_members']  = $this->inspections_model->get_inspection_members($inspection->id,true);
-        $tag_id = $this->inspections_model->get_available_tags($task_id);
+        $tag_id = get_available_tags($task_id);
         $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
         $inspection->assigned_item = get_staff_full_name(get_option('default_inspection_assigned_'.$inspection->categories));
 
