@@ -975,6 +975,8 @@ function inspection_data($inspection, $task_id){
     unset($data['id'],$data['rel_id'],$data['pemeriksaan_dokumen'],$data['pemeriksaan_visual'],$data['pemeriksaan_pengaman'],
           $data['pengujian_beban'] ,$data['pengujian_penetrant'],$data['pengujian_operasional'], $data['pengujian_thickness'] ,$data['kesimpulan'],$data['temuan']
     );
+    $pjk3_ttd_cert = strtoupper(get_staff_full_name(get_option('default_certificate_assigned'));
+    $pjk3_ttd_jabatan = strtoupper(get_staff_full_name(get_option('licence_certificate_assign_position'));
 
     $default_regulation = get_option('predefined_regulation_of_'.$inspection->categories);
     $equipment_regulasi = !empty($data['regulasi']) ? $data['regulasi'] : $default_regulation;
