@@ -143,6 +143,8 @@ $lang['inspection_this_week']                = 'BAPR Minggu ini';
 $lang['inspection_date']                = 'Tanggal';
 $lang['inspection_datesend']                = 'Tanggal dikirim BAPR';
 $lang['inspection_assigned_string']                = 'Tenaga Ahli K3';
+$lang['default_ndt_assigned_string']                = 'NDT Oleh';
+
 $lang['inspection_url']                = 'Url';
 $lang['inspection_list_client']                = 'Customer';
 $lang['inspection_list_date']                = 'Tanggal';

@@ -52,6 +52,19 @@
       echo render_select('settings[default_inspection_assigned]',$staff,array('staffid',array('firstname','lastname')),'default_inspection_assigned_string',$selected);
       ?>
       <hr />
+      <?php
+      $staff = $this->staff_model->get('', ['active' => 1]);
+      $selected = get_option('default_ndt_assigned');
+      foreach($staff as $member){
+       
+         if($selected == $member['staffid']) {
+           $selected = $member['staffid'];
+         
+       }
+      }
+      echo render_select('settings[default_ndt_assigned]',$staff,array('staffid',array('firstname','lastname')),'default_ndt_assigned_string',$selected);
+      ?>
+      <hr />
       <?php render_yes_no_option('exclude_inspection_from_client_area_with_draft_status','exclude_inspection_from_client_area_with_draft_status'); ?>
       <hr />   
       <?php render_yes_no_option('inspection_accept_identity_confirmation','inspection_accept_identity_confirmation'); ?>

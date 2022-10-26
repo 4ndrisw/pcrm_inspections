@@ -155,6 +155,7 @@ $lang['inspection_this_week']                = 'Inspections this week';
 $lang['inspection_date']                = 'Date';
 $lang['inspection_datesend']                = 'Inspection sent date';
 $lang['inspection_assigned_string']                = 'Inspected by';
+$lang['default_ndt_assigned_string']                = 'NDT Assigned';
 $lang['inspection_url']                = 'long_url';
 $lang['inspection_send_to_customer_already_sent']                = 'Inspection already sent to customer_';
 $lang['inspection_list_client']                = 'Customer';
