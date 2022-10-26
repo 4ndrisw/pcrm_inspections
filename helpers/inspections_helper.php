@@ -962,6 +962,7 @@ function inspection_data($inspection, $task_id){
     //$licence = get_licence_id_from_spection_item($task_id);
 
     //$data['licence_id'] = $licence_id;
+
     $data['pjk3'] = get_option('invoice_company_name');
     $data['nama_perusahaan'] = isset($inspection->client) ? $inspection->client->company : $inspection['client']->company;
     $data['alamat_perusahaan'] = $inspection->billing_street .' '. $inspection->billing_city .' '. $inspection->billing_state .' '. $inspection->billing_zip;
@@ -969,8 +970,8 @@ function inspection_data($inspection, $task_id){
     $data['kelompok_pemeriksaan'] = $inspection->categories;
     $data['nomor_inspeksi'] = $inspection->formatted_number;
     $data['nomor_inspeksi_alat'] = format_inspection_item_number($inspection->id, $task_id);
-    $data['jenis_pemeriksaan_uppercase'] = strtoupper($data['jenis_pemeriksaan']);
-    $data['nama_pesawat_uppercase'] = strtoupper($data['nama_pesawat']);
+    $data['jenis_pemeriksaan_uppercase'] = strtoupper( isset($data['jenis_pemeriksaan']) ? $data['jenis_pemeriksaan'] : 'data tidak ditemukan');
+    $data['nama_pesawat_uppercase'] = strtoupper( isset($data['nama_pesawat']) ? $data['nama_pesawat'] : 'data tidak ditemukan');
     unset($data['id'],$data['rel_id'],$data['pemeriksaan_dokumen'],$data['pemeriksaan_visual'],$data['pemeriksaan_pengaman'],
           $data['pengujian_beban'] ,$data['pengujian_penetrant'],$data['pengujian_operasional'], $data['pengujian_thickness'] ,$data['kesimpulan'],$data['temuan']
     );
@@ -991,4 +992,19 @@ function inspection_data($inspection, $task_id){
     $data['regulasi'] = $equipment_regulasi;
 
     return $data;
+}
+
+
+function inspections_get_equipment_model($equipment_model, $id, $task_id){
+    $equipment = false;
+    $model_path = FCPATH .'modules/' . INSPECTIONS_MODULE_NAME .'/models/'. $equipment_model .'.php';
+    if(file_exists($model_path)){
+        include_once($model_path);
+        $CI = &get_instance();
+        $CI->load->model($equipment_model);
+
+        $equipment = $CI->{$equipment_model}->get('', ['rel_id' => $id, 'task_id' =>$task_id]);
+    }
+
+    return $equipment;
 }
