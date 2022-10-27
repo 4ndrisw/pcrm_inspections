@@ -956,9 +956,12 @@ function inspection_data($inspection, $task_id){
     foreach ($inspection->equipment as $key => $value) {
         $_data[$key] = $value;
     }
+    $inspection_item = (object)$inspection->inspection_item;
     
-    foreach ($inspection->inspection_item as $key => $value) {
-        $_data[$key] = $value;
+    if (isset($inspection_item)){ 
+        foreach ($inspection_item as $key => $value) {
+            $_data[$key] = $value;
+        }   
     }
 
     $data = isset($_data[0]) ? $_data[0] : $_data;
