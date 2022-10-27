@@ -956,6 +956,10 @@ function inspection_data($inspection, $task_id){
     foreach ($inspection->equipment as $key => $value) {
         $_data[$key] = $value;
     }
+    
+    foreach ($inspection->inspection_item as $key => $value) {
+        $_data[$key] = $value;
+    }
 
     $data = isset($_data[0]) ? $_data[0] : $_data;
 
@@ -972,11 +976,18 @@ function inspection_data($inspection, $task_id){
     $data['nomor_inspeksi_alat'] = format_inspection_item_number($inspection->id, $task_id);
     $data['jenis_pemeriksaan_uppercase'] = strtoupper( isset($data['jenis_pemeriksaan']) ? $data['jenis_pemeriksaan'] : 'data tidak ditemukan');
     $data['nama_pesawat_uppercase'] = strtoupper( isset($data['nama_pesawat']) ? $data['nama_pesawat'] : 'data tidak ditemukan');
+    
+    if(isset($data['pabrik_pembuat_hoist'])){
+        $data['pabrik_pembuat']  = $data['pabrik_pembuat_hoist'];
+    }
+
     unset($data['id'],$data['rel_id'],$data['pemeriksaan_dokumen'],$data['pemeriksaan_visual'],$data['pemeriksaan_pengaman'],
           $data['pengujian_beban'] ,$data['pengujian_penetrant'],$data['pengujian_operasional'], $data['pengujian_thickness'] ,$data['kesimpulan'],$data['temuan']
     );
-    $pjk3_ttd_cert = strtoupper(get_staff_full_name(get_option('default_certificate_assigned'));
-    $pjk3_ttd_jabatan = strtoupper(get_staff_full_name(get_option('licence_certificate_assign_position'));
+    $data['pjk3_ttd_cert'] = strtoupper(get_staff_full_name(get_option('default_certificate_assigned')));
+    $data['pjk3_ttd_jabatan'] = strtoupper(get_option('default_certificate_assign_position'));
+    $data['pjk3_kota'] = get_option('default_certificate_assign_city');
+    $data['pjk3_ttd_ndt'] = strtoupper(get_staff_full_name(get_option('default_ndt_assigned')));
 
     $default_regulation = get_option('predefined_regulation_of_'.$inspection->categories);
     $equipment_regulasi = !empty($data['regulasi']) ? $data['regulasi'] : $default_regulation;
