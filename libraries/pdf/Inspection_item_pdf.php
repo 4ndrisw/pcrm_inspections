@@ -53,7 +53,7 @@ class Inspection_item_pdf extends App_pdf
         if(isset($this->inspection->categories)){
             $filePath = 'inspection_'. $this->inspection->categories .'_pdf.php';
         }
-        
+
         if($inspection_equipment_type){
             $equipment_type = 'inspection_'. $inspection_equipment_type .'_pdf.php';
             $equipment_type_filePath = module_views_path('inspections','themes/' . active_clients_theme() . '/views/inspections/' . $equipment_type);
@@ -61,11 +61,6 @@ class Inspection_item_pdf extends App_pdf
                 $filePath = $equipment_type;
             }
         }
-        /*
-        var_dump($equipment_type_filePath);
-        var_dump($equipment_type);
-        var_dump($filePath);
-        */
 
         $customPath = module_views_path('inspections','themes/' . active_clients_theme() . '/views/inspections/' . $filePath);
         $actualPath = module_views_path('inspections','themes/' . active_clients_theme() . '/views/inspections/inspection_item_pdf.php');

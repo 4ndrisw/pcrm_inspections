@@ -66,7 +66,7 @@ class Inspections_model extends App_Model
                     $inspection->client          = new stdClass();
                     $inspection->client->company = $inspection->deleted_customer_name;
                 }
-                $inspection->inspection_items = $this->get_inspection_items($inspection->id, $inspection->project_id);
+                //$inspection->inspection_items = $this->get_inspection_items($inspection->id, $inspection->project_id);
 
                 $this->load->model('email_schedule_model');
                 $inspection->inspectiond_email = $this->email_schedule_model->get($id, 'inspection');
@@ -1532,9 +1532,10 @@ class Inspections_model extends App_Model
         return $this->db->get(db_prefix() . 'tasks')->result_array();
     }
 
-    public function get_inspection_items($inspection_id, $project_id){
+    public function get_inspection_items($inspection_id, $project_id, $task_id = false){
         $this->db->select([db_prefix() . 'tasks.id AS task_id',db_prefix() . 'tasks.name', db_prefix() . 'tasks.rel_id', db_prefix() . 'tasks.dateadded', db_prefix() . 'tags.name AS tag_name']);
         $this->db->select([db_prefix() . 'inspections.formatted_number AS formatted_number']);
+        $this->db->select([db_prefix() . 'inspection_items.tag_id',db_prefix() . 'inspection_items.ahli_k3_nama',db_prefix() . 'inspection_items.ahli_k3_skp']);
         $this->db->where(db_prefix() . 'tasks.rel_id =' . $project_id);
 
         $this->db->join(db_prefix() . 'inspection_items', db_prefix() . 'inspection_items.task_id = ' . db_prefix() . 'tasks.id', 'left');
@@ -1544,11 +1545,11 @@ class Inspections_model extends App_Model
 
         $this->db->where(db_prefix() . 'tasks.rel_type = ' . "'project'");
         $this->db->where(db_prefix() . 'inspection_items.inspection_id = ' . $inspection_id);
-        $this->db->where(db_prefix() . 'inspection_items.project_id = ' . $project_id);
-
+        if($task_id){
+            $this->db->where(db_prefix() . 'inspection_items.task_id = ' . $task_id);
+        }
         //return $this->db->get_compiled_select(db_prefix() . 'tasks');
-        return $this->db->get(db_prefix() . 'tasks')->result_array();
-
+        return $this->db->get(db_prefix() . 'tasks')->result();
     }
 
 
@@ -1575,11 +1576,18 @@ class Inspections_model extends App_Model
     }
 
     public function inspection_add_inspection_item($data){
+        $category = get_option('tag_id_'.$data['tag_id']);
+        $user_id = get_option('default_inspection_assigned_' . $category);
+        $ahli_k3_nama = get_staff_full_name($user_id);
+        $ahli_k3_skp = get_option('default_inspection_skp_' . $category);
         
         $this->db->insert(db_prefix() . 'inspection_items', [
                 'inspection_id'      => $data['inspection_id'],
                 'project_id' => $data['project_id'],
-                'task_id'              => $data['task_id']]);
+                'task_id'              => $data['task_id'],
+                'tag_id'              => $data['tag_id'],
+                'ahli_k3_nama'              => $ahli_k3_nama,
+                'ahli_k3_skp'              => $ahli_k3_skp]);
     }
 
     public function inspection_remove_inspection_item($data)

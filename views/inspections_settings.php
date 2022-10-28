@@ -65,6 +65,19 @@
       echo render_select('settings[default_ndt_assigned]',$staff,array('staffid',array('firstname','lastname')),'default_ndt_assigned_string',$selected);
       ?>
       <hr />
+      <?php
+      $staff = $this->staff_model->get('', ['active' => 1]);
+      $selected = get_option('default_certificate_assigned');
+      foreach($staff as $member){
+       
+         if($selected == $member['staffid']) {
+           $selected = $member['staffid'];
+         
+       }
+      }
+      echo render_select('settings[default_certificate_assigned]',$staff,array('staffid',array('firstname','lastname')),'default_certificate_assigned_string',$selected);
+      ?>
+      <hr />
       <?php render_yes_no_option('exclude_inspection_from_client_area_with_draft_status','exclude_inspection_from_client_area_with_draft_status'); ?>
       <hr />   
       <?php render_yes_no_option('inspection_accept_identity_confirmation','inspection_accept_identity_confirmation'); ?>
@@ -135,6 +148,13 @@
       }
       echo render_select('settings[default_inspection_assigned_paa]',$staff,array('staffid',array('firstname','lastname')),'default_inspection_assigned_paa_string',$selected);
       ?>
+      <hr />
+      <?php echo render_input('settings[default_certificate_assign_city]','Kota ditandatangani sertifikat' ,get_option('default_certificate_assign_city')); ?>
+      <hr />
+      <?php echo render_input('settings[default_certificate_assign_position]','Jabatan Penanda tangan sertifikat' ,get_option('default_certificate_assign_position')); ?>
+      <hr />
+      <i class="fa fa-question-circle pull-left" data-toggle="tooltip" data-title="<?php echo _l('default_inspection_skp_paa_tooltip'); ?>"></i>
+      <?php echo render_input('settings[default_inspection_skp_paa]','default_inspection_skp_paa',get_option('default_inspection_skp_paa')); ?>
       <hr />
       <?php echo render_textarea('settings[predefined_regulation_of_pubt]','regulation_of_pubt',get_option('predefined_regulation_of_pubt'),array('rows'=>3)); ?>
       <?php

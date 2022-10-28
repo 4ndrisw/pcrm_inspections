@@ -206,18 +206,21 @@ class Inspections extends AdminController
     {
         $inspection = $this->inspections_model->get($id);
         $task = $this->tasks_model->get($task_id);
-
         if (!$inspection || !user_can_view_inspection($id)) {
             blank_page(_l('inspection_not_found'));
         }
+        $inspection_item = $this->inspections_model->get_inspection_items($id, $inspection->project_id, $task_id);
+
         $tags = get_tags_in($task_id, 'task');
 
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
         $inspection->equipment_type = $equipment_type;
-        $inspection->tag_id = get_tag_by_name($tags[0])->id;
-        $tag_id = get_available_tags($task_id);
-        $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
-        
+        //$tag_id = get_available_tags($task_id);
+        $tag_id = $inspection_item[0]['tag_id'];
+        //$inspection->tag_id = get_tag_by_name($tags[0])->id;
+
+        $inspection->categories = get_option('tag_id_'.$tag_id);
+        $inspection->inspection_item = $inspection_item[0];
         $equipment_model = $equipment_type .'_model';
         $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
 
@@ -231,32 +234,24 @@ class Inspections extends AdminController
         $this->load->model($equipment_model);
         $equipments = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id, 'task_id' =>$task_id]);
         $equipment = reset($equipments);
-                       
+
         $inspection->equipment = $equipment;
-        
+
         $data = inspection_data($inspection, $task_id);
-        /*
-        echo '<pre>';
-        var_dump($data);
-        echo '==================';
-        //var_dump($inspection);
-        echo '</pre>';
-        die();
-        */
 
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
-        
+
         $file = str_replace(' ', '_', 'laporan_' . $equipment['jenis_pesawat']);
         $file = strtolower($file);
 
         $template = FCPATH .'modules/'. INSPECTIONS_MODULE_NAME . '/assets/resources/'. $file .'.docx';
-        
+
         $templateProcessor = $phpWord->loadTemplate($template);
-        
+
         $templateProcessor->setValues($data);
 
         //$templateProcessor->setImageValue('CompanyLogo', 'path/to/company/logo.png');
-        $temp_filename = strtoupper($equipment['jenis_pesawat']) .'-'. $inspection->formatted_number . '.docx';
+        $temp_filename = strtoupper($inspection->client->company .'-'. $equipment['jenis_pesawat']) .'-'. $inspection->formatted_number .'-'.$task_id. '.docx';
         $templateProcessor->saveAs($temp_filename);
 
         header('Content-Description: File Transfer');
@@ -270,7 +265,7 @@ class Inspections extends AdminController
         flush();
         readfile($temp_filename);
         unlink($temp_filename);
-        exit; 
+        exit;
 
     }
     /* Add new inspection */

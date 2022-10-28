@@ -24,7 +24,7 @@ $join = [
     'LEFT JOIN ' . db_prefix() . 'tags ON ' . db_prefix() . 'taggables.tag_id = ' . db_prefix() . 'tags.id',
 ];
 
-$additionalSelect = [db_prefix() . 'inspection_items.id','inspection_id',db_prefix() . 'tasks.id as task_id'];
+$additionalSelect = [db_prefix() . 'inspection_items.id','inspection_id',db_prefix() . 'tasks.id as task_id',db_prefix() . 'taggables.tag_id'];
 
 
 $where  = [];
@@ -43,7 +43,7 @@ foreach ($rResult as $aRow) {
     for ($i = 0; $i < count($aColumns); $i++) {
         $_data = $aRow[$aColumns[$i]];
         if ($aColumns[$i] == 'flag') {
-            $_data = '<a class="btn btn-success" title = "'._l('propose_this_item').'" href="#" onclick="inspection_add_inspection_item(' . $inspection_id . ','. $project_id . ',' . $aRow['task_id'] . '); return false;">+</a>';
+            $_data = '<a class="btn btn-success" title = "'._l('propose_this_item').'" href="#" onclick="inspection_add_inspection_item(' . $inspection_id . ','. $project_id . ',' . $aRow['task_id']. ',' . $aRow['tag_id'] . '); return false;">+</a>';
         } 
         $row[] = $_data;
 

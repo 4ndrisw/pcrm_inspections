@@ -15,9 +15,27 @@
       <div role="button" class="col-md-3 mtop10 mbot10">
           <input class ="btn btn-sm" type="button" id="refresh" value="Refresh" />
       </div>
-      <div role="button" class="col-md-3 mtop10 mbot10">
-          <a class="btn btn-sm btn-danger" href="<?php echo admin_url() . 'inspections/inspection_report/'.$inspection->id.'/'.$inspection->task_id; ?>">
-          <?php echo _l('download'); ?></a>
+
+          <?php
+              $disabled = '';
+              $file = isset($inspection->equipment_type) ? strtolower($inspection->equipment_type).'.docx' : 'undefined.docx';
+              $file = str_replace(' ', '_', $file);
+
+              $template = FCPATH .'modules/'. INSPECTIONS_MODULE_NAME . '/assets/resources/laporan_'. $file;
+              $label = 'download';
+              $button = 'btn-success';
+              if (!file_exists($template)) {
+                 $disabled = 'disabled';
+                 $button = 'btn-danger';
+                 $label = 'template_not_available';
+              }
+
+          ?>
+       <div class="col-md-12 mtop10 mbot10">
+        <a class="btn <?= $button .' '.$disabled?>" href="<?php echo admin_url() . 'inspections/inspection_report/'.$inspection->id.'/'.$inspection->task_id; ?>">
+            <?php echo _l($label); ?>
+         </a>
+         <?php echo '../laporan_'.$file; ?>
       </div>
 
       <div id="equipment-template-wrapper" class="col-md-12 no-padding equipment-template">

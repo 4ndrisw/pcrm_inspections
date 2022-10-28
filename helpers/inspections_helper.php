@@ -401,7 +401,7 @@ function user_can_view_inspection($id, $staff_id = false)
 
         $CI = &get_instance();
         $CI->load->model('inspections_model');
-       
+
         $inspection = $CI->inspections_model->get($id);
         if (!$inspection) {
             show_404();
@@ -412,10 +412,10 @@ function user_can_view_inspection($id, $staff_id = false)
                 show_404();
             }
         }
-    
+
         return true;
     }
-    
+
     $CI->db->select('id, addedfrom, assigned');
     $CI->db->from(db_prefix() . 'inspections');
     $CI->db->where('id', $id);
@@ -511,7 +511,7 @@ function add_new_inspection_item_post($item, $rel_id, $rel_type)
 }
 
 /**
- * Update inspection item from $_POST 
+ * Update inspection item from $_POST
  * @param  mixed $item_id item id to update
  * @param  array $data    item $_POST data
  * @param  string $field   field is require to be passed for long_description,rate,item_order to do some additional checkings
@@ -592,7 +592,7 @@ function get_inspection_upload_path($type=NULL)
 {
    $type = 'inspection';
    $path = INSPECTION_ATTACHMENTS_FOLDER;
-   
+
     return hooks()->apply_filters('get_upload_path_by_type', $path, $type);
 }
 
@@ -736,7 +736,7 @@ function inspection_app_client_includes()
 
 
 function inspection_create_assigned_qrcode_hook($id){
-     
+
      log_activity( 'Hello, world!' );
 
 }
@@ -750,18 +750,18 @@ function inspection_status_changed_hook($data){
 function get_inspection_company_name($id){
     $CI = &get_instance();
 
-    $CI->load->model('inspections_model');   
+    $CI->load->model('inspections_model');
     $inspection = $CI->inspections_model->get($id);
 
-    $CI->load->model('clients_model');   
+    $CI->load->model('clients_model');
     $client = $CI->clients_model->get($inspection->clientid);
     return $client->company;
 }
 
 function get_inspection_company_by_clientid($id){
     $CI = &get_instance();
- 
-    $CI->load->model('clients_model');   
+
+    $CI->load->model('clients_model');
     $client = $CI->clients_model->get($id);
     return $client->company;
 }
@@ -778,13 +778,13 @@ function get_inspection_company_address($id){
     $address .= isset($inspection->billing_city) ? $inspection->billing_city .' ' : '' ;
     $address .= isset($inspection->billing_state) ? $inspection->billing_state .' ' : '' ;
     $address .= isset($inspection->billing_zip) ? $inspection->billing_zip : '' ;
-    
+
     return $address;
 }
 
 function get_inspection_jenis_pesawat(){
     $CI = &get_instance();
-    $CI->load->model('clients_model');   
+    $CI->load->model('clients_model');
     $client = $CI->clients_model->get($id);
     return $client->company;
 }
@@ -807,13 +807,13 @@ function format_company_info()
 
     $format = _info_format_replace('vat_number_with_label', '', $format);
     $format = _maybe_remove_first_and_last_br_tag($format);
-*/ 
+*/
     $format = '';
     $format .= get_option('invoice_company_name') . "\r\n";
     $format .= get_option('invoice_company_address');
     $format .= get_option('invoice_company_city');
     $format .= get_option('company_state');
-    
+
     // Remove multiple white spaces
     $format = preg_replace('/\s+/', ' ', $format);
     $format = trim($format);
@@ -831,7 +831,7 @@ function format_unorderedText($text)
     $output = '';
     foreach($lists as $li){
         if(!empty($li)){
-            $output .= '<li class="text-item">' . $li . '</li>';            
+            $output .= '<li class="text-item">' . $li . '</li>';
         }
     }
 
@@ -843,16 +843,16 @@ function add_inspection_related($insert_id){
 
     $CI = &get_instance();
     $CI->load->model('inspections_model');
-    
+
     $inspection = $CI->inspections_model->get($insert_id);
 
     $items = $CI->inspections_model->get_available_tasks($inspection->id, $inspection->project_id);
-    
+
     foreach($items as $item){
         $item['inspection_id']=$insert_id;
-        
+
         $CI->db->insert(db_prefix().'inspection_items', $item);
-        
+
     }
 
 }
@@ -870,7 +870,7 @@ function handle_inspection_attachments_array($rel_id, $index_name = 'attachments
     $uploaded_files = [];
     $path           = INSPECTION_ATTACHMENTS_FOLDER . get_upload_path_by_type('inspections') . $rel_id . '/';
     $CI             = &get_instance();
-    
+
     if (isset($_FILES[$index_name]['name'])
         && ($_FILES[$index_name]['name'] != '' || is_array($_FILES[$index_name]['name']) && count($_FILES[$index_name]['name']) > 0)) {
         if (!is_array($_FILES[$index_name]['name'])) {
@@ -934,7 +934,7 @@ function get_available_tags($task_id=NULL){
 
     $CI->db->select([db_prefix() . 'tags.id AS tag_id', db_prefix() . 'tags.name AS tag_name']);
     $CI->db->select(['COUNT('.db_prefix() . 'tasks.id) AS count_task']);
-    
+
     $CI->db->join(db_prefix() . 'taggables', db_prefix() . 'taggables.rel_id = ' . db_prefix() . 'tasks.id', 'left');
     $CI->db->join(db_prefix() . 'tags', db_prefix() . 'taggables.tag_id = ' . db_prefix() . 'tags.id', 'left');
     $CI->db->group_by(db_prefix() . 'tags.id');
@@ -956,12 +956,13 @@ function inspection_data($inspection, $task_id){
     foreach ($inspection->equipment as $key => $value) {
         $_data[$key] = $value;
     }
+
     $inspection_item = (object)$inspection->inspection_item;
-    
-    if (isset($inspection_item)){ 
+
+    if (isset($inspection_item)){
         foreach ($inspection_item as $key => $value) {
             $_data[$key] = $value;
-        }   
+        }
     }
 
     $data = isset($_data[0]) ? $_data[0] : $_data;
@@ -979,7 +980,7 @@ function inspection_data($inspection, $task_id){
     $data['nomor_inspeksi_alat'] = format_inspection_item_number($inspection->id, $task_id);
     $data['jenis_pemeriksaan_uppercase'] = strtoupper( isset($data['jenis_pemeriksaan']) ? $data['jenis_pemeriksaan'] : 'data tidak ditemukan');
     $data['nama_pesawat_uppercase'] = strtoupper( isset($data['nama_pesawat']) ? $data['nama_pesawat'] : 'data tidak ditemukan');
-    
+
     if(isset($data['pabrik_pembuat_hoist'])){
         $data['pabrik_pembuat']  = $data['pabrik_pembuat_hoist'];
     }
@@ -1000,7 +1001,7 @@ function inspection_data($inspection, $task_id){
         $equipment_regulasi = '';
         $i = 1;
         foreach($regulasi as $row){
-            $equipment_regulasi .= $i .'. ' .$row. "<br />"; 
+            $equipment_regulasi .= $i .'. ' .$row. "<br />";
             $i++;
         }
     }
