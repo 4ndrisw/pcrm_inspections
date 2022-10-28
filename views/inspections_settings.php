@@ -170,6 +170,9 @@
       echo render_select('settings[default_inspection_assigned_pubt]',$staff,array('staffid',array('firstname','lastname')),'default_inspection_assigned_pubt_string',$selected);
       ?>
       <hr />
+      <i class="fa fa-question-circle pull-left" data-toggle="tooltip" data-title="<?php echo _l('default_inspection_skp_pubt_tooltip'); ?>"></i>
+      <?php echo render_input('settings[default_inspection_skp_pubt]','default_inspection_skp_pubt',get_option('default_inspection_skp_pubt')); ?>
+      <hr />
       <?php echo render_textarea('settings[predefined_regulation_of_lie]','regulation_of_lie',get_option('predefined_regulation_of_lie'),array('rows'=>3)); ?>
       <?php
       $staff = $this->staff_model->get('', ['active' => 1]);
@@ -184,6 +187,9 @@
       echo render_select('settings[default_inspection_assigned_lie]',$staff,array('staffid',array('firstname','lastname')),'default_inspection_assigned_lie_string',$selected);
       ?>
       <hr />
+      <i class="fa fa-question-circle pull-left" data-toggle="tooltip" data-title="<?php echo _l('default_inspection_skp_lie_tooltip'); ?>"></i>
+      <?php echo render_input('settings[default_inspection_skp_lie]','default_inspection_skp_lie',get_option('default_inspection_skp_lie')); ?>
+      <hr />
       <?php echo render_textarea('settings[predefined_regulation_of_ipp]','regulation_of_ipp',get_option('predefined_regulation_of_ipp'),array('rows'=>3)); ?>
       <?php
       $staff = $this->staff_model->get('', ['active' => 1]);
@@ -197,6 +203,9 @@
       }
       echo render_select('settings[default_inspection_assigned_ipp]',$staff,array('staffid',array('firstname','lastname')),'default_inspection_assigned_ipp_string',$selected);
       ?>
+      <hr />
+      <i class="fa fa-question-circle pull-left" data-toggle="tooltip" data-title="<?php echo _l('default_inspection_skp_ipp_tooltip'); ?>"></i>
+      <?php echo render_input('settings[default_inspection_skp_ipp]','default_inspection_skp_ipp',get_option('default_inspection_skp_ipp')); ?>
       <hr />
       <?php echo render_textarea('settings[predefined_regulation_of_iil]','regulation_of_iil',get_option('predefined_regulation_of_iil'),array('rows'=>3)); ?>
       <?php
@@ -242,7 +251,9 @@
       }
       echo render_select('settings[default_inspection_assigned_ipk]',$staff,array('staffid',array('firstname','lastname')),'default_inspection_assigned_ipk_string',$selected);
       ?>
-
+      <hr />
+      <i class="fa fa-question-circle pull-left" data-toggle="tooltip" data-title="<?php echo _l('default_inspection_skp_ipk_tooltip'); ?>"></i>
+      <?php echo render_input('settings[default_inspection_skp_ipk]','default_inspection_skp_ipk',get_option('default_inspection_skp_ipk')); ?>
       <hr />
       <?php echo render_textarea('settings[predefined_regulation_of_ipkh]','regulation_of_ipkh',get_option('predefined_regulation_of_ipkh'),array('rows'=>3)); ?>
       <hr />
@@ -273,8 +284,10 @@
       echo render_select('settings[default_inspection_assigned_ptp]',$staff,array('staffid',array('firstname','lastname')),'default_inspection_assigned_ptp_string',$selected);
       ?>
       <hr />
+      <i class="fa fa-question-circle pull-left" data-toggle="tooltip" data-title="<?php echo _l('default_inspection_skp_ptp_tooltip'); ?>"></i>
+      <?php echo render_input('settings[default_inspection_skp_ptp]','default_inspection_skp_ptp',get_option('default_inspection_skp_ptp')); ?>
+      <hr />
       <?php 
-
           $inspections_model = 'Inspections_model';
           $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $inspections_model .'.php';
 
