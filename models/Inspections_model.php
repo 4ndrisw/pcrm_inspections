@@ -716,19 +716,19 @@ class Inspections_model extends App_Model
                      */
                     $inspection_items = $this->get_inspection_items($inspection->id, $inspection->project_id);
                     foreach($inspection_items as $item){
-                        $equipment = ucfirst(strtolower(str_replace(' ', '_', $item['tag_name'])));
+                        $equipment = ucfirst(strtolower(str_replace(' ', '_', $item->tag_name)));
                         $equipment_model = $equipment .'_model';
                         
-                        $tags = get_tags_in($item['task_id'], 'task');
+                        $tags = get_tags_in($item->task_id, 'task');
                         $equipment_type = strtolower(str_replace(' ', '_', $tags[0]));
 
                         include_once(__DIR__ . '/' . $equipment_model .'.php');
                         $this->load->model($equipment_model);
 
                         $equipment_data['rel_id'] = $inspection->id;
-                        $equipment_data['task_id'] = $item['task_id'];
+                        $equipment_data['task_id'] = $item->task_id;
                         $equipment_data['jenis_pesawat'] = $tags[0];
-                        $this->{$equipment_model}->create_or_update($equipment_data,$inspection->id, $item['task_id'], $equipment_type);
+                        $this->{$equipment_model}->create_or_update($equipment_data,$inspection->id, $item->task_id, $equipment_type);
                     }
 
 
