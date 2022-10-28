@@ -180,11 +180,12 @@ function init_schedule_search(type, selector, server_data, url) {
 }
 
 
-function inspection_add_inspection_item(inspection_id, project_id, task_id) {
+function inspection_add_inspection_item(inspection_id, project_id, task_id, tag_id) {
     var data = {};
     data.inspection_id = inspection_id;
     data.project_id = project_id;
     data.task_id = task_id;
+    data.tag_id = tag_id;
     $.post(admin_url + 'inspections/add_inspection_item', data).done(function (response) {
         reload_inspections_tables();
     });
