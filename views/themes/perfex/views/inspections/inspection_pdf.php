@@ -91,12 +91,15 @@ $items .=        '</tr>';
 $items .=    '</thead>';
 $items .=    '<tbody>';
         $i=1;
+        
+        //var_dump($inspection->inspection_items);
+
         foreach($inspection->inspection_items as $item){
             //$number = format_inspection_item_number($item['rel_id'], $item['task_id']);
 $items .=            '<tr>';
 $items .=                '<td width="50" align="right">' .$i.' </td>';
-$items .=                '<td width="210">' . $item['formatted_number'].'-'. $item['task_id'] . '</td>';
-$items .=                '<td width="550">' .$item['name']. '</td>';
+$items .=                '<td width="210">' . $item->formatted_number.'-'. $item->task_id . '</td>';
+$items .=                '<td width="550">' .$item->name. '</td>';
 $items .=            '</tr>';
             
              $i++; 

@@ -209,18 +209,19 @@ class Inspections extends AdminController
         if (!$inspection || !user_can_view_inspection($id)) {
             blank_page(_l('inspection_not_found'));
         }
-        $inspection_item = $this->inspections_model->get_inspection_items($id, $inspection->project_id, $task_id);
-
+        $_inspection_item = $this->inspections_model->get_inspection_items($id, $inspection->project_id, $task_id);
+        $inspection_item = $_inspection_item[0];
         $tags = get_tags_in($task_id, 'task');
 
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
         $inspection->equipment_type = $equipment_type;
         //$tag_id = get_available_tags($task_id);
-        $tag_id = $inspection_item[0]['tag_id'];
+
+        $tag_id = $inspection_item->tag_id;
         //$inspection->tag_id = get_tag_by_name($tags[0])->id;
 
         $inspection->categories = get_option('tag_id_'.$tag_id);
-        $inspection->inspection_item = $inspection_item[0];
+        $inspection->inspection_item = $inspection_item;
         $equipment_model = $equipment_type .'_model';
         $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
 

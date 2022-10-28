@@ -17,7 +17,7 @@ $info_right_column = '';
 $info_left_column  = '';
 
 $info_right_column .= '<span style="font-weight:bold;font-size:27px;">' . _l('inspection_pdf_heading') . '</span><br />';
-$info_right_column .= '<b style="color:#4e4e4e;"># ' . $inspection_number .'-'. $item['task_id'] .'</b>';
+$info_right_column .= '<b style="color:#4e4e4e;"># ' . $inspection_number .'-'. $item->task_id .'</b>';
 
 if (get_option('show_status_on_pdf_ei') == 1) {
     $info_right_column .= '<br /><span style="color:rgb(' . inspection_status_color_pdf($status) . ');text-transform:uppercase;">' . format_inspection_status($status, '', false) . '</span>';
@@ -90,7 +90,7 @@ $inspection_type_model = _l('inspection_type_model');
 $inspection_serial_number = _l('inspection_serial_number');
 $inspection_capacity = _l('inspection_capacity');
 
-$tag = $inspection->inspection_items[$page]['tag_name'];
+$tag = $inspection->inspection_items[$page]->tag_name;
 
 $equipment = isset($tag) ? $tag : '';
 $left_info .= '<div><strong>'. _l('equipment_type') . '</strong></div>';
@@ -101,7 +101,7 @@ $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipm
 
 include_once($model_path);
 $this->ci->load->model($equipment_model);
-$task_id = $inspection->inspection_items[$page]['task_id'];
+$task_id = $inspection->inspection_items[$page]->task_id;
 $equipment = $this->ci->{$equipment_model}->get('', ['rel_id' => $inspection->id, 'task_id' => $task_id]);
 
 if (!$equipment) {
@@ -121,7 +121,7 @@ $inspection_jenis_arus = _l('inspection_jenis_arus');
 $instalatir = _l('inspection_instalatir');
 $inspection_task_name = 'Tugas Inspeksi';
 
-$task__name = $inspection->inspection_items[$page]['name'];
+$task__name = $inspection->inspection_items[$page]->name;
 $task_name = isset($task__name) ? $task__name : 'kosong';
 
 $_tblhtml = '';
@@ -1143,7 +1143,7 @@ $right_info = $swap == '1' ? $assigned_info : $client_info;
 pdf_multi_row($left_info, $right_info, $pdf, ($dimensions['wk'] / 2) - $dimensions['lm']);
 
 $data = $inspection->client_company. "\r\n";
-$data .= $inspection_number .'-'. $item['task_id']. "\r\n";
+$data .= $inspection_number .'-'. $item->task_id. "\r\n";
 $data .= $task_name ."\r\n";
 
 // define barcode style// set style for barcode

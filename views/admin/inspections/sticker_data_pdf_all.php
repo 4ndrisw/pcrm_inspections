@@ -35,14 +35,14 @@ foreach ($inspection->inspection_items as $item){
         'module_height' => 1 // height of a single module in points
     );
     
-    $url_data = site_url('inspections/bapr/'. $inspection->id .'/html/'.$item['task_id'].'/'.$inspection->hash) ."\r\n";
+    $url_data = site_url('inspections/bapr/'. $inspection->id .'/html/'.$item->task_id.'/'.$inspection->hash) ."\r\n";
     // QRCODE,L : QR-CODE Low error correction
     $pdf->write2DBarcode($url_data, 'QRCODE,L', 65, 2, 20, 20, $style, 'N');
 
     $pdf->SetFont('helvetica', '', 11);
     $html = '<p style="text-align:center;">';
     // Like heading inspection name
-    $html .= '<strong>' . $inspection->formatted_number .'-'. $item['task_id'] .'</strong><br />';
+    $html .= '<strong>' . $inspection->formatted_number .'-'. $item->task_id .'</strong><br />';
     $html .= ucwords($client_company);
     $html .='</p>';
 
@@ -50,9 +50,9 @@ foreach ($inspection->inspection_items as $item){
 
     $assigned_path = <<<EOF
             <img src="$inspection->assigned_path">
-        EOF;    
-    $qrcode_data = $inspection->formatted_number .'-'. $item['task_id'] . "\r\n";
-    $qrcode_data .= $item['name'] . "\r\n";
+        EOF;
+    $qrcode_data = $inspection->formatted_number .'-'. $item->task_id . "\r\n";
+    $qrcode_data .= $item->name . "\r\n";
     $qrcode_data .= _d($inspection->date) . "\r\n";
     
     // QRCODE,L : QR-CODE Low error correction
@@ -63,7 +63,7 @@ foreach ($inspection->inspection_items as $item){
     $right_info .= _l('inspection_data_date') . "\r\n";
     $right_info .= _d($inspection->date) . "\r\n";
     $right_info .= _l('inspection_equipment_nama_pesawat') . "\r\n";
-    $right_info .= $item['name'] . "\r\n";
+    $right_info .= $item->name . "\r\n";
     $x = $pdf->getX();
     $y = $pdf->getY();
     //pdf_multi_row($left_info, $right_info,  $pdf, ($dimensions['wk'] / 2) - $dimensions['lm']);
