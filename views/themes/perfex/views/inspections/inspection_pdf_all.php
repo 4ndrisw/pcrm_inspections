@@ -104,6 +104,7 @@ $this->ci->load->model($equipment_model);
 $task_id = $inspection->inspection_items[$page]->task_id;
 $equipment = $this->ci->{$equipment_model}->get('', ['rel_id' => $inspection->id, 'task_id' => $task_id]);
 
+
 if (!$equipment) {
     set_alert('danger', _l('record not found ;', $equipment_model));
     
@@ -401,7 +402,7 @@ switch ($inspection->categories) {
         EOD;
     break;
     case 'ipk':
-      switch ($inspection->inspection_items[$page]['tag_name']) {
+      switch ($inspection->inspection_items[$page]->tag_name) {
         case 'Hydrant':
           $nama_pesawat = isset($inspection->equipment['nama_pesawat']) ? $inspection->equipment['nama_pesawat'] :'';
           $jumlah_nozzle = isset($inspection->equipment['jumlah_nozzle']) ? $inspection->equipment['jumlah_nozzle'] :'';
@@ -984,7 +985,7 @@ switch ($inspection->categories) {
         break;
     
     case 'ipk':
-      switch ($inspection->inspection_items[$page]['tag_name']) {
+      switch ($inspection->inspection_items[$page]->tag_name) {
         case 'Hydrant':
             $tblhtml = <<<EOD
             <style>
