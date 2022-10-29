@@ -978,8 +978,9 @@ function inspection_data($inspection, $task_id){
     $data['kelompok_pemeriksaan'] = $inspection->categories;
     $data['nomor_inspeksi'] = $inspection->formatted_number;
     $data['nomor_inspeksi_alat'] = format_inspection_item_number($inspection->id, $task_id);
-    $data['jenis_pemeriksaan_uppercase'] = strtoupper( isset($data['jenis_pemeriksaan']) ? $data['jenis_pemeriksaan'] : 'data tidak ditemukan');
-    $data['nama_pesawat_uppercase'] = strtoupper( isset($data['nama_pesawat']) ? $data['nama_pesawat'] : 'data tidak ditemukan');
+    $data['jenis_pemeriksaan_uppercase'] = isset($data['jenis_pemeriksaan']) ? strtoupper($data['jenis_pemeriksaan']) : 'data tidak ditemukan';
+    $data['nama_pesawat_uppercase'] = isset($data['nama_pesawat']) ? strtoupper($data['nama_pesawat']) : 'data tidak ditemukan';
+    $data['nama_perusahaan_uppercase'] = isset($data['nama_perusahaan']) ? strtoupper($data['nama_perusahaan']) : 'data tidak ditemukan';
 
     if(isset($data['pabrik_pembuat_hoist'])){
         $data['pabrik_pembuat']  = $data['pabrik_pembuat_hoist'];
