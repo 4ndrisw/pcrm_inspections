@@ -296,6 +296,58 @@ function inspection_number_format($number, $format, $applied_prefix, $date)
 }
 
 /**
+ * Format inspection number based on description
+ * @param  mixed $id
+ * @return string
+ */
+function format_nomor_laporan($id, $task_id)
+{
+    $CI = &get_instance();
+    $CI->db->select('date,number,prefix,number_format,tag_id')->from(db_prefix() . 'inspections')->where(db_prefix() . 'inspections.id', $id);
+    $CI->db->join(db_prefix() . 'inspection_items', db_prefix() . 'inspections.id = ' . db_prefix() . 'inspection_items.inspection_id');
+    $inspection = $CI->db->get()->row();
+
+    if (!$inspection) {
+        return '';
+    }
+    
+    $categories = strtoupper(get_option('tag_id_'.$inspection->tag_id ) . '-');
+    
+    $number = 'LI-'.inspection_number_format($inspection->number, $inspection->number_format, $categories, $inspection->date);
+
+    return hooks()->apply_filters('format_inspection_number', $number .'-'. $task_id, [
+        'id'       => $id,
+        'inspection' => $inspection,
+    ]);
+}
+
+/**
+ * Format inspection number based on description
+ * @param  mixed $id
+ * @return string
+ */
+function format_nomor_sertifikat($id, $task_id)
+{
+    $CI = &get_instance();
+    $CI->db->select('date,number,prefix,number_format,tag_id')->from(db_prefix() . 'inspections')->where(db_prefix() . 'inspections.id', $id);
+    $CI->db->join(db_prefix() . 'inspection_items', db_prefix() . 'inspections.id = ' . db_prefix() . 'inspection_items.inspection_id');
+    $inspection = $CI->db->get()->row();
+
+    if (!$inspection) {
+        return '';
+    }
+    
+    $categories = strtoupper(get_option('tag_id_'.$inspection->tag_id ) . '-');
+    
+    $number = 'SI-'.inspection_number_format($inspection->number, $inspection->number_format, $categories, $inspection->date);
+
+    return hooks()->apply_filters('format_inspection_number', $number .'-'. $task_id, [
+        'id'       => $id,
+        'inspection' => $inspection,
+    ]);
+}
+
+/**
  * Calculate inspections percent by status
  * @param  mixed $status          inspection status
  * @return array
@@ -971,16 +1023,21 @@ function inspection_data($inspection, $task_id){
 
     //$data['licence_id'] = $licence_id;
 
+    $categories = get_option('tag_id_'.$inspection->inspection_item->tag_id);
+
     $data['pjk3'] = get_option('invoice_company_name');
     $data['nama_perusahaan'] = isset($inspection->client) ? $inspection->client->company : $inspection['client']->company;
     $data['alamat_perusahaan'] = $inspection->billing_street .' '. $inspection->billing_city .' '. $inspection->billing_state .' '. $inspection->billing_zip;
     $data['tanggal_pemeriksaan'] = tanggal_pemeriksaan($inspection->date);
-    $data['kelompok_pemeriksaan'] = $inspection->categories;
+    //$data['kelompok_pemeriksaan'] = $inspection->categories;
     $data['nomor_inspeksi'] = $inspection->formatted_number;
     $data['nomor_inspeksi_alat'] = format_inspection_item_number($inspection->id, $task_id);
     $data['jenis_pemeriksaan_uppercase'] = isset($data['jenis_pemeriksaan']) ? strtoupper($data['jenis_pemeriksaan']) : 'data tidak ditemukan';
     $data['nama_pesawat_uppercase'] = isset($data['nama_pesawat']) ? strtoupper($data['nama_pesawat']) : 'data tidak ditemukan';
     $data['nama_perusahaan_uppercase'] = isset($data['nama_perusahaan']) ? strtoupper($data['nama_perusahaan']) : 'data tidak ditemukan';
+    
+    $data['sertifikat'] = format_nomor_sertifikat($inspection->id, $task_id);
+    
 
     if(isset($data['pabrik_pembuat_hoist'])){
         $data['pabrik_pembuat']  = $data['pabrik_pembuat_hoist'];
@@ -995,7 +1052,7 @@ function inspection_data($inspection, $task_id){
     $data['pjk3_ttd_ndt'] = strtoupper(get_staff_full_name(get_option('default_ndt_assigned')));
     $data['tanggal_penerbitan'] = tanggal_penerbitan_certifikat($task_id);
     
-    $default_regulation = get_option('predefined_regulation_of_'.$inspection->categories);
+    $default_regulation = get_option('predefined_regulation_of_'.$categories);
     $equipment_regulasi = !empty($data['regulasi']) ? $data['regulasi'] : $default_regulation;
 
     if (!empty($equipment_regulasi)) {
