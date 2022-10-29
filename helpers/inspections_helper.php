@@ -994,8 +994,7 @@ function inspection_data($inspection, $task_id){
     $data['pjk3_kota'] = get_option('default_certificate_assign_city');
     $data['pjk3_ttd_ndt'] = strtoupper(get_staff_full_name(get_option('default_ndt_assigned')));
     $data['tanggal_penerbitan'] = tanggal_penerbitan_certifikat($task_id);
-    var_dump($data);
-    die();
+    
     $default_regulation = get_option('predefined_regulation_of_'.$inspection->categories);
     $equipment_regulasi = !empty($data['regulasi']) ? $data['regulasi'] : $default_regulation;
 
