@@ -221,6 +221,9 @@
       echo render_select('settings[default_inspection_assigned_iil]',$staff,array('staffid',array('firstname','lastname')),'default_inspection_assigned_iil_string',$selected);
       ?>
        <hr />
+      <i class="fa fa-question-circle pull-left" data-toggle="tooltip" data-title="<?php echo _l('default_inspection_skp_iil_tooltip'); ?>"></i>
+      <?php echo render_input('settings[default_inspection_skp_iil]','default_inspection_skp_iil',get_option('default_inspection_skp_iil')); ?>
+      <hr />
       <?php echo render_textarea('settings[predefined_regulation_of_ipka]','regulation_of_ipka',get_option('predefined_regulation_of_ipka'),array('rows'=>3)); ?>
      <hr />
       <?php
