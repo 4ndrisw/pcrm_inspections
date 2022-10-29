@@ -993,7 +993,9 @@ function inspection_data($inspection, $task_id){
     $data['pjk3_ttd_jabatan'] = strtoupper(get_option('default_certificate_assign_position'));
     $data['pjk3_kota'] = get_option('default_certificate_assign_city');
     $data['pjk3_ttd_ndt'] = strtoupper(get_staff_full_name(get_option('default_ndt_assigned')));
-
+    $data['tanggal_penerbitan'] = tanggal_penerbitan_certifikat($task_id);
+    var_dump($data);
+    die();
     $default_regulation = get_option('predefined_regulation_of_'.$inspection->categories);
     $equipment_regulasi = !empty($data['regulasi']) ? $data['regulasi'] : $default_regulation;
 
@@ -1025,4 +1027,18 @@ function inspections_get_equipment_model($equipment_model, $id, $task_id){
     }
 
     return $equipment;
+}
+
+function tanggal_penerbitan_certifikat($task_id){
+    $CI = &get_instance();
+    $CI->db->select('proposed_date')->from(db_prefix() . 'licences');
+
+    $CI->db->join(db_prefix() . 'licence_items', db_prefix() . 'licence_items.licence_id = ' . db_prefix() . 'licences.id');
+    $CI->db->join(db_prefix() . 'inspection_items', db_prefix() . 'licence_items.task_id = ' . db_prefix() . 'inspection_items.task_id');
+    $CI->db->where(db_prefix() . 'inspection_items.task_id =' .$task_id );
+
+    //return $CI->db->get_compiled_select();
+    $_date = $CI->db->get()->row()->proposed_date;
+    $date = isset($_date) ? $_date : '0000-00-00';
+    return tanggal_pemeriksaan($date);
 }
