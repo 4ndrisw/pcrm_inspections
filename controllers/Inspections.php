@@ -239,7 +239,12 @@ class Inspections extends AdminController
         $inspection->equipment = $equipment;
 
         $data = inspection_data($inspection, $task_id);
-
+        /*
+        echo '<pre>';
+        var_dump($data);
+        echo '<pre>';
+        die();
+        */
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
 
         $file = str_replace(' ', '_', 'laporan_' . $equipment['jenis_pesawat']);
@@ -252,7 +257,8 @@ class Inspections extends AdminController
         $templateProcessor->setValues($data);
 
         //$templateProcessor->setImageValue('CompanyLogo', 'path/to/company/logo.png');
-        $temp_filename = strtoupper($inspection->client->company .'-'. $equipment['jenis_pesawat']) .'-'. $inspection->formatted_number .'-'.$task_id. '.docx';
+        $perusahaan = str_replace(' ', '_', $inspection->client->company);
+        $temp_filename = strtoupper($perusahaan .'-'. $equipment['jenis_pesawat']) .'-'. $inspection->formatted_number .'-'.$task_id. '.docx';
         $templateProcessor->saveAs($temp_filename);
 
         header('Content-Description: File Transfer');
