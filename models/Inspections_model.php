@@ -1585,6 +1585,7 @@ class Inspections_model extends App_Model
                 'inspection_id'      => $data['inspection_id'],
                 'project_id' => $data['project_id'],
                 'task_id'              => $data['task_id'],
+                'category'              => $category,
                 'tag_id'              => $data['tag_id'],
                 'ahli_k3_nama'              => $ahli_k3_nama,
                 'ahli_k3_skp'              => $ahli_k3_skp]);
