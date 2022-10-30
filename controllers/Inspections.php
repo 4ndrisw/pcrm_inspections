@@ -10,10 +10,10 @@ class Inspections extends AdminController
     {
         parent::__construct();
         $this->load->model('inspections_model');
-        $this->load->model('equipment_category_model');
+        //$this->load->model('equipment_category_model');
         $this->load->model('clients_model');
         $this->load->model('tasks_model');
-        $this->categories = $this->equipment_category_model->get();
+        //$this->categories = $this->equipment_category_model->get();
 
     }
 
@@ -114,7 +114,12 @@ class Inspections extends AdminController
         $inspection->task_id       = $task_id;
         $inspection->documentations = $this->inspections_model->get_inspection_documentation($id,$task_id);
 
-        $data['inspection'] = $inspection;
+        $_inspection_item = $this->inspections_model->get_inpection_item($id,'',$task_id);
+        $inspection_item = $_inspection_item[0];
+
+        $inspection->inspection_item = $inspection_item;
+
+        //$data['inspection'] = $inspection;
         $data['edit']     = false;
         $title            = _l('preview_inspection');
 
@@ -163,9 +168,10 @@ class Inspections extends AdminController
 
         $equipment_type = ucfirst(strtolower(str_replace(' ', '_', $tags[0])));
         $inspection->equipment_type = $equipment_type;
-        $inspection->tag_id = get_tag_by_name($tags[0])->id;
-        $tag_id = get_available_tags($task_id);
-        $inspection->categories = get_option('tag_id_'.$tag_id['0']['tag_id']);
+        //$inspection->tag_id = get_tag_by_name($tags[0])->id;
+        
+        $tag_id = $inspection_item->tag_id;
+        //$inspection->categories = $inspection_item->category;;
         $equipment_model = $equipment_type .'_model';
         $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
 
@@ -205,7 +211,7 @@ class Inspections extends AdminController
     public function inspection_report($id, $task_id)
     {
         $inspection = $this->inspections_model->get($id);
-        $task = $this->tasks_model->get($task_id);
+        //$task = $this->tasks_model->get($task_id);
         if (!$inspection || !user_can_view_inspection($id)) {
             blank_page(_l('inspection_not_found'));
         }
@@ -217,10 +223,11 @@ class Inspections extends AdminController
         $inspection->equipment_type = $equipment_type;
         //$tag_id = get_available_tags($task_id);
 
-        $tag_id = $inspection_item->tag_id;
+        //$tag_id = $inspection_item->tag_id;
         //$inspection->tag_id = get_tag_by_name($tags[0])->id;
 
-        $inspection->categories = get_option('tag_id_'.$tag_id);
+        //$inspection->categories = get_option('tag_id_'.$tag_id);
+
         $inspection->inspection_item = $inspection_item;
         $equipment_model = $equipment_type .'_model';
         $model_path = FCPATH . 'modules/'. INSPECTIONS_MODULE_NAME .'/models/' . $equipment_model .'.php';
@@ -242,9 +249,10 @@ class Inspections extends AdminController
         /*
         echo '<pre>';
         var_dump($data);
-        echo '<pre>';
+        echo '</pre>';
         die();
         */
+
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
 
         $file = str_replace(' ', '_', 'laporan_' . $equipment['jenis_pesawat']);
@@ -328,7 +336,7 @@ class Inspections extends AdminController
         }
 
         $data['staff']             = $this->staff_model->get('', ['active' => 1]);
-        $data['categories']        = $this->equipment_category_model->get();
+        //$data['categories']        = $this->equipment_category_model->get();
         $data['inspection_statuses'] = $this->inspections_model->get_statuses();
         $data['title']             = $title;
 
@@ -412,7 +420,7 @@ class Inspections extends AdminController
         $data['inspection_members']  = $this->inspections_model->get_inspection_members($id);
 
         $data['staff']             = $this->staff_model->get('', ['active' => 1]);
-        $data['categories']        = $this->equipment_category_model->get();
+        //$data['categories']        = $this->equipment_category_model->get();
         $data['inspection_statuses'] = $this->inspections_model->get_statuses();
         $data['title']             = $title;
         $this->load->view('admin/inspections/inspection_update', $data);
