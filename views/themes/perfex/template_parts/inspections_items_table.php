@@ -13,12 +13,12 @@
     <tbody>
         <?php $i=1;?>
         <?php foreach($inspection_items as $item){ ?>
-        <?php $number = format_inspection_item_number($item['rel_id'], $item['task_id']); ?>
+        <?php $number = format_inspection_item_number($item->rel_id, $item->task_id); ?>
             <tr>
                 <td ><?php echo $i; ?></td>
-                <td><?php echo $item['formatted_number'] .'-'. $item['task_id']; ?></td>
-                <td><?php echo $item['name']; ?></td>
-                <td><?php echo $item['tag_name']; ?></td>
+                <td><?php echo $item->formatted_number .'-'. $item->task_id; ?></td>
+                <td><?php echo $item->name; ?></td>
+                <td><?php echo $item->tag_name; ?></td>
             </tr>
             <?php $i++; ?>
         <?php } ?>
