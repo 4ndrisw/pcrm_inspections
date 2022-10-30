@@ -1535,7 +1535,7 @@ class Inspections_model extends App_Model
     public function get_inspection_items($inspection_id, $project_id, $task_id = false){
         $this->db->select([db_prefix() . 'tasks.id AS task_id',db_prefix() . 'tasks.name', db_prefix() . 'tasks.rel_id', db_prefix() . 'tasks.dateadded', db_prefix() . 'tags.name AS tag_name']);
         $this->db->select([db_prefix() . 'inspections.formatted_number AS formatted_number']);
-        $this->db->select([db_prefix() . 'inspection_items.tag_id',db_prefix() . 'inspection_items.ahli_k3_nama',db_prefix() . 'inspection_items.ahli_k3_skp']);
+        $this->db->select([db_prefix() . 'inspection_items.*']);
         $this->db->where(db_prefix() . 'tasks.rel_id =' . $project_id);
 
         $this->db->join(db_prefix() . 'inspection_items', db_prefix() . 'inspection_items.task_id = ' . db_prefix() . 'tasks.id', 'left');
@@ -1840,7 +1840,7 @@ class Inspections_model extends App_Model
     }
 
 
-  public function get_inpections_items($inspection_id, $project_id){
+  public function __get_inpections_items($inspection_id, $project_id){
 
         $this->db->select([db_prefix() . 'tasks.id AS task_id', db_prefix() . 'tasks.name AS task_name']);
         $this->db->select([db_prefix() . 'inspection_items.inspection_id', db_prefix() . 'projects.id AS project_id', db_prefix() . 'tags.name AS tags_name', 'COUNT('.db_prefix() . 'tasks.id) AS count']);
@@ -1863,5 +1863,19 @@ class Inspections_model extends App_Model
         //return $this->db->get_compiled_select(db_prefix() . 'inspection_items');
         return $this->db->get(db_prefix() . 'inspection_items')->result_array();
     }
+
+  public function get_inpection_item($inspection_id, $project_id=false, $task_id=false){
+        $this->db->select('*');
+        $this->db->where(db_prefix() . 'inspection_items.inspection_id=' . $inspection_id);
+        if($project_id){
+            $this->db->where(db_prefix() . 'inspection_items.project_id=' . $project_id);
+        }
+        if($task_id){
+            $this->db->where(db_prefix() . 'inspection_items.task_id=' . $task_id);
+        }
+        //return $this->db->get_compiled_select(db_prefix() . 'inspection_items');
+        return $this->db->get(db_prefix() . 'inspection_items')->result();
+  }
+  
 
 }
