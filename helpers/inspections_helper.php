@@ -326,23 +326,33 @@ function format_nomor_laporan($id, $task_id)
  * @param  mixed $id
  * @return string
  */
-function format_nomor_sertifikat($id, $task_id)
+function format_nomor_sertifikat($inspection, $task_id)
 {
+    /*
     $CI = &get_instance();
-    $CI->db->select('date,number,prefix,number_format,tag_id')->from(db_prefix() . 'inspections')->where(db_prefix() . 'inspections.id', $id);
+    $CI->db->select('date,number,prefix,number_format,tag_id')->from(db_prefix() . 'inspections');
+    $CI->db->select(db_prefix() . 'inspection_items.category');
+    $CI->db->where(db_prefix() . 'inspections.id', $id);
     $CI->db->join(db_prefix() . 'inspection_items', db_prefix() . 'inspections.id = ' . db_prefix() . 'inspection_items.inspection_id');
     $inspection = $CI->db->get()->row();
-
+    
     if (!$inspection) {
         return '';
     }
+*/
+    $category = strtoupper($inspection->inspection_item->category) . '-';
+    /*
+    var_dump($inspection->number);
+    var_dump($inspection->number_format);
+    var_dump($category);
+    var_dump($inspection->date);
+    die();
+    */
     
-    $categories = strtoupper(get_option('tag_id_'.$inspection->tag_id ) . '-');
-    
-    $number = 'SI-'.inspection_number_format($inspection->number, $inspection->number_format, $categories, $inspection->date);
+    $number = 'SI-'.inspection_number_format($inspection->number, $inspection->number_format, $category, $inspection->date);
 
     return hooks()->apply_filters('format_inspection_number', $number .'-'. $task_id, [
-        'id'       => $id,
+        'id'       => $inspection->id,
         'inspection' => $inspection,
     ]);
 }
@@ -1009,8 +1019,8 @@ function inspection_data($inspection, $task_id){
         $_data[$key] = $value;
     }
 
-    $inspection_item = (object)$inspection->inspection_item;
-
+    $inspection_item = $inspection->inspection_item;
+    
     if (isset($inspection_item)){
         foreach ($inspection_item as $key => $value) {
             $_data[$key] = $value;
@@ -1028,7 +1038,8 @@ function inspection_data($inspection, $task_id){
     $data['pjk3'] = get_option('invoice_company_name');
     $data['nama_perusahaan'] = isset($inspection->client) ? $inspection->client->company : $inspection['client']->company;
     $data['alamat_perusahaan'] = $inspection->billing_street .' '. $inspection->billing_city .' '. $inspection->billing_state .' '. $inspection->billing_zip;
-    $data['tanggal_pemeriksaan'] = tanggal_pemeriksaan($inspection->date);
+
+    $data['tanggal_pemeriksaan'] = isset($inspection->date) ? tanggal_pemeriksaan($inspection->date) : '';
     //$data['kelompok_pemeriksaan'] = $inspection->categories;
     $data['nomor_inspeksi'] = $inspection->formatted_number;
     $data['nomor_inspeksi_alat'] = format_inspection_item_number($inspection->id, $task_id);
@@ -1036,7 +1047,7 @@ function inspection_data($inspection, $task_id){
     $data['nama_pesawat_uppercase'] = isset($data['nama_pesawat']) ? strtoupper($data['nama_pesawat']) : 'data tidak ditemukan';
     $data['nama_perusahaan_uppercase'] = isset($data['nama_perusahaan']) ? strtoupper($data['nama_perusahaan']) : 'data tidak ditemukan';
     
-    $data['sertifikat'] = format_nomor_sertifikat($inspection->id, $task_id);
+    $data['sertifikat'] = format_nomor_sertifikat($inspection, $task_id);
     
 
     if(isset($data['pabrik_pembuat_hoist'])){
@@ -1092,9 +1103,10 @@ function tanggal_penerbitan_certifikat($task_id){
     $CI->db->join(db_prefix() . 'licence_items', db_prefix() . 'licence_items.licence_id = ' . db_prefix() . 'licences.id');
     $CI->db->join(db_prefix() . 'inspection_items', db_prefix() . 'licence_items.task_id = ' . db_prefix() . 'inspection_items.task_id');
     $CI->db->where(db_prefix() . 'inspection_items.task_id =' .$task_id );
-
+    
     //return $CI->db->get_compiled_select();
-    $_date = $CI->db->get()->row()->proposed_date;
-    $date = isset($_date) ? $_date : '0000-00-00';
+    $_date = $CI->db->get()->row();
+
+    $date = isset($_date) ? $_date->proposed_date : '0000-00-00';
     return tanggal_pemeriksaan($date);
 }
