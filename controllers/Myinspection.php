@@ -237,7 +237,7 @@ class Myinspection extends ClientsController
         $data['inspection']                     = hooks()->apply_filters('inspection_html_pdf_data', $inspection);
         $data['task']                           = $task;
 
-        $data['inspection_items'] = $this->inspections_model->get_inspection_items($inspection->id, $inspection->project_id);
+        $data['inspection_items'] = $this->inspections_model->get_inspection_items($inspection->id, $inspection->project_id, $task_id);
 
         //get_option('tag_id_'.$tag['tag_id']);
         $tag_id = get_available_tags($task_id);        
@@ -306,6 +306,7 @@ class Myinspection extends ClientsController
             load_client_language($inspection->clientid);
         }
 
+
         $identity_confirmation_enabled = get_option('inspection_accept_identity_confirmation');
 
         if ($this->input->post('inspection_action')) {
@@ -367,9 +368,17 @@ class Myinspection extends ClientsController
         include_once($model_path);
         $this->load->model($equipment_model);
         $equipment = $this->{$equipment_model}->get('', ['rel_id' => $inspection->id, 'task_id' =>$task_id]);
-        $inspection->equipment = $equipment;
         
+        if(empty($equipment && $inspection->status == '1')){
+            set_alert('danger', _l('file_not_found ;', $equipment_model));
+            log_activity('Data '. $equipment_model . ' empty, and status draft');
+            redirect(admin_url('inspections/inspection_item/'.$id.'/'.$task_id));
+        }
+
+        $inspection->equipment = $equipment;
         $data['equipment'] = $equipment[0];
+        var_dump($equipment);
+        
         $data['equipment_name']          = $data['equipment']['nama_pesawat'];
         
         $data['inspection']                     = hooks()->apply_filters('inspection_html_pdf_data', $inspection);
