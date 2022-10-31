@@ -122,6 +122,31 @@
                                 <td class="<?= $editable_class ?>" data-field="kapasitas" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['kapasitas']) ? $equipment['kapasitas'] : '' ?></td>
                              </tr>
                              <tr>
+                                <td style="width:20%">Berat Beban Uji</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editable_class ?>" data-field="berat_beban_uji" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['berat_beban_uji']) ? $equipment['berat_beban_uji'] : '' ?></td>
+                             </tr>
+                             <tr>
+                                <td style="width:20%">Tinggi Angkat Awal</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editable_class ?>" data-field="tinggi_angkat_awal" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['tinggi_angkat_awal']) ? $equipment['tinggi_angkat_awal'] : '' ?></td>
+                             </tr>
+                             <tr>
+                                <td style="width:20%">Tinggi Angkat Akhir</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editable_class ?>" data-field="tinggi_angkat_akhir" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['tinggi_angkat_akhir']) ? $equipment['tinggi_angkat_akhir'] : '' ?></td>
+                             </tr>
+                             <tr>
+                                <td style="width:20%">Waktu Tahan</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editable_class ?>" data-field="waktu_tahan" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['waktu_tahan']) ? $equipment['waktu_tahan'] : '' ?></td>
+                             </tr>
+                             <tr>
+                                <td style="width:20%">Selisih Penurunan Beban</td>
+                                <td style="width:2%">:</td>
+                                <td class="<?= $editable_class ?>" data-field="selisih_penurunan_beban" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['selisih_penurunan_beban']) ? $equipment['selisih_penurunan_beban'] : '' ?></td>
+                             </tr>
+                             <tr>
                                 <td style="width:20%">Digunakan untuk</td>
                                 <td style="width:2%">:</td>
                                 <td class="<?= $editable_class ?>" data-field="digunakan_untuk" data-jenis_pesawat="<?= $inspection->equipment_type ?>" data-inspection_id="<?= $inspection->id ?>" data-task_id="<?= $task->id ?>"><?= isset($equipment['digunakan_untuk']) ? $equipment['digunakan_untuk'] : '' ?></td>
