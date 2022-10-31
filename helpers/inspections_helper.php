@@ -300,25 +300,25 @@ function inspection_number_format($number, $format, $applied_prefix, $date)
  * @param  mixed $id
  * @return string
  */
-function format_nomor_laporan($id, $task_id)
+function format_nomor_laporan($inspection, $task_id)
 {
-    $CI = &get_instance();
-    $CI->db->select('date,number,prefix,number_format,tag_id')->from(db_prefix() . 'inspections')->where(db_prefix() . 'inspections.id', $id);
-    $CI->db->join(db_prefix() . 'inspection_items', db_prefix() . 'inspections.id = ' . db_prefix() . 'inspection_items.inspection_id');
-    $inspection = $CI->db->get()->row();
-
-    if (!$inspection) {
-        return '';
-    }
+    $category = strtoupper($inspection->inspection_item->category) . '-';
+    /*
+    var_dump($inspection->number);
+    var_dump($inspection->number_format);
+    var_dump($category);
+    var_dump($inspection->date);
+    die();
+    */
+    $category = strtoupper($inspection->inspection_item->category) . '-';
     
-    $categories = strtoupper(get_option('tag_id_'.$inspection->tag_id ) . '-');
-    
-    $number = 'LI-'.inspection_number_format($inspection->number, $inspection->number_format, $categories, $inspection->date);
+    $number = 'SI-'.inspection_number_format($inspection->number, $inspection->number_format, $category, $inspection->date);
 
     return hooks()->apply_filters('format_inspection_number', $number .'-'. $task_id, [
-        'id'       => $id,
+        'id'       => $inspection->id,
         'inspection' => $inspection,
     ]);
+
 }
 
 /**
@@ -348,6 +348,7 @@ function format_nomor_sertifikat($inspection, $task_id)
     var_dump($inspection->date);
     die();
     */
+    $category = strtoupper($inspection->inspection_item->category) . '-';
     
     $number = 'SI-'.inspection_number_format($inspection->number, $inspection->number_format, $category, $inspection->date);
 
