@@ -1108,6 +1108,6 @@ function tanggal_penerbitan_certifikat($task_id){
     //return $CI->db->get_compiled_select();
     $_date = $CI->db->get()->row();
 
-    $date = isset($_date) ? $_date->proposed_date : '0000-00-00';
+    $date = isset($_date) ? $_date->proposed_date : '1970-01-01';
     return tanggal_pemeriksaan($date);
 }
