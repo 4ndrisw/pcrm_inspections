@@ -162,7 +162,7 @@ $lang['equipment_regulasi']                             = 'Regulasi';
 $lang['equipment_temuan']                             = 'Temuan';
 $lang['equipment_kesimpulan']                             = 'Saran / Kesimpulan';
 
-$lang['inspection_declare']                             = 'Dengan ini menyatakan bahwa pemeriksaan dan pengujian telah dilaksanakan pada tanggal ';
+$lang['inspection_declare']                             = 'Dengan ini menyatakan bahwa pemeriksaan dan pengujian telah dilaksanakan pada ';
 $lang['inspection_result'] 	='dengan hasil sebagai berikut.';
 
 $lang['pemeriksaan_dokumen']                             = 'Pemeriksaan dokumen';
