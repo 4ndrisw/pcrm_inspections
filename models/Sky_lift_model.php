@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Man_lift_model extends App_Model
+class Sky_lift_model extends App_Model
 {
     public function __construct()
     {
@@ -11,8 +11,8 @@ class Man_lift_model extends App_Model
      }
 
     /**
-     * Get man_lift/s
-     * @param mixed $id man_lift id
+     * Get sky_lift/s
+     * @param mixed $id sky_lift id
      * @param array $where perform where
      * @return mixed
      */
@@ -20,12 +20,12 @@ class Man_lift_model extends App_Model
     {
         if (is_numeric($id)) {
             $this->db->where('staffid', $id);
-            $category = $this->db->get(db_prefix() . 'man_lift')->row();
+            $category = $this->db->get(db_prefix() . 'sky_lift')->row();
 
             return $category;
         }
-        $this->db->select('*,' . db_prefix() . 'man_lift.id');
-        $this->db->from(db_prefix() . 'man_lift');
+        $this->db->select('*,' . db_prefix() . 'sky_lift.id');
+        $this->db->from(db_prefix() . 'sky_lift');
         $this->db->where($where);
         $results = $this->db->get()->result_array();
         return $results;
@@ -34,10 +34,10 @@ class Man_lift_model extends App_Model
 
     public function create($data){
         $data['regulasi'] = get_option('predefined_regulation_of_paa');
-        $this->db->insert(db_prefix().'man_lift', $data);
+        $this->db->insert(db_prefix().'sky_lift', $data);
         $equipment_id = $this->db->insert_id();
 
-        hooks()->do_action('after_man_lift_added', $equipment_id);
+        hooks()->do_action('after_sky_lift_added', $equipment_id);
         return $equipment_id;
     }
 
@@ -68,7 +68,7 @@ class Man_lift_model extends App_Model
         $this->db->select('id');
         $this->db->where('rel_id', $rel_id);
         $this->db->where('task_id', $task_id);
-        $this->db->update(db_prefix() . 'man_lift', $data);
+        $this->db->update(db_prefix() . 'sky_lift', $data);
     }
 
     public function update_pengujian_data($data){
