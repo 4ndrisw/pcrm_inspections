@@ -41,6 +41,16 @@ function get_inspection_shortlink($inspection)
     return $long_url;
 }
 
+
+function _convert_to_inspection($new_inspection_data)
+{
+    $CI = &get_instance();
+    $CI->load->model('inspections_model');
+
+    $id = $CI->inspections_model->add($new_inspection_data);
+    return $id ? $id : false;
+}
+
 /**
  * Check inspection restrictions - hash, clientid
  * @param  mixed $id   inspection id
